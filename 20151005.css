@@ -1,0 +1,75 @@
+
+body {font-style:san-serif;
+    font-size:0.75rem;
+    
+    
+}
+ul{list-style-type: none;
+background-color:#22B500;
+font-weight: bold;
+border-radius:2px;}
+li{float:left;
+background-color:#22B500;
+padding:7px;
+}
+*{margin:0;
+padding:0;
+oustline:1px solid rgba(200,200,200,0.8);}
+
+.mainmenu {
+    color:#FCFF00;
+    
+    
+}
+
+.submenu {
+    color:white;
+}
+
+.timemenu {
+    color:white;
+    position:relative;
+    bottom:1px;
+}
+
+.count {
+    color:black;
+    font-weight:lighter;
+    font-size:0.8rem;
+    margin-left:20px;
+}
+
+.number {font-size:0.8rem;
+    display:block;
+    width:0.8rem;
+    height:0.8rem;
+    line-height:0.7rem;
+    text-align:center;
+    background-color:darkgreen;
+position:relative;
+    top:3px;
+    margin-right:5px;
+    float:left;
+    border-radius:1px;
+    
+    
+}
+
+.first {
+    padding-left:20px;
+}
+
+.last {
+    padding-right:10px;
+    border-right:black;
+}
+
+.fa-arrow-up {
+    color:red;
+    font-size:0.7rem;
+    margin-right:2px;
+}
+
+.theend {
+    padding-right:40px;
+}
