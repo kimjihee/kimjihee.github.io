@@ -1,0 +1,67 @@
+*{outldine:1px solid rgba(200,200,200,0.8);
+margin:0;
+padding:0;
+box-sizing: border-box;}
+body{font-size:0.73rem;
+}
+.하단광고 li{
+    float:left;
+    list-style-type: none;
+    width:33.33333333333333333333333333333333333333333%;
+    height:33.333333333333333333333333333333333333333%;
+    padding-left: 3px;
+    
+}
+
+.하단광고 {
+    height:21rem;
+    width:19rem;
+}
+
+.point {
+    color:#F74D4A;
+   margin-top: 5px;
+    margin-bottom: 5px;
+    
+}
+
+.more {
+    color:rgba(100,100,100,0.8);
+    margin-top:18px;
+}
+
+.bluepoint {text-transform: uppercase;
+    font-weight:bold;
+    color: #A1D4D4;
+    font-size: 0.8rem;
+    text-align: center;
+   margin-top: 1px;
+    
+}
+
+.spcial {
+    border: 3px solid #A1D4D4;
+    padding-right:3px;
+    padding-top: 10px;
+}
+
+.down {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.line {
+    border-bottom: 1px solid #A1D4D4;
+    margin-top: 15px;
+    width:3rem;
+    position:relative;
+    left:18px;
+}img{width:4rem;
+    margin:0 atuo 0 auto;
+}
+
+.menubody {
+    border: 1px solid rgba(200,200,200,0.7);
+    width:20rem;
+    padding:7px;
+}
