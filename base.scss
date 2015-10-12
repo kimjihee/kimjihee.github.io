@@ -1,6 +1,6 @@
 $배경색: blue;
-
-h1, h2 {
+h1,
+h2 {
     background-color: $배경색;
 }
 
@@ -8,21 +8,20 @@ p {
     background-color: $배경색;
 }
 
-
 $좌측너비: 70%;
-
 .left {
     width: $좌측너비;
 }
+
 .right {
     height: 100% - $좌측너비;
 }
 
-
 ul {
     color: red;
-    
     li {
         color: black;
     }
 }
+
+body {}
