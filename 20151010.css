@@ -1,0 +1,166 @@
+*{outline:1px solid rgba(200, 200, 200, 0.8);
+padding: 0;
+margin: 0;
+color:rgba(150, 150, 150, 0.9);
+box-sizing:border-box;
+font-family: sans-serif;
+text-align:center;}
+
+
+.gridtoptop {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3rem;
+    line-height:2rem;
+    background-color:lightskyblue;
+}
+
+.bottom {
+    position:fixed;
+    bottom:0;
+    left:2rem;
+    right:2rem;
+    height:4rem;
+    line-height:4rem;
+    background-color: lightskyblue;
+}
+
+.left10 {
+    position:absolute;
+    top:3rem;
+    bottom:4rem;
+    left:0;
+    width:60%;
+    }
+
+.right10 {
+    position:absolute;
+    top:3rem;
+    bottom:4rem;
+    right:0;
+    width:40%;
+}
+
+body {
+    position: absolute;
+    top:0;
+    left:2rem;
+    right:2rem;
+bottom:0;}
+
+.topmenu {
+    position: absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:1rem;
+    background-color: cornflowerblue;
+    line-height:1rem;
+    color:black;
+   
+}
+
+.gtbtop {
+    position: absolute;
+    height:3rem;
+    left:0;
+    right:0;
+    line-height:3rem;
+  
+        
+}
+
+
+.gtbbottomleft {position: absolute;
+    top:3rem;
+    left:0;
+    right:0;
+    height:7rem;
+    line-height: 7rem;
+    
+    
+    
+}
+
+.gtbbottomright {position: absolute;
+    top:3rem;
+    left:0;
+    right:0;
+    height:3rem;
+    line-height:3rem;
+    
+    
+    
+}
+
+.광고오른쪽 {
+    position: absolute;
+    top:6rem;
+    left:0;
+    right:0;
+    height:4rem;
+    line-height: 4rem;
+   
+    
+}
+
+.gmmenu {
+    position: absolute;
+    top:10rem;
+    left:0;
+    right:0;
+    height:2rem;
+    line-height:2rem;
+    background-color:darkcyan;
+}
+
+.gridbottom {
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:3rem;
+    line-height:3rem;
+   
+    
+}
+
+.gridmiddlebottom {position: absolute;
+    bottom:3rem;
+    left:0;
+    right:0;
+    height:6rem;
+    line-height:6rem;
+   
+    
+    
+}
+
+.gridmiddlebottomright {
+    position: absolute;
+    bottom:3rem;
+    left:0;
+    right:0;
+    height:8rem;
+    
+    
+}
+.gridmiddletopleft {position: absolute;
+    top:12rem;
+    left:0;
+    right:0;
+    height:15rem;
+    
+}
+
+
+
+.gridmiddletopright{position: absolute;
+    top:12rem;
+    left:0;
+    right:0;
+    height:15rem;
+    
+}
