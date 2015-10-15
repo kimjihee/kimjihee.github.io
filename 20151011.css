@@ -1,0 +1,61 @@
+*{outㅁline:1px solid rgba(200, 200, 200, 0.8);
+padding: 0;
+margin: 0;
+color:rgba(150, 150, 150, 0.9);
+box-sizing:border-box;
+font-family: sans-serif;
+text-align:center;}
+.right광고 {
+width:24rem;
+}
+
+.광고박스 li{float:left;
+    width:33.33333333333333333333333333333333%;
+    height:8rem;
+    
+}
+
+.사진이다 {
+width:6rem;
+}
+
+.상위클릭 li{
+    float:right;
+    width:20%;
+    padding:14px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: darkgrey;
+    
+}
+
+
+.하단회사모음 {
+    clear:right;
+    padding:15px;
+}
+
+.spec {
+    position: absolute;
+    left:0;
+    text-align: left;
+    color:black;
+}
+
+
+.광고박스 {
+    
+}
+
+
+   
+.넘겨보자 {position: relative;
+    right:-8rem;
+   
+}
+
+
+.fa {
+    padding:10px;
+    color:chartreuse;
+}
