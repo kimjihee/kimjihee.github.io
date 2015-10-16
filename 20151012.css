@@ -1,4 +1,4 @@
-*{outdline:1px solid rgba(200, 200, 200, 0.8);
+*{outsline:1px solid rgba(200, 200, 200, 0.8);
 padding: 0;
 margin: 0;
 color:rgba(150, 150, 150, 0.9);
@@ -10,6 +10,8 @@ font-family: sans-serif;}
     position:absolute;
     right:0; 
         width:24rem;
+    background-color:#F8F8F8;
+    padding:10px;
     
 }
 
@@ -24,7 +26,6 @@ font-family: sans-serif;}
     font-size:0.8rem;
     font-weight:lighter;
     position:absolute;
-    top:0;
     right:6rem;
 }
 
@@ -32,7 +33,6 @@ font-family: sans-serif;}
     font-size:0.8rem;
     font-weight:lighter;
     position:absolute;
-    top:0;
     right:3rem;
 }
 
@@ -47,18 +47,20 @@ font-family: sans-serif;}
 
 .수치 {
     font-weight:bold;
-    font-size:1.5rem;
+    font-size:1.3rem;
         color:black;
 }
 
 .강조하나 {
     color:dodgerblue;
     padding-left:5px;
+    font-size:0.7rem;
 }
 
 .강조둘 {
      color:orangered;
     padding-left:5px;
+    font-size:0.7rem;
 }
 
 .강조 {
@@ -69,11 +71,14 @@ font-family: sans-serif;}
 
 .주가내용 {
     padding:4px;
-}
+    font-size:0.97rem;
+    }
 
 .생활위젯 {
-    border:1px solid rgba(150,150,150,0.8);
-    padding:2px;
+    border:1px solid rgba(150,150,150,0.6);
+    padding:3px;
+    font-size:0.8rem;
+    margin:0;
 }
 
 .페이지넘기기 {
@@ -87,11 +92,40 @@ font-family: sans-serif;}
     
 }
 
-.화살표 { border:1px solid rgba(150,150,150,0.8);
+.화살표 { border:1px solid rgba(150,150,150,0.6);
     color:chartreuse;
-    padding:4px;
+    padding:3px;
+    padding-left:7px;
+    padding-right:7px;
+    padding-bottom:2px;
     margin:0;
     
 }
 .뒤{position:relative;
-left:-7px;}
+left:-5px;}
+
+.빨강세모 {
+    color:cornflowerblue;
+}
+
+.파랑세모 {
+    color:coral;
+}
+
+.주가지수 li{font-size:0.8rem;
+    
+}
+
+.금융세모 {
+    color:rgba(120,120,120,0.7);
+}
+
+.주가지수 {
+ 
+}
+
+.넘겨보자 {
+    position:relative;
+   right:-10rem;
+    
+}
