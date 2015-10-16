@@ -1,0 +1,97 @@
+*{outdline:1px solid rgba(200, 200, 200, 0.8);
+padding: 0;
+margin: 0;
+color:rgba(150, 150, 150, 0.9);
+box-sizing:border-box;
+font-family: sans-serif;}
+
+
+.loginbottom {
+    position:absolute;
+    right:0; 
+        width:24rem;
+    
+}
+
+.투데이 {
+    font-weight: bold;
+    font-size:1.2rem;
+    color:black;
+    padding:4px;
+}
+
+.오늘날자{
+    font-size:0.8rem;
+    font-weight:lighter;
+    position:absolute;
+    top:0;
+    right:6rem;
+}
+
+.블록내용 {
+    font-size:0.8rem;
+    font-weight:lighter;
+    position:absolute;
+    top:0;
+    right:3rem;
+}
+
+.주가지수 li{float:left;
+    width:50%;
+    padding:4px;
+    margin-top:10px;
+    color:gray;
+    
+    
+}
+
+.수치 {
+    font-weight:bold;
+    font-size:1.5rem;
+        color:black;
+}
+
+.강조하나 {
+    color:dodgerblue;
+    padding-left:5px;
+}
+
+.강조둘 {
+     color:orangered;
+    padding-left:5px;
+}
+
+.강조 {
+    color:black;
+    font-wight:bold;
+   
+}
+
+.주가내용 {
+    padding:4px;
+}
+
+.생활위젯 {
+    border:1px solid rgba(150,150,150,0.8);
+    padding:2px;
+}
+
+.페이지넘기기 {
+    padding:4px;
+    margin-top:4px;
+}
+
+.넘겨보자 {position:absolute;
+    bottom:0;
+        right:3rem;
+    
+}
+
+.화살표 { border:1px solid rgba(150,150,150,0.8);
+    color:chartreuse;
+    padding:4px;
+    margin:0;
+    
+}
+.뒤{position:relative;
+left:-7px;}
