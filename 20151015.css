@@ -1,41 +1,46 @@
+*{box-sizing: border-box;}
+li{list-style-type:none;}
 .a2pic2{float:left;
-    padding-left:2rem;
+    padding-left:1rem;
     
 }
 
 .a2face {
-    height:5rem;
+    height:3rem;
     border-radius: 50%;
     z-index:1;
     box-sizing: border-box;
-    box-shadow: 3px 6px rgba(200,200,200,0.9);
+    box-shadow: 1px 2px rgba(200,200,200,0.9);
     
 }
 
-.a2facetext {height:5rem;
+.a2facetext {height:3rem;
     position:relative;
-    top:1.2rem;
-    left:1.5rem;
-    line-height: 1.7rem;
+        left:1.5rem;
+    top:3px;
+    line-height: 1.3rem;
+    font-size: 0.7rem;
     
 }
 
 .a2click {position:absolute;
-    right:5rem;
-   top:40px;}
+    right:3rem;
+    top:0;
+    bottom:0;
+    line-height:3rem;
+   }
 
 .people li{ clear:left;
-    margin:0;
-    margin-top:20px;
-    padding-bottom: 21px;
+   padding:8px;
+    
     z-index: 1;
-    box-shadow:0 3px rgba(200,200,200,0.8);
+    box-shadow:0 1.2px rgba(200,200,200,0.8);
     
     
 }
 
 .a2name {
-    font-size:3.2rem;
+    font-size:1rem;
     font-weight:600;
     margin-bottom:0px;
 }
@@ -43,11 +48,12 @@
 .fontclick {
     z-index:2;
     color:dodgerblue;
-    font-size:5rem;
+    font-size:1.5rem;
+    
 }
 
 .a2plus {
-    font-size: 5rem;
+    font-size: 1.5rem;
     color:limegreen;
 }
 
@@ -58,32 +64,28 @@
 
 .a2picture {
     border-radius: 50%;
-        height:8rem;
-    line-height:0;
+    height:4rem;
+    line-height:4rem;
     background-color: white;
-    padding:10px;
+    
     
 }
 
 .a2middle {
     position:absolute;
-    top:4rem;
+    top:3rem;
     bottom:0;
     left:0;
     right:0;
 }
 
-.people {
-    
-}
 
 
 
-
-.a2topul {width:30rem;
+.a2topul {width:20rem;
     margin:0 auto;
     text-align:center;
-    line-height:8rem;
+    line-height:4rem;
      color:white;
   
 }
@@ -97,44 +99,44 @@
 .info {
     position: absolute;
     top:0;
-    height:18rem;
+    height:10rem;
     left: 0;
     right: 0;
     box-sizing: border-box;
-    padding-top:4rem;
-    padding-bottom: 1.5rem;
-    background-color:cornsilk;
+    padding-top:2rem;
+    padding-bottom: 3rem;
+    background-color:darkslategrey;
 }
 
 .a2top {
     position: absolute;
     top:0;
-    height:4rem;
-    line-height: 4rem;
+    height:3rem;
+    line-height: 3rem;
     right: 0;
     left: 0;
     background-color:#E72d37;
-    font-size: 4rem;
+    font-size: 1.5rem;
     color:white;
 }
 .imgalign {
     text-align:center;
-    line-height: 2.5rem;
-    font-size: 5rem;
+    line-height: 1.4rem;
+    font-size: 1rem;
     
     
 }
 .fontleft {
-    font-size: 3rem;
-}
+    font-size: 1.5rem;
+    }
 
 .fontright {
-    font-size: 3rem;
+    font-size: 1.5rem;
 }
 
 .bottom {
     position: absolute;
-    top:18rem;
+    top:10rem;
     bottom:0;
     left:0;
     right: 0;
@@ -170,6 +172,4 @@
     left: 7rem;
 }
 
-.bottom {
-    
-}
+
