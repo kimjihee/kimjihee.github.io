@@ -106,8 +106,8 @@ li {
     left: 0;
     right: 0;
     box-sizing: border-box;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
+    padding-top: 0.7rem;
+    padding-bottom: 3.5rem;
     background-color: darkslategrey;
 }
 
@@ -214,7 +214,7 @@ background-color: rgba(255,255,255,0.2);}
     
 }
 
-.a3image { width:20rem;
+.a3image { width:10rem;
            
     
 }
@@ -256,4 +256,8 @@ background-color: rgba(255,255,255,0.2);}
     line-height: 2rem;
     position: relative;
     left:7px;
+}
+
+.info {
+    
 }
