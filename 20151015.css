@@ -1,135 +1,137 @@
-*{box-sizing: border-box;
-padding:0;
-margin:0;}
-li{list-style-type:none;}
-.a2pic2{float:left;
-    padding-left:1rem;
-    
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.a2pic2 {
+    float: left;
+    padding-left: 1rem;
 }
 
 .a2face {
-    height:3rem;
+    height: 3rem;
     border-radius: 50%;
-    z-index:1;
+    z-index: 1;
     box-sizing: border-box;
-    box-shadow: 1px 2px rgba(200,200,200,0.9);
-    
+    box-shadow: 1px 2px rgba(200, 200, 200, 0.9);
 }
 
-.a2facetext {height:3rem;
-    position:relative;
-        left:1.5rem;
-    top:3px;
+.a2facetext {
+    height: 3rem;
+    position: relative;
+    left: 1.5rem;
+    top: 3px;
     line-height: 1.3rem;
     font-size: 0.7rem;
-    
 }
 
-.a2click {position:absolute;
-    right:3rem;
-    top:0;
-    bottom:0;
-    line-height:3rem;
-   }
+.a2click {
+    position: absolute;
+    right: 3rem;
+    top: 0;
+    bottom: 0;
+    line-height: 3rem;
+}
 
-.people li{ clear:left;
-   padding:8px;
+.people li {
+    clear: left;
+    padding: 8px;
     z-index: 1;
-    box-shadow:0 1.2px rgba(200,200,200,0.8);
-    
-    
+    box-shadow: 0 1.2px rgba(200, 200, 200, 0.8);
 }
 
 .a2name {
-    font-size:1rem;
-    font-weight:600;
-    margin-bottom:0px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0px;
 }
 
 .fontclick {
-    z-index:2;
-    color:dodgerblue;
-    font-size:1.5rem;
-    
+    z-index: 2;
+    color: dodgerblue;
+    font-size: 1.5rem;
 }
 
 .a2plus {
     font-size: 1.5rem;
-    color:limegreen;
+    color: limegreen;
 }
 
-.a2topul li {float:left;
-    width:33.33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333%;
-    
+.a2topul li {
+    float: left;
+    width: 33.33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333%;
 }
 
 .a2picture {
     border-radius: 50%;
-    height:4rem;
-    line-height:4rem;
+    height: 4rem;
+    line-height: 4rem;
     background-color: white;
-    
-    
 }
 
 .a2middle {
-    position:absolute;
-    top:3rem;
-    bottom:0;
-    left:0;
-    right:0;
+    position: absolute;
+    top: 3rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-
-
-
-.a2topul {width:20rem;
-    margin:0 auto;
-    text-align:center;
-    line-height:4rem;
-     color:white;
-  
+.a2topul {
+    width: 20rem;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 4rem;
+    color: white;
 }
-.a2topu li{color:white;}
+
+.a2topu li {
+    color: white;
+}
 
 .name {
     position: relative;
-    bottom:0
+    bottom: 0
 }
 
 .info {
     position: absolute;
-    top:0;
-    height:10rem;
+    top: 0;
+    height: 10rem;
     left: 0;
     right: 0;
     box-sizing: border-box;
-    padding-top:2rem;
+    padding-top: 2rem;
     padding-bottom: 3rem;
-    background-color:darkslategrey;
+    background-color: darkslategrey;
 }
 
 .a2top {
     position: absolute;
-    top:0;
-    height:3rem;
+    top: 0;
+    height: 3rem;
     line-height: 3rem;
     right: 0;
     left: 0;
-    background-color:#E72d37;
+    background-color: #E72d37;
     font-size: 1.5rem;
-    color:white;
+    color: white;
 }
+
 .imgalign {
-    text-align:center;
+    text-align: center;
     line-height: 1.4rem;
     font-size: 1rem;
-    
-    
 }
+
 .fontleft {
     font-size: 1.5rem;
-    }
+}
 
 .fontright {
     font-size: 1.5rem;
@@ -137,40 +139,36 @@ li{list-style-type:none;}
 
 .bottom {
     position: absolute;
-    top:10rem;
-    bottom:0;
-    left:0;
+    top: 10rem;
+    bottom: 0;
+    left: 0;
     right: 0;
     overflow: auto;
 }
 
-
 .a2menufont {
-    position:absolute;
-    left:2rem;
-    color:white;
+    position: absolute;
+    left: 2rem;
+    color: white;
 }
-
 
 .a2searchfont {
     position: absolute;
-    right:6rem;
+    right: 6rem;
 }
 
 .mix {
-    color:white;
+    color: white;
     position: absolute;
-    left:4em;
+    left: 4em;
 }
 
 .a2smallfont {
-    position:absolute;
-    right:2rem;
+    position: absolute;
+    right: 2rem;
 }
 
 .portfolio {
     position: absolute;
     left: 7rem;
 }
-
-
