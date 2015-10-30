@@ -46,6 +46,7 @@ li {
     box-shadow: 0 1.2px rgba(200, 200, 200, 0.8);
 }
 
+.people li:hover{background-color:rgba(20,160,250,0.2)}
 .a2name {
     font-size: 1rem;
     font-weight: 600;
