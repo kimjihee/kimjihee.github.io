@@ -170,5 +170,7 @@ li {
 
 .portfolio {
     position: absolute;
-    left: 7rem;
+    left: 5rem;
+    top:-5px;
 }
+
