@@ -83,7 +83,7 @@ li {
 }
 
 .a2topul {
-    width: 80%;
+    width:90%;
     margin: 0 auto;
     text-align: center;
     line-height: 5rem;
@@ -178,7 +178,7 @@ li {
 }
 
 .a3name {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
 }
 
@@ -195,7 +195,7 @@ li {
     position:absolute;
     left:3rem;
     right:3rem;
-    bottom:2.5rem;
+    bottom:2rem;
     
 }
 .a3click li{ width:50%}
@@ -214,14 +214,12 @@ background-color: rgba(255,255,255,0.2);}
     
 }
 
-.a3image {
-            overflow:auto;
+.a3image { width:20rem;
+           
     
 }
 
-.portpol2 li{
-    overflow:auto;
-}
+
 
 .portpol2 li{ text-align: center;
     
@@ -231,4 +229,31 @@ background-color: rgba(255,255,255,0.2);}
 
 .fog { 
     
+}
+
+.a2topul {
+    
+}
+
+.portpol2 {
+    
+}
+
+.back {width:2rem;
+    height:2rem;
+    border-radius: 50%;
+    position: fixed;
+    bottom:2rem;
+    right:2rem;
+    background-color: #E72d37;
+    
+}
+
+.fontleft2 {
+    color:white;
+    font-size: 1.2rem;
+    text-align:center;
+    line-height: 2rem;
+    position: relative;
+    left:7px;
 }
