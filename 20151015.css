@@ -1,0 +1,175 @@
+.a2pic2{float:left;
+    padding-left:2rem;
+    
+}
+
+.a2face {
+    height:5rem;
+    border-radius: 50%;
+    z-index:1;
+    box-sizing: border-box;
+    box-shadow: 3px 6px rgba(200,200,200,0.9);
+    
+}
+
+.a2facetext {height:5rem;
+    position:relative;
+    top:1.2rem;
+    left:1.5rem;
+    line-height: 1.7rem;
+    
+}
+
+.a2click {position:absolute;
+    right:5rem;
+   top:40px;}
+
+.people li{ clear:left;
+    margin:0;
+    margin-top:20px;
+    padding-bottom: 21px;
+    z-index: 1;
+    box-shadow:0 3px rgba(200,200,200,0.8);
+    
+    
+}
+
+.a2name {
+    font-size:3.2rem;
+    font-weight:600;
+    margin-bottom:0px;
+}
+
+.fontclick {
+    z-index:2;
+    color:dodgerblue;
+    font-size:5rem;
+}
+
+.a2plus {
+    font-size: 5rem;
+    color:limegreen;
+}
+
+.a2topul li {float:left;
+    width:33.33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333%;
+    
+}
+
+.a2picture {
+    border-radius: 50%;
+        height:8rem;
+    line-height:0;
+    background-color: white;
+    padding:10px;
+    
+}
+
+.a2middle {
+    position:absolute;
+    top:4rem;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.people {
+    
+}
+
+
+
+
+.a2topul {width:30rem;
+    margin:0 auto;
+    text-align:center;
+    line-height:8rem;
+     color:white;
+  
+}
+.a2topu li{color:white;}
+
+.name {
+    position: relative;
+    bottom:0
+}
+
+.info {
+    position: absolute;
+    top:0;
+    height:18rem;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding-top:4rem;
+    padding-bottom: 1.5rem;
+    background-color:cornsilk;
+}
+
+.a2top {
+    position: absolute;
+    top:0;
+    height:4rem;
+    line-height: 4rem;
+    right: 0;
+    left: 0;
+    background-color:#E72d37;
+    font-size: 4rem;
+    color:white;
+}
+.imgalign {
+    text-align:center;
+    line-height: 2.5rem;
+    font-size: 5rem;
+    
+    
+}
+.fontleft {
+    font-size: 3rem;
+}
+
+.fontright {
+    font-size: 3rem;
+}
+
+.bottom {
+    position: absolute;
+    top:18rem;
+    bottom:0;
+    left:0;
+    right: 0;
+    overflow: auto;
+}
+
+
+.a2menufont {
+    position:absolute;
+    left:2rem;
+    color:white;
+}
+
+
+.a2searchfont {
+    position: absolute;
+    right:6rem;
+}
+
+.mix {
+    color:white;
+    position: absolute;
+    left:4em;
+}
+
+.a2smallfont {
+    position:absolute;
+    right:2rem;
+}
+
+.portfolio {
+    position: absolute;
+    left: 7rem;
+}
+
+.bottom {
+    
+}

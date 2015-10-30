@@ -1,0 +1,69 @@
+
+.이미지 {
+    width:100%;
+    
+}
+
+.image {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:gray;
+   }
+
+.enter {z-index:2;
+    font-size:3rem;
+    color:white;
+    width:6rem;
+    padding:1rem;
+    padding-top:0.5rem;
+    padding-bottom:0.5rem;
+    box-sizing: border-box;
+    border:1px solid white;
+    
+    
+  
+    }
+
+.middle {
+    background-color:black;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    
+    
+}
+
+
+.logo {position:absolute;
+    left:35%;
+    top:35%;
+    
+    
+    
+    
+}
+
+.inbottom {  
+    position:absolute;;
+    bottom:3rem;
+    left:42.5%;
+    
+}
+
+.infomation {font-size:5rem;
+    font-weight:200%;
+    color:white;
+    text-align: center;
+    line-height:3rem;
+    margin-top:1rem;
+        
+}
+
+.logoda:hover {color:red;
+    
+}
