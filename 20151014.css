@@ -8,9 +8,11 @@
     width: 33.3333333333333333333333333333333333333333333333333333333333333333333333%;
     float: left;
     height: 50%;
-    line-height: 7rem;
+    line-height: 6rem;
     text-align: center;
     font-size: 0.8rem;
+     z-index: 1;
+        box-shadow: 0.1px 0.1px 2px grey;
 }
 
     .a1menu {
@@ -24,8 +26,8 @@
         background-color: rgba(200,200,200,0.2);
     }
 .a1menu li:hover{font-weight:bold;
-color:white;
-background-color:rgba(231, 45, 55, 0.1);}
+color:dimgray;
+font-size:1.2rem;}
 
     * {
         box-sizing: border-box;
@@ -121,6 +123,8 @@ background-color:rgba(231, 45, 55, 0.1);}
         padding-bottom: 3.5rem;
                 font-size: 1rem;
  background-color: rgb(47, 79, 79);
+         z-index: 1;
+        box-shadow: 1px 1px 2px grey;
      
       }
     .a2top {
@@ -131,8 +135,10 @@ background-color:rgba(231, 45, 55, 0.1);}
         right: 0;
         left: 0;
         background-color: #E72d37;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         color: white;
+        z-index: 2;
+        box-shadow: 1px 1px 2px black;
     }
     .imgalign {
         text-align: center;
@@ -168,8 +174,8 @@ background-color:rgba(231, 45, 55, 0.1);}
         left: 4em;
     }
     .a2smallfont {
-        position: absolute;
-        right: 2rem;
+       position: absolute;
+    right: 1.5rem;
     }
     .portfolio {font-size: 0.8rem;
         font-weight: bold;
@@ -207,6 +213,8 @@ background-color:rgba(231, 45, 55, 0.1);}
         padding-left: 12px;
         padding-right: 12px;
         background-color: rgba(255, 255, 255, 0.3);
+         z-index: 1;
+        box-shadow: 1px 1px 3px black;
         
     }
     .bottom {}
