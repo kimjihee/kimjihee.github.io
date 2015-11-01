@@ -43,7 +43,7 @@ li {
     clear: left;
     padding: 8px;
     z-index: 1;
-    box-shadow: 0 1.2px rgba(200, 200, 200, 0.8);
+    box-shadow: 0 1.2px 1px rgba(200, 200, 200, 0.8);
 }
 
 .people li:hover{background-color:rgba(20,160,250,0.2)}
@@ -58,6 +58,9 @@ li {
     color: dodgerblue;
     font-size: 1.5rem;
 }
+.fontclick:hover{
+font-size:2rem;}
+.a2plus:hover{font-size:2rem;}
 
 .a2plus {
     font-size: 1.5rem;
@@ -74,6 +77,8 @@ li {
     height: 4rem;
     line-height: 4rem;
     background-color: white;
+     z-index: 1;
+    box-shadow: 3px 3px 2px black;
 }
 
 .a2middle {
@@ -111,23 +116,27 @@ li {
     padding-top: 2rem;
     padding-bottom: 3rem;
     background-color: darkslategrey;
+    z-index: 1;
+        box-shadow: 1px 1px 2px grey;
 }
 
 .a2top {
-    position: absolute;
+   position: absolute;
     top: 0;
     height: 3rem;
     line-height: 3rem;
     right: 0;
     left: 0;
     background-color: #E72d37;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: white;
+    z-index: 2;
+        box-shadow: 1px 1px 2px black;
 }
 
 .imgalign {
     text-align: center;
-    line-height: 1.4rem;
+    line-height: 1.9rem;
     font-size: 1rem;
 }
 
