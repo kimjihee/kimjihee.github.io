@@ -27,7 +27,8 @@
     }
 .a1menu li:hover{font-weight:bold;
 color:dimgray;
-font-size:1.2rem;}
+    background-color: rgba(200,130,255,0.1);
+font-size:1rem;}
 
     * {
         box-sizing: border-box;
@@ -251,7 +252,7 @@ font-size:1.2rem;}
     .로고 {
         width: 3rem;
         height: auto;
-        margin-top:3px;
+        margin-top:4.3px;
     }
 .그라에디이션넣으려고몇시간 {
     position: absolute;
