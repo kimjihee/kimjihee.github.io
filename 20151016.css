@@ -73,6 +73,8 @@ li {
     height: 4rem;
     line-height: 4rem;
     background-color: white;
+    z-index: 1;
+    box-shadow: 3px 3px 2px black;;
 }
 
 .a2middle {
@@ -110,6 +112,8 @@ li {
     padding-top: 0.7rem;
     padding-bottom: 3.5rem;
     background-color: darkslategrey;
+    z-index: 1;
+        box-shadow: 1px 1px 2px grey;
 }
 
 .a2top {
@@ -120,8 +124,10 @@ li {
     right: 0;
     left: 0;
     background-color: #E72d37;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: white;
+    z-index: 2;
+        box-shadow: 1px 1px 2px black;
 }
 
 .imgalign {
@@ -166,7 +172,7 @@ li {
 
 .a2smallfont {
     position: absolute;
-    right: 2rem;
+    right: 1.5rem;
 }
 
 .portfolio {
@@ -205,7 +211,10 @@ li {
     padding:5px;
 padding-left:12px;
 padding-right:12px;
-background-color: rgba(255,255,255,0.2);}
+background-color: rgba(255,255,255,0.2);
+z-index: 1;
+   box-shadow: 2px 3px 4px black;}
+
 
 .bottom {
     
@@ -245,9 +254,11 @@ background-color: rgba(255,255,255,0.2);}
         height: 2.5rem;
         border-radius: 50%;
         position: fixed;
-        bottom: 2rem;
+        bottom: 1.4rem;
         right: 2rem;
         background-color: #E72d37;
+        z-index: 1;
+        box-shadow: 2px 3px 2px grey;
     }
 .back:hover{width:3rem;
 height:3rem;}
@@ -258,12 +269,11 @@ height:3rem;}
     text-align:center;
     line-height: 2.6rem;
     position: relative;
-    left:10px;
+    left:11px;
 }
 
-.info {
-    
-}
+
+
 
 .a3back:hover{background-color:rgba(255, 255, 255, 0.6);
 }
