@@ -176,3 +176,10 @@ li {
     top:-5px;
 }
 
+
+
+.people {
+    position:absolute;
+    left:0;
+    right:0;
+}
