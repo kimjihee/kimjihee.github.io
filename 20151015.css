@@ -26,14 +26,14 @@ li {
     height: 3rem;
     position:relative;
   margin-top:3px;
-    margin-left:4.5rem;
+    margin-left:5.2rem;
     line-height: 1.3rem;
     font-size: 0.7rem;
 }
 
 .a2click {
     position: absolute;
-    right: 3rem;
+    right: 1.5rem;
     top: 0;
     bottom: 0;
     line-height: 3rem;
