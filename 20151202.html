@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>main</title>
+    <link rel="stylesheet" href="20151202.css">
+    <script>
+        function main() {
+            var dates = document.querySelector('.dates');
+            for (var i = 1; i <= 365; i++) {
+                var li = document.createElement('li');
+                var date = new Date();
+                date.setMonth(0);
+                date.setDate(i);
+                li.innerHTML = date.getDate();
+                var y = 320 - 400 * Math.sin((360 * (i + 284)) / 365 / 180 * Math.PI);
+                li.style.transform = 'translate(0, ' + y + 'px)';
+
+                dates.appendChild(li); //where
+
+
+
+            }
+
+        }
+
+
+        window.addEventListener('load', main);
+    </script>
+
+</head>
+
+<body>
+    <h1>황도달력</h1>
+    <ol class="dates">
+    </ol>
+</body>
+
+</html>

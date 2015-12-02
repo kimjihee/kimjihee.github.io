@@ -6,6 +6,28 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <title>APP3</title>
-        <link rel="stylesheet" href="20151015.css">
+    <link rel="stylesheet" href="20151017.css">
 
-</head>
+
+
+<body>
+    <script>
+        var days = 1;
+        frameRate(30);
+        var draw = function () {
+            background(255, 255, 255);
+
+            strokeWeight(1);
+            line(0, 200, 400, 200);
+
+            var deg = 320 - 400 * Math.sin((360 * (days + 284)) / 365 / 180 * Math.PI);
+            var x = days / 365 * 400;
+            var y = 200 - (deg * 2);
+            strokeWeight(10);
+            point(x, y);
+
+            days = days % 365;
+            days += 3;
+        };   window.addEventListener('load', main);
+    </script>
+   </head> </body> </html >
