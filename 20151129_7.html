@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>calendar</title>
+    <link rel="stylesheet" href="20151129.css">
+    <script>
+        function main() {
+            var dates = document.querySelector('.dates');
+            for (var i = 32+28+31+30+31+30; i <= 31+28+31+30+31+30+31; i++) {
+                var li = document.createElement('li');
+                var date = new Date();
+                date.setMonth(0);
+                date.setDate(i);
+                li.innerHTML = date.getDate();
+                var y =150 -300 * Math.sin((360 * (i + 284)) / 365 / 180 * Math.PI);
+                li.style.transform = 'translate(0, ' + y + 'px)';
+
+                dates.appendChild(li); //where
+            }
+            
+            
+        }
+
+        
+        window.addEventListener('load', main);
+    </script>
+
+</head>
+
+<body>
+    
+    <h1>7월</h1>
+        <a href="http://astro.unl.edu/naap/motion1/animations/seasons_ecliptic.html" style="color:white;" src='마우스올렸을때 바뀔이미지주소'><ol class="dates">
+       </ol></a>
+    <p class="sindata
+            ">적위: 23.45 * sin( (360*(1월1일부터 현재까지 일 수 + 284))/365 )</p>
+</body>
+
+</html>
