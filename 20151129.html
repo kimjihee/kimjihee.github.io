@@ -16,7 +16,7 @@
                 date.setMonth(0);
                 date.setDate(i);
                 li.innerHTML = date.getDate();
-                var y =120 -300 * Math.sin((360 * (i + 284)) / 365 / 180 * Math.PI);
+                var y =100 -300 * Math.sin((360 * (i + 284)) / 365 / 180 * Math.PI);
                 li.style.transform = 'translate(0, ' + y + 'px)';
 
                 dates.appendChild(li); //where
