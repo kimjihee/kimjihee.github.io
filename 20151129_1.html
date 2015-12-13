@@ -10,13 +10,13 @@
     <script>
         function main() {
             var dates = document.querySelector('.dates');
-            for (var i = 1; i <= 31; i++) {
+            for (var i = 32+28+31+30+31+30+31+31+30+31; i <= 31+28+31+30+31+30+31+31+30+31+30; i++) {
                 var li = document.createElement('li');
                 var date = new Date();
                 date.setMonth(0);
                 date.setDate(i);
                 li.innerHTML = date.getDate();
-                var y =120 -300 * Math.sin((360 * (i + 284)) / 365 / 180 * Math.PI);
+                var y =180 -300 * Math.sin((360 * (i + 284)) / 365 / 180 * Math.PI);
                 li.style.transform = 'translate(0, ' + y + 'px)';
 
                 dates.appendChild(li); //where
@@ -33,7 +33,7 @@
 
 <body>
     
-    <h1>1월</h1>
+    <h1>11월<a href="http://kimjihee.github.io/20151129_001" style="color:white;"><div class="back"></div></a></h1>
         <a href="http://astro.unl.edu/naap/motion1/animations/seasons_ecliptic.html" style="color:white;" src='마우스올렸을때 바뀔이미지주소'><ol class="dates">
        </ol></a>
     <p class="sindata
