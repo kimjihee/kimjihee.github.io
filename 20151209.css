@@ -8,10 +8,9 @@
     list-style-type: none;
     display: inline-block;
     padding: 5px;
+    width: 1.7rem;
     text-align: center;
     letter-spacing: -1px;
-    width:30px;
-    outline: 1px solid red;
 }
 
 body {
@@ -27,20 +26,22 @@ h1 {
     font-size: 5rem;
     font-weight: lighter;
     margin-bottom: 0;
-    margin:0;
     padding-bottom: 0;
-    
+    position: fixed;
+    top: 2rem;
 }
 
 h2 {
     font-size: 1rem;
     padding-left: 1rem;
     font-weight: lighter;
-   
+    position: fixed;
+    top:11rem;
 }
 
-li:hover{font-size:1.5rem;
-font-weignt:bold;}
+li {
+    font-weight: bold;
+}
 
 .sindata {
     font-size: 0.8rem;
@@ -49,7 +50,3 @@ font-weignt:bold;}
     bottom: 1rem;
     left:2.5rem;
 }
-
-.canvas{position:absolute;
-top:20rem;
-z-index=2;}
