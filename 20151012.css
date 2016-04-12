@@ -129,3 +129,12 @@ left:-5px;}
    right:-10rem;
     
 }
+
+.blogchoiceleftpic {
+    background-color:aqua;
+    position:absolute;
+    width:10rem;
+    line-height:13rem;
+    
+    
+}

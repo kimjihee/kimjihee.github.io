@@ -1,0 +1,99 @@
+*{outline:1px solid black;
+font-size:0.9rem;}
+.blogmenu {
+    position:absolute;
+    top:5%;
+    height:13rem;
+    width:67rem;
+    left:7rem;
+    padding:0;
+    border:3px solid #399C2C;
+}
+
+.sidemenu {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    width:7rem;
+    background-color:#399C2C;
+}
+
+.sidetop {
+    height:50%;
+    border-bottom:1px solid grey;
+}
+
+.blogpic {
+    width:8rem;
+    height:auto;
+    
+}
+
+
+.blogchoiceleft {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:7rem;
+    width:30rem;
+    
+
+}
+.blogchoiceleft ul{float:left;}
+
+.blogchoiceright {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:37rem;
+    width:30rem;
+}
+.blogchoiceright ul{float:left;}
+
+.next {
+position:absolute;
+right:1rem;
+    top:0.5rem;
+    font-size: 0.4rem;
+    
+    
+}
+.next li{
+float:left;
+    padding:1px;
+    border:1px solid rgb(133,133,133);
+    
+}
+
+.blogchoiceleftpic {   
+    
+    width:12rem;
+        padding:2rem;
+    padding-top:3rem;
+   
+    
+    
+    
+}
+
+.블로그이름 {
+    font-size:0.7rem;
+    color:grey;
+   text-align: center;
+}
+
+.blogchoicelefttext {
+    padding-top:3rem;
+    
+}
+.blogchoicelefttext li{
+    color:grey;
+padding:3px;
+padding-left:0;
+font-size:0.9rem;}
+
+.point {
+    font-size:1.5rem;
+    font-weight: bold;
+}
