@@ -1,99 +1,193 @@
-*{outline:1px solid black;
-font-size:0.9rem;}
+* {
+    outlsine: 1px solid black;
+    font-size: 0.9rem;
+}
+
 .blogmenu {
-    position:absolute;
-    top:5%;
-    height:13rem;
-    width:67rem;
-    left:7rem;
-    padding:0;
-    border:3px solid #399C2C;
+    position: absolute;
+    top: 5%;
+    height: 16rem;
+    width: 67rem;
+    left:15%;
+    padding: 0;
+    margin:0;
+    border: 3px solid #399C2C;
 }
 
 .sidemenu {
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    width:7rem;
-    background-color:#399C2C;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 8rem;
+    background-color: #399C2C;
 }
 
 .sidetop {
-    height:50%;
-    border-bottom:1px solid grey;
+    height: 50%;
+    border-bottom: 1px solid grey;
+}
+
+.sidetop li {
+    font-weight: bold;
+    color: white;
+    padding: 0.5rem;
+    padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
+}
+
+.sidebottom li {
+    font-weight: bold;
+    padding: 0.5rem;
+    padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
+    color: white;
 }
 
 .blogpic {
-    width:8rem;
-    height:auto;
-    
+    width: 8rem;
+    height: 9rem;
 }
-
 
 .blogchoiceleft {
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:7rem;
-    width:30rem;
-    
-
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 7rem;
+    width: 30rem;
 }
-.blogchoiceleft ul{float:left;}
+
+.blogchoiceleft ul {
+    float: left;
+}
 
 .blogchoiceright {
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:37rem;
-    width:30rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 37rem;
+    width: 30rem;
+    padding: 2rem;
 }
-.blogchoiceright ul{float:left;}
+
+.blogchoiceright ul {
+    float: left;
+}
 
 .next {
-position:absolute;
-right:1rem;
-    top:0.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
     font-size: 0.4rem;
-    
-    
-}
-.next li{
-float:left;
-    padding:1px;
-    border:1px solid rgb(133,133,133);
-    
 }
 
-.blogchoiceleftpic {   
-    
-    width:12rem;
-        padding:2rem;
-    padding-top:3rem;
-   
-    
-    
-    
+.next li {
+    float: left;
+    padding: 1px;
+    border: 1px solid rgb(133, 133, 133);
+}
+
+.blogchoiceleftpic {
+    width: 12rem;
+    padding: 2rem;
+    padding-top: 3rem;
 }
 
 .블로그이름 {
-    font-size:0.7rem;
-    color:grey;
-   text-align: center;
+    font-size: 0.7rem;
+    color: grey;
+    text-align: center;
+    padding-top: 3px;
 }
 
 .blogchoicelefttext {
-    padding-top:3rem;
-    
+    padding-top: 3rem;
+    color: black;
+    list-style-type: disc;
 }
-.blogchoicelefttext li{
-    color:grey;
-padding:3px;
-padding-left:0;
-font-size:0.9rem;}
+
+.blogchoicelefttext li {
+    color: black;
+    font-weight: bold;
+}
+
+.Point {
+    font-size: 1.5rem;
+}
+
+.blogchoicelefttext li {
+    color: grey;
+    padding: 3px;
+    padding-left: 0;
+    font-size: 0.9rem;
+}
 
 .point {
-    font-size:1.5rem;
+    font-size: 1.5rem;
     font-weight: bold;
+}
+
+.colorBrown {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+    padding-top: 0;
+}
+
+.blogchoicerighttext li {
+    padding-top: 0.5rem;
+}
+
+.colorBrown {
+    color: #D79534;
+}
+
+.colorGrey {
+    color: grey;
+    font-weight: bold;
+}
+
+.outboxline {
+    border: 0.7px solid grey;
+    border-radius: 3px;
+    padding:4px;
+    
+    margin-top:8px;
+}
+
+.blogpicRight {
+    width: 10rem;
+    margin: 2rem;
+    margin-top: 1rem;
+}
+
+.mini {
+    font-size: 0.4rem;
+    position: relative;
+    top: -0.3rem;
+    padding-left: 4px;
+}
+
+.arrowInside {
+    border: 0.4px solid grey;
+    padding-right: 2px;
+    margin:1px;
+    padding-left: 2px;
+}
+
+.yellowPoint {
+    color: yellow;
+}
+.arrow {
+    font-size:0.01rem;
+    color:yellow;
+    margin-left:5px;
+}
+
+.yellowpoint {
+    color:yellow;
+    padding-top:0.3rem;
 }
