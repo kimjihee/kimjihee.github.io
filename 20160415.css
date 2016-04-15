@@ -12,11 +12,13 @@ padding:0;}
     color:black;
     padding:0.5rem;
     background-color:#FAFAFA;
+    border:1px solid rgba(50,50,50,0.5);
     
 }
 
 .linkDown {
-    color:grey;
+    padding:2px;
+        color:grey;
     border:1px solid rgba(50,50,50,0.8);
 }
 
@@ -44,6 +46,7 @@ padding:0;}
     position:absolute;
     top:0.15rem; 
     right:0.5rem;
+     border:1px solid rgba(50,50,50,0.5);
 }
 .mapChoice li{ float:left;
     font-weight:bold;
