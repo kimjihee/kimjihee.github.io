@@ -1,0 +1,138 @@
+* {
+    outline: 1px solid rgba(50, 50, 50, 0.7);
+}
+
+.menu {}
+
+.naverMail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.topmenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3.5rem;
+}
+
+.middle {
+    position: absolute;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    bottom: 2rem;
+    border-bottom: 1px solid black;
+}
+
+.leftMenu {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 16rem;
+}
+
+.middlebody {
+    position: absolute;
+    top: 0;
+    left: 16rem;
+    right: 0;
+    bottom: 0;
+}
+
+.bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2rem;
+    z-index: 2;
+}
+
+.bigbutton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5rem;
+}
+
+.bigbutton ul {
+    margin: 1.5rem;
+}
+
+.bigbutton li {
+    float: left;
+}
+
+.mailoutlook {
+    position: absolute;
+    top: 5em;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    
+}
+
+.mailoutlook li {
+    float: left;
+}
+
+.useMail {
+    position: absolute;
+    top: 8rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+}
+
+.commercial {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    
+}
+
+.mailSearch {
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    
+}
+
+.maildetailMenu {
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    
+}
+
+.maildetailMenu li {
+    float: left;
+}
+
+.mails {
+    position: absolute;
+    top: 9rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.mails li {
+    float: left;
+    height: 2rem;
+}
