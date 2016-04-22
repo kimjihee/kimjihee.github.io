@@ -144,9 +144,9 @@
         height: 4rem;
         color: black;
         font-weight: bold;
-        padding-top:1.3rem;
-        padding-left:0.5rem;
-           }
+        padding-top: 1.3rem;
+        padding-left: 0.5rem;
+    }
     
     .maildetailMenu {
         position: absolute;
@@ -155,17 +155,25 @@
         right: 0;
         height: 3rem;
         background-color: #F7F9FA;
+        padding-left:1rem;
+        border:1px solid rgba(50,50,50,0.2);
+        border-right:none;
     }
-    
+.maildetailMenu ul{padding:0.3rem;}
     .maildetailMenu li {
-        font-size: 0.9rem;
-        padding: 0.15rem;
-        border-radius: 2px;
+        padding: 0.5rem;
+        border: 1px solid rgba(50, 50, 50, 0.2);
         background-color: #F0F0F0;
-    }
-    
-    .maildetailMenu li {
-        float: left;
+        height: 1.7rem;
+        font-size: 0.8rem;
+        color: rgba(50, 50, 50, 0.6);
+        padding: 0.2rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        border-radius: 1px;
+        background-color: #F0F0F0;
+         float: left;
+        margin:0.2rem;
     }
     
     .mails {
@@ -293,8 +301,6 @@
         right: 1rem;
     }
     
-
-    
     .search li {
         float: left;
         font-size: 0.8rem;
@@ -303,9 +309,8 @@
         padding-right: 0.4rem;
         padding-top: 0.2rem;
         padding-bottom: 0.2rem;
-        font-weight:lighter;
-        border:1px solid rgba(50,50,50,0.2);
-       
+        font-weight: lighter;
+        border: 1px solid rgba(50, 50, 50, 0.2);
     }
     
     .leftWide {
@@ -313,40 +318,116 @@
         left: -1rem;
         top: 0;
         height: 4rem;
-        line-height: 4rem;
+        line-height: 3.6rem;
         width: 1rem;
         text-align: center;
+        border-right:1px solid rgba(50,50,50,0.2);
+         border-left:1px solid rgba(50,50,50,0.2);
     }
-
-.searchHere {
-    width:13rem;
-}
-
-.fa-search {font-size:1.1rem;
+    
+    .searchHere {
+        width: 13rem;
+    }
+    
+    .fa-search {
+        font-size: 1.1rem;
+    }
+    
+    .detial {
+        font-size: 0.8rem;
+        font-weight: lighter;
+        padding-left: 0.5rem;
+    }
+    
+    .nonReadMail {
+        color: #019A30;
+    }
+    
+    .commercial {
+        position: absolute;
+        right: 1rem;
+        font-size: 0.7rem;
+        font-weight: lighter;
+        color: black;
+    }
+    
+    .repeat {
+        color:grey;
+        border: 1px solid rgba(50, 50, 50, 0.2);
+        padding:0.3rem;
+        padding-top:0rem;
+        padding-bottom:0.1rem;
+        border-radius:1px;
+    }
+    
+    .space {
+        padding-left: 1rem;
+        color: grey;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+    
+    .mailTopAlign {
+        display: block;
+    }
+    
+    .fa-times {
+        color: red;
+        font-weight: lighter;
+        padding-right:0.1rem;
+    }
+    
+    .clickButton {
+        font-size: 2rem;
+        background-color: white;
+    }
+    
+    .bold {
+        font-weight: bold;
+        color: rgba(50, 50, 50, 0.8);
+    }
+    
+    .nonClick {
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+    
+    .filter {
+        color: black;
+        font-size: 0.8rem;
+    }
+    
+    .twodown {
+        color: black;
+        padding-left: 0.2rem;
+    }
+    
+    .fa-caret-down {
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+    }
+.clock {
     
 }
 
-.detial {
-    font-size:0.8rem;
-    font-weight: lighter;
+.fa-clock-o {
+    color:#019a30;
+    padding:0.3rem;
+    border-radius:1px;
+    border:1px solid rgba(50,50,50,0.2);
+    background-color:white;
     
 }
 
-.nonReadMail {
-    color:#019A30;
+.fa-bars {
+    color:#019a30;
+    padding:0.3rem;
+    border-radius:1px;
+    border:1px solid rgba(50,50,50,0.3);
+    background-color:white;
 }
 
-.commercial {
+.clockBar {
     position:absolute;
     right:1rem;
-    font-size:0.8rem;
-    font-weight:lighter;
 }
-
-
-
-}
-
-.repeat {
-    border:1px solid rgba(50,50,50,0.2);
-padding:1rem;}
