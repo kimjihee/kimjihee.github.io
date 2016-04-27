@@ -55,14 +55,6 @@
         padding-bottom: 0;
     }
     
-    i {
-        color: #007B26;
-    }
-    
-    i:hover {
-        color: white;
-    }
-    
     .bar {
         color: white;
     }
@@ -125,6 +117,7 @@
         bottom: 0;
         left: 0;
         width: 14.5rem;
+        border-right: rgba(50, 50, 50, 0.2);
     }
     
     .middlebody {
@@ -238,15 +231,10 @@
         top: 3rem;
         left: 0;
         right: 0;
-        height: 3rem;
         background-color: #F7F9FA;
-        padding-left: 1rem;
+        padding: 0.4rem;
         border: 1px solid rgba(50, 50, 50, 0.2);
         border-right: none;
-    }
-    
-    .maildetailMenu ul {
-        padding: 0.3rem;
     }
     
     .maildetailMenu li {
@@ -266,11 +254,12 @@
     
     .mails {
         position: absolute;
-        top: 7rem;
+        top: 5.8rem;
         left: 0;
         right: 0;
         bottom: 0;
         overflow: auto;
+        border-left: rgba(50, 50, 50, 0.2);
     }
     
     .mails li {
@@ -534,4 +523,87 @@
     
     .fa-check-square {
         font-size: 1rem;
+    }
+    
+    .mailsBody li {
+        float: left;
+        font-size: 0.8rem;
+        padding: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    .from {
+        width: 15%;
+        text-align: center;
+    }
+    
+    .mailsUl {
+        width: 100%;
+    }
+    
+    .size {
+        position: absolute;
+        right: 1rem;
+    }
+    
+    .text {
+        width: 51%;
+    }
+    
+    .fa-envelope {
+        font-size: 1rem;
+    }
+    
+    .mailsBottom {
+        position: fixed;
+        left: 14.5rem;
+        right: 0;
+        bottom: 2rem;
+        background-color: white;
+        padding: 0.3rem;
+        border:1px solid rgba(50, 50, 50, 0.2);
+    }
+    
+    .mailsBottom ul {
+        position: relative;
+        left: 35%;
+    }
+    
+    .mailsBottom li {
+        float: left;
+        padding: 0.5rem;
+        color: black;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+    
+   
+    
+    .fa-angle-double-left {
+        border: 1px solid rgba(50, 50, 50, 0.2);
+        width: 1.2rem;
+        text-align: center;
+        border-radius: 2px;
+    }
+    
+    .fa-angle-left {
+        border: 1px solid rgba(50, 50, 50, 0.2);
+        width: 1.2rem;
+        text-align: center;
+        border-radius: 2px;
+    }
+    
+    .fa-angle-right {
+        border: 1px solid rgba(50, 50, 50, 0.2);
+        width: 1.2rem;
+        text-align: center;
+        border-radius: 2px;
+    }
+    
+    .fa-angle-double-right {
+        border: 1px solid rgba(50, 50, 50, 0.2);
+        width: 1.2rem;
+        text-align: center;
+        border-radius: 2px;
     }
