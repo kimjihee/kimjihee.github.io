@@ -1,5 +1,5 @@
     * {
-        outlinse: 1px solid rgba(50, 50, 50, 0.7);
+        outlisne: 1px solid rgba(50, 50, 50, 0.7);
         box-sizing: border-box;
     }
     
@@ -21,13 +21,13 @@
     .logo {
         font-weight: bold;
         text-transform: uppercase;
-        font-size: 1rem;
-        padding-left: 0.4rem;
+        font-size: 0.9rem;
+        padding-left: 1rem;
         padding-right: 0.4em;
     }
     
     .name {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         font-weight: light;
     }
     
@@ -47,10 +47,23 @@
         margin: 0;
     }
     
+    .topmiddlemenu i {
+        color: #006D22;
+    }
+    
+    .topmiddlemenu i:hover {
+        color: white;
+    }
+    
+    .topmiddlemenu ul {
+       position: absolute;
+        left:6rem;
+    }
+    
     .topmiddlemenu li {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         float: left;
-        padding: 0.6rem;
+        padding: 0.7rem;
         padding-top: 0;
         padding-bottom: 0;
     }
@@ -72,13 +85,14 @@
     
     .login {
         color: white;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         background-color: #268F46;
-        padding: 0.4rem;
+        padding: 0.2rem;
         line-height: 2.6rem;
     }
     
     .barli {
+        font-size:0.4rem;
         padding: 0.4rem;
         line-height: 2.6rem;
         padding-top: 0;
@@ -135,6 +149,16 @@
         bottom: 0;
         height: 2rem;
         z-index: 2;
+        font-size: 0.7rem;
+        border-top: 1px solid black;
+    }
+    
+    .bottom li {
+        float: left;
+        font-size: 0.7rem;
+        color: grey;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
     }
     
     .bigbutton {
@@ -562,7 +586,11 @@
         bottom: 2rem;
         background-color: white;
         padding: 0.3rem;
-        border:1px solid rgba(50, 50, 50, 0.2);
+        border: 1px solid rgba(50, 50, 50, 0.2);
+    }
+    
+    .mailsBottom li:hover {
+        text-decoration: underline;
     }
     
     .mailsBottom ul {
@@ -578,13 +606,12 @@
         font-weight: bold;
     }
     
-   
-    
     .fa-angle-double-left {
         border: 1px solid rgba(50, 50, 50, 0.2);
         width: 1.2rem;
         text-align: center;
         border-radius: 2px;
+        padding: 0.2rem;
     }
     
     .fa-angle-left {
@@ -592,6 +619,7 @@
         width: 1.2rem;
         text-align: center;
         border-radius: 2px;
+        padding: 0.2rem;
     }
     
     .fa-angle-right {
@@ -599,6 +627,7 @@
         width: 1.2rem;
         text-align: center;
         border-radius: 2px;
+        padding: 0.2rem;
     }
     
     .fa-angle-double-right {
@@ -606,4 +635,57 @@
         width: 1.2rem;
         text-align: center;
         border-radius: 2px;
+        padding: 0.2rem;
+    }
+    
+    .bottomLeft {
+        position: absolute;
+        left: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .bottomRight {
+        position: absolute;
+        right: 1rem;
+        padding: 0.5rem;
+        margin: 0;
+    }
+    
+    .maincolor {
+        color: #019a30;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+    }
+    
+    .brandName {
+        position: relative;
+        left: 40%
+    }
+    
+    .fa-square {
+        color: #EC4940;
+    }
+    
+    .leftMenubottom {
+        position: absolute;
+        bottom: -0.04rem;
+        height: 2.74rem;
+        border-top: 1px solid rgba(50, 50, 50, 0.2);
+        font-size: 0.72rem;
+        left: 0;
+        right: 0;
+        padding: 0.55rem;
+        z-index: 2;
+        background-color:white;
+    }
+    
+    .colorblack {
+        color: black;
+        font-weight: bold;
+    }
+    
+    .greenenvelop {
+        color: #019a30;
+        padding: 0.2rem;
+        font-size: 1rem;
     }
