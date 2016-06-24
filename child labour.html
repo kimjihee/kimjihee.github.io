@@ -11,11 +11,13 @@
         }
         .iamSvg {position:absolute;
         top:2rem;
-        left:5rem;}
+        left:3rem;}
         
-        p { background-color:red;
-            color: black;
-            padding-left: 100;
+        p { color: black;
+            padding-left: 1rem;
+            font-size:0.8rem;
+            margin:0;
+            padding:12;
         }
         
     </style>
@@ -23,7 +25,7 @@
 </head>
 
 <body>
-    <svg height="1000" width="400" class="iamSvg">
+    <svg height="2000" width="700" class="iamSvg">
     </svg>
 
     <p> </p>
@@ -33,16 +35,16 @@
 
         // labour data
 
-        //        var labourMale = d3.csv('data/Child_labour.csv', function (err, labour) {
-        //            labour.forEach(function (row) {
-        //                row['Value'] = +row['Value'] * 0.03;
-        //            });
-        //            labour = labour.filter(function (row) {
-        //                return row['Subgroup'].startsWith('Male');
-        //            });
-        //            dataSet = labour;
-        //            redraw();
-        //        });
+                var labourMale = d3.csv('data/Child_labour.csv', function (err, labour) {
+                    labour.forEach(function (row) {
+                        row['Value'] = +row['Value'] * 0.03;
+                    });
+                    labour = labour.filter(function (row) {
+                        return row['Subgroup'].startsWith('Male');
+                    });
+                    dataSet = labour;
+                    redraw();
+                });
 
 
         // attend data
@@ -55,7 +57,7 @@
                 return row['Subgroup'].startsWith('Male');
             });
             dataSet = attend;
-//            redraw();
+            redraw2();
 
         });
 
@@ -63,41 +65,69 @@
 
         // country
         //
-        var country = d3.csv('data/attendance_in_primary_education.csv', function (b, attend) {
-            attend.forEach(function (row) {
-                row['Country'] = +row['Country'];
+        var country = d3.csv('data/Child_labour.csv', function (b, attend2) {
+                        attend2 = attend2.filter(function (row) {
+                return row['Country'];
             });
-            dataSet = attend;
+            dataSet = attend2;
             write();
 
         });
 
 
-        //        function redraw() {
-        //            var rects = d3.select('svg').selectAll('rect').data(dataSet);
-        //
-        //            rects.enter()
-        //                .append('rect')
-        //                .attr('x', 330)
-        //                .attr('width', 0)
-        //                .attr('height', 10)
-        //                .attr('fill', 'skyblue');
-        //
-        //            // Exit
-        //            rects.exit()
-        //                .remove();
-        //
-        //            // Update
-        //            rects.attr('y', function (_, i) {
-        //                    return 10 + i * 16;
-        //                })
-        //                .transition()
-        //                .attr('width', function (d) {
-        //                    return d['Value'] * 100;
-        //                });
-        //
-        //        }
+                function redraw() {
+                    var rects = d3.select('svg').selectAll('rect').data(dataSet);
+        
+                    rects.enter()
+                        .append('rect')
+                        .attr('x', 40)
+                        .attr('width', 0)
+                        .attr('height', 15)
+                        .attr('fill', 'skyblue')
+                    .attr('fill-opacity','0.3');
+        
+                    // Exit
+                    rects.exit()
+                        .remove();
+        
+                    // Update
+                    rects.attr('y', function (_, i) {
+                            return 10 + i *18;
+                        })
+                        .transition()
+                        .attr('width', function (d) {
+                            return d['Value'] *30;
+                        });
+        
+                }
 
+        
+//                function redraw2() {
+//                    var rects = d3.select('svg').selectAll('rect').data(dataSet);
+//        
+//                    rects.enter()
+//                        .append('rect')
+//                        .attr('x', 240)
+//                        .attr('width', 0)
+//                        .attr('height', 18)
+//                        .attr('fill', 'grey')
+//                    .attr('fill-opacity','0.3');
+//        
+//                    // Exit
+//                    rects.exit()
+//                        .remove();
+//        
+//                    // Update
+//                    rects.attr('y', function (_, i) {
+//                            return 10 + i * 15;
+//                        })
+//                        .transition()
+//                        .attr('width', function (d) {
+//                        return d['Value']*30;
+//                        });
+//        
+//                }
+        
         function write() {
             var countryName = d3.select('body').selectAll('p').data(dataSet);
             countryName.enter()
@@ -105,11 +135,6 @@
         }
         
 
-        //--====|     Albania     |======
-        //  --==|   Afghanistan   |===
-        //   -==|     Average     |===
-        //   -==|     Algeria     |===
-        //    -=|        ...      |==
         
         
     </script>
