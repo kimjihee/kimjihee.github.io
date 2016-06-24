@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+               body {
+            position: absolute;
+            top: 2rem;
+            width: 4rem;
+        }
+        .iamSvg {position:absolute;
+        top:2rem;
+        left:5rem;}
+        
+        p { background-color:red;
+            color: black;
+            padding-left: 100;
+        }
+        
+    </style>
+    <script src="d3.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <svg height="1000" width="400" class="iamSvg">
+    </svg>
+
+    <p> </p>
+
+    <script>
+        var dataSet = [];
+
+        // labour data
+
+        //        var labourMale = d3.csv('data/Child_labour.csv', function (err, labour) {
+        //            labour.forEach(function (row) {
+        //                row['Value'] = +row['Value'] * 0.03;
+        //            });
+        //            labour = labour.filter(function (row) {
+        //                return row['Subgroup'].startsWith('Male');
+        //            });
+        //            dataSet = labour;
+        //            redraw();
+        //        });
+
+
+        // attend data
+
+        var attendMale = d3.csv('data/attendance_in_primary_education.csv', function (a, attend) {
+            attend.forEach(function (row) {
+                row['Value'] = +row['Value'] * 0.03;
+            });
+            attend = attend.filter(function (row) {
+                return row['Subgroup'].startsWith('Male');
+            });
+            dataSet = attend;
+//            redraw();
+
+        });
+
+
+
+        // country
+        //
+        var country = d3.csv('data/attendance_in_primary_education.csv', function (b, attend) {
+            attend.forEach(function (row) {
+                row['Country'] = +row['Country'];
+            });
+            dataSet = attend;
+            write();
+
+        });
+
+
+        //        function redraw() {
+        //            var rects = d3.select('svg').selectAll('rect').data(dataSet);
+        //
+        //            rects.enter()
+        //                .append('rect')
+        //                .attr('x', 330)
+        //                .attr('width', 0)
+        //                .attr('height', 10)
+        //                .attr('fill', 'skyblue');
+        //
+        //            // Exit
+        //            rects.exit()
+        //                .remove();
+        //
+        //            // Update
+        //            rects.attr('y', function (_, i) {
+        //                    return 10 + i * 16;
+        //                })
+        //                .transition()
+        //                .attr('width', function (d) {
+        //                    return d['Value'] * 100;
+        //                });
+        //
+        //        }
+
+        function write() {
+            var countryName = d3.select('body').selectAll('p').data(dataSet);
+            countryName.enter()
+                .append('p').text(function(d){return d;});
+        }
+        
+
+        //--====|     Albania     |======
+        //  --==|   Afghanistan   |===
+        //   -==|     Average     |===
+        //   -==|     Algeria     |===
+        //    -=|        ...      |==
+        
+        
+    </script>
+</body>
+
+</html>
