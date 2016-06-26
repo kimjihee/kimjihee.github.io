@@ -34,56 +34,110 @@
         var dataSet = [];
 
         // labour data
-
-                var labourMale = d3.csv('data/Child_labour.csv', function (err, labour) {
-                    labour.forEach(function (row) {
-                        row['Value'] = +row['Value'] * 0.03;
-                    });
-                    labour = labour.filter(function (row) {
-                        return row['Subgroup'].startsWith('Male');
-                    });
-                    dataSet = labour;
-                    redraw();
+        d3.csv('data/Child_labour.csv', function (err, labour) {
+            d3.csv('data/attendance_in_primary_education.csv', function (err, attend) {
+                labour.forEach(function (row) {
+                    row['Labour'] = +row['Value'];
                 });
 
+                labour = labour.filter(function (row) {
+                    return row['Subgroup'].startsWith('Male');
+                });
+                
+                attend.forEach(function (row) {
+                    row['Attend'] = +row['Value'];
+                });
+                attend = attend.filter(function (row) {
+                    return row['Subgroup'].startsWith('Male');
+                });
+                
+                var mergedDict = {};
+                labour.forEach(function (row) {
+                    var key = row['Country'];
+                    mergedDict[key] = row;
+                });
+                attend.forEach(function (row) {
+                    var key = row['Country'];
+                    if(!mergedDict[key]) {
+                        mergedDict[key] = row;
+                    } else {
+                        mergedDict[key]['Attend'] = row['Attend'];
+                    }
+                });
+                var mergedData = [];
+                for(var key in mergedDict) {
+                    mergedData.push(mergedDict[key]);
+                }
+                
+//                var countriesFromLabour = [];
+//                for(var i = 0; i < labour.length; i++) {
+//                    var row = labour[i];
+//                    countriesFromLabour.push(row['Country']);
+//                }
+//                var countriesFromLabour = labour.map(function(row) {
+//                    return row['Country'];
+//                });
+//                var countriesFromAttend = attend.map(function(row) {
+//                    return row['Country'];
+//                });
 
-        // attend data
-
-        var attendMale = d3.csv('data/attendance_in_primary_education.csv', function (a, attend) {
-            attend.forEach(function (row) {
-                row['Value'] = +row['Value'] * 0.03;
+                dataSet = mergedData;
+                redraw();
             });
-            attend = attend.filter(function (row) {
-                return row['Subgroup'].startsWith('Male');
-            });
-            dataSet = attend;
-            redraw2();
-
-        });
-
-
-
-        // country
-        //
-        var country = d3.csv('data/Child_labour.csv', function (b, attend2) {
-                        attend2 = attend2.filter(function (row) {
-                return row['Country'];
-            });
-            dataSet = attend2;
-            write();
-
         });
 
 
                 function redraw() {
-                    var rects = d3.select('svg').selectAll('rect').data(dataSet);
+                    var rects = d3.select('svg').selectAll('.label').data(dataSet);
+                    rects.enter()
+                        .append('text')
+                        .attr('class', 'label')
+                        .attr('x', 40)
+                        .attr('fill', 'black');
+        
+                    // Exit
+                    rects.exit()
+                        .remove();
+        
+                    // Update
+                    rects.attr('y', function (_, i) {
+                        return 20 + i * 20;
+                    })
+                    .text(function(d) {return d['Country'];});
+
+                    var rects = d3.select('svg').selectAll('.labour').data(dataSet);
         
                     rects.enter()
                         .append('rect')
-                        .attr('x', 40)
+                        .attr('class', 'labour')
+                        .attr('x', 150)
                         .attr('width', 0)
                         .attr('height', 15)
                         .attr('fill', 'skyblue')
+                        .attr('fill-opacity','0.3');
+        
+                    // Exit
+                    rects.exit()
+                        .remove();
+        
+                    // Update
+                    rects.attr('y', function (_, i) {
+                            return 10 + i * 20;
+                        })
+                        .transition()
+                        .attr('width', function (d) {
+                            return (d['Labour'] || 0) * 2;
+                        });
+        
+                    var rects = d3.select('svg').selectAll('.attend').data(dataSet);
+        
+                    rects.enter()
+                        .append('rect')
+                        .attr('class', 'attend')
+                        .attr('x', 300)
+                        .attr('width', 0)
+                        .attr('height', 15)
+                        .attr('fill', 'grey')
                     .attr('fill-opacity','0.3');
         
                     // Exit
@@ -92,46 +146,18 @@
         
                     // Update
                     rects.attr('y', function (_, i) {
-                            return 10 + i *18;
+                            return 10 + i * 20;
                         })
                         .transition()
                         .attr('width', function (d) {
-                            return d['Value'] *30;
-                        });
-        
+                        return (d['Attend'] || 0) * 2;
+                    });
                 }
-
-        
-//                function redraw2() {
-//                    var rects = d3.select('svg').selectAll('rect').data(dataSet);
-//        
-//                    rects.enter()
-//                        .append('rect')
-//                        .attr('x', 240)
-//                        .attr('width', 0)
-//                        .attr('height', 18)
-//                        .attr('fill', 'grey')
-//                    .attr('fill-opacity','0.3');
-//        
-//                    // Exit
-//                    rects.exit()
-//                        .remove();
-//        
-//                    // Update
-//                    rects.attr('y', function (_, i) {
-//                            return 10 + i * 15;
-//                        })
-//                        .transition()
-//                        .attr('width', function (d) {
-//                        return d['Value']*30;
-//                        });
-//        
-//                }
         
         function write() {
             var countryName = d3.select('body').selectAll('p').data(dataSet);
             countryName.enter()
-                .append('p').text(function(d){return d;});
+                .append('p').text(function(d){return d['Country'];});
         }
         
 
