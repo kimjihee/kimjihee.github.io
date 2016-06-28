@@ -35,12 +35,12 @@ Benin,Total 5-14 yr,2002-2011,46
 Bhutan,Male 5-14 yr,2002-2011,3
 Bhutan,Female 5-14 yr,2002-2011,3
 Bhutan,Total 5-14 yr,2002-2011,3
-Bolivia (Plurinational State of),Male 5-14 yr,2002-2011,28
-Bolivia (Plurinational State of),Female 5-14 yr,2002-2011,24
-Bolivia (Plurinational State of),Total 5-14 yr,2002-2011,26
-Bosnia and Herzegovina,Male 5-14 yr,2002-2011,7
-Bosnia and Herzegovina,Female 5-14 yr,2002-2011,4
-Bosnia and Herzegovina,Total 5-14 yr,2002-2011,5
+Bolivia ,Male 5-14 yr,2002-2011,28
+Bolivia,Female 5-14 yr,2002-2011,24
+Bolivia,Total 5-14 yr,2002-2011,26
+Bosnia ,Male 5-14 yr,2002-2011,7
+Bosnia ,Female 5-14 yr,2002-2011,4
+Bosnia ,Total 5-14 yr,2002-2011,5
 Botswana,Male 5-14 yr,2002-2011,11
 Botswana,Female 5-14 yr,2002-2011,7
 Botswana,Total 5-14 yr,2002-2011,9
@@ -75,15 +75,15 @@ Congo,Total 5-14 yr,2002-2011,25
 Costa Rica,Male 5-14 yr,2002-2011,6
 Costa Rica,Female 5-14 yr,2002-2011,3
 Costa Rica,Total 5-14 yr,2002-2011,5
-Democratic Republic of the Congo,Male 5-14 yr,2002-2011,13
-Democratic Republic of the Congo,Female 5-14 yr,2002-2011,17
-Democratic Republic of the Congo,Total 5-14 yr,2002-2011,15
+Congo,Male 5-14 yr,2002-2011,13
+Congo,Female 5-14 yr,2002-2011,17
+Congo,Total 5-14 yr,2002-2011,15
 Djibouti,Male 5-14 yr,2002-2011,8
 Djibouti,Female 5-14 yr,2002-2011,8
 Djibouti,Total 5-14 yr,2002-2011,8
-Dominican Republic,Male 5-14 yr,2002-2011,18
-Dominican Republic,Female 5-14 yr,2002-2011,8
-Dominican Republic,Total 5-14 yr,2002-2011,13
+Dominican,Male 5-14 yr,2002-2011,18
+Dominican,Female 5-14 yr,2002-2011,8
+Dominican,Total 5-14 yr,2002-2011,13
 East Asia and Pacific,Male 5-14 yr,2002-2011,8
 East Asia and Pacific,Female 5-14 yr,2002-2011,7
 East Asia and Pacific,Total 5-14 yr,2002-2011,8
@@ -154,15 +154,15 @@ Kenya,Total 5-14 yr,2002-2011,26
 Kyrgyzstan,Male 5-14 yr,2002-2011,4
 Kyrgyzstan,Female 5-14 yr,2002-2011,3
 Kyrgyzstan,Total 5-14 yr,2002-2011,4
-Lao People's Democratic Republic,Male 5-14 yr,2002-2011,10
-Lao People's Democratic Republic,Female 5-14 yr,2002-2011,13
-Lao People's Democratic Republic,Total 5-14 yr,2002-2011,11
-Latin America and Caribbean,Male 5-14 yr,2002-2011,9
-Latin America and Caribbean,Female 5-14 yr,2002-2011,7
-Latin America and Caribbean,Total 5-14 yr,2002-2011,9
-Least Developed Countries/Territories,Male 5-14 yr,2002-2011,24
-Least Developed Countries/Territories,Female 5-14 yr,2002-2011,22
-Least Developed Countries/Territories,Total 5-14 yr,2002-2011,23
+Lao,Male 5-14 yr,2002-2011,10
+Lao,Female 5-14 yr,2002-2011,13
+Lao,Total 5-14 yr,2002-2011,11
+Caribbean,Male 5-14 yr,2002-2011,9
+Caribbean,Female 5-14 yr,2002-2011,7
+Caribbean,Total 5-14 yr,2002-2011,9
+Least,Male 5-14 yr,2002-2011,24
+Least,Female 5-14 yr,2002-2011,22
+Least,Total 5-14 yr,2002-2011,23
 Lebanon,Male 5-14 yr,2002-2011,3
 Lebanon,Female 5-14 yr,2002-2011,1
 Lebanon,Total 5-14 yr,2002-2011,2
@@ -187,9 +187,9 @@ Mauritania,Total 5-14 yr,2002-2011,16
 Mexico,Male 5-14 yr,2002-2011,6
 Mexico,Female 5-14 yr,2002-2011,5
 Mexico,Total 5-14 yr,2002-2011,5
-Middle East and North Africa,Male 5-14 yr,2002-2011,10
-Middle East and North Africa,Female 5-14 yr,2002-2011,8
-Middle East and North Africa,Total 5-14 yr,2002-2011,9
+North Africa,Male 5-14 yr,2002-2011,10
+North Africa,Female 5-14 yr,2002-2011,8
+North Africa,Total 5-14 yr,2002-2011,9
 Mongolia,Male 5-14 yr,2002-2011,10
 Mongolia,Female 5-14 yr,2002-2011,11
 Mongolia,Total 5-14 yr,2002-2011,10
@@ -256,9 +256,9 @@ South Asia,Total 5-14 yr,2002-2011,12
 Sub-Saharan Africa,Male 5-14 yr,2002-2011,28
 Sub-Saharan Africa,Female 5-14 yr,2002-2011,26
 Sub-Saharan Africa,Total 5-14 yr,2002-2011,27
-Sudan (pre-cession),Male 5-14 yr,2002-2011,14
-Sudan (pre-cession),Female 5-14 yr,2002-2011,12
-Sudan (pre-cession),Total 5-14 yr,2002-2011,13
+Sudan,Male 5-14 yr,2002-2011,14
+Sudan ,Female 5-14 yr,2002-2011,12
+Sudan ,Total 5-14 yr,2002-2011,13
 Suriname,Male 5-14 yr,2002-2011,7
 Suriname,Female 5-14 yr,2002-2011,5
 Suriname,Total 5-14 yr,2002-2011,6
@@ -274,9 +274,9 @@ Tajikistan,Total 5-14 yr,2002-2011,10
 Thailand,Male 5-14 yr,2002-2011,8
 Thailand,Female 5-14 yr,2002-2011,8
 Thailand,Total 5-14 yr,2002-2011,8
-The former Yugoslav Republic of Macedonia,Male 5-14 yr,2002-2011,12
-The former Yugoslav Republic of Macedonia,Female 5-14 yr,2002-2011,13
-The former Yugoslav Republic of Macedonia,Total 5-14 yr,2002-2011,13
+Yugoslav ,Male 5-14 yr,2002-2011,12
+Yugoslav ,Female 5-14 yr,2002-2011,13
+Yugoslav,Total 5-14 yr,2002-2011,13
 Timor-Leste,Male 5-14 yr,2002-2011,4
 Timor-Leste,Female 5-14 yr,2002-2011,4
 Timor-Leste,Total 5-14 yr,2002-2011,4
@@ -295,15 +295,15 @@ Uganda,Total 5-14 yr,2002-2011,25
 Ukraine,Male 5-14 yr,2002-2011,8
 Ukraine,Female 5-14 yr,2002-2011,7
 Ukraine,Total 5-14 yr,2002-2011,7
-United Republic of Tanzania,Male 5-14 yr,2002-2011,23
-United Republic of Tanzania,Female 5-14 yr,2002-2011,19
-United Republic of Tanzania,Total 5-14 yr,2002-2011,21
+Tanzania,Male 5-14 yr,2002-2011,23
+Tanzania,Female 5-14 yr,2002-2011,19
+Tanzania,Total 5-14 yr,2002-2011,21
 Uruguay,Male 5-14 yr,2002-2011,8
 Uruguay,Female 5-14 yr,2002-2011,8
 Uruguay,Total 5-14 yr,2002-2011,8
-Venezuela (Bolivarian Republic of),Male 5-14 yr,2002-2011,9
-Venezuela (Bolivarian Republic of),Female 5-14 yr,2002-2011,6
-Venezuela (Bolivarian Republic of),Total 5-14 yr,2002-2011,8
+Venezuela ,Male 5-14 yr,2002-2011,9
+Venezuela ,Female 5-14 yr,2002-2011,6
+Venezuela ,Total 5-14 yr,2002-2011,8
 Viet Nam,Male 5-14 yr,2002-2011,7
 Viet Nam,Female 5-14 yr,2002-2011,7
 Viet Nam,Total 5-14 yr,2002-2011,7

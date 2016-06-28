@@ -4,28 +4,33 @@
 <head>
     <meta charset="utf-8">
     <style>
-               body {
+        body {
             position: absolute;
             top: 2rem;
             width: 4rem;
         }
-        .iamSvg {position:absolute;
-        top:2rem;
-        left:3rem;}
         
-        p { color: black;
-            padding-left: 1rem;
-            font-size:0.8rem;
-            margin:0;
-            padding:12;
+        .iamSvg {
+            position: absolute;
+            top: 2rem;
+            left: 3rem;
         }
         
+        p {
+            color: black;
+            padding-left: 1rem;
+            font-size: 0.8rem;
+            margin: 0;
+            padding: 12;
+        }
+        .label {text-align:right;}
+      
     </style>
     <script src="d3.min.js" type="text/javascript"></script>
 </head>
 
 <body>
-    <svg height="2000" width="700" class="iamSvg">
+    <svg height="3000" width="700" class="iamSvg">
     </svg>
 
     <p> </p>
@@ -43,14 +48,52 @@
                 labour = labour.filter(function (row) {
                     return row['Subgroup'].startsWith('Male');
                 });
-                
+
                 attend.forEach(function (row) {
                     row['Attend'] = +row['Value'];
                 });
                 attend = attend.filter(function (row) {
                     return row['Subgroup'].startsWith('Male');
                 });
-                
+
+
+                //   //Female        
+                //                
+                //                d3.csv('data/Child_labour.csv', function (err, labourFemale) {
+                //            d3.csv('data/attendance_in_primary_education.csv', function (err, attendFemale) {
+                //                labour.forEach(function (row) {
+                //                    row['Labour'] = +row['Value'];
+                //                });
+                //
+                //                labour = labour.filter(function (row) {
+                //                    return row['Subgroup'].startsWith('Female');
+                //                });
+                //
+                //                attend.forEach(function (row) {
+                //                    row['Attend'] = +row['Value'];
+                //                });
+                //                attend = attend.filter(function (row) {
+                //                    return row['Subgroup'].startsWith('Female');
+                //                });
+
+                //                var mergedDict = {};
+                //                labour.forEach(function (row) {
+                //                    var key = row['Country'];
+                //                    mergedDict[key] = row;
+                //                });
+                //                attend.forEach(function (row) {
+                //                    var key = row['Country'];
+                //                    if (!mergedDict[key]) {
+                //                        mergedDict[key] = row;
+                //                    } else {
+                //                        mergedDict[key]['Attend'] = row['Attend'];
+                //                    }
+                //                });
+                //                var mergedData = [];
+                //                for (var key in mergedDict) {
+                //                    mergedData.push(mergedDict[key]);
+                //                }
+
                 var mergedDict = {};
                 labour.forEach(function (row) {
                     var key = row['Country'];
@@ -58,111 +101,153 @@
                 });
                 attend.forEach(function (row) {
                     var key = row['Country'];
-                    if(!mergedDict[key]) {
+                    if (!mergedDict[key]) {
                         mergedDict[key] = row;
                     } else {
                         mergedDict[key]['Attend'] = row['Attend'];
                     }
                 });
                 var mergedData = [];
-                for(var key in mergedDict) {
+                for (var key in mergedDict) {
                     mergedData.push(mergedDict[key]);
                 }
-                
-//                var countriesFromLabour = [];
-//                for(var i = 0; i < labour.length; i++) {
-//                    var row = labour[i];
-//                    countriesFromLabour.push(row['Country']);
-//                }
-//                var countriesFromLabour = labour.map(function(row) {
-//                    return row['Country'];
-//                });
-//                var countriesFromAttend = attend.map(function(row) {
-//                    return row['Country'];
-//                });
+
+                //                var countriesFromLabour = [];
+                //                for(var i = 0; i < labour.length; i++) {
+                //                    var row = labour[i];
+                //                    countriesFromLabour.push(row['Country']);
+                //                }
+                //                var countriesFromLabour = labour.map(function(row) {
+                //                    return row['Country'];
+                //                });
+                //                var countriesFromAttend = attend.map(function(row) {
+                //                    return row['Country'];
+                //                });
 
                 dataSet = mergedData;
                 redraw();
             });
         });
 
+        // Draw
 
-                function redraw() {
-                    var rects = d3.select('svg').selectAll('.label').data(dataSet);
-                    rects.enter()
-                        .append('text')
-                        .attr('class', 'label')
-                        .attr('x', 40)
-                        .attr('fill', 'black');
-        
-                    // Exit
-                    rects.exit()
-                        .remove();
-        
-                    // Update
-                    rects.attr('y', function (_, i) {
-                        return 20 + i * 20;
-                    })
-                    .text(function(d) {return d['Country'];});
+        function redraw() {
+            var rects = d3.select('svg').selectAll('.label').data(dataSet);
+            rects.enter()
+                .append('text')
+                .attr('class', 'label')
+                .attr('x', 140)
+                .attr('fill', 'black')
+                .attr('text-anchor','end')
+            .attr('font-size', '11px')
+            ; 
+            //숫자를 넣어보려고 했는데 잘 안됐는데 도대체 이건 뭔지 모르겠어요.이것은 텍스트를 넣은것이다!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-                    var rects = d3.select('svg').selectAll('.labour').data(dataSet);
-        
-                    rects.enter()
-                        .append('rect')
-                        .attr('class', 'labour')
-                        .attr('x', 150)
-                        .attr('width', 0)
-                        .attr('height', 15)
-                        .attr('fill', 'skyblue')
-                        .attr('fill-opacity','0.3');
-        
-                    // Exit
-                    rects.exit()
-                        .remove();
-        
-                    // Update
-                    rects.attr('y', function (_, i) {
-                            return 10 + i * 20;
-                        })
-                        .transition()
-                        .attr('width', function (d) {
-                            return (d['Labour'] || 0) * 2;
-                        });
-        
-                    var rects = d3.select('svg').selectAll('.attend').data(dataSet);
-        
-                    rects.enter()
-                        .append('rect')
-                        .attr('class', 'attend')
-                        .attr('x', 300)
-                        .attr('width', 0)
-                        .attr('height', 15)
-                        .attr('fill', 'grey')
-                    .attr('fill-opacity','0.3');
-        
-                    // Exit
-                    rects.exit()
-                        .remove();
-        
-                    // Update
-                    rects.attr('y', function (_, i) {
-                            return 10 + i * 20;
-                        })
-                        .transition()
-                        .attr('width', function (d) {
-                        return (d['Attend'] || 0) * 2;
-                    });
-                }
-        
+            // Exit
+            rects.exit()
+                .remove();
+
+            // Update
+            rects.attr('y', function (_, i) {
+                    return 20 + i * 20;
+                })
+                .text(function (d) {
+                    return d['Country'];
+                });
+
+            var rects = d3.select('svg').selectAll('.labour').data(dataSet);
+
+
+            rects.enter()
+                .append('rect')
+                .attr('class', 'labour')
+                .attr('x', 350)
+                .attr('width', 0)
+                .attr('height', 15)
+                .attr('fill', 'skyblue')
+                .attr('fill-opacity', '0.5');
+
+            // Exit
+            rects.exit()
+                .remove();
+
+            // Update
+            rects.attr('y', function (_, i) {
+                    return 10 + i * 20;
+                })
+                .transition()
+                .attr('width', function (d) {
+                    return (d['Labour'] || 0) * 3;
+                });
+
+
+            rects.enter()
+                .append('text')
+                .text(function (d) {
+                    return d['Labour'];
+                })
+                .attr('x', 320)
+                .attr('y', function (_, i) {
+                    return 21.5 + i * 20;
+                })
+                .attr('font-family', 'sans-serif')
+                .attr('font-size', '11px')
+                .attr('fill', 'black')
+            .attr('text-anchor','end');
+            // 이부분은 그래프에 숫자를 넣어보려고 햇는데 잘 안됐어요.
+
+            // attend data.
+
+            var rects = d3.select('svg').selectAll('.attend').data(dataSet);
+
+            rects.enter()
+                .append('text')
+                .text(function (d) {
+                    return (100-d['Attend']);
+                })
+                .attr('x', 570)
+                .attr('y', function (_, i) {
+                    return 21.5 + i * 20;
+
+
+                })
+                .attr('font-family', 'sans-serif')
+                .attr('font-size', '11px')
+                .attr('fill', 'black')
+            .attr('text-anchor','end'); // 이걸 아래로 옮겼더니 실행이 안됐는데 위로 옮기니까 되었어요!!!!!!!!
+
+            rects.enter()
+                .append('rect')
+                .attr('class', 'attend')
+                .attr('x', 600)
+                .attr('width', 0)
+                .attr('height', 15)
+                .attr('fill', 'grey')
+                .attr('fill-opacity', '0.5');
+
+            // Exit
+            rects.exit()
+                .remove();
+
+            // Update
+            rects.attr('y', function (_, i) {
+                    return 10 + i * 20;
+                })
+                .transition()
+                .attr('width', function (d) {
+                    return (100 - d['Attend'] || 0) * 3;
+                });
+        }
+
+
+
         function write() {
             var countryName = d3.select('body').selectAll('p').data(dataSet);
             countryName.enter()
-                .append('p').text(function(d){return d['Country'];});
+                .append('p').text(function (d) {
+                    return d['Country'];
+                });//여기에 attr ('text-align','center') 했는데 안됐어요!!!!!!!!!!!!!!!!!!!!!!   .attr('class','countryName').countryName {text-align:center;}
         }
-        
-
-        
-        
     </script>
 </body>
 
