@@ -7,12 +7,22 @@
         body {
             position: absolute;
             top: 2rem;
-            width: 4rem;
+            left: 0;
+            right: 0;
         }
         
-        .iamSvg {
+        .top {
             position: absolute;
-            top: 2rem;
+            top: 0;
+            left: 0;
+            right: 0;
+           
+        }
+        .name {float:left;
+        list-style-type:none;}
+        ---------data------------------------------------------------------------ .iamSvg {
+            position: absolute;
+            top: 5rem;
             left: 3rem;
         }
         
@@ -23,8 +33,11 @@
             margin: 0;
             padding: 12;
         }
-        .label {text-align:right;}
-      
+        
+        .label {
+            text-align: right;
+        }
+        
     </style>
     <script src="d3.min.js" type="text/javascript"></script>
 </head>
@@ -32,7 +45,13 @@
 <body>
     <svg height="3000" width="700" class="iamSvg">
     </svg>
-
+    <div class="top">
+        <h1>Child Labour</h1>
+       <ul>
+        <li class="name">Country</li>
+        <li class="name">Child labour</li>
+            <li class="name"> Primary Education Attendance</li></ul>
+    </div>
     <p> </p>
 
     <script>
@@ -57,42 +76,26 @@
                 });
 
 
-                //   //Female        
+                //                   //Female        
+                //                                
+                //                                d3.csv('data/Child_labour.csv', function (err, labourFemale) {
+                //                            d3.csv('data/attendance_in_primary_education.csv', function (err, attendFemale) {
+                //                                labourFemale.forEach(function (row) {
+                //                                    row['LabourFemale'] = +row['Value'];
+                //                                });
                 //                
-                //                d3.csv('data/Child_labour.csv', function (err, labourFemale) {
-                //            d3.csv('data/attendance_in_primary_education.csv', function (err, attendFemale) {
-                //                labour.forEach(function (row) {
-                //                    row['Labour'] = +row['Value'];
-                //                });
-                //
-                //                labour = labour.filter(function (row) {
-                //                    return row['Subgroup'].startsWith('Female');
-                //                });
-                //
-                //                attend.forEach(function (row) {
-                //                    row['Attend'] = +row['Value'];
-                //                });
-                //                attend = attend.filter(function (row) {
-                //                    return row['Subgroup'].startsWith('Female');
-                //                });
+                //                                labourFemale = labourFemale.filter(function (row) {
+                //                                    return row['Subgroup'].startsWith('Female');
+                //                                });
+                //                
+                //                                attendFemale.forEach(function (row) {
+                //                                    row['AttendFemale'] = +row['Value'];
+                //                                });
+                //                                attendFemale = attendFemale.filter(function (row) {
+                //                                    return row['Subgroup'].startsWith('Female');
+                //                                });
 
-                //                var mergedDict = {};
-                //                labour.forEach(function (row) {
-                //                    var key = row['Country'];
-                //                    mergedDict[key] = row;
-                //                });
-                //                attend.forEach(function (row) {
-                //                    var key = row['Country'];
-                //                    if (!mergedDict[key]) {
-                //                        mergedDict[key] = row;
-                //                    } else {
-                //                        mergedDict[key]['Attend'] = row['Attend'];
-                //                    }
-                //                });
-                //                var mergedData = [];
-                //                for (var key in mergedDict) {
-                //                    mergedData.push(mergedDict[key]);
-                //                }
+
 
                 var mergedDict = {};
                 labour.forEach(function (row) {
@@ -138,9 +141,8 @@
                 .attr('class', 'label')
                 .attr('x', 140)
                 .attr('fill', 'black')
-                .attr('text-anchor','end')
-            .attr('font-size', '11px')
-            ; 
+                .attr('text-anchor', 'end')
+                .attr('font-size', '11px');
             //숫자를 넣어보려고 했는데 잘 안됐는데 도대체 이건 뭔지 모르겠어요.이것은 텍스트를 넣은것이다!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             // Exit
@@ -161,7 +163,7 @@
             rects.enter()
                 .append('rect')
                 .attr('class', 'labour')
-                .attr('x', 350)
+                .attr('x', 170)
                 .attr('width', 0)
                 .attr('height', 15)
                 .attr('fill', 'skyblue')
@@ -177,7 +179,7 @@
                 })
                 .transition()
                 .attr('width', function (d) {
-                    return (d['Labour'] || 0) * 3;
+                    return (d['Labour'] || 0) * 2;
                 });
 
 
@@ -186,14 +188,16 @@
                 .text(function (d) {
                     return d['Labour'];
                 })
-                .attr('x', 320)
+                .attr('x', function (d) {
+                    return (d['Labour']) * 2 + 185;
+                })
                 .attr('y', function (_, i) {
-                    return 21.5 + i * 20;
+                    return 20.5 + i * 20;
                 })
                 .attr('font-family', 'sans-serif')
                 .attr('font-size', '11px')
-                .attr('fill', 'black')
-            .attr('text-anchor','end');
+                .attr('fill', 'grey')
+                .attr('text-anchor', 'end');
             // 이부분은 그래프에 숫자를 넣어보려고 햇는데 잘 안됐어요.
 
             // attend data.
@@ -203,23 +207,25 @@
             rects.enter()
                 .append('text')
                 .text(function (d) {
-                    return (100-d['Attend']);
+                    return (100 - d['Attend']);
                 })
-                .attr('x', 570)
+                .attr('x', function (d) {
+                    return (100 - d['Attend']) * 2 + 405;
+                })
                 .attr('y', function (_, i) {
-                    return 21.5 + i * 20;
+                    return 20.5 + i * 20;
 
 
                 })
                 .attr('font-family', 'sans-serif')
                 .attr('font-size', '11px')
-                .attr('fill', 'black')
-            .attr('text-anchor','end'); // 이걸 아래로 옮겼더니 실행이 안됐는데 위로 옮기니까 되었어요!!!!!!!!
+                .attr('fill', 'grey')
+                .attr('text-anchor', 'end'); // 이걸 아래로 옮겼더니 실행이 안됐는데 위로 옮기니까 되었어요!!!!!!!!
 
             rects.enter()
                 .append('rect')
                 .attr('class', 'attend')
-                .attr('x', 600)
+                .attr('x', 390)
                 .attr('width', 0)
                 .attr('height', 15)
                 .attr('fill', 'grey')
@@ -235,7 +241,7 @@
                 })
                 .transition()
                 .attr('width', function (d) {
-                    return (100 - d['Attend'] || 0) * 3;
+                    return (100 - d['Attend'] || 0) * 2;
                 });
         }
 
@@ -246,7 +252,7 @@
             countryName.enter()
                 .append('p').text(function (d) {
                     return d['Country'];
-                });//여기에 attr ('text-align','center') 했는데 안됐어요!!!!!!!!!!!!!!!!!!!!!!   .attr('class','countryName').countryName {text-align:center;}
+                });
         }
     </script>
 </body>
