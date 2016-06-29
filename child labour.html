@@ -196,8 +196,10 @@
                 .attr('fill', 'grey')
                 .attr('fill-opacity', '0.5')
             .on("mouseover", function() { d3.select(this) .attr("fill", "rgb(10,10,10)"); })
-            .on("mouseout", function() { d3.select(this) .attr("fill", "grey"); });
-            
+            .on("mouseout", function() { d3.select(this) .attr("fill", "grey"); })
+            .on("click", function() {
+                			   		sortBars();
+			   });
 
             // Exit
             rects.exit()
@@ -232,7 +234,7 @@
                 .attr('text-anchor', 'end');
             // 이부분은 그래프에 숫자를 넣어보려고 햇는데 잘 안됐어요.
 
-            ---------------Attend data.
+            // attend data.
 
             var rects = d3.select('svg').selectAll('.attend').data(dataSet);
 
