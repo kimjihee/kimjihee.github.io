@@ -31,7 +31,23 @@
             margin: 0;
         }
         
-        ---------------------------------------------------------------------data--- .IamSVG {
+        
+//------------------------------------------Data----------------------------------------- 
+        
+        
+        #tooltip {
+            position: absolute;
+            width: 10px;
+           background-color:aquamarine;
+            height: 10px;
+            pointer-events: none;
+        }
+        
+        #tooltip.hidden {
+            display: none;
+        }
+        
+        .IamSVG {
             position: absolute;
             top: 6rem;
             left: 3rem;
@@ -54,88 +70,75 @@
 
 <body>
     <div class="top">
-        <h1>Child Labour</h1>
-
-    </div>
+        <h1>Child Labour</h1> </div>
+    <div id="tooltip" class="hidden" style="">+'%'</div>
     <p> </p>
-
-    <svg height="3000" width="700" class="iamSvg">
-        <text x='160' y='20' fill='black' text-anchor="end" text-size='2rem' font-weight='bolder'>Country</text>
-        <text x='200' y='20' fill='black' text-size='2rem' font-weight='bolder'>Child labour</text>
-        <text x='350' y='20' fill='black' text-size='2rem' font-weight='bolder'>None attendace
-            <tspan x="350" y="39" font-weight='normal'>(in primary education)</tspan>
+    <svg height="3000" width="1000" class="iamSvg">
+        <text x='160' y='20' fill='black' text-anchor="end" font-size='rem' font-weight='bolder'>Country</text>
+        <text x='200' y='20' fill='black' font-size='rem' font-weight='bolder'>Labour male</text>
+        <text x='350' y='20' fill='black' font-size='rem' font-weight='bolder'>Labour female</text>
+        <text x='520' y='20' fill='black' font-size='rem' font-weight='bolder'>Male none attendace
+            <tspan x="530" y="39" font-weight='normal'>(in primary education)</tspan>
+        </text>
+        <text x='700' y='20' fill='black' font-size='rem' font-weight='bolder'>Female none attendace
+            <tspan x="700" y="39" font-weight='normal'>(in primary education)</tspan>
         </text>
     </svg>
-
-
-
+    
+    
+    
     <script>
         var dataSet = [];
-
         // labour data
         d3.csv('data/Child_labour.csv', function (err, labour) {
             d3.csv('data/attendance_in_primary_education.csv', function (err, attend) {
                 labour.forEach(function (row) {
                     row['Labour'] = +row['Value'];
                 });
-
-                labour = labour.filter(function (row) {
+                
+                
+                
+                var labourMale = labour.filter(function (row) {
                     return row['Subgroup'].startsWith('Male');
                 });
-
+                var labourFemale = labour.filter(function (row) {
+                    return row['Subgroup'].startsWith('Female');
+                });
                 attend.forEach(function (row) {
                     row['Attend'] = +row['Value'];
                 });
-                attend = attend.filter(function (row) {
+                var attendMale = attend.filter(function (row) {
                     return row['Subgroup'].startsWith('Male');
                 });
-                //                labourFemale = labourFemale.filter(function (row) {
-                //                    return row['Subgroup'].startsWith('Female');
-                //                });
-                //                attendFemale = attendFemale.filter(function (row) {
-                //                    return row['Subgroup'].startsWith('Female');
-                //                });
-
-
-                //                   //Female        
-                //                                
-                //                                d3.csv('data/Child_labour.csv', function (err, labourFemale) {
-                //                            d3.csv('data/attendance_in_primary_education.csv', function (err, attendFemale) {
-                //                                labourFemale.forEach(function (row) {
-                //                                    row['LabourFemale'] = +row['Value'];
-                //                                });
-                //                
-                //                                labourFemale = labourFemale.filter(function (row) {
-                //                                    return row['Subgroup'].startsWith('Female');
-                //                                });
-                //                
-                //                                attendFemale.forEach(function (row) {
-                //                                    row['AttendFemale'] = +row['Value'];
-                //                                });
-                //                                attendFemale = attendFemale.filter(function (row) {
-                //                                    return row['Subgroup'].startsWith('Female');
-                //                                });
-
-
-
+                var attendFemale = attend.filter(function (row) {
+                    return row['Subgroup'].startsWith('Female');
+                });
+                
+                
+ //----------------------------------------CountryName----------------------------------------    
+                
+                
+                
                 var mergedDict = {};
-                labour.forEach(function (row) {
+                labourMale.forEach(function (row, i) {
                     var key = row['Country'];
                     mergedDict[key] = row;
+                    mergedDict[key].LabourFemale = labourFemale[i].Labour;
                 });
-                attend.forEach(function (row) {
+                attendMale.forEach(function (row, i) {
                     var key = row['Country'];
                     if (!mergedDict[key]) {
                         mergedDict[key] = row;
-                    } else {
+                    }
+                    else {
                         mergedDict[key]['Attend'] = row['Attend'];
                     }
+                    mergedDict[key].AttendFemale = attendFemale[i].Attend;
                 });
                 var mergedData = [];
                 for (var key in mergedDict) {
                     mergedData.push(mergedDict[key]);
                 }
-
                 //                var countriesFromLabour = [];
                 //                for(var i = 0; i < labour.length; i++) {
                 //                    var row = labour[i];
@@ -147,20 +150,17 @@
                 //                var countriesFromAttend = attend.map(function(row) {
                 //                    return row['Country'];
                 //                });
-
                 dataSet = mergedData;
+//                console.log(dataSet);
                 redraw();
             });
         });
-
-
-
-
-
-
-        //*******----------------------------Draw------------------------------------********
+        
+        
+//------------------------------------------Draw------------------------------------------
+        
+        
         var height = 50;
-
 
         function redraw() {
             var rects = d3.select('svg').selectAll('.label').data(dataSet);
@@ -171,149 +171,200 @@
                 .attr('fill', 'black')
                 .attr('text-anchor', 'end')
                 .attr('font-size', '11px');
-
             // Exit
-            rects.exit()
-                .remove();
-
+            rects.exit().remove();
             // Update
             rects.attr('y', function (_, i) {
-                    return 20 + height + i * 20;
-                })
+                return 20 + height + i * 20;
+            })
                 .text(function (d) {
-                    return d['Country'];
-                });
-
-            var rects = d3.select('svg').selectAll('.labour').data(dataSet);
-
-
+                return d['Country'];
+            });
+            
+            
+            
+            
+ //------------------------------------------labourMale-----------------------------------------
+            
+            
+                
+            var rects = d3.select('svg').selectAll('.labourMale').data(dataSet);
             rects.enter()
                 .append('rect')
-                .attr('class', 'labour')
+                .attr('class', 'labourMale')
                 .attr('x', 200)
                 .attr('width', 0)
                 .attr('height', 15)
                 .attr('fill', 'grey')
                 .attr('fill-opacity', '0.5')
-            .on("mouseover", function() { d3.select(this) .attr("fill", "rgb(10,10,10)"); })
-            .on("mouseout", function() { d3.select(this) .attr("fill", "grey"); })
-            .on("click", function() {
-                			   		sortBars();
-			   });
-
+                .on("mouseover", function () {
+                d3.select(this).attr("fill", "rgb(10,10,10)");})
+                .on("mouseout", function () {
+                d3.select(this).attr("fill", "grey");
+            });
+            
+        
             // Exit
-            rects.exit()
-                .remove();
-
+            rects.exit().remove();
+            
             // Update
             rects.attr('y', function (_, i) {
-                    return 10 + height + i * 20;
-                })
-                .transition()
+                return 10 + height + i * 20;
+            }).transition()
                 .duration(1000)
                 .attr('width', function (d) {
-                    return (d['Labour'] || 0) * 2;
-                });
-
-
+                return (d['Labour'] || 0) * 2;
+            });
+            
+            
+            
             rects.enter()
                 .append('text')
                 .text(function (d) {
-                    return (d['Labour']);
-                })
-                .attr('x', function (d) {
-                    return (d['Labour']) * 2 + 215;
-                })
-                .attr('y', function (_, i) {
-                    return 20.5 + height + i * 20;
-                })
-
-            .attr('font-family', 'sans-serif')
+                return (d['Labour']);
+            }).attr('x', function (d) {
+                return (d['Labour']) * 2 + 215;
+            }).attr('y', function (_, i) {
+                return 20.5 + height + i * 20;
+            }).attr('font-family', 'sans-serif')
                 .attr('font-size', '11px')
                 .attr('fill', 'grey')
                 .attr('text-anchor', 'end');
-            // 이부분은 그래프에 숫자를 넣어보려고 햇는데 잘 안됐어요.
-
-            // attend data.
-
-            var rects = d3.select('svg').selectAll('.attend').data(dataSet);
-
-            rects.enter()
-                .append('text')
-                .text(function (d) {
-                    return (100 - d['Attend']);
-                })
-                .attr('x', function (d) {
-                    return (100 - d['Attend']) * 2 + 375;
-                })
-                .attr('y', function (_, i) {
-                    return 20.5 + height + i * 20;
-
-
-                })
-                .attr('font-family', 'sans-serif')
-                .attr('font-size', '11px')
-                .attr('fill', 'grey')
-                .attr('text-anchor', 'end'); // 이걸 아래로 옮겼더니 실행이 안됐는데 위로 옮기니까 되었어요!!!!!!!!
-
+            
+            
+//---------------------------------------labourFemale---------------------------------------------------
+             
+            var rects = d3.select('svg').selectAll('.labourFemale').data(dataSet);
             rects.enter()
                 .append('rect')
-                .attr('class', 'attend')
+                .attr('class', 'labourFemale')
                 .attr('x', 360)
                 .attr('width', 0)
                 .attr('height', 15)
                 .attr('fill', 'grey')
                 .attr('fill-opacity', '0.5')
-            .on("mouseover", function() { d3.select(this) .attr("fill", "rgb(10,10,10)"); })
-            .on("mouseout", function() { d3.select(this) .attr("fill", "grey"); });
-
+                .on("mouseover", function () {
+                d3.select(this).attr("fill", "rgb(10,10,10)");})
+                .on("mouseout", function () {
+                d3.select(this).attr("fill", "grey");
+            });
+            
+        
             // Exit
-            rects.exit()
-                .remove();
-
+            rects.exit().remove();
+            
             // Update
             rects.attr('y', function (_, i) {
-                    return 10 + height + i * 20;
-                })
-                .transition()
+                return 10 + height + i * 20;
+            }).transition().duration(1000).attr('width', function (d) {
+                return (d['Labour'] || 0) * 2;
+            });
+            
+                        
+            rects.enter()
+                .append('text')
+                .text(function (d) {
+                return (d['Labour']);
+            }).attr('x', function (d) {
+                return (d['Labour']) * 2 + 375;
+            }).attr('y', function (_, i) {
+                return 20.5 + height + i * 20;
+            }).attr('font-family', 'sans-serif')
+                .attr('font-size', '11px')
+                .attr('fill', 'grey')
+                .attr('text-anchor', 'end');
+            
+            
+//------------------------------------------Attend data-------------------------------------------
+            
+            
+            var rects = d3.select('svg').selectAll('.attend').data(dataSet);
+            
+                        rects.enter()
+                            .append('text')
+                            .text(function (d) {
+                                return (100 - d['Attend']);
+                            })
+                            .attr('x', function (d) {
+                                return (100 - d['Attend']) * 2 + 535;
+                            })
+                            .attr('y', function (_, i) {
+                                return 20.5 + height + i * 20;
+            
+            
+                            })
+                            .attr('font-family', 'sans-serif')
+                            .attr('font-size', '11px')
+                            .attr('fill', 'grey')
+                            .attr('text-anchor', 'end'); // 이걸 아래로 옮겼더니 실행이 안됐는데 위로 옮기니까 되었어요!!!!!!!!
+            rects
+                .enter()
+                .append('rect')
+                .attr('class', 'attend')
+                .attr('x', 520)
+                .attr('width', 0)
+                .attr('height', 15)
+                .attr('fill', 'grey')
+                .attr('fill-opacity', '0.5')
+                .on("mouseover", function () {
+                d3.select(this).attr("fill", "rgb(10,10,10)");
+            }).on("mouseout", function () {
+                d3.select(this).attr("fill", "grey");
+            });
+            
+            // Exit
+            rects.exit().remove();
+            
+            // Update
+            rects.attr('y', function (_, i) {
+                return 10 + height + i * 20;
+            }).transition()
                 .duration(1000)
                 .attr('width', function (d) {
-                    return (100 - d['Attend'] || 0) * 2;
-                });
+                return (100 - d['Attend'] || 0) * 2;
+            });
         }
-
-        	var sortOrder = false;
-			
-			//Define sort function
-			var sortBars = function() {
-
-				//Flip value of sortOrder
-			   	sortOrder = !sortOrder;
-
-				svg.selectAll("rect")
-				   .sort(function(a, b) {
-				   		if (sortOrder) {
-					   		return d3.ascending(a, b);
-				   		} else {
-					   		return d3.descending(a, b);
-				   		}
-				   	})
-				   .transition()
-				   .delay(function(d, i) {
-					   return i * 50;
-				   })
-				   .duration(1000)
-				   .attr("y", function(d, i) {
-				   		return 10 + height + i * 20;
-				   });
-
-			};	
+        
+        
+        
+        //------------------------------------------ Sort-----------------------------------------
+        //        svg.selectAll('text').enter().on("click", function() {
+        //                			   		sortBars();
+        //			   });
+        //        
+        //        	var sortOrder = false;
+        //			
+        //			//Define sort function
+        //			var sortBars = function() {
+        //
+        //				//Flip value of sortOrder
+        //			   	sortOrder = !sortOrder;
+        //
+        //				svg.selectAll("rect")
+        //				   .sort(function(a, b) {
+        //				   		if (sortOrder) {
+        //					   		return d3.ascending(a, b);
+        //				   		} else {
+        //					   		return d3.descending(a, b);
+        //				   		}
+        //				   	})
+        //				   .transition()
+        //				   .delay(function(d, i) {
+        //					   return i * 50;
+        //				   })
+        //				   .duration(1000)
+        //				   .attr("y", function(d, i) {
+        //				   		return 10 + height + i * 20;
+        //				   });
+        //
+        //			};	
+        //        
+        //-----------------------------------Country------------------------------------------
         function write() {
             var countryName = d3.select('body').selectAll('p').data(dataSet);
-            countryName.enter()
-                .append('p').text(function (d) {
-                    return d['Country'];
-                });
+            countryName.enter().append('p').text(function (d) {
+                return d['Country'];
+            });
         }
     </script>
 </body>

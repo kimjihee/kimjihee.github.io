@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Child labour</title>
+    <style>
+        body {
+            position: absolute;
+            top: 2rem;
+            left: 0;
+            right: 0;
+            font-family: sans-serif;
+        }
+        svg {
+            outline: 1px solid black;
+        }
+    </style>
+    <script src="d3.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <svg id="chart" width="800" height="400"></svg>
+    
+    <script>
+        var data = [
+            {
+                country: 'Korea',
+                gender: 'm',
+                labour: 0.10,
+                edu: 0.99,
+            },
+            {
+                country: 'Korea',
+                gender: 'f',
+                labour: 0.11,
+                edu: 0.98,
+            },
+            {
+                country: 'China',
+                gender: 'm',
+                labour: 0.15,
+                edu: 0.80,
+            },
+            {
+                country: 'China',
+                gender: 'f',
+                labour: 0.52,
+                edu: 0.92,
+            }
+        ];
+        
+        var dataMale = data.filter(function(d) {return d.gender === 'm'});
+        var dataFemale = data.filter(function(d) {return d.gender === 'f'});
+        
+        var MARGIN = {
+            LEFT: 100,
+            TOP: 0,
+            BOTTOM: 0,
+            RIGHT: 0,
+        };
+        
+        var Width = document.querySelector('#chart').clientWidth;
+        var Height = document.querySelector('#chart').clientHeight;
+        
+        var columnBand = d3.scale.ordinal()
+            .domain(['ml', 'fl', 'me', 'fe'])
+            .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.1);
+        var yBand = d3.scale.ordinal()
+            .domain(d3.range(dataFemale.length))
+            .rangeRoundBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.1);
+
+        var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
+        columnSel.enter()
+            .append('g')
+            .attr('class', function(d) {return 'column ' + d;})
+        columnSel.exit()
+            .remove();
+        columnSel
+            .attr('transform', function(d) {return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')';});//문자??
+        
+        // Labels
+        var labelSel = d3.select('#chart').selectAll('text.label').data(dataFemale);//클래스??
+        labelSel.enter()
+            .append('text')
+            .attr('class', 'label');
+        labelSel.exit()
+            .remove();
+        labelSel
+            .attr('transform', function(d, i) {return 'translate(' + MARGIN.LEFT + ', ' + yBand(i) + ')';})
+            .attr('text-anchor', 'end')
+            .attr('alignment-baseline', 'text-before-edge')
+            .text(function(d) {return d.country;});
+        
+        // Male labour
+        var mlSel = d3.select('g.column.ml').selectAll('rect.value').data(dataMale);
+        mlSel.enter()
+            .append('rect')
+            .attr('class', 'value');
+        mlSel.exit()
+            .remove();
+        mlSel
+            .attr('x', 0)
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .attr('width', function(d) {return d.labour * columnBand.rangeBand();});
+        
+        //Female labour
+        
+         var flSel = d3.select('g.column.fl').selectAll('rect.value').data(dataFemale);
+        flSel.enter()
+            .append('rect')
+            .attr('class', 'value');
+        flSel.exit()
+            .remove();
+        flSel
+            .attr('x', function(d, i) {return columnBand(i);})
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .attr('width', function(d) {return d.labour * columnBand.rangeBand();});
+       
+        //Male edu
+        var meSel = d3.select('g.column.me').selectAll('rect.value').data(dataMale);
+        meSel.enter()
+            .append('rect')
+            .attr('class', 'value');
+        meSel.exit()
+            .remove();
+        meSel
+            .attr('x', function(d, i) {return columnBand(i);})
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .attr('width', function(d) {return d.edu * columnBand.rangeBand();});
+        
+        
+        //Female edu
+        var feSel = d3.select('g.column.fe').selectAll('rect.value').data(dataFemale);
+        feSel.enter()
+            .append('rect')
+            .attr('class', 'value');
+        feSel.exit()
+            .remove();
+        feSel
+            .attr('x', function(d, i) {return columnBand(i);})
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .attr('width', function(d) {return d.edu * columnBand.rangeBand();});
+        
+        
+        
+    </script>
+</body>
+
+</html>
