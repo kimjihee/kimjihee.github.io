@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Child labour</title>
+    <style>
+       
+        #chart {
+            border: 1px solid black;
+        }
+        
+        
+    </style>
+    <script src="d3.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    
+    <svg id="chart" height="700" width="1000"></svg>
+
+
+
+    <script>
+        var dataSet = [];
+        // labour data
+        d3.csv('data/Child_labour.csv', function (err, labour) {
+            d3.csv('data/attendance_in_primary_education.csv', function (err, attend) {
+                labour.forEach(function (row) {
+                    row['Labour'] = +row['Value'];
+                });
+                var labourMale = labour.filter(function (row) {
+                    return row['Subgroup'].startsWith('Male');
+                });
+                var labourFemale = labour.filter(function (row) {
+                    return row['Subgroup'].startsWith('Female');
+                });
+                attend.forEach(function (row) {
+                    row['Attend'] = +row['Value'];
+                });
+                var attendMale = attend.filter(function (row) {
+                    return row['Subgroup'].startsWith('Male');
+                });
+                var attendFemale = attend.filter(function (row) {
+                    return row['Subgroup'].startsWith('Female');
+                });
+
+
+                //----------------------------------------CountryName----------------------------------------    
+
+                var mergedDict = {};
+                labourMale.forEach(function (row, i) {
+                    var key = row['Country']; // key 값은 컨트리 열이다.
+                    mergedDict[key] = row; // mergedDict의 key라는 이름의 열은 country 값이고 mergedDict의 data가된다.
+                    mergedDict[key].LabourFemale = labourFemale[i].Labour; // LabourFemale이라는 키에 각각의 여자 노동력값을 넣어준다.
+                });
+                attendMale.forEach(function (row, i) {
+                    var key = row['Country']; // key 값은 컨트리 열이다.
+                    if (!mergedDict[key]) {
+                        mergedDict[key] = 'none'; // key값이 없을때, 데이터에 attendMale의 country를 넣어준다. 그리고 그것은 mergedDict의 data가된다.// 질문 : 여기서 row는 데이터를 의미하는가? : 왜 왼쪽의 값을 오른쪽에 넣어주는가?
+                    } else {
+                        mergedDict[key]['Attend'] = row['Attend']; // 아니면 Attend 라는 key에 Attend 수치값을 넣어준다.
+                    }
+                    mergedDict[key].AttendFemale = attendFemale[i].Attend; // attendFemale이라는 키에 각각의 여자 교육값을 넣어준다.
+                });
+
+                var mergedData = [];
+                for (var key in mergedDict) {
+                    mergedData.push(mergedDict[key]);
+                }
+
+                dataSet = mergedData;
+//                                console.log(dataSet);
+
+                          });
+        });
+        //------------------------------------------Draw------------------------------------------
+
+
+        var MARGIN = {
+            TOP: 0,
+            LEFT: 200,
+            RIGHT: 0,
+            BOTTOM: 0,
+        }
+
+        var Width = document.querySelector('#chart').clientWidth;
+        var Height = document.querySelector('#chart').clientHeight;
+
+        var columnBand = d3.scale.ordinal()
+            .domain(['ml', 'fl', 'me', 'fe'])
+            .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.1);
+        var yBand = d3.scale.ordinal()
+            .domain(d3.range(dataSet.length))
+            .rangeRoundBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.1);
+        
+        var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
+        columnSel.enter()
+            .append('g')
+            .attr('class', function (d) {
+                return 'column ' + d;
+            })
+        columnSel.exit()
+            .remove();
+        columnSel
+            .attr('transform', function (d) {
+                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')';
+            });
+
+        // Labels
+        var labelSel = d3.select('#chart').selectAll('text.label').data(dataSet); 
+        labelSel.enter()
+            .append('text')
+            .attr('class', 'label');
+        labelSel.exit()
+            .remove();
+        labelSel
+            .attr('transform', function (d, i) {
+                return 'translate(' + MARGIN.LEFT + ', ' + yBand(i) + ')';
+            })
+            .attr('text-anchor', 'end')
+            .attr('alignment-baseline', 'text-before-edge')
+            .text(function (d) {
+                return d['Country'];
+            });
+
+
+
+        //-----------------------------------Country------------------------------------------
+        //        function write() {
+        //            var countryName = d3.select('body').selectAll('p').data(dataSet);
+        //            countryName.enter().append('p').text(function (d) {
+        //                return d['Country'];
+        //            });
+        //        }
+    </script>
+</body>
+
+</html>
