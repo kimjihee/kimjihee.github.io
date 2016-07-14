@@ -22,7 +22,7 @@
 
 
     <script>
-        var dataSet = [];
+       var dataSet = [];
         // labour data
         d3.csv('data/Child_labour.csv', function (err, labour) {
             d3.csv('data/attendance_in_primary_education.csv', function (err, attend) {
@@ -50,28 +50,26 @@
 
                 var mergedDict = {};
                 labourMale.forEach(function (row, i) {
-                    var key = row['Country']; // key 값은 컨트리 열이다.
-                    mergedDict[key] = row; // mergedDict의 key라는 이름의 열은 country 값이고 mergedDict의 data가된다.
-                    mergedDict[key].LabourFemale = labourFemale[i].Labour; // LabourFemale이라는 키에 각각의 여자 노동력값을 넣어준다.
+                    var key = row['Country'];
+                    mergedDict[key] = row;
+                    mergedDict[key].LabourFemale = labourFemale[i].Labour;
                 });
                 attendMale.forEach(function (row, i) {
-                    var key = row['Country']; // key 값은 컨트리 열이다.
+                    var key = row['Country'];
                     if (!mergedDict[key]) {
-                        mergedDict[key] = 'none'; // key값이 없을때, 데이터에 attendMale의 country를 넣어준다. 그리고 그것은 mergedDict의 data가된다.// 질문 : 여기서 row는 데이터를 의미하는가? : 왜 왼쪽의 값을 오른쪽에 넣어주는가?
+                        mergedDict[key] = row;
                     } else {
-                        mergedDict[key]['Attend'] = row['Attend']; // 아니면 Attend 라는 key에 Attend 수치값을 넣어준다.
+                        mergedDict[key]['Attend'] = row['Attend'];
                     }
-                    mergedDict[key].AttendFemale = attendFemale[i].Attend; // attendFemale이라는 키에 각각의 여자 교육값을 넣어준다.
+                    mergedDict[key].AttendFemale = attendFemale[i].Attend;
                 });
 
                 var mergedData = [];
                 for (var key in mergedDict) {
                     mergedData.push(mergedDict[key]);
                 }
-
+                
                 dataSet = mergedData;
-//                                console.log(dataSet);
-
                           });
         });
         //------------------------------------------Draw------------------------------------------
@@ -100,11 +98,12 @@
             .attr('class', function (d) {
                 return 'column ' + d;
             })
+        .attr('fill',function(d){return 'rgb('+(d.length)*10+',30,30)';})
         columnSel.exit()
             .remove();
         columnSel
             .attr('transform', function (d) {
-                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')';
+                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')';//++의 정체는 무엇인가!!!
             });
         
         //
@@ -119,11 +118,14 @@
             .attr('transform', function (d, i) {
                 return 'translate(' + MARGIN.LEFT + ', ' + yBand(i) + ')';
             })
-            .attr('text-anchor', 'end')
-            .attr('alignment-baseline', 'text-before-edge')
             .text(function (d) {
-                return d['Country'];
-            });
+                return d.Country;
+               
+            })
+            .attr('text-anchor', 'end')
+            .attr('fill','black')
+            .attr('alignment-baseline', 'text-before-edge');
+        console.log(labelSel);
 
 
 
