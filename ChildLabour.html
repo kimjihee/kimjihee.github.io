@@ -118,13 +118,14 @@
             .attr('transform', function (d, i) {
                 return 'translate(' + MARGIN.LEFT + ', ' + yBand(i) + ')';
             })
+            .attr('text-anchor', 'end')
+            .attr('fill','black')
+            .attr('alignment-baseline', 'text-before-edge')
             .text(function (d) {
                 return d.Country;
                
             })
-            .attr('text-anchor', 'end')
-            .attr('fill','black')
-            .attr('alignment-baseline', 'text-before-edge');
+            ;
         console.log(labelSel);
 
 
