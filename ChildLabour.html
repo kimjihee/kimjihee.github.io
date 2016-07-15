@@ -5,24 +5,17 @@
     <meta charset="utf-8">
     <title>Child labour</title>
     <style>
-       
         #chart {
             border: 1px solid black;
         }
-        
-        
     </style>
     <script src="d3.min.js" type="text/javascript"></script>
 </head>
 
 <body>
-    
-    <svg id="chart" height="700" width="1000"></svg>
-
-
-
+    <svg id="chart" height="2400" width="3000"></svg>
     <script>
-       var dataSet = [];
+        var dataSet = [];
         // labour data
         d3.csv('data/Child_labour.csv', function (err, labour) {
             d3.csv('data/attendance_in_primary_education.csv', function (err, attend) {
@@ -44,10 +37,10 @@
                 var attendFemale = attend.filter(function (row) {
                     return row['Subgroup'].startsWith('Female');
                 });
-
-
-                //----------------------------------------CountryName----------------------------------------    
-
+                
+                
+//----------------------------------------CountryName----------------------------------------    
+                
                 var mergedDict = {};
                 labourMale.forEach(function (row, i) {
                     var key = row['Country'];
@@ -58,85 +51,136 @@
                     var key = row['Country'];
                     if (!mergedDict[key]) {
                         mergedDict[key] = row;
-                    } else {
+                    }
+                    else {
                         mergedDict[key]['Attend'] = row['Attend'];
                     }
                     mergedDict[key].AttendFemale = attendFemale[i].Attend;
                 });
-
                 var mergedData = [];
                 for (var key in mergedDict) {
                     mergedData.push(mergedDict[key]);
                 }
-                
                 dataSet = mergedData;
-                          });
+                redraw();
+            });
         });
         //------------------------------------------Draw------------------------------------------
-
-
-        var MARGIN = {
-            TOP: 0,
-            LEFT: 200,
-            RIGHT: 0,
-            BOTTOM: 0,
-        }
-
-        var Width = document.querySelector('#chart').clientWidth;
-        var Height = document.querySelector('#chart').clientHeight;
-
-        var columnBand = d3.scale.ordinal()
+       
+            var redraw = function () {
+            var MARGIN = {
+                TOP: 0
+                , LEFT: 250
+                , RIGHT: 0
+                , BOTTOM: 0
+            , }
+            var Width = document.querySelector('#chart').clientWidth;
+            var Height = document.querySelector('#chart').clientHeight;
+            
+            
+            var columnBand = d3.scale.ordinal()
             .domain(['ml', 'fl', 'me', 'fe'])
             .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.1);
-        var yBand = d3.scale.ordinal()
+            
+                
+            var yBand = d3.scale.ordinal()
             .domain(d3.range(dataSet.length))
             .rangeRoundBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.1);
-        
-        var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
-        columnSel.enter()
-            .append('g')
-            .attr('class', function (d) {
+            
+                
+            var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
+            
+            columnSel.enter()
+                .append('g')
+                .attr('class', function (d) {
                 return 'column ' + d;
             })
-        .attr('fill',function(d){return 'rgb('+(d.length)*10+',30,30)';})
-        columnSel.exit()
-            .remove();
-        columnSel
-            .attr('transform', function (d) {
-                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')';//++의 정체는 무엇인가!!!
+                .attr('fill', function (d) {
+                return 'rgb(' + (d.length) * 10 + ',30,30)';
+            })
+            columnSel.exit().remove();
+            
+            columnSel.attr('transform', function (d) {
+                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')'; //++의 정체는 무엇인가!!!
             });
-        
-        //
-        //---------------------------------------- Labels
-        var labelSel = d3.select('#chart').selectAll('text.label').data(dataSet);
-        labelSel.enter()
-            .append('text')
-            .attr('class', 'label');
-        labelSel.exit()
-            .remove();
-        labelSel
-            .attr('transform', function (d, i) {
+            
+            
+//---------------------------------------- Labels------------------------------------------
+                
+            var labelSel = d3.select('#chart').selectAll('text.label').data(dataSet);
+            labelSel.enter()
+                .append('text')
+                .attr('class', 'label');
+            labelSel.exit().remove();
+            labelSel.attr('transform', function (d, i) {
                 return 'translate(' + MARGIN.LEFT + ', ' + yBand(i) + ')';
-            })
-            .attr('text-anchor', 'end')
-            .attr('fill','black')
-            .attr('alignment-baseline', 'text-before-edge')
-            .text(function (d) {
+            }).attr('text-anchor', 'end')
+              .attr('font-size','0.8rem')
+                .attr('fill', 'black')
+                .attr('alignment-baseline', 'text-before-edge')
+                .text(function (d) {
                 return d.Country;
-               
-            })
-            ;
-        console.log(labelSel);
-
-
-
-        //-----------------------------------Country------------------------------------------
-        //        function write() {
-        //            var countryName = d3.select('body').selectAll('p').data(dataSet);
-        //            countryName.enter().append('p').text(function (d) {
-        //                return d['Country'];
-        //            });
-        //        }
+            });
+                
+                
+//----------------------------------------Male labour--------------------------------------------
+                
+                
+        var mlSel = d3.select('g.column.ml').selectAll('rect.value').data(dataSet);
+        mlSel.enter()
+            .append('rect')
+            .attr('class', 'value');
+        mlSel.exit()
+            .remove();
+        mlSel
+            .attr('x', 0)
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .attr('width', function(d) {return d.Labour * columnBand.rangeBand()});
+        
+        //Female labour
+        
+         var flSel = d3.select('g.column.fl').selectAll('rect.value').data(dataSet);
+        flSel.enter()
+            .append('rect')
+            .attr('class', 'value');
+        flSel.exit()
+            .remove();
+        flSel
+            .attr('x', function(d, i) {return columnBand(i);})
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .attr('width', function(d) {return d.LabourFemale * columnBand.rangeBand()});
+       
+        //Male edu
+        var meSel = d3.select('g.column.me').selectAll('rect.value').data(dataSet);
+        meSel.enter()
+            .append('rect')
+            .attr('class', 'value');
+        meSel.exit()
+            .remove();
+        meSel
+            .attr('x', function(d, i) {return columnBand(i);})
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .attr('width', function(d) {return d.Attend * columnBand.rangeBand()});
+        
+        
+        //Female edu
+        var feSel = d3.select('g.column.fe').selectAll('rect.value').data(dataSet);
+        feSel.enter()
+            .append('rect')
+            .attr('class', 'value');
+        feSel.exit()
+            .remove();
+        feSel
+            .attr('x', function(d, i) {return columnBand(i);})
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .attr('width', function(d) {return d.AttendFemale * columnBand.rangeBand()});
+        };
+        
+        //-------------ㅌㅊㅋㅌㅊㅋㅌㅊㅋㅊㅋㅌㅊㅋㅌㅊㅋㅌㅊㅋㅌㅊㅋㅌㅊㅋㅊㅌ
     </script>
 </body>
 
