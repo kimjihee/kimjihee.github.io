@@ -116,13 +116,14 @@
                 
                 
             var columnBand = d3.scale.ordinal()
-            .domain(['ml', 'fl', 'me', 'fe'])
-            .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.07);
-            
-                
+                .domain(['ml', 'fl', 'me', 'fe'])
+                .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.07);
+//            var yScale = d3.scale.linear()
+//                .domain([0, 100])
+//                .range([0, columnBand.rangeBand()]);
             var yBand = d3.scale.ordinal()
-            .domain(d3.range(dataSet.length))
-            .rangeRoundBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 0.7);
+                .domain(d3.range(dataSet.length))
+                .rangeRoundBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 0.7);
             
                 
             var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
@@ -150,25 +151,20 @@
              yBandSel.enter()
                 .append('g')
                 .attr('class', function (d,i) {
-                return 'yband ' + i;
-            })
+                    return 'yband ' + i;
+                }).append('rect')
+                    .attr('x', 0)
+                    .attr('y', 0)
+                    .attr('height', yBand.rangeBand())
+                    .attr('width', Width)
+                    .attr('fill', 'rgba(0,0,0,0.5)');                
              yBandSel.exit().remove();
              yBandSel
              .attr('transform', function (d,i) {
                 return 'translate(' + MARGIN.START + ', ' + yBand(i) + ')'; //++의 정체는 무엇인가!!!
-            })
-            .on("mouseover", function () {
-            d3.select(this).attr("background", 'grey')
-                .attr('fill-opacity','0.4');
-                })
-                .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0");
-                });
-          
+            });
                 
-                
-                
-                
+                        
             
 //---------------------------------------h2------------------------------------------------
                 
@@ -237,6 +233,7 @@
             .remove();
         flNumbers
             .attr('x', function(d) {return ((d.LabourFemale || 0) *0.01) * columnBand.rangeBand() + 6 ;  })
+//            .attr('x', function(d) {return xScale(d.LabourFemale || 0) + 6;})
             .attr('y', function(d, i) {return yBand(i);})
             .attr('fill','grey')
             .attr('font-size','0.7rem')
