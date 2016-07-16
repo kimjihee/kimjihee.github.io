@@ -7,7 +7,33 @@
     <style>
         #chart {
             border: 1px solid black;
-        }
+                 }
+        
+/*
+         
+             var yBandSel = d3.select('#chart').selectAll('g.yBand').data(dataSet);  
+             yBandSel.enter()
+               .append('g')
+                .attr('class', function (d,i) {
+                return 'yband ' + i;
+           })
+            yBandSel.exit().remove();
+           
+            yBandSel
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('height', yBand.rangeBand())
+            .on("mouseover", function () {
+                  d3.select(this).attr("fill-opacity", "1");
+              })
+               .on("mouseout", function () {
+                   d3.select(this).attr("fill-opacity", "0.75");
+               });
+                 .attr('transform', function (d) {
+               return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')'; //++의 정체는 무엇인가!!!
+           });
+*/
+              
+                
     </style>
     <script src="d3.min.js" type="text/javascript"></script>
 </head>
@@ -50,7 +76,7 @@
                 attendMale.forEach(function (row, i) {
                     var key = row['Country'];
                     if (!mergedDict[key]) {
-                        mergedDict[key] = row;
+                        mergedDict[key] = row;// 교집합으로 하려면 어떻게?
                     }
                     else {
                         mergedDict[key]['Attend'] = row['Attend'];
@@ -61,6 +87,12 @@
                 for (var key in mergedDict) {
                     mergedData.push(mergedDict[key]);
                 }
+                
+                
+                //-----------------교집합을 하고 싶을때!!!!!!
+//                mergedData = mergedData.filter(function(d) {
+//                    return !(d.Labour === undefined || d.LabourFemale === undefined || d.Attend === undefined || d.AttendFemale === undefined);
+//                });
                 dataSet = mergedData;
                 redraw();
             });
@@ -70,7 +102,8 @@
        
             var redraw = function () {
             var MARGIN = {
-                TOP: 0
+                START:0
+                , TOP: 0
                 , LEFT: 230
                 , RIGHT: 0
                 , BOTTOM: 0
@@ -107,29 +140,57 @@
             columnSel.attr('transform', function (d) {
                 return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')'; //++의 정체는 무엇인가!!!
             });
+                
+                
+//-------------------------------------------Making-hover---------------------------------------------                
+                
+                
+                
+             var yBandSel = d3.select('#chart').selectAll('g.yBand').data(dataSet);  
+             yBandSel.enter()
+                .append('g')
+                .attr('class', function (d,i) {
+                return 'yband ' + i;
+            })
+             yBandSel.exit().remove();
+             yBandSel
+             .attr('transform', function (d,i) {
+                return 'translate(' + MARGIN.START + ', ' + yBand(i) + ')'; //++의 정체는 무엇인가!!!
+            })
+            .on("mouseover", function () {
+            d3.select(this).attr("background", 'grey')
+                .attr('fill-opacity','0.4');
+                })
+                .on("mouseout", function () {
+                    d3.select(this).attr("fill-opacity", "0");
+                });
+          
+                
+                
+                
+                
             
 //---------------------------------------h2------------------------------------------------
                 
                 
-                var themeName = ['Male Labour','Female Labour','Non Attendance of Male Student','Non Attendance of Female Student']
+                var themeName = ['Child Labour',"",'Non Attendance of Student']
                 
                                  
                 var themeSel = d3.select('#chart').selectAll('text.theme').data(columnBand.domain());
             themeSel.enter()
                 .append('text')
                 .attr('class', 'theme');
-            themeSel.exit().remove();
-            themeSel.attr('transform', function (d) {
-                return 'translate(' + columnBand(d) + ',  '+40+' )';
-            }).attr('text-anchor', 'start')
-              .attr('font-size','1rem')
-              .attr('fill', 'black')
-              .attr('font-weight', 'bold')
-            
-//              .text(for(var i=0; i<4; i++){
-//                      themeName[i];}
-//                );
-            .text('Deep parkchim');
+            themeSel.exit()
+                .remove();
+            themeSel
+                .attr('transform', function (d) {
+                    return 'translate(' + columnBand(d) + ',  '+40+' )';
+                })
+                .attr('text-anchor', 'start')
+                .attr('font-size','1rem')
+                .attr('fill', 'black')
+                .attr('font-weight', 'bold')
+                .text(function(d, i) {return themeName[i];});
                 
                 
 //---------------------------------------- Labels------------------------------------------
@@ -138,8 +199,10 @@
             labelSel.enter()
                 .append('text')
                 .attr('class', 'label');
-            labelSel.exit().remove();
-            labelSel.attr('transform', function (d, i) {
+            labelSel.exit()
+                .remove();
+            labelSel
+                .attr('transform', function (d, i) {
                 return 'translate(' + MARGIN.LEFT + ', ' + yBand(i) + ')';
             }).attr('text-anchor', 'end')
               .attr('font-size','0.8rem')
@@ -149,13 +212,74 @@
                 return d.Country;
             });
                 
+//==========================================Gragh=================================================                                
+          var mlNumbers = d3.select('g.column.ml').selectAll('text.mlNumber').data(dataSet);
+                mlNumbers.enter()
+            .append('text')
+            .attr('class', 'mlNumber');
+        mlNumbers.exit()
+            .remove();
+        mlNumbers
+            .attr('x', function(d) {return ((d.Labour || 0)*0.01) * columnBand.rangeBand() + 6 ;})
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('fill','grey')
+            .attr('font-size','0.7rem')
+            .attr('alignment-baseline', 'text-before-edge')
+            .text(function(d) {return d.Labour||"no data"});
                 
                 
-//==========================================Gragh=================================================                
-//----------------------------------------Male labour--------------------------------------------
+            //
+                var flNumbers = d3.select('g.column.fl').selectAll('text.flNumber').data(dataSet);
+                flNumbers.enter()
+            .append('text')
+            .attr('class', 'flNumber');
+        flNumbers.exit()
+            .remove();
+        flNumbers
+            .attr('x', function(d) {return ((d.LabourFemale || 0) *0.01) * columnBand.rangeBand() + 6 ;  })
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('fill','grey')
+            .attr('font-size','0.7rem')
+            .attr('alignment-baseline', 'text-before-edge')
+            .text(function(d) {return d.LabourFemale||"no data"});
                 
                 
                 
+                //
+            var meNumbers = d3.select('g.column.me').selectAll('text.meNumber').data(dataSet);
+            meNumbers.enter()
+               .append('text')
+               .attr('class', 'meNumber');
+            meNumbers.exit()
+               .remove();
+            meNumbers
+            .attr('x', function(d) {return (1-((d.Attend || 100)*0.01)) * columnBand.rangeBand() + 6;  })
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('fill','grey')
+            .attr('font-size','0.7rem')
+            .attr('alignment-baseline', 'text-before-edge')
+            .text(function(d) {return 100-(d.Attend)||0});
+                
+                
+                
+    //feNumber
+        var feNumbers = d3.select('g.column.fe').selectAll('text.feNumber').data(dataSet);
+        feNumbers.enter()
+            .append('text')
+            .attr('class', 'feNumber');
+        feNumbers.exit()
+            .remove();
+        feNumbers
+            .attr('x', function(d) {return (1-((d.AttendFemale || 100)*0.01)) * columnBand.rangeBand() + 6;  })
+            .attr('y', function(d, i) {return yBand(i);})
+            .attr('fill','grey')
+            .attr('font-size','0.7rem')
+            .attr('alignment-baseline', 'text-before-edge')
+            .text(function(d) {return 100-(d.AttendFemale)||0});
+       
+          
+//----------------------------------------Male labour---------------------------------------------                
+       
         var mlSel = d3.select('g.column.ml').selectAll('rect.value').data(dataSet);
         mlSel.enter()
             .append('rect')
@@ -166,16 +290,20 @@
             .attr('x', 0)
             .attr('y', function(d, i) {return yBand(i);})
             .attr('height', yBand.rangeBand())
-            .attr('width', function(d) {return (d.Labour*0.01) * columnBand.rangeBand();})
+//            .transition()
+//            .duration(1000)
+            .attr('width', function(d) {return ((d.Labour || 0)*0.01) * columnBand.rangeBand();})
+        //문장과 문장이 아닌것의 차이는 뭘까?
             .attr('fill', '#81979f')
-            .attr('fill-opacity', '0.7')
+            .attr('fill-opacity', '0.75')
                 .on("mouseover", function () {
                     d3.select(this).attr("fill-opacity", "1");
-                })
+                                    })
                 .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0.7");
+                    d3.select(this).attr("fill-opacity", "0.75");
                 });
         
+                
         //--------------------------------Female labour---------------------------------------
         
          var flSel = d3.select('g.column.fl').selectAll('rect.value').data(dataSet);
@@ -188,14 +316,14 @@
             .attr('x', function(d, i) {return columnBand(i);})
             .attr('y', function(d, i) {return yBand(i);})
             .attr('height', yBand.rangeBand())
-            .attr('width', function(d) {return (d.LabourFemale*0.01) * columnBand.rangeBand();})
+            .attr('width', function(d) {return ((d.LabourFemale || 0) * 0.01) * columnBand.rangeBand();})
         .attr('fill', '#c8887a')
-            .attr('fill-opacity', '0.7')
+            .attr('fill-opacity', '0.75')
                 .on("mouseover", function () {
                     d3.select(this).attr("fill-opacity", "1");
                 })
                 .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0.7");
+                    d3.select(this).attr("fill-opacity", "0.75");
                 });
        
                 //%단위로 꼭 해야하나?
@@ -214,14 +342,14 @@
             .attr('x', function(d, i) {return columnBand(i);})
             .attr('y', function(d, i) {return yBand(i);})
             .attr('height', yBand.rangeBand())
-            .attr('width', function(d) {return (1-(d.Attend*0.01)) * columnBand.rangeBand();})
+            .attr('width', function(d) {return (1-((d.Attend ||100)*0.01)) * columnBand.rangeBand();})
         .attr('fill','#8ca4ad')
-                .attr('fill-opacity', '0.7')
+                .attr('fill-opacity', '0.75')
                 .on("mouseover", function () {
                     d3.select(this).attr("fill-opacity", "1");
                 })
                 .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0.7");
+                    d3.select(this).attr("fill-opacity", "0.75");
                 });
         
         
@@ -238,17 +366,48 @@
             .attr('x', function(d, i) {return columnBand(i);})
             .attr('y', function(d, i) {return yBand(i);})
             .attr('height', yBand.rangeBand())
-            .attr('width', function(d) {return (1-(d.AttendFemale*0.01)) * columnBand.rangeBand();})
+            .attr('width', function(d) {return (1-((d.AttendFemale || 100)*0.01)) * columnBand.rangeBand();})
         .attr('fill','#c8887a')
-                .attr('fill-opacity', '0.7')
+                .attr('fill-opacity', '0.75')
                 .on("mouseover", function () {
                     d3.select(this).attr("fill-opacity", "1");
                 })
                 .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0.7");
+                    d3.select(this).attr("fill-opacity", "0.75");
                 });
         };
         
+//----------------------------------------Sort-------------------------------------------------
+        
+//        
+//           svg.selectAll('text.theme').enter().on("click", function() {
+//                        			   		sortBars();
+//        			   });
+//                
+//                	var sortOrder = false;
+//        			
+//        			//Define sort function
+//        			var sortBars = function() {
+//        
+//        				//Flip value of sortOrder
+//        			   	sortOrder = !sortOrder;
+//        
+//        				svg.selectAll("rect")
+//        				   .sort(function(a, b) {
+//        				   		if (sortOrder) {
+//        					   		return d3.ascending(a, b);
+//        				   		} else {
+//        					   		return d3.descending(a, b);
+//        				   		}
+//        				   	})
+//        				   .transition()
+//        				   .duration(1000)
+//        				   .attr("y", function(d, i) {
+//        				   		return yBand(i);
+//        				   });
+//        
+//        			};	
+//                      
         
     </script>
 </body>
