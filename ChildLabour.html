@@ -8,32 +8,7 @@
         #chart {
             border: 1px solid black;
                  }
-        
-/*
-         
-             var yBandSel = d3.select('#chart').selectAll('g.yBand').data(dataSet);  
-             yBandSel.enter()
-               .append('g')
-                .attr('class', function (d,i) {
-                return 'yband ' + i;
-           })
-            yBandSel.exit().remove();
-           
-            yBandSel
-            .attr('y', function(d, i) {return yBand(i);})
-            .attr('height', yBand.rangeBand())
-            .on("mouseover", function () {
-                  d3.select(this).attr("fill-opacity", "1");
-              })
-               .on("mouseout", function () {
-                   d3.select(this).attr("fill-opacity", "0.75");
-               });
-                 .attr('transform', function (d) {
-               return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')'; //++의 정체는 무엇인가!!!
-           });
-*/
-              
-                
+          
     </style>
     <script src="d3.min.js" type="text/javascript"></script>
 </head>
@@ -90,9 +65,11 @@
                 
                 
                 //-----------------교집합을 하고 싶을때!!!!!!
+                // 그렇지 않은것만 표시해준다 라고 표현하면 됩니다.!
 //                mergedData = mergedData.filter(function(d) {
 //                    return !(d.Labour === undefined || d.LabourFemale === undefined || d.Attend === undefined || d.AttendFemale === undefined);
 //                });
+            
                 dataSet = mergedData;
                 redraw();
             });
@@ -105,6 +82,7 @@
                 START:0
                 , TOP: 0
                 , LEFT: 230
+                , LEFTTWO:245
                 , RIGHT: 0
                 , BOTTOM: 0
             , }
@@ -120,7 +98,7 @@
                 .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.07);
 //            var yScale = d3.scale.linear()
 //                .domain([0, 100])
-//                .range([0, columnBand.rangeBand()]);
+//                .range([0, columnBand.rangeBand()]); 이렇게 스케일도 사실은 해줘야 하는것
             var yBand = d3.scale.ordinal()
                 .domain(d3.range(dataSet.length))
                 .rangeRoundBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 0.7);
@@ -132,7 +110,7 @@
                 .append('g')
                 .attr('class', function (d) {
                 return 'column ' + d;
-            })
+            });
 //                .attr('fill', function (d) {
 //                return 'rgb(' + (d.length) * 10 + ',30,30)';
 //            })
@@ -144,24 +122,36 @@
                 
                 
 //-------------------------------------------Making-hover---------------------------------------------                
-                
-                
+    
                 
              var yBandSel = d3.select('#chart').selectAll('g.yBand').data(dataSet);  
              yBandSel.enter()
                 .append('g')
-                .attr('class', function (d,i) {
-                    return 'yband ' + i;
+                .attr('class', function (d) {
+                    return 'yband yand-' + d.Country;
                 }).append('rect')
                     .attr('x', 0)
                     .attr('y', 0)
+                    .attr('fill', 'rgba(0, 0, 0, 0.0)')// rect는 g와는 다르게 기본값이 black이므로 기본값을 이렇게 바꿔줘야 합니다. 
+                    //yBand.rangeBand()는 수치값이라고 합니다.
                     .attr('height', yBand.rangeBand())
                     .attr('width', Width)
-                    .attr('fill', 'rgba(0,0,0,0.5)');                
+                    .on("mouseover", function (d) {
+                        d3.selectAll('.label.label-' + d.Country).attr('font-weight', 'bold');
+                        d3.selectAll('.value'+d.Country).attr("fill", "balck").attr('z-index','10');
+                        d3.select(this).attr("fill", "rgba(220,220,220,0.4)").attr('z-index','-10');
+                 //selectAll을 하면 안됐는데 select를 하니까 된것. 와이와이와이파이~
+                    })
+                    .on("mouseout", function (d) {
+                        d3.select(this).attr("fill", "rgba(0, 0, 0, 0.0)");
+                        d3.selectAll('.label.label-' + d.Country).attr('font-weight', 'normal');
+                        d3.selectAll('.value'+d.Country).attr("fill", "grey").attr('z-index','10');
+                    });
+                              
              yBandSel.exit().remove();
              yBandSel
              .attr('transform', function (d,i) {
-                return 'translate(' + MARGIN.START + ', ' + yBand(i) + ')'; //++의 정체는 무엇인가!!!
+                return 'translate(' + MARGIN.LEFTTWO + ', ' + yBand(i) + ')';
             });
                 
                         
@@ -169,7 +159,7 @@
 //---------------------------------------h2------------------------------------------------
                 
                 
-                var themeName = ['Child Labour',"",'Non Attendance of Student']
+                var themeName = ['Child Labour','','Non Attendance of Student']
                 
                                  
                 var themeSel = d3.select('#chart').selectAll('text.theme').data(columnBand.domain());
@@ -189,12 +179,13 @@
                 .text(function(d, i) {return themeName[i];});
                 
                 
-//---------------------------------------- Labels------------------------------------------
+//------------------------------------------Labels--------------------------------------------
                 
             var labelSel = d3.select('#chart').selectAll('text.label').data(dataSet);
             labelSel.enter()
                 .append('text')
-                .attr('class', 'label');
+                .attr('class', function(d) {return 'label label-' + d.Country;});
+                // 숫자 대신에 class에 text.label.label-country 이름이 나오게 바꿔준거에염.
             labelSel.exit()
                 .remove();
             labelSel
@@ -280,7 +271,7 @@
         var mlSel = d3.select('g.column.ml').selectAll('rect.value').data(dataSet);
         mlSel.enter()
             .append('rect')
-            .attr('class', 'value');
+            .attr('class', function(d){return 'value'+d.Country;});
         mlSel.exit()
             .remove();
         mlSel
@@ -290,15 +281,14 @@
 //            .transition()
 //            .duration(1000)
             .attr('width', function(d) {return ((d.Labour || 0)*0.01) * columnBand.rangeBand();})
-        //문장과 문장이 아닌것의 차이는 뭘까?
             .attr('fill', '#81979f')
-            .attr('fill-opacity', '0.75')
-                .on("mouseover", function () {
-                    d3.select(this).attr("fill-opacity", "1");
-                                    })
-                .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0.75");
-                });
+            .attr('fill-opacity', '0.75');
+//                .on("mouseover", function () {
+//                    d3.select(this).attr("fill-opacity", "1");
+//                                    })
+//                .on("mouseout", function () {
+//                    d3.select(this).attr("fill-opacity", "0.75");
+//                });
         
                 
         //--------------------------------Female labour---------------------------------------
@@ -306,7 +296,7 @@
          var flSel = d3.select('g.column.fl').selectAll('rect.value').data(dataSet);
         flSel.enter()
             .append('rect')
-            .attr('class', 'value');
+            .attr('class', function(d){return 'value'+d.Country;});
         flSel.exit()
             .remove();
         flSel
@@ -314,16 +304,16 @@
             .attr('y', function(d, i) {return yBand(i);})
             .attr('height', yBand.rangeBand())
             .attr('width', function(d) {return ((d.LabourFemale || 0) * 0.01) * columnBand.rangeBand();})
-        .attr('fill', '#c8887a')
-            .attr('fill-opacity', '0.75')
-                .on("mouseover", function () {
-                    d3.select(this).attr("fill-opacity", "1");
-                })
-                .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0.75");
-                });
+            .attr('fill', '#c8887a')
+            .attr('fill-opacity', '0.75');
+//                .on("mouseover", function () {
+//                    d3.select(this).attr("fill-opacity", "1");
+//                })
+//                .on("mouseout", function () {
+//                    d3.select(this).attr("fill-opacity", "0.75");
+//                });
        
-                //%단위로 꼭 해야하나?
+               
                 
         
         //----------------------------------Male edu------------------------------------------
@@ -332,7 +322,7 @@
         var meSel = d3.select('g.column.me').selectAll('rect.value').data(dataSet);
         meSel.enter()
             .append('rect')
-            .attr('class', 'value');
+            .attr('class', function(d){return 'value'+d.Country;});
         meSel.exit()
             .remove();
         meSel
@@ -341,14 +331,14 @@
             .attr('height', yBand.rangeBand())
             .attr('width', function(d) {return (1-((d.Attend ||100)*0.01)) * columnBand.rangeBand();})
         .attr('fill','#8ca4ad')
-                .attr('fill-opacity', '0.75')
-                .on("mouseover", function () {
-                    d3.select(this).attr("fill-opacity", "1");
-                })
-                .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0.75");
-                });
-        
+                .attr('fill-opacity', '0.75');
+//                .on("mouseover", function () {
+//                    d3.select(this).attr("fill-opacity", "1");
+//                })
+//                .on("mouseout", function () {
+//                    d3.select(this).attr("fill-opacity", "0.75");
+//                });
+//        
         
         //-------------------------------------Female edu----------------------------------------
                 
@@ -356,7 +346,7 @@
         var feSel = d3.select('g.column.fe').selectAll('rect.value').data(dataSet);
         feSel.enter()
             .append('rect')
-            .attr('class', 'value');
+            .attr('class', function(d){return 'value'+d.Country;});
         feSel.exit()
             .remove();
         feSel
@@ -365,13 +355,13 @@
             .attr('height', yBand.rangeBand())
             .attr('width', function(d) {return (1-((d.AttendFemale || 100)*0.01)) * columnBand.rangeBand();})
         .attr('fill','#c8887a')
-                .attr('fill-opacity', '0.75')
-                .on("mouseover", function () {
-                    d3.select(this).attr("fill-opacity", "1");
-                })
-                .on("mouseout", function () {
-                    d3.select(this).attr("fill-opacity", "0.75");
-                });
+                    .attr('fill-opacity', '0.75');
+//                .on("mouseover", function () {
+//                    d3.select(this).attr("fill-opacity", "1");
+//                })
+//                .on("mouseout", function () {
+//                    d3.select(this).attr("fill-opacity", "0.75");
+//                });
         };
         
 //----------------------------------------Sort-------------------------------------------------
