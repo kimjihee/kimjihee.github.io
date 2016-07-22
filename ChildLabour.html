@@ -7,6 +7,7 @@
     <style>
         #chart {
             border: 1px solid black;
+            font-family:sans-serif;
                  }
           
     </style>
@@ -121,7 +122,8 @@
             });
                 
                 
-//-------------------------------------------Making-hover---------------------------------------------                
+//-------------------------------------------Making-hover---------------------------------------------            
+            var numText=['mlNumbers','flNumbers','meNumbers','feNumber']      
     
                 
              var yBandSel = d3.select('#chart').selectAll('g.yBand').data(dataSet);  
@@ -138,14 +140,15 @@
                     .attr('width', Width)
                     .on("mouseover", function (d) {
                         d3.selectAll('.label.label-' + d.Country).attr('font-weight', 'bold');
-                        d3.selectAll('.value'+d.Country).attr("fill", "balck").attr('z-index','10');
-                        d3.select(this).attr("fill", "rgba(220,220,220,0.4)").attr('z-index','-10');
+                        d3.selectAll('.value'+d.Country).attr("fill-opacity", "1");
+//                        d3.selectAll('.mlNumber'+d.Country||'.flNumber'+d.Country||'.meNumber'+d.Country||'.feNumber'+d.Country).attr('fill','red');
+//                        
                  //selectAll을 하면 안됐는데 select를 하니까 된것. 와이와이와이파이~
                     })
                     .on("mouseout", function (d) {
-                        d3.select(this).attr("fill", "rgba(0, 0, 0, 0.0)");
                         d3.selectAll('.label.label-' + d.Country).attr('font-weight', 'normal');
-                        d3.selectAll('.value'+d.Country).attr("fill", "grey").attr('z-index','10');
+                        d3.selectAll('.value'+d.Country).attr("fill-opacity", "0.7");
+//                        d3.selectAll('.mlNumber'+d.Country||'.flNumber'+d.Country||'.meNumber'+d.Country||'.feNumber'  ).attr('fill','grey');
                     });
                               
              yBandSel.exit().remove();
@@ -170,13 +173,37 @@
                 .remove();
             themeSel
                 .attr('transform', function (d) {
-                    return 'translate(' + columnBand(d) + ',  '+40+' )';
+                    return 'translate(' + columnBand(d) + ', '+40+' )';
                 })
                 .attr('text-anchor', 'start')
                 .attr('font-size','1rem')
+                .attr('font-weight','bold')
                 .attr('fill', 'black')
-                .attr('font-weight', 'bold')
-                .text(function(d, i) {return themeName[i];});
+                .text(function(d, i) {return themeName[i];})
+                .on("click", function() {
+                       sortBars();
+        			   });
+                
+                	var sortOrder = false;
+        			var sortBars = function(d) {
+        
+                    sortOrder = !sortOrder;
+        
+                    d3.selectAll('.rect.value')
+        				   .sort(function(a, b) {
+        				   		if (sortOrder) {
+        					   		return d3.ascending(a, b);
+        				   		} else {
+        					   		return d3.descending(a, b);
+        				   		}
+        				   	})
+        				   .transition()
+        				   .duration(1000)
+        				   .attr("y", function(d, i) {
+        				   		return yBand(i);
+        				   });        
+        			};
+                
                 
                 
 //------------------------------------------Labels--------------------------------------------
@@ -199,11 +226,15 @@
                 return d.Country;
             });
                 
-//==========================================Gragh=================================================                                
+//==========================================Gragh=================================================              
+              var numText=['mlNumbers','flNumbers','meNumbers','feNumber']  
+                
+                
+                
           var mlNumbers = d3.select('g.column.ml').selectAll('text.mlNumber').data(dataSet);
                 mlNumbers.enter()
             .append('text')
-            .attr('class', 'mlNumber');
+            .attr('class',function(d){return 'mlNumber'+d.Country;} );
         mlNumbers.exit()
             .remove();
         mlNumbers
@@ -219,7 +250,7 @@
                 var flNumbers = d3.select('g.column.fl').selectAll('text.flNumber').data(dataSet);
                 flNumbers.enter()
             .append('text')
-            .attr('class', 'flNumber');
+            .attr('class', function(d){return 'flNumber'+d.Country;});
         flNumbers.exit()
             .remove();
         flNumbers
@@ -237,7 +268,7 @@
             var meNumbers = d3.select('g.column.me').selectAll('text.meNumber').data(dataSet);
             meNumbers.enter()
                .append('text')
-               .attr('class', 'meNumber');
+               .attr('class', function(d){return 'meNumber'+d.Country;});
             meNumbers.exit()
                .remove();
             meNumbers
@@ -254,7 +285,7 @@
         var feNumbers = d3.select('g.column.fe').selectAll('text.feNumber').data(dataSet);
         feNumbers.enter()
             .append('text')
-            .attr('class', 'feNumber');
+            .attr('class', function(d){return 'feNumber'+d.Country;});
         feNumbers.exit()
             .remove();
         feNumbers
@@ -281,8 +312,8 @@
 //            .transition()
 //            .duration(1000)
             .attr('width', function(d) {return ((d.Labour || 0)*0.01) * columnBand.rangeBand();})
-            .attr('fill', '#81979f')
-            .attr('fill-opacity', '0.75');
+            .attr('fill', '#6eb5d3')
+            .attr('fill-opacity', '0.65');
 //                .on("mouseover", function () {
 //                    d3.select(this).attr("fill-opacity", "1");
 //                                    })
@@ -304,8 +335,8 @@
             .attr('y', function(d, i) {return yBand(i);})
             .attr('height', yBand.rangeBand())
             .attr('width', function(d) {return ((d.LabourFemale || 0) * 0.01) * columnBand.rangeBand();})
-            .attr('fill', '#c8887a')
-            .attr('fill-opacity', '0.75');
+            .attr('fill', '#ce6e6b')
+            .attr('fill-opacity', '0.65');
 //                .on("mouseover", function () {
 //                    d3.select(this).attr("fill-opacity", "1");
 //                })
@@ -330,8 +361,8 @@
             .attr('y', function(d, i) {return yBand(i);})
             .attr('height', yBand.rangeBand())
             .attr('width', function(d) {return (1-((d.Attend ||100)*0.01)) * columnBand.rangeBand();})
-        .attr('fill','#8ca4ad')
-                .attr('fill-opacity', '0.75');
+        .attr('fill','#6eb5d3')
+                .attr('fill-opacity', '0.65');
 //                .on("mouseover", function () {
 //                    d3.select(this).attr("fill-opacity", "1");
 //                })
@@ -354,48 +385,19 @@
             .attr('y', function(d, i) {return yBand(i);})
             .attr('height', yBand.rangeBand())
             .attr('width', function(d) {return (1-((d.AttendFemale || 100)*0.01)) * columnBand.rangeBand();})
-        .attr('fill','#c8887a')
-                    .attr('fill-opacity', '0.75');
+        .attr('fill','#ce6e6b')
+                    .attr('fill-opacity', '0.65');
 //                .on("mouseover", function () {
 //                    d3.select(this).attr("fill-opacity", "1");
 //                })
 //                .on("mouseout", function () {
 //                    d3.select(this).attr("fill-opacity", "0.75");
 //                });
-        };
+       
         
-//----------------------------------------Sort-------------------------------------------------
-        
-//        
-//           svg.selectAll('text.theme').enter().on("click", function() {
-//                        			   		sortBars();
-//        			   });
-//                
-//                	var sortOrder = false;
-//        			
-//        			//Define sort function
-//        			var sortBars = function() {
-//        
-//        				//Flip value of sortOrder
-//        			   	sortOrder = !sortOrder;
-//        
-//        				svg.selectAll("rect")
-//        				   .sort(function(a, b) {
-//        				   		if (sortOrder) {
-//        					   		return d3.ascending(a, b);
-//        				   		} else {
-//        					   		return d3.descending(a, b);
-//        				   		}
-//        				   	})
-//        				   .transition()
-//        				   .duration(1000)
-//        				   .attr("y", function(d, i) {
-//        				   		return yBand(i);
-//        				   });
-//        
-//        			};	
-//                      
-        
+          
+                      
+      };   
     </script>
 </body>
 
