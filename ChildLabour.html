@@ -458,7 +458,11 @@
             .remove();
         feNumbers
             .attr('x', function(d) 
-                    {return (1-((d.AttendFemale || 100)*0.01)) * columnBand.rangeBand() + 6;})
+                    {if(d.Attend) {
+                    return ( 1-((d.Attend || 100)*0.01)) * columnBand.rangeBand() + 6;
+                } else {
+                    return 0;                     
+                }})
             .attr('y', function(d, i) {return yBand(i);})
             .attr('fill','grey')
             .attr('font-size','0.7rem')
