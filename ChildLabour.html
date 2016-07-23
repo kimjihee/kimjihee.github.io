@@ -6,23 +6,32 @@
     <title>Child labour</title>
     <style>
         @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-        body{font-family: 'Raleway', sans-serif;}
+        body{font-family: 'Roboto', sans-serif;}
         #chart {
            position:
                  }
        
           
     </style>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script src="d3.min.js" type="text/javascript"></script>
 </head>
 
 <body>
     <svg id="chart" height="2400" width="900">
-        <line x1='265.95' y1="111" x2='265.95' y2="2000" style="stroke:black; stroke-width:0.2; z-index:200"/>
+    <text x="243" y="58" style="font-size:0.7rem;">age : 5-14 years old
+    <tspan x="243" y="73" style="font-size:0.7rem;">data collecting period : 2002-2011</tspan>
+    <tspan x="243" y="88" style="font-size:0.7rem;">unit : %</tspan>
+  </text>
+        
+    <text x="571" y="58" style="font-size:0.7rem;">Theoretical Entry Age Average : 7 
+    <tspan x="571" y="73" style="font-size:0.7rem;">data collecting period : 2007-2011</tspan>
+    <tspan x="571" y="88" style="font-size:0.7rem;">unit : %</tspan>
+  </text>
+        
+        
     </svg>
-    <div class ="h3Labour">age : 5-14 years old <br> data collecting period : 2002-2011 <br>unit : % </div>
-    <div class ="h3Edu"></div>
+    
     <script>
         var dataSet = [];
         // labour data
@@ -108,9 +117,8 @@
 //                .range([0, columnBand.rangeBand()]); 이렇게 스케일도 사실은 해줘야 하는것
             var yBand = d3.scale.ordinal()
                 .domain(d3.range(dataSet.length))
-                .rangeRoundBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 4.2);
+                .rangeBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 8.2);
             
-                
             var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
             
             columnSel.enter()
@@ -167,7 +175,7 @@
 //---------------------------------------h2------------------------------------------------
                 
                 
-                var themeName = ['Child Labour','','Non Attendance of Student']
+                var themeName = ['Child Labour','','Non Attendance of Primary Education']
                 
                                  
                 var themeSel = d3.select('#chart').selectAll('text.theme').data(columnBand.domain());
@@ -181,7 +189,7 @@
                     return 'translate(' + columnBand(d) + ', '+40+' )';
                 })
                 .attr('text-anchor', 'start')
-                .attr('font-size','1rem')
+                .attr('font-size','1.1rem')
                 .attr('font-weight','bold')
                 .attr('fill', 'black')
                 .text(function(d, i) {return themeName[i];})
@@ -289,19 +297,62 @@
             .attr('fill', '#c57b6d')
             ;
                 
+//-----------------------------------------averageText---------------------------------------
+        
+        var mlWorldText = d3.select('g.column.ml').selectAll('text.world').data(average);
+        mlWorldText.enter()
+            .append('text')
+            .attr('alignment-baseline', 'text-before-edge')
+            .attr('class', 'world');
+        mlWorldText.exit()
+            .remove();
+        mlWorldText
+            .attr('x', function(d) {return (d.ml*0.01) * columnBand.rangeBand() + 6;})
+            .attr('y', 121-10)
+            .attr('font-size','0.7rem')
+            .text(function(d) {return d.ml;});
+            
+        
+        var flWorldText = d3.select('g.column.fl').selectAll('text.world').data(average);
                 
-//-----------------------------------------averageText----------------------------------------                
-//                
-//       d3.select('g.column.ml')
-//           .selectAll('text')
-//           .append('text')
-//           .attr('x', 240)
-//           .attr('y', 111)
-//            .attr('fill','grey')
-//            .attr('font-size','0.7rem')
-//            .text("15");
-//            
-//                
+            flWorldText.enter()
+            .append('text')
+            .attr('class','world')
+            .attr('alignment-baseline', 'text-before-edge');
+            flWorldText.exit()
+            .remove();
+            flWorldText
+            .attr('x',function(d){return (d.fl*0.01)*columnBand.rangeBand() + 6;})
+            .attr('y',111)
+            .attr('font-size','0.7rem')
+            .text(function(d){return d.fl;});
+                
+        var meWorldText = d3.select('g.column.me').selectAll('text.world').data(average);
+                meWorldText.enter()
+                .append('text')
+                .attr('class','world')
+                .attr("alignment-baseline","text-before-edge");
+                meWorldText.exit()
+                .remove();
+                meWorldText
+                .attr('x',function(d){return (d.me*0.01)*columnBand.rangeBand() + 6;})
+                .attr('y', 111)
+                .attr('font-size','0.7rem')
+                .text(function(d) {return d.me;});
+                
+                var feWorldText = d3.select('g.column.fe').selectAll('text.world').data(average);
+                feWorldText.enter()
+                .append('text')
+                .attr('class','world')
+                .attr("alignment-baseline","text-before-edge");
+                feWorldText.exit()
+                .remove();
+                feWorldText
+                .attr('x',function(d){return (d.fe*0.01)*columnBand.rangeBand() + 6;})
+                .attr('y', 111)
+                .attr('font-size','0.7rem')
+                .text(function(d) {return d.fe;});
+            
                 
                 
 //------------------------------------------Labels--------------------------------------------
