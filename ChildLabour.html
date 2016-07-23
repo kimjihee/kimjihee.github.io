@@ -389,7 +389,7 @@
             .remove();
         mlNumbers
             .attr('x', function(d) {
-                if(d.Labour !== 0) {
+                if(d.Labour !== (0 || undefined)) {
                     return ((d.Labour || 0)*0.01) * columnBand.rangeBand() + 6;
                 } else {
                     return 0;
@@ -411,7 +411,8 @@
             .remove();
         flNumbers
             .attr('x', function(d) {
-            if(d.LabourFemale !== 0){
+            if(d.LabourFemale !== undefined){
+                console.log(dataSet);
                  return ((d.LabourFemale || 0) *0.01) * columnBand.rangeBand() + 6; 
             }  else {
                   return 0;
@@ -458,8 +459,8 @@
             .remove();
         feNumbers
             .attr('x', function(d) 
-                    {if(d.Attend) {
-                    return ( 1-((d.Attend || 100)*0.01)) * columnBand.rangeBand() + 6;
+                    {if(d.AttendFemale) {
+                    return ( 1-((d.AttendFemale || 100)*0.01)) * columnBand.rangeBand() + 6;
                 } else {
                     return 0;                     
                 }})
