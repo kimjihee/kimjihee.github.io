@@ -117,7 +117,7 @@
 //                .range([0, columnBand.rangeBand()]); 이렇게 스케일도 사실은 해줘야 하는것
             var yBand = d3.scale.ordinal()
                 .domain(d3.range(dataSet.length))
-                .rangeBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 8.2);
+                .rangeBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 7.9);
             
             var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
             
@@ -144,7 +144,7 @@
              yBandSel.enter()
                 .append('g')
                 .attr('class', function (d) {
-                    return 'yband yand-' + d.Country;
+                    return 'yband yand-' + d.Country.replace(/ /g, '-');
                 }).append('rect')
                     .attr('x', 0)
                     .attr('y', 0)
@@ -153,14 +153,14 @@
                     .attr('height', yBand.rangeBand())
                     .attr('width', Width)
                     .on("mouseover", function (d) {
-                        d3.selectAll('.label.label-' + d.Country).attr('font-weight', 'bold');
+                        d3.selectAll('.label.label-' + d.Country.replace(/ /g, '-')).attr('font-weight', 'bold');
                         d3.selectAll('.value'+d.Country).attr("fill-opacity", "1");
 //                        d3.selectAll('.mlNumber'+d.Country||'.flNumber'+d.Country||'.meNumber'+d.Country||'.feNumber'+d.Country).attr('fill','red');
 //                        
                  //selectAll을 하면 안됐는데 select를 하니까 된것. 와이와이와이파이~
                     })
                     .on("mouseout", function (d) {
-                        d3.selectAll('.label.label-' + d.Country).attr('font-weight', '200');
+                        d3.selectAll('.label.label-' + d.Country.replace(/ /g, '-')).attr('font-weight', '200');
                         d3.selectAll('.value'+d.Country).attr("fill-opacity", "0.7");
                     });
                               
@@ -350,6 +350,7 @@
                 feWorldText
                 .attr('x',function(d){return (d.fe*0.01)*columnBand.rangeBand() + 6;})
                 .attr('y', 111)
+                
                 .attr('font-size','0.7rem')
                 .text(function(d) {return d.fe;});
             
@@ -360,7 +361,7 @@
             var labelSel = d3.select('#chart').selectAll('text.label').data(dataSet);
             labelSel.enter()
                 .append('text')
-                .attr('class', function(d) {return 'label label-' + d.Country;});
+                .attr('class', function(d) {return 'label label-' + d.Country.replace(/ /g, '-');});
                 // 숫자 대신에 class에 text.label.label-country 이름이 나오게 바꿔준거에염.
             labelSel.exit()
                 .remove();
@@ -387,7 +388,13 @@
         mlNumbers.exit()
             .remove();
         mlNumbers
-            .attr('x', function(d) {return ((d.Labour || 0)*0.01) * columnBand.rangeBand() + 6 ;})
+            .attr('x', function(d) {
+                if(d.Labour !== 0) {
+                    return ((d.Labour || 0)*0.01) * columnBand.rangeBand() + 6;
+                } else {
+                    return 0;
+                }
+            })
             .attr('y', function(d, i) {return yBand(i);})
             .attr('fill','grey')
             .attr('font-size','0.7rem')
@@ -403,8 +410,14 @@
         flNumbers.exit()
             .remove();
         flNumbers
-            .attr('x', function(d) {return ((d.LabourFemale || 0) *0.01) * columnBand.rangeBand() + 6 ;  })
-//            .attr('x', function(d) {return xScale(d.LabourFemale || 0) + 6;})
+            .attr('x', function(d) {
+            if(d.LabourFemale !== 0){
+                 return ((d.LabourFemale || 0) *0.01) * columnBand.rangeBand() + 6; 
+            }  else {
+                  return 0;
+                  }
+            })
+
             .attr('y', function(d, i) {return yBand(i);})
             .attr('fill','grey')
             .attr('font-size','0.7rem')
@@ -421,7 +434,13 @@
             meNumbers.exit()
                .remove();
             meNumbers
-            .attr('x', function(d) {return (1-((d.Attend || 100)*0.01)) * columnBand.rangeBand() + 6;  })
+            .attr('x', function(d) {
+                if(d.Attend) {
+                    return ( 1-((d.Attend || 100)*0.01)) * columnBand.rangeBand() + 6;
+                } else {
+                    return 0;                     
+                }
+            })
             .attr('y', function(d, i) {return yBand(i);})
             .attr('fill','grey')
             .attr('font-size','0.7rem')
@@ -438,7 +457,8 @@
         feNumbers.exit()
             .remove();
         feNumbers
-            .attr('x', function(d) {return (1-((d.AttendFemale || 100)*0.01)) * columnBand.rangeBand() + 6;  })
+            .attr('x', function(d) 
+                    {return (1-((d.AttendFemale || 100)*0.01)) * columnBand.rangeBand() + 6;})
             .attr('y', function(d, i) {return yBand(i);})
             .attr('fill','grey')
             .attr('font-size','0.7rem')
