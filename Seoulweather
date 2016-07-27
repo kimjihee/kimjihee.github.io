@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Seoul Weather</title>
+    <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+        body{font-family: 'Roboto', sans-serif;}
+        
+        #chart {border:1px solid black;}      
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <svg id = "chart" width="500" height= "500"> </svg>
+    <script src="d3.min.js" type="text/javascript">
+   
+    var dataSet = [];
+    d3.csv('data/Seoul_weather.csv', function (err, weather){
+           weather.forEach(function(row) {
+           row['average'] = + row['average'];
+           row['low'] = + row['low'];
+           row['high'] = + row['high'];
+       });     
+       
+        dataSet = weather; 
+        redraw();
+    });
+        
+        console.log(dataSet);
+        
+        
+        
+        
+        
+        var redraw = function(){
+        
+            var Average = d3.select('#chart').selectAll('rect.weather').data(dataSet);
+            
+            Average.enter()
+            .append('rect')
+            .attr('class','weather');
+            Average.exit()
+            .remove();
+            Average
+                .attr('fill','red')
+                .attr('x','10')
+                .attr('y','10')
+                .attr('width',function(d){return d.average;})
+                .attr('height','14');        
+        };
+            
+              
+
+       
+    </script>
+</head>
+
+<body>

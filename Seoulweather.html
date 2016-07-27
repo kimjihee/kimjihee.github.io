@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Seoul Weather</title>
+    <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size:0.5rem;
+        }
+        #chart{ border :1px solid black;}
+        
+        .axis path, .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      } /*        이거의 정체를 도저히 모르겠다..... */
+        
+      </style>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    
+    <script src="d3.min.js" type="text/javascript"></script></head>
+    <body>
+        <svg id="chart" width="1200" height="500"> </svg>
+        
+        
+        
+        <script>
+
+//--- Data---------------------------------------------
+            
+        var dataSet = [];
+        var Sweather = d3.csv('data/Seoul_weather.csv', function (err, weather) {
+            weather.forEach(function (row) {
+                row['average'] = +row['average'];
+                row['low'] = +row['low'];
+                row['high'] = +row['high'];
+            });
+
+            dataSet = weather;
+            redraw();
+        });
+
+//--- Layout--------------------------------------------
+            
+        var redraw = function () {
+                    
+            
+            MARGIN = {
+                
+                TOP : 10,
+                LEFT:100,
+                RIGHT:100,
+                BOTTOM:0
+                
+            };
+
+//--- Size ---------------------------------------------
+            
+          var Width = 1000;
+          var Height = 400;
+          
+//--- Timeformat ---------------------------------------
+            
+//            var parseDate = d3.time.format("%y-%b-%d").parse;
+  
+//--- Scale --------------------------------------------
+            
+            
+            var xScale = d3.time.scale()
+            .domain([new Date(dataSet[0].date), d3.time.day.offset(new Date(dataSet[dataSet.length - 1].date),1)])//시간 domain은 어떻게 써야하는것인가?
+            .rangeRound([0,Width-MARGIN.LEFT]);
+            
+            
+            var yScale = d3.scale.linear()
+            .domain([d3.max(dataSet, function(d) { return d.average; }),0])
+            .rangeRound([0,Height-MARGIN.TOP-MARGIN.BOTTOM]);
+            
+//--- Axis ---------------------------------------------    
+            
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .ticks(d3.time.date, 1)//이거랑
+                .tickFormat(d3.time.format('%y-%B-%d'))//이거랑 어떻게 써야하는것인가? %e 이거 썻는데 망함함
+                .tickSize(0)
+                .tickPadding(8)
+                ;
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left')
+                .tickPadding(8)
+                ; 
+                        
+            var svg = d3.select('svg')
+                .append('g')
+                .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
+
+            
+            
+// call Axis-------------------------------------------
+            svg.append('g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
+                .call(xAxis)
+            .attr(); 
+            
+            // 위에가 아니라 아래에 스타일을 집어넣는 이유는??
+
+            svg.append('g')
+              .attr('class', 'y axis')
+              .call(yAxis)
+              .append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("y", 6)
+              .attr("dy", "1em")
+              .style("text-anchor", "end")
+              .text("Degree ºC");
+
+//--- Gragph --------------------------------------------
+
+          var line = d3.svg.line()
+                    .x(function(d) { return x(d.date); })
+                    .y(function(d) { return y(d.average); });
+
+            svg.append("path")
+                    .data(dataSet)
+                    .attr("d", line)
+                    .attr("class", "line")
+                    .style('fill',"none")
+                    .style('stroke',"red")
+                    .style('stroke-width',"2px");
+           
+
+//  svg.append("g")
+//      .attr("class", "x axis")
+//      .attr("transform", "translate(0," + height + ")")
+//      .call(xAxis)
+//      .selectAll('.tick text')
+//      .style('text-anchor','start')
+//      .attr('x',6)
+//      .attr('y',6);
+
+
+//https://www.sitepoint.com/creating-simple-line-bar-charts-using-d3-js/  
+        };    //이것은 redraw function;        
+    
+        </script>
+</body>
+</html>
