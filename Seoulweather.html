@@ -36,11 +36,27 @@
                 row['average'] = +row['average'];
                 row['low'] = +row['low'];
                 row['high'] = +row['high'];
-            });
-
+ 
+               
+                
+//1번        parse 이용 Nan 이됨        
+//2번                
+             row['date']= new Date(row['date']);
+////  
+//                document.write(dateMaking.getFullYear());
+//                document.write(dateMaking.getMonth()+1);
+//                document.write(dateMaking.getDate());              
+// 3번    
+//          
+                
+            })    
+         
             dataSet = weather;
             redraw();
-        });
+       });
+                            
+           
+              
 
 //--- Layout--------------------------------------------
             
@@ -63,7 +79,7 @@
           
 //--- Timeformat ---------------------------------------
             
-//            var parseDate = d3.time.format("%y-%b-%d").parse;
+//            var parseDate = d3.time.format("%y-%b-%d").parse; parse 이게 object로 바꾸는것.
   
 //--- Scale --------------------------------------------
             
@@ -87,6 +103,7 @@
                 .tickSize(0)
                 .tickPadding(8)
                 ;
+            
 
             var yAxis = d3.svg.axis()
                 .scale(yScale)
@@ -104,6 +121,7 @@
             svg.append('g')
                 .attr('class', 'x axis')
                 .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
+                .style('stroke-width','3')
                 .call(xAxis)
             .attr(); 
             
@@ -115,26 +133,26 @@
               .append("text")
               .attr("transform", "rotate(-90)")
               .attr("y", 6)
-              .attr("dy", "1em")
+              .attr("dy", "1em")// 이것은 무엇인가?
               .style("text-anchor", "end")
               .text("Degree ºC");
 
 //--- Gragph --------------------------------------------
 
           var line = d3.svg.line()
-                    .x(function(d) { return x(d.date); })
-                    .y(function(d) { return y(d.average); });
-            
+                    .x(function(d) { return xScale(d.date); })
+                    .y(function(d) { return yScale(d.average); }).interpolate("monotone");
 
             svg.append("path")
-                    .data(dataSet)
-                    .attr("d", line)
+                    .attr("d", line(dataSet))// .data(dataSet)을 없애니 되었다.
                     .attr("class", "line")
                     .style('fill',"none")
                     .style('stroke',"red")
-                    .style('stroke-width',"2px");    
+                    .style('stroke-width',"2px")
+          ;    
 
-//https://www.sitepoint.com/creating-simple-line-bar-charts-using-d3-js/  
+//https://www.sitepoint.com/creating-simple-line-bar-charts-using-d3-js/ 
+//http://blog.naver.com/PostView.nhn?blogId=jw43834&logNo=120165590793
 //            http://bl.ocks.org/mbostock/1134768
         };    //이것은 redraw function;        
     
