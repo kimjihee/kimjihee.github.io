@@ -29,7 +29,7 @@
         <script>
 
 //--- Data---------------------------------------------
-            
+        var dateFormat = d3.time.format('%Y-%m-%d');
         var dataSet = [];
         var Sweather = d3.csv('data/Seoul_weather.csv', function (err, weather) {
             weather.forEach(function (row) {
@@ -41,11 +41,9 @@
                 
 //1번        parse 이용 Nan 이됨        
 //2번                
-             row['date']= new Date(row['date']);
+             row['date']= dateFormat.parse(row['date']);// d3 format으로 검색하면 나옵니다.
 ////  
-//                document.write(dateMaking.getFullYear());
-//                document.write(dateMaking.getMonth()+1);
-//                document.write(dateMaking.getDate());              
+//                            
 // 3번    
 //          
                 
@@ -85,21 +83,24 @@
             
             
             var xScale = d3.time.scale()
-            .domain([new Date(dataSet[0].date), d3.time.day.offset(new Date(dataSet[dataSet.length - 1].date),1)])//시간 domain은 어떻게 써야하는것인가?
+            .domain([
+                new Date(dataSet[0].date),
+                d3.time.day.offset(new Date(dataSet[dataSet.length - 1].date), 1)
+            ])여기서 1은 offset 안에 있는것이므로 이것을 검색하면 알 수 있다.
             .rangeRound([0,Width-MARGIN.LEFT]);
             
             
             var yScale = d3.scale.linear()
-            .domain([d3.max(dataSet, function(d) { return d.high; }),0])
+            .domain([d3.max(dataSet, function(d) { return d.high; }),0])//여기서 0은 시작점점
             .rangeRound([0,Height-MARGIN.TOP-MARGIN.BOTTOM]);
             
 //--- Axis ---------------------------------------------    
             
-            var xAxis = d3.svg.axis()
+            var xAxis = d3.svg.axis()//axis 라는 함수안에 data, enter, append 가 알아서 생성되는게 들어있다.
                 .scale(xScale)
                 .orient('bottom')
-                .ticks(d3.time.date, 1)//이거랑
-                .tickFormat(d3.time.format('%y-%B-%d'))//이거랑 어떻게 써야하는것인가? %e 이거 썻는데 망함
+                .ticks(d3.time.date, 1)//start stop //이렇게 1이 스탑인데 맞나요?
+                .tickFormat(d3.time.format('%Y-%m-%d'))//이거랑 어떻게 써야하는것인가? %e 이거 썻는데 망함
                 .tickSize(0)
                 .tickPadding(8)
                 ;
@@ -110,30 +111,31 @@
                 .orient('left')
                 .tickPadding(8)
                 ; 
-                        
-            var svg = d3.select('svg')
-                .append('g')
-                .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
 
             
             
-// call Axis-------------------------------------------
-            svg.append('g')
+// call Axis-------------------------------------------                        
+            var realChart = d3.select('svg')
+                .append('g')
+                .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
+
+            //원래는 이걸 안만들고 위의 svg를 이용하려고 했으나 없으면 안되서 만들어 주었다.
+            
+            realChart.append('g')
                 .attr('class', 'x axis')
                 .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
                 .style('stroke-width','3')
                 .call(xAxis)
-            .attr(); 
-            
-            // 위에가 아니라 아래에 스타일을 집어넣는 이유는??
+            ; 
+           
 
-            svg.append('g')
+            realChart.append('g')
               .attr('class', 'y axis')
               .call(yAxis)
               .append("text")
               .attr("transform", "rotate(-90)")
               .attr("y", 6)
-              .attr("dy", "1em")// 이것은 무엇인가?
+              .attr("dy", "1em") // dy를 검색하면 된다. 
               .style("text-anchor", "end")
               .text("Degree ºC");
 
@@ -143,8 +145,8 @@
                     .x(function(d) { return xScale(d.date); })
                     .y(function(d) { return yScale(d.average); }).interpolate("monotone");
 
-            svg.append("path")
-                    .attr("d", lineAverage(dataSet))// .data(dataSet)을 없애니 되었다.
+            realChart.append("path")
+                    .attr("d", lineAverage(dataSet))// .data(dataSet)을 없애니 되었다. 교수님도 모른다고 한다.
                     .attr("class", "lineAverage")
                     .style('fill',"none")
                     .style('stroke',"green")
@@ -155,7 +157,7 @@
                     .x(function(d) { return xScale(d.date); })
                     .y(function(d) { return yScale(d.high); }).interpolate("monotone");
 
-            svg.append("path")
+            realChart.append("path")
                     .attr("d", linehigh(dataSet))// .data(dataSet)을 없애니 되었다.
                     .attr("class", "linehigh")
                     .style('fill',"none")
@@ -166,13 +168,14 @@
                     .x(function(d) { return xScale(d.date); })
                     .y(function(d) { return yScale(d.low); }).interpolate("monotone");
 
-            svg.append("path")
+            realChart.append("path")
                     .attr("d", linelow(dataSet))// .data(dataSet)을 없애니 되었다.
                     .attr("class", "linelow")
                     .style('fill',"none")
                     .style('stroke',"blue")
                     .style('stroke-width',"2px");
-//https://www.sitepoint.com/creating-simple-line-bar-charts-using-d3-js  축만들기 참고
+
+            //https://www.sitepoint.com/creating-simple-line-bar-charts-using-d3-js  축만들기 참고
 
         };    //이것은 redraw function;        
     
