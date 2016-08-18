@@ -1,5 +1,5 @@
 * {
-    outlsine: 1px solid black;
+    outsline: 1px solid black;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -40,10 +40,10 @@
     right: 12vw;
 }
 
-.middleBottom {
+.middleMiddle {
     position: absolute;
     top: 34rem;
-    height: 35.5rem;
+    height: 43.5rem;
     left: 12vw;
     right: 12vw;
 }
@@ -51,15 +51,14 @@
 .bottom {
     position: absolute;
     height: 9rem;
-    top: 72.5rem;
+    top: 103.5rem;
     left: 12vw;
-    right:12vw;
-    border-top:1.8px solid #55b327;
-    font-size:0.78rem;
-    line-height:1.2rem;
-    padding-top:0.5rem;
-    color:rgb(100,100,100);
-    
+    right: 12vw;
+    border-top: 1.8px solid #55b327;
+    font-size: 0.78rem;
+    line-height: 1.2rem;
+    padding-top: 0.5rem;
+    color: rgb(100, 100, 100);
 }
 
 a:link {
@@ -140,7 +139,7 @@ a:hover {
 }
 
 a .point:link {
-    color: white;
+    color: white !important;
 }
 
 .input_text {
@@ -231,6 +230,7 @@ a .point:link {
     border-bottom: 1px solid rgba(200, 200, 200, 0.8);
     border-left: 1px solid rgba(200, 200, 200, 0.8);
     border-top: 1px solid rgba(200, 200, 200, 0.8);
+    font-size: 0.95rem;
     font-weight: bold;
     text-align: center;
 }
@@ -259,7 +259,10 @@ a .point:link {
 }
 
 .study {
-    margin:0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 48vw;
     height: 10.5rem;
 }
 
@@ -276,35 +279,43 @@ a .point:link {
     margin: 1.5rem auto;
 }
 
+.emoticon:hover {
+    background-color: white;
+    border: 4px solid rgba(85, 179, 39, 0.7);
+    color: #55b327;
+    font-size: 2.1rem;
+    line-height: 3.8rem;
+}
+
 .studyName li {
     float: left;
     width: 20%;
     height: 12.5rem;
 }
 
-.bigName {
+.firstBigName {
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     height: 2.5rem;
+    width: 98%;
     font-weight: bold;
     line-height: 2.5rem;
-    
+    border-top: 2.7px solid rgba(255, 236, 17, 0.75);
 }
 
 .studyName {
     position: absolute;
     top: 2.5rem;
-    left: 12vw;
-    right: 12vw;
+    left: 0;
+    right: 0;
     height: 12.5rem;
 }
 
 .studyNameTag {
+    height: 1rem;
     text-align: center;
     font-size: 0.8rem;
-    position: relative;
-    bottom: 0;
 }
 
 .finish {
@@ -315,50 +326,148 @@ a .point:link {
     color: white !important;
     background-color: rgb(120, 120, 120);
 }
+
 .greenPoint {
-    color:#336a0f;
-    font-weight:bold;
-    
+    color: #336a0f;
+    font-weight: bold;
 }
 
 .letterSpace {
     word-spacing: 0.1rem;
-    padding-top:0.5rem;
-    }
-
-
-
-
+    padding-top: 0.5rem;
+}
 
 .studyPicture {
     position: absolute;
-    top:0;
-    left:0;
-    width:24vw;
-    height:16.5rem;
-    
+    top: 0;
+    left: 0;
+    width: 24vw;
+    height: 16.5rem;
 }
 
 .dochoPicture {
     position: absolute;
-    top:0rem;
-    right:25.34vw;
-    width:24vw;
-    height:16.5rem;
-   
+    top: 0rem;
+    right: 25.34vw;
+    width: 24vw;
+    height: 16.5rem;
 }
 
-
-
 .realStudyPic {
-width:312.47px;
-    position:absolute;
-    bottom:0;
+    width: 98%;
+    position: absolute;
+    bottom: 0;
+    border: 2px solid rgba(200, 200, 200, 0.8);
 }
 
 .middleFoot {
-     position: absolute;
-    top:15.5rem;
-    left:0;
-    right:0;
+    position: absolute;
+    top: 17.5rem;
+    left: 0;
+    right: 0;
+}
+
+.studybigName {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+}
+
+.fastClick {
+    position: absolute;
+    top: 2.5rem;
+    width: 100%;
+    height: 8rem;
+    border: 1px solid rgba(200, 200, 200, 0.8);
+    border-radius: 4px;
+}
+
+.fastClick li {
+    float: left;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    line-height: 4rem;
+}
+
+.enrollment {
+    position: absolute;
+    right: 0;
+    width: 24vw;
+    height: 10.5rem;
+}
+
+.sandwich {
+    border-right: 1px solid rgba(200, 200, 200, 0.8);
+}
+
+.hamburger {
+    border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+    border-right: 1px solid rgba(200, 200, 200, 0.8);
+}
+
+.bread {
+    border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+}
+
+.fa-pencil {
+    color: #55b327;
+}
+
+.fa-paper-plane-o {
+    color: #55b327;
+}
+
+.bigName {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2.5rem;
+    font-weight: bold;
+    line-height: 2.5rem;
+}
+
+.secondBigName {
+    border-top: 2.7px solid rgba(226, 160, 188, 0.8);
+    width: 98%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2.5rem;
+    font-weight: bold;
+    line-height: 2.5rem;
+}
+
+.circle {
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    background-color: pink;
+    border-radius: 50%;
+}
+
+.middleFootBottom {
+    position: absolute;
+    top: 36rem;
+    left: 0;
+    right: 0;
+    height: 20rem;
+}
+
+.shop li {
+    float: left;
+    width: 25%;
+    height: 6rem;
+}
+
+.shop ul {
+    position: absolute;
+    top: 2.5rem;
+    width: 100%;
+}
+
+.shop img {
+    width: 60%;
+    margin: 1.5rem auto;
 }
