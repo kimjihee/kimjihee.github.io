@@ -93,26 +93,6 @@
             var zScale = d3.scale.category10();
 //            cubehelix(this is color)교수님이 알려주신 color!!!
 
-            //--- Axis--------------------------------------------------
-
-//            var xAxis = d3.svg.axis()
-//                .scale(xScale)
-//                .orient("bottom")
-//                .tickSize(3)
-//                .tickFormat(function (d) {
-//                    return dataSet[d]["국가"];
-//                    // dataSet [d]는 위에 xScale에서 길이값을 기준으로 축을 만을어 줬기 때문에 길이값이므로 이렇게 해준다고 한다. 
-//
-//                })
-//                .tickPadding(2);
-//
-//
-//            var yAxis = d3.svg.axis()
-//                .scale(yScale)
-//                .orient('left')
-//                .tickSize(2)
-//                .tickPadding(8);
-            
                         
                 xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -156,30 +136,7 @@
                 .style("text-anchor", "end")
                 .text("사망자수");
             
-//            var realChart = d3.select('svg')
-//                .append('g')
-//                .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
-//
-//            realChart.append('g')
-//                .attr('class', 'x axis')
-//                .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
-//                .style('stroke-width', '2')
-//                        .call(xAxis)
-//                        .append("text")
-//                        .selectAll('text')
-//             
-//                        .style('text-anchor', 'end');
-//
-//            realChart.append('g')
-//                .attr('class', 'y axis')
-//                            .call(yAxis)
-//                            .append("text")
-//                            .attr("transform", "rotate(-90)")
-//                            .attr("y", 6)
-//                            .attr("dy", "1em")
-//                            .style("text-anchor", "end")
-//                            .text("사망자수");
-            
+
             
             
             
@@ -239,28 +196,7 @@
                 })
                 .attr("width", xScale.rangeBand() - 1);
 
-//            svg.append("g")
-//                .attr("class", "axis axis--x")
-//                .attr("transform", "translate(0," + Height + ")")
-//                .call(xAxis)
-//                .style("stroke",'black')
-//                .append("text")
-//                .selectAll('text')
-//                .style('stroke-width', '2')
-//                .style('text-anchor', 'end')
-//                ;
-//
-//            svg.append("g")
-//                .attr("class", "axis axis--y")
-//                .attr("transform", "translate(" + Width + ",0)")
-//                .call(yAxis);
-//                .append("text")
-//                .attr("transform", "rotate(-90)")
-//                .attr("y", 6)
-//                .attr("dy", "1em")
-//                .style("text-anchor", "end")
-//                .style('stroke-width', '2')
-//                .text("사망자수");
+
         };
 
         // http://bl.ocks.org/mbostock/1134768 참고사이트
