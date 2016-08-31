@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>World Death Reason</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <script src="d3.min.js" type="text/javascript"></script>
+    <style>
+        #chart {
+            border: 1px solid black;
+        }
+        
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        
+        .axis.x text {
+            font-size: 0.5rem;
+            color:black;
+        }
+        
+        .tick text {
+            transform: rotate(-90deg);
+            
+        }
+       
+        
+    
+        
+    </style>
+</head>
+
+<body>
+<svg id="chart" width="1200" height="400"> </svg>
+
+    <script>
+        dataSet = [];
+        d3.csv("data/World_Death.csv", function (err, death) {
+            death.forEach(function (row) {
+                row['전체'] = +row['전체'] || 0;
+                row['폐암'] = +row['폐암'] || 0;
+                row['당뇨병'] = +row['당뇨병'] || 0;
+                row['암'] = +row['암'] || 0;
+                row['뇌혈관질환'] = +row['뇌혈관질환'] || 0;
+                row['만성간질환'] = +row['만성간질환'] || 0;
+                row['운수사고'] = +row['운수사고'] || 0;
+                row['자살'] = +row['자살'] || 0;
+            })
+            dataSet = death;
+            redraw();
+        })
+
+
+        var redraw = function () {
+
+            //--- Layout-----------------------------------------
+
+            MARGIN = {
+                LEFT: 100,
+                RIGHT: 0,
+                TOP: 100,
+                BOTTOM: 0,
+            }
+
+
+            //--- Size-----------------------------------------------
+
+            var Width = 1100
+            var Height = 300
+
+            //--- Scale------------------------------------------------
+            
+            var xScale = d3.scale.ordinal()
+                .domain(d3.range(dataSet.length))
+                .rangeRoundBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT]);
+
+            var yScale = d3.scale.linear()
+                .domain([d3.max(function (d) {
+                    return dataSet.전체;
+                }), 0])
+                .rangeRound([0, Height - MARGIN.TOP - MARGIN.BOTTOM]);
+
+//            var xScale = d3.scale.ordinal()
+//                .rangeRoundBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT]);
+//
+//            var yScale = d3.scale.linear()
+//                .rangeRound([0, Height - MARGIN.TOP - MARGIN.BOTTOM]);
+//
+            var zScale = d3.scale.category10();
+//            cubehelix(this is color)교수님이 알려주신 color!!!
+
+            //--- Axis--------------------------------------------------
+
+//            var xAxis = d3.svg.axis()
+//                .scale(xScale)
+//                .orient("bottom")
+//                .tickSize(3)
+//                .tickFormat(function (d) {
+//                    return dataSet[d]["국가"];
+//                    // dataSet [d]는 위에 xScale에서 길이값을 기준으로 축을 만을어 줬기 때문에 길이값이므로 이렇게 해준다고 한다. 
+//
+//                })
+//                .tickPadding(2);
+//
+//
+//            var yAxis = d3.svg.axis()
+//                .scale(yScale)
+//                .orient('left')
+//                .tickSize(2)
+//                .tickPadding(8);
+            
+                        
+                xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient("bottom")
+                .tickSize(3)
+                .tickFormat(function (d) {
+                    return dataSet[d]["국가"];
+                })
+
+            .tickPadding(2);
+            
+
+            yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left')
+                .tickFormat(25 + "명")
+                .tickSize(25)
+                .tickPadding(8);
+
+            //---Call Axis----------------------------------------------
+
+                    var realChart = d3.select('svg')
+                .append('g')
+                .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
+
+            realChart.append('g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
+                .style('stroke-width', '2')
+                .call(xAxis)
+                .selectAll('text')
+                .style('text-anchor', 'end')
+
+            realChart.append('g')
+                .attr('class', 'y axis')
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "1em")
+                .style("text-anchor", "end")
+                .text("사망자수");
+            
+//            var realChart = d3.select('svg')
+//                .append('g')
+//                .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
+//
+//            realChart.append('g')
+//                .attr('class', 'x axis')
+//                .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
+//                .style('stroke-width', '2')
+//                        .call(xAxis)
+//                        .append("text")
+//                        .selectAll('text')
+//             
+//                        .style('text-anchor', 'end');
+//
+//            realChart.append('g')
+//                .attr('class', 'y axis')
+//                            .call(yAxis)
+//                            .append("text")
+//                            .attr("transform", "rotate(-90)")
+//                            .attr("y", 6)
+//                            .attr("dy", "1em")
+//                            .style("text-anchor", "end")
+//                            .text("사망자수");
+            
+            
+            
+            
+            
+
+            //--- Graph-------------------------------------------
+
+
+            var group = d3.select("svg").append("g")
+                .attr("width", Width - MARGIN.LEFT - MARGIN.RIGHT)
+                .attr("height", Height - MARGIN.TOP - MARGIN.BOTTOM)
+                .attr("transform", "translate(" + MARGIN.LEFT + "," + MARGIN.BOTTOM + ")");
+
+
+            var causes = ['암', '폐암', '당뇨병', '뇌혈관질환', '만성간질환', '운수사고', '자살'];
+
+            var layers = d3.layout.stack()(causes.map(function (c) {
+                return dataSet.map(function (d) {
+                    return {
+                        x: d.국가,
+                        y: d[c]
+                    };
+
+                });
+            }));
+
+            xScale.domain(layers[0].map(function (d) {
+                return d.x;
+            }));
+
+            yScale.domain([0, d3.max(layers[layers.length - 1], function (d) {
+                return d.y0 + d.y;
+            })]).nice();
+
+            var layer = group.selectAll(".layer")
+                .data(layers)
+                .enter()
+                .append("g")
+                .attr("class", "layer")
+                .style("fill", function (d, i) {
+                    return zScale(i);
+                });
+
+            layer.selectAll("rect")
+                .data(function (d) {
+                    return d;
+                })
+                .enter().append("rect")
+                .attr("x", function (d) {
+                    return xScale(d.x);
+                })
+                .attr("y", function (d) {
+                    return yScale(d.y + d.y0);
+                })
+                .attr("height", function (d) {
+                    return yScale(d.y + d.y0) - yScale(d.y0);
+                })
+                .attr("width", xScale.rangeBand() - 1);
+
+//            svg.append("g")
+//                .attr("class", "axis axis--x")
+//                .attr("transform", "translate(0," + Height + ")")
+//                .call(xAxis)
+//                .style("stroke",'black')
+//                .append("text")
+//                .selectAll('text')
+//                .style('stroke-width', '2')
+//                .style('text-anchor', 'end')
+//                ;
+//
+//            svg.append("g")
+//                .attr("class", "axis axis--y")
+//                .attr("transform", "translate(" + Width + ",0)")
+//                .call(yAxis);
+//                .append("text")
+//                .attr("transform", "rotate(-90)")
+//                .attr("y", 6)
+//                .attr("dy", "1em")
+//                .style("text-anchor", "end")
+//                .style('stroke-width', '2')
+//                .text("사망자수");
+        };
+
+        // http://bl.ocks.org/mbostock/1134768 참고사이트
+        //redraw 닫기;
+    </script>
+</body>
+
+</html>
