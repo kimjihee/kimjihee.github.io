@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>World Death Reason</title>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <script src="d3.min.js" type="text/javascript"></script>
-    <style>
+    
+  <style>
         #chart {
             border: 1px solid black;
         }
@@ -28,14 +28,43 @@
             
         }
        
-        
+        .axis path {
+          display: none;
+        }
+
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+
+        .group-label {
+          font-weight: bold;
+          text-anchor: end;
+        }
+
+        form {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+
     
         
-    </style>
-</head>
-
-<body>
-<svg id="chart" width="1200" height="500"> </svg>
+    </style>  
+      
+     <form>
+      <label><input type="radio" name="mode" value="multiples" checked> Multiples</label>
+      <label><input type="radio" name="mode" value="stacked"> Stacked</label>
+      </form>
+    
+    <script src="d3.min.js" type="text/javascript"></script>
+    
+    </head>
+    <body>
+        
+        
+    <svg id="chart" width="1200" height="500"> </svg>
 
     <script>
              dataSet = [];
@@ -50,7 +79,7 @@
                 row['운수사고'] = +row['운수사고'] || 0;
                 row['자살'] = +row['자살'] || 0;
                 
-                death.sort(function(a, b) { return b.total - a.total; });
+               
             })
             dataSet = death;
             redraw();
@@ -89,7 +118,6 @@
             var zScale = d3.scale.ordinal()
                 .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
-            var stack = d3.layout.stack();
             
 //            cubehelix(this is color)교수님이 알려주신 color!!!
 
@@ -143,53 +171,58 @@
             
 
             //--- Graph-------------------------------------------    
+        
 
-           
+        var yScale = d3.scale.linear();
 
-              
+        var nest = d3.nest()
+            .key(function(d) { return d.group; });
 
-              xScale.domain(dataSet.map(function(d) { return d.국가; }));
-              yScale.domain([0, d3.max(dataSet, function(d) { return d.total; })]).nice();
-              zScale.domain(dataSet.columns.slice(0));
+        var stack = d3.layout.stack()
+            .values(function(d) { return d.values; })
+            .x(function(d) { return d.date; })
+            .y(function(d) { return d.value; })
+            .out(function(d, xScale) { d.valueOffset = xScale; });
 
-              g.selectAll(".serie")
-                .data(stack.keys(dataSet.columns.slice(1))(dataSet))
-                .enter().append("g")
-                  .attr("class", "serie")
-                  .attr("fill", function(d) { return zScale(d.key); })
-                .selectAll("rect")
-                .data(function(d) { return d; })
-                .enter().append("rect")
-                  .attr("x", function(d) { return xScale(d.dataSet.국가); })
-                  .attr("y", function(d) { return yScale(d[1]); })
-                  .attr("height", function(d) { return yScale(d[0]) - yScale(d[1]); })
-                  .attr("width", xScale.bandwidth());
-            
+        var color = d3.scale.category10();
 
-            var legend = g.selectAll(".legend")
-                .data(dataSet.columns.slice(1).reverse())
-                .enter().append("g")
-                  .attr("class", "legend")
-                  .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })
-                  .style("font", "10px sans-serif");
-            
+        var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-              legend.append("rect")
-                  .attr("x", width - 18)
-                  .attr("width", 18)
-                  .attr("height", 18)
-                  .attr("fill", zScale);
+        d3.tsv("data.tsv", function(error, data) {
 
-             
+          data.forEach(function(d) {
+            d.date = parseDate(d.date);
+            d.value = +d.value;
+          });
 
+          var dataByGroup = nest.entries(data);
 
+          stack(dataByGroup);
+          x.domain(dataByGroup[0].values.map(function(d) { return d.date; }));
+          xScale.domain(dataByGroup.map(function(d) { return d.key; }));
+          yScale.domain([0, d3.max(data, function(d) { return d.value; })]).range([xScale.rangeBand(), 0]);
 
+          var group = svg.selectAll(".group")
+              .data(dataByGroup)
+            .enter().append("g")
+              .attr("class", "group")
+              .attr("transform", function(d) { return "translate(0," + xScale(d.key) + ")"; });
+
+         
+          group.selectAll("rect")
+              .data(function(d) { return d.values; })
+            .enter().append("rect")
+              .style("fill", function(d) { return color(d.group); })
+              .attr("x", function(d) { return x(d.date); })
+              .attr("y", function(d) { return yScale(d.value); })
+              .attr("width", x.rangeBand())
+              .attr("height", function(d) { return xScale.rangeBand() - yScale(d.value); });
+          
         };
-                    function type(d, i, columns) {
-              for (i = 1, t = 0; i < 7; ++i) t += d[columns[i]] = +d[columns[i]];
-              d.total = t;
-              return d;
-            }
 
         // http://bl.ocks.org/mbostock/1134768 참고사이트
         //redraw 닫기;

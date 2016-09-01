@@ -1,0 +1,76 @@
+$메인: #55b327;
+* {
+    outsline: 1px solid black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    word-spacing: 0.02rem;
+    list-style-type: none;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    height: 5rem;
+    left: 0;
+    right: 0;
+    border-bottom: 3px solid $메인;
+}
+
+.logo {
+    height: 3rem;
+    padding: 1rem;
+    padding-left: 0.3rem;
+}
+
+.fa-bars {
+    font-size: 1.6rem;
+    padding-top: 2rem;
+    position: absolute;
+    right: 0.5rem;
+    color: $메인;
+}
+
+.topRightSide {
+    display: none;
+}
+
+.middle {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    right: 0;
+}
+
+.bottom {
+    position: absolute;
+    height: 9rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1.8px solid #55b327;
+    font-size: 0.78rem;
+    line-height: 1.2rem;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    color: rgb(100, 100, 100);
+}
+
+.letterSpace {
+    display: none;
+}
+
+.picture {
+    width: 320px;
+}
+
+.middleTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
