@@ -55,25 +55,28 @@ a:hover {
     list-style-type: none;
     position: absolute;
     top: 5rem;
-   width:100%;
+    width: 100%;
 }
 
 .bottom {
     position: absolute;
-    height: 9rem;
-    bottom: 0;
+    top:120rem;
+    
+    padding-top:1rem;
+    padding-bottom: 1rem;
     left: 0;
     right: 0;
-    border-top: 1.8px solid #55b327;
+    
     font-size: 0.78rem;
     line-height: 1.2rem;
-    padding-top: 0.5rem;
-    padding-left: 1rem;
+    
     color: rgb(100, 100, 100);
 }
 
 .letterSpace {
-    display: none;
+   text-align: center;
+    border-top: 1.8px solid #55b327;
+    padding-top:1rem;
 }
 
 .picture {
@@ -102,14 +105,44 @@ a:hover {
     position: absolute;
     left: 0;
     right: 0;
-    padding-left: 1rem;
+    text-align: center;
     padding-top: 1rem;
 }
 
 .studyName li {
     list-style-type: none;
-    width: 100%;
-    height: 6rem;
+    width: 40%;
+    margin:0 auto;
+    height: 9rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.emoticon {
+    background-color: #55b327;
+    display: block;
+    line-height: 5rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 0 auto;
+}
+
+.emoticon:hover {
+    background-color: white;
+    color: #55b327;
+    font-size: 2.5rem;
+    line-height: 5rem;
+}
+
+.studybigName {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
 }
 
 
@@ -117,9 +150,11 @@ a:hover {
 
 .enrollment {
     position: absolute;
-    top: 32rem;
+    top: 54rem;
     left: 0;
     right: 0;
+    background-color:#B3C905;
+    height:25rem;
 }
 
 .middleFootLeft {
@@ -132,37 +167,8 @@ a:hover {
 
 .studyNameTag {
     position: relative;
-    left: 4rem;
-    top: -3rem;
     height: 3rem;
     line-height: 3rem;
-}
-
-.emoticon {
-    background-color: #55b327;
-    display: block;
-    line-height: 3rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    color: white;
-    text-align: center;
-    font-size: 2rem;
-}
-
-.emoticon:hover {
-    background-color: white;
-    color: #55b327;
-    font-size: 2.1rem;
-    line-height: 3.8rem;
-}
-
-.studybigName {
-    margin-top: 3rem;
-    margin-bottom:1.5rem;
-    font-weight: bold;
-    text-align: center;
-    font-size: 2rem;
 }
 
 .fa-circle {
@@ -177,8 +183,8 @@ a:hover {
     position: absolute;
     top: 10rem;
     width: 6rem;
-    left:35vw;
-    right:35vw;
+    left: 35vw;
+    right: 35vw;
     font-size: 0.8rem;
 }
 
@@ -189,5 +195,65 @@ a:hover {
 }
 
 .middleClickMenu {
+    display: none;
+}
+
+.fastClick {
+    position: absolute;
+    top:7.5rem;
+    left: 12vw;
+    right: 12vw;
+    
+}
+
+.fastClick li {
+    height: 3rem;
+    line-height: 3rem;
+    text-align:center;
+    margin-bottom:0.7rem;
+    background-color:white;
+}
+
+.contact {
+   position: relative;
+    bottom:0;
+    text-align:center;    
+    line-height:1.5rem;
+    color:black;
+    padding-bottom:1rem;
+     
+    
+}
+
+.greenPoint {
+    display:none;
+}
+
+.bottomPic {position: absolute;
+    top:-2.5rem;
+    width:320px;
+    margin: 0 auto;
+    text-align:center;
+    
+}
+
+.contactNumber {
+    
+    font-size:1.8rem;
+    line-height: 3rem;
+    
+}
+
+.telephone {
+    font-weight: bold;
+    color:#89653B;
+}
+
+.fax {
+    font-weight: bold;
+    color:#B3C905;
+}
+
+.adress {
     display: none;
 }
