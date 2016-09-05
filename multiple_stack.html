@@ -8,19 +8,12 @@
     <script src="d3.min.js" type="text/javascript"></script>
 
     <style>
-          
+        body{
+            width:1000px;
+        }
+        
         text {
             font: 10px sans-serif;
-        }
-        
-        .axis path {
-            display: none;
-        }
-        
-        .axis line {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
         }
         
         .group-label {
@@ -30,8 +23,15 @@
         
         form {
             position: absolute;
-            right: 10px;
-            top: 10px;
+            right: 12rem;
+            top: 2rem;
+        }
+        
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
         }
     </style>
     <form>
@@ -42,29 +42,115 @@
     </form>
 
 
-    </head>
-  
+</head>
+
 <body>
-     <svg id="chart"> </svg>
+    <svg id="chart"> </svg>
     <script>
+        //-------------------------------------Data-------------------------------------  
+
+        var nest = d3.nest().key(function (d) {
+            return d.group;
+        });
         var dateFormat = d3.time.format('%Y-%m');
         var dataSet = [];
         var multiStack = d3.csv('data/multistack.csv', function (err, swim) {
             swim.forEach(function (row) {
-                                 
-                row['group'] = +row['group'];
-                row['date']= dateFormat.parse(row['date']);
-                row['value'] = +row['value'];
-                  });
-                
 
-           
+                row['group'] = +row['group'];
+                row['date'] = dateFormat.parse(row['date']);
+                row['value'] = +row['value'];
+            })
 
             dataSet = swim;
-            
+            redraw();
         });
-        
-        console.log(dataSet);
+
+        var dataByGroup = nest.entries(dataSet);
+
+
+
+        //---------------------------------------Layout---------------------------------- 
+
+        var MARGIN = {
+            TOP: 100,
+            BOTTOM: 100,
+            LEFT: 100,
+            RIGHT: 0
+        };
+
+
+        var Width = 800;
+        var Height = 400;
+
+
+        //---------------------------------------Scale-----------------------------------        
+        var redraw = function () {
+
+            var xScale = d3.time.scale()
+                .domain([new Date(dataSet[0].date),
+                    d3.time.day.offset(new Date(dataSet[dataSet.length - 1].date), 1)
+                ]) //여기서 1은 offset 안에 있는것이므로 이것을 검색하면 알 수 있다.
+                .rangeRound([0, Width - MARGIN.LEFT - MARGIN.RIGHT]);
+
+
+            var yScale = d3.scale.linear()
+                .domain([d3.max(dataSet, function (d) {
+                    return d.value;
+                }), 0])
+                .rangeRound([0, Height - MARGIN.TOP - MARGIN.BOTTOM]);
+
+            var y0Scale = d3.scale.linear();
+
+
+            //------------------------------------Axis--------------------------------------------
+
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .tickSize(10)
+                .ticks(d3.time.date, 1) //start stop //이렇게 1이 스탑인데 맞나요? 이게뭘까?
+                .tickFormat(d3.time.format('%Y-%m'));
+
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left')
+                .tickSize(3)
+                .tickFormat(function (d) {
+                    return d + '명';
+                });
+
+            //---------------------------------call Axis------------------------------------------
+
+            var svg = d3.select("svg")
+                .attr("width", Width + 50)
+                .attr("height", Height);
+
+            var realChart = svg
+                .append('g')
+                .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
+
+            realChart.append('g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
+                .style('stroke-width', '1')
+                .call(xAxis)
+                .selectAll('text')
+                .style('text-anchor', 'middle');
+
+            realChart.append("g")
+                .attr("class", "y axis")
+                .attr('transform', 'transelate(0, ' + (Width - MARGIN.LEFT - MARGIN.RIGHT) + ')')
+                .style('stroke-width', '1')
+                .call(yAxis);
+
+
+
+
+        }; // redraw---------- 끝내기
     </script>
+
 </body>
+
 </html>
