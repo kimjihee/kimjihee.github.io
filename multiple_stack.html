@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Multi or Stack</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <script src="d3.min.js" type="text/javascript"></script>
+
+    <style>
+          
+        text {
+            font: 10px sans-serif;
+        }
+        
+        .axis path {
+            display: none;
+        }
+        
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        
+        .group-label {
+            font-weight: bold;
+            text-anchor: end;
+        }
+        
+        form {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+    </style>
+    <form>
+        <label>
+            <input type="radio" name="mode" value="multiples" checked> Multiples</label>
+        <label>
+            <input type="radio" name="mode" value="stacked"> Stacked</label>
+    </form>
+
+
+    </head>
+  
+<body>
+     <svg id="chart"> </svg>
+    <script>
+        var dateFormat = d3.time.format('%Y-%m');
+        var dataSet = [];
+        var multiStack = d3.csv('data/multistack.csv', function (err, swim) {
+            swim.forEach(function (row) {
+                                 
+                row['group'] = +row['group'];
+                row['date']= dateFormat.parse(row['date']);
+                row['value'] = +row['value'];
+                  });
+                
+
+           
+
+            dataSet = swim;
+            
+        });
+        
+        console.log(dataSet);
+    </script>
+</body>
+</html>
