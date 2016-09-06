@@ -93,13 +93,15 @@
         var redraw = function () {
             
             var xScale = d3.time.scale()
-                .rangeRoundBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT]);
+                .range([0, Width - MARGIN.LEFT - MARGIN.RIGHT]);
 
 
             var yScale = d3.scale.linear()
-                ;
+                           .range([0, Height - MARGIN.TOP - MARGIN.BOTTOM]);
+          
 
-            var y0Scale = d3.scale.linear().range([0, Height - MARGIN.TOP - MARGIN.BOTTOM]);
+            var y0Scale = d3.scale.linear();
+               
             
             var nest = d3.nest()
                 .key(function(d) { return d.group; });
@@ -117,7 +119,7 @@
 
               stack(dataByGroup);
               xScale.domain(dataByGroup[0].values.map(function(d) { return d.date; }));
-              yScale.domain(dataByGroup.map(function(d) { return d.key; }));//key값은 group
+              yScale.domain(dataByGroup.map(function(d) { return d.key; }));//key 값은 group
               y0Scale.domain([0,d3.max(dataSet, function(d) { return d.value; }) ]).range([yScale.range(),0]);
 
          
@@ -166,7 +168,9 @@
                 .call(yAxis);
 
 
-        }; // redraw -------------------------- 끝내기
+
+
+        }; // redraw---------- 끝내기
     </script>
 
 </body>
