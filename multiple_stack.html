@@ -46,31 +46,10 @@
 
 <body>
     <svg id="chart"> </svg>
+    
     <script>
-        //-------------------------------------Data-------------------------------------  
-
-        var nest = d3.nest().key(function (d) {
-            return d.group;
-        });
-        var dateFormat = d3.time.format('%Y-%m');
-        var dataSet = [];
-        var multiStack = d3.csv('data/multistack.csv', function (err, swim) {
-            swim.forEach(function (row) {
-
-                row['group'] = +row['group'];
-                row['date'] = dateFormat.parse(row['date']);
-                row['value'] = +row['value'];
-            })
-
-            dataSet = swim;
-            redraw();
-        });
-
-        var dataByGroup = nest.entries(dataSet);
-
-
-
-        //---------------------------------------Layout---------------------------------- 
+        
+  //---------------------------------------Layout---------------------------------- 
 
         var MARGIN = {
             TOP: 100,
@@ -82,25 +61,67 @@
 
         var Width = 800;
         var Height = 400;
+        
+        
+        //-------------------------------------Data-------------------------------------  
+        
+        
 
+        
+               
+        var nest = d3.nest().key(function (d) {
+            return d.group;
+        });
+        var dateFormat = d3.time.format('%Y-%m-%d');
+        var dataSet = [];
+        var multiStack = d3.csv('data/multistack.csv', function (err, swim) {
+            swim.forEach(function (row) {
 
-        //---------------------------------------Scale-----------------------------------        
+                row['group'] = +row['group'];
+                row['date'] = dateFormat.parse(row['date']);
+                row['value'] = +row['value'];
+            })
+
+            dataSet = swim;
+            redraw();
+                       
+        });  
+
+   //---------------------------------------Scale-----------------------------------        
+        
+        
         var redraw = function () {
-
+            
             var xScale = d3.time.scale()
-                .domain([new Date(dataSet[0].date),
-                    d3.time.day.offset(new Date(dataSet[dataSet.length - 1].date), 1)
-                ]) //여기서 1은 offset 안에 있는것이므로 이것을 검색하면 알 수 있다.
-                .rangeRound([0, Width - MARGIN.LEFT - MARGIN.RIGHT]);
+                .rangeRoundBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT]);
 
 
             var yScale = d3.scale.linear()
-                .domain([d3.max(dataSet, function (d) {
-                    return d.value;
-                }), 0])
-                .rangeRound([0, Height - MARGIN.TOP - MARGIN.BOTTOM]);
+                ;
 
-            var y0Scale = d3.scale.linear();
+            var y0Scale = d3.scale.linear().range([0, Height - MARGIN.TOP - MARGIN.BOTTOM]);
+            
+            var nest = d3.nest()
+                .key(function(d) { return d.group; });
+
+            var stack = d3.layout.stack()
+                .values(function(d) { return d.values; })
+                .x(function(d) { return d.date; })
+                .y(function(d) { return d.value; })
+                .out(function(d, y0) { d.valueOffset = y0; });
+            
+
+            var color = d3.scale.category10();
+
+            var dataByGroup = nest.entries(dataSet);
+
+              stack(dataByGroup);
+              xScale.domain(dataByGroup[0].values.map(function(d) { return d.date; }));
+              yScale.domain(dataByGroup.map(function(d) { return d.key; }));//key값은 group
+              y0Scale.domain([0,d3.max(dataSet, function(d) { return d.value; }) ]).range([yScale.range(),0]);
+
+         
+            console.log(dataByGroup);
 
 
             //------------------------------------Axis--------------------------------------------
@@ -108,24 +129,24 @@
             var xAxis = d3.svg.axis()
                 .scale(xScale)
                 .orient('bottom')
-                .tickSize(10)
-                .ticks(d3.time.date, 1) //start stop //이렇게 1이 스탑인데 맞나요? 이게뭘까?
+                .tickSize(2)
+                .ticks(d3.time.date,1) //start stop //이렇게 1이 스탑인데 맞나요? 이게뭘까?
                 .tickFormat(d3.time.format('%Y-%m'));
 
 
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
-                .tickSize(3)
+                .tickSize(2)
                 .tickFormat(function (d) {
-                    return d + '명';
+                    return d + 'Km';
                 });
 
             //---------------------------------call Axis------------------------------------------
 
             var svg = d3.select("svg")
-                .attr("width", Width + 50)
-                .attr("height", Height);
+                .attr("width", Width + MARGIN.LEFT + MARGIN.RIGHT)
+                .attr("height", Height + MARGIN.TOP + MARGIN.BOTTOM);
 
             var realChart = svg
                 .append('g')
@@ -141,14 +162,11 @@
 
             realChart.append("g")
                 .attr("class", "y axis")
-                .attr('transform', 'transelate(0, ' + (Width - MARGIN.LEFT - MARGIN.RIGHT) + ')')
                 .style('stroke-width', '1')
                 .call(yAxis);
 
 
-
-
-        }; // redraw---------- 끝내기
+        }; // redraw -------------------------- 끝내기
     </script>
 
 </body>
