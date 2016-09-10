@@ -1,5 +1,5 @@
 * {
-    outlsine: 1px solid black;
+    oustline: 1px solid black;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,6 +8,12 @@
     list-style-type: none;
     font-family: 'Nanum Gothic', sans-serif;
     list-style-type: none;
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+    body {
+        background-color: yellow;
+    }
 }
 
 a:link {
@@ -55,32 +61,32 @@ a:hover {
     list-style-type: none;
     position: absolute;
     top: 5rem;
-    width: 100%;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    
 }
 
 .bottom {
     position: absolute;
-    top:120rem;
-    
-    padding-top:1rem;
+    top: 100rem;
+    padding-top: 1rem;
     padding-bottom: 1rem;
     left: 0;
     right: 0;
-    
     font-size: 0.78rem;
     line-height: 1.2rem;
-    
     color: rgb(100, 100, 100);
 }
 
 .letterSpace {
-   text-align: center;
+    text-align: center;
     border-top: 1.8px solid #55b327;
-    padding-top:1rem;
+    padding-top: 1rem;
 }
 
 .picture {
-    width: 320px;
+    width: 100%;
 }
 
 .middleTop {
@@ -112,7 +118,7 @@ a:hover {
 .studyName li {
     list-style-type: none;
     width: 40%;
-    margin:0 auto;
+    margin: 0 auto;
     height: 9rem;
     padding-bottom: 2rem;
     text-align: center;
@@ -153,8 +159,8 @@ a:hover {
     top: 54rem;
     left: 0;
     right: 0;
-    background-color:#B3C905;
-    height:25rem;
+    background-color: #B3C905;
+    height: 25rem;
 }
 
 .middleFootLeft {
@@ -180,15 +186,20 @@ a:hover {
 }
 
 .middleClickDot {
+    display: block;
     position: absolute;
     top: 10rem;
+    left:0;
+    right:0;
     width: 6rem;
-    left: 35vw;
-    right: 35vw;
+    box-sizing: border-box;
     font-size: 0.8rem;
+    margin: 0 auto;
+   
 }
 
 .middleClickDot li {
+    margin:0 auto;
     float: left;
     width: 20%;
     text-align: center;
@@ -200,60 +211,66 @@ a:hover {
 
 .fastClick {
     position: absolute;
-    top:7.5rem;
+    top: 7.5rem;
     left: 12vw;
     right: 12vw;
-    
 }
 
 .fastClick li {
     height: 3rem;
     line-height: 3rem;
-    text-align:center;
-    margin-bottom:0.7rem;
-    background-color:white;
+    text-align: center;
+    margin-bottom: 0.7rem;
+    background-color: white;
 }
 
 .contact {
-   position: relative;
-    bottom:0;
-    text-align:center;    
-    line-height:1.5rem;
-    color:black;
-    padding-bottom:1rem;
-     
-    
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    line-height: 1.5rem;
+    color: black;
+    padding-bottom: 1rem;
 }
 
 .greenPoint {
-    display:none;
+    display: none;
 }
 
-.bottomPic {position: absolute;
-    top:-2.5rem;
-    width:320px;
+.bottomPic {
+    position: absolute;
+    top: -2.5rem;
+    width: 100%;
     margin: 0 auto;
-    text-align:center;
-    
+    text-align: center;
 }
 
 .contactNumber {
-    
-    font-size:1.8rem;
+    font-size: 1.8rem;
     line-height: 3rem;
-    
 }
 
 .telephone {
     font-weight: bold;
-    color:#89653B;
+    color: #89653B;
 }
 
 .fax {
     font-weight: bold;
-    color:#B3C905;
+    color: #B3C905;
 }
 
 .adress {
     display: none;
+}
+
+.7r {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#imsvg {
+    width: 800px;
 }
