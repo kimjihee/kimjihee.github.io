@@ -93,11 +93,11 @@
         var redraw = function () {
             
             var xScale = d3.scale.ordinal()
-                .rangeBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT],0.2);
+                .rangeBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT], 0.2);
 
 
             var yScale = d3.scale.ordinal()
-                           .rangeBands([Height - MARGIN.TOP - MARGIN.BOTTOM ,0.3]);
+                           .rangeBands([Height - MARGIN.TOP - MARGIN.BOTTOM , 0], 0.2 );
           
 
             var y0Scale = d3.scale.linear();
@@ -116,14 +116,11 @@
             var color = d3.scale.category10();
 
             var dataByGroup = nest.entries(dataSet);
-
-              stack(dataByGroup);
+            stack(dataByGroup);
+            
               xScale.domain(dataByGroup[0].values.map(function(d) { return d.date; }));
               yScale.domain(dataByGroup.map(function(d) { return d.key; }));//key 값은 group
               y0Scale.domain([0,d3.max(dataSet, function(d) { return d.value; }) ]).range([yScale.rangeBand(),0]);
-
-         
-            console.log(dataByGroup);
 
 
             //------------------------------------Axis--------------------------------------------
@@ -173,13 +170,25 @@
 //-------------------------------------draw-Graph------------------------------------------
             
             
+            // 1 + 2 + 3
+            // 3 + 3
+            // 6
+            // "A" + (2 + 3)
+            // "A" + 5
+            // "A" + "5"
+            // "A5"
+            
+            // "A" + "2" + 3
+            // "A2" + 3
+            // "A2" + "3"
+            // "A23"
             
               var group = svg.selectAll(".group")
                   .data(dataByGroup)
                   .enter()
                   .append("g")
                   .attr("class", "group")
-                  .attr("transform", function(d) { return "translate(0," + yScale(d.key) + ")"; })
+                  .attr("transform", function(d) { return "translate(" + MARGIN.LEFT + "," + (yScale(d.key) + MARGIN.TOP) +")" ; })
                  ;
 
               group.selectAll("rect")
@@ -193,35 +202,35 @@
                   .attr("height", function(d) { return yScale.rangeBand() - y0Scale(d.value); });
 
              
-//
-//              var timeout = setTimeout(function() {
-//                d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
-//              }, 2000);
-//
-            
-//             d3.selectAll("input").on("change", change);
-//            
-//              function change() {
-//                clearTimeout(timeout);
-//                if (this.value === "multiples") transitionMultiples();
-//                else transitionStacked();
-//              }
-//
-//              function transitionMultiples() {
-//                var t = svg.transition().duration(750),
-//                    g = t.selectAll(".group").attr("transform", function(d) { return "translate(0," + + yScale(d.key) + ")"; });
-//                g.selectAll("rect").attr("y", function(d) { return y0Scale(d.value); });
-//                g.select(".group-label").attr("y", function(d) { return y0Scale(d.values[0].value / 2); })
-//              }
 
-//              function transitionStacked() {
-//                var t = svg.transition().duration(750),
-//                    g = t.selectAll(".group")
-//                         .attr("transform", "translate(0," + yScale(yScale.domain()[0]) + ")");
-//                        g.selectAll("rect")
-//                         .attr("y", function(d) { return y0Scale(d.value + d.valueOffset); });
-//                      
-//              }
+              var timeout = setTimeout(function() {
+                d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
+              }, 2000);
+
+            
+             d3.selectAll("input").on("change", change);
+            
+              function change() {
+                clearTimeout(timeout);
+                if (this.value === "multiples") transitionMultiples();
+                else transitionStacked();
+              }
+
+              function transitionMultiples() {
+                var t = svg.transition().duration(750),
+                    g = t.selectAll(".group").attr("transform", function(d) { return "translate(" + MARGIN.LEFT + "," + (yScale(d.key) + MARGIN.TOP) +")" ; });
+                g.selectAll("rect").attr("y", function(d) { return y0Scale(d.value); });
+                g.select(".group-label").attr("y", function(d) { return y0Scale(d.values[0].value / 2); })
+              }
+
+              function transitionStacked() {
+                var t = svg.transition().duration(750),
+                    g = t.selectAll(".group")
+                         .attr("transform", "translate(" + MARGIN.LEFT + "," + (yScale(yScale.domain()[0])+ MARGIN.TOP) + ")");
+                        g.selectAll("rect")
+                         .attr("y", function(d) { return y0Scale(d.value + d.valueOffset); });
+                      
+              }
 
         
         
