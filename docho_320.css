@@ -1,5 +1,5 @@
 * {
-    oustline: 1px solid black;
+    ouㅗtline: 1px solid black;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -69,12 +69,12 @@ a:hover {
 
 .bottom {
     position: absolute;
-    top: 100rem;
+    top: 114rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     left: 0;
     right: 0;
-    font-size: 0.78rem;
+    font-size: 0.7rem;
     line-height: 1.2rem;
     color: rgb(100, 100, 100);
 }
@@ -83,6 +83,7 @@ a:hover {
     text-align: center;
     border-top: 1.8px solid #55b327;
     padding-top: 1rem;
+    
 }
 
 .picture {
@@ -156,7 +157,7 @@ a:hover {
 
 .enrollment {
     position: absolute;
-    top: 54rem;
+    top: 67rem;
     left: 0;
     right: 0;
     background-color: #B3C905;
@@ -175,6 +176,7 @@ a:hover {
     position: relative;
     height: 3rem;
     line-height: 3rem;
+    font-size:0.9rem;
 }
 
 .fa-circle {
@@ -246,8 +248,9 @@ a:hover {
 }
 
 .contactNumber {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     line-height: 3rem;
+    font-weight:bold;
 }
 
 .telephone {
@@ -264,13 +267,30 @@ a:hover {
     display: none;
 }
 
-.7r {
+.sevenr {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top:53rem;
+    left: 5%;
+    right: 5%;
+    
+    
+    
 }
 
 #imsvg {
     width: 800px;
+}
+.sevenRP {
+    width:100%;
+}
+
+.campain {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left:1rem;
+    margin-right:1rem;
+    
 }
