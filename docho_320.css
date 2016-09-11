@@ -10,11 +10,6 @@
     list-style-type: none;
 }
 
-@media screen and (min-width: 321px) and (max-width: 768px) {
-    body {
-        background-color: yellow;
-    }
-}
 
 a:link {
     color: black;
@@ -190,7 +185,7 @@ a:hover {
 .middleClickDot {
     display: block;
     position: absolute;
-    top: 10rem;
+    top: 10.5rem;
     left:0;
     right:0;
     width: 6rem;
