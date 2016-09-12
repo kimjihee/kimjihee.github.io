@@ -135,10 +135,10 @@ a:hover {
 }
 
 .emoticon:hover {
-    background-color: white;
-    color: #55b327;
-    font-size: 2.5rem;
-    line-height: 5rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    font-size: 3rem;
+    line-height: 5.6rem;
 }
 
 .studybigName {
@@ -224,7 +224,7 @@ a:hover {
 }
 
 .fastClick li:hover{
-    color:#55a633;
+   
     font-weight: bold;
    
     
