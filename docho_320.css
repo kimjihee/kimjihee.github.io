@@ -45,7 +45,7 @@ a:hover {
     font-size: 1.6rem;
     padding-top: 1.5rem;
     position: absolute;
-    right: 0.5rem;
+    right: 5%;
 }
 
 .topRightSide {
@@ -76,7 +76,8 @@ a:hover {
 
 .letterSpace {
     text-align: center;
-    border-top: 1.8px solid #55b327;
+    margin-top:1.5rem;
+    border-top: 2px solid #55b327;
     padding-top: 1rem;
     
 }
@@ -97,7 +98,7 @@ a:hover {
 .middleMiddle {
     list-style-type: none;
     position: absolute;
-    top: 10rem;
+    top: 11rem;
     left: 0rem;
     right: 0;
     padding-left: 1rem;
@@ -141,10 +142,10 @@ a:hover {
 }
 
 .studybigName {
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     margin-bottom: 1.5rem;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 
@@ -152,7 +153,7 @@ a:hover {
 
 .enrollment {
     position: absolute;
-    top: 67rem;
+    top: 68rem;
     left: 0;
     right: 0;
     background-color: #B3C905;
@@ -208,7 +209,7 @@ a:hover {
 
 .fastClick {
     position: absolute;
-    top: 7.5rem;
+    top: 7rem;
     left: 12vw;
     right: 12vw;
 }
@@ -219,6 +220,14 @@ a:hover {
     text-align: center;
     margin-bottom: 0.7rem;
     background-color: white;
+    border-radius: 5px;
+}
+
+.fastClick li:hover{
+    color:#55a633;
+    font-weight: bold;
+   
+    
 }
 
 .contact {
@@ -277,7 +286,10 @@ a:hover {
 }
 .sevenRP {
     width:100%;
+    
 }
+
+
 
 .campain {
     margin-top: 2.5rem;
