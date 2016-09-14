@@ -9,58 +9,6 @@
     font-family: 'Nanum Gothic', sans-serif;
 }
 
-.top {
-    position: absolute;
-    top: 0;
-    height: 5rem;
-    left: 0;
-    right: 0;
-}
-
-.topBody {
-    position: absolute;
-    top: 0;
-    left: 12vw;
-    right: 12vw;
-}
-
-.middle {
-    position: absolute;
-    top: 4.5rem;
-    left: 0;
-    right: 0;
-    height: 30.5rem;
-}
-
-.middleTop {
-    position: absolute;
-    height: 29.5rem;
-    top: 0;
-    left: 12vw;
-    right: 12vw;
-}
-
-.middleMiddle {
-    position: absolute;
-    top: 34rem;
-    height: 43.5rem;
-    left: 12vw;
-    right: 12vw;
-}
-
-.bottom {
-    position: absolute;
-    height: 9rem;
-    top: 103.5rem;
-    left: 12vw;
-    right: 12vw;
-    border-top: 1.8px solid #55b327;
-    font-size: 0.78rem;
-    line-height: 1.2rem;
-    padding-top: 0.5rem;
-    color: rgb(100, 100, 100);
-}
-
 a:link {
     color: black;
     text-decoration: none;
@@ -76,113 +24,419 @@ a:hover {
     text-decoration: none;
 }
 
+
+/*--------------------------here-----------------------------*/
+
+@media screen and (max-width: 320px) {
+   .top {
+    position: absolute;
+    top: 0;
+    height: 5rem;
+    left: 0;
+    right: 0;
+    border-bottom: 3px solid #55b327;
+}
+
 .logo {
-    width: 12rem;
-    margin: 1rem auto;
+    width: 2rem;
+    padding: 1rem;
+    padding-left: 0.3rem;
+}
+
+.fa-bars {
+    font-size: 1.6rem;
+    
+    position: absolute;
+    top:1.5rem;
+    right: 5vw;
 }
 
 .topRightSide {
-    position: absolute;
-    left: 14rem;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    display: none;
 }
 
-.loginMenu {
+.middle {
+    list-style-type: none;
     position: absolute;
-    top: 0;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    
+}
+
+.bottom {
+    position: absolute;
+    top: 114rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    left: 0;
     right: 0;
     font-size: 0.7rem;
-    padding-top: 0.7rem;
-    padding-bottom: 0.7rem;
+    line-height: 1.2rem;
+    color: rgb(100, 100, 100);
 }
 
-.loginMenu li {
-    float: left;
-    padding-left: 1rem;
-}
-
-.topMenu {
-    position: absolute;
-    bottom: 1.2rem;
-    left: 0;
-    right: 0;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.topMenu li {
-    float: left;
-    padding-left: 3rem;
-}
-
-#inputGoogle {
-    width: 11.4rem;
-}
-
-.fa-search {
-    position: absolute;
-    right: 0.3rem;
-    line-height: 21px;
-}
-
-.colorPoint {
-    background-color: #55b327;
-    color: white;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
-}
-
-.point {
-    color: white;
-}
-
-a .point:link {
-    color: white !important;
-}
-
-.input_text {
-    position: absolute;
-    right: 0;
-}
-
-.middleTop li {
-    position: absolute;
-    height: 440px;
-    left: 0;
-    right: 0;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.firstPic {
-    position: absolute;
+.letterSpace {
+    text-align: center;
+    margin-top:1.5rem;
+    border-top: 2px solid #55b327;
+    padding-top: 1rem;
+    
 }
 
 .picture {
     width: 100%;
 }
 
+.middleTop {
+    list-style-type: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+}
+
+.middleMiddle {
+    list-style-type: none;
+    position: absolute;
+    top: 11rem;
+    left: 0;
+    right: 0;
+    padding-left: 1rem;
+}
+
+.studyName {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.studyName li {
+    list-style-type: none;
+    width: 40%;
+    margin: 0 auto;
+    height: 9rem;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.emoticon {
+    background-color: #55b327;
+    display: block;
+    line-height: 5rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 0 auto;
+}
+
+.emoticon:hover {
+    width: 5.5rem;
+    height: 5.5rem;
+    font-size: 3rem;
+    line-height: 5.6rem;
+}
+
+.studybigName {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+
+/*--------------일단 없애고 봄---------------------*/
+
+.enrollment {
+    position: absolute;
+    top: 68rem;
+    left: 0;
+    right: 0;
+    background-color: #B3C905;
+    height: 25rem;
+}
+
+.middleFootLeft {
+    display: none;
+}
+
+.newsBody {
+    display: none;
+}
+
+.studyNameTag {
+    position: relative;
+    height: 3rem;
+    line-height: 3rem;
+    font-size:0.9rem;
+}
+
+.fa-circle {
+    color: rgba(200, 200, 200, 0.8);
+}
+
+.middleClickDot li i:hover {
+    color: grey;
+}
+
+.middleClickDot {
+    display: block;
+    position: absolute;
+    top: 10.5rem;
+    left:0;
+    right:0;
+    width: 6rem;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+    margin: 0 auto;
+   
+}
+
+.middleClickDot li {
+    margin:0 auto;
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+
+.middleClickMenu {
+    display: none;
+}
+
+.fastClick {
+    position: absolute;
+    top: 7rem;
+    left: 12vw;
+    right: 12vw;
+}
+
+.fastClick li {
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    margin-bottom: 0.7rem;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.fastClick li:hover{
+   
+    font-weight: bold;
+   
+    
+}
+
+.contact {
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    line-height: 1.5rem;
+    color: black;
+    padding-bottom: 1rem;
+}
+
+.greenPoint {
+    display: none;
+}
+
+.bottomPic {
+    position: absolute;
+    top: -2.5rem;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contactNumber {
+    font-size: 1.4rem;
+    line-height: 3rem;
+    font-weight:bold;
+}
+
+.telephone {
+    font-weight: bold;
+    color: #89653B;
+}
+
+.fax {
+    font-weight: bold;
+    color: #B3C905;
+}
+
+.adress {
+    display: none;
+}
+
+.sevenr {
+    position: absolute;
+    top:53rem;
+    left: 5%;
+    right: 5%;
+    
+    
+    
+}
+
+#imsvg {
+    width: 800px;
+}
+.sevenRP {
+    width:100%;
+    
+}
+
+
+
+.campain {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left:1rem;
+    margin-right:1rem;
+    
+}
+
+}
+
+
+/*---------------------------here-----------------------------*/
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+   .top {
+    position: absolute;
+    top: 0;
+    height: 5rem;
+    left: 0;
+    right: 0;
+    border-bottom: 3px solid #55b327;
+}
+
+.topBody {
+    position: absolute;
+    top: 0;
+    left: 5vw;
+    right: 5vw;
+}
+
+.middle {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    right: 0;
+}
+
+.middleTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.middleTop li {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.middleMiddle {
+    position: absolute;
+    top: 56vw;
+    height: 43.5rem;
+    left: 0;
+    right: 0;
+}
+
+.bottom {
+    position: absolute;
+    height: 9rem;
+    top: 103.5rem;
+    left: 0;
+    right: 0;
+    border-top: 1.8px solid #55b327;
+    font-size: 0.78rem;
+    line-height: 1.2rem;
+    padding-top: 0.5rem;
+    color: rgb(100, 100, 100);
+    padding-left: 1rem;
+}
+
+
+}
+.logo {
+    width: 400px;
+    padding: 1rem;
+    padding-left: 0.5rem;
+}
+.fa-bars {
+    display: none;
+}
+.fa-search {
+    font-size: 1.3rem;
+    padding-top: 2rem;
+    position: absolute;
+    right: 5%;
+    font-weight: lighter;
+}
+.loginMenu {
+    display: none;
+}
+.topMenu {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    right: 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.topMenu li {
+    float: left;
+    padding-left: 1rem;
+    width: 20%;
+}
+.colorPoint {
+    background-color: #55b327;
+    color: white;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+}
+.point {
+    color: white;
+}
+a .point:link {
+    color: white !important;
+}
+.input_text {
+    position: absolute;
+    right: 0;
+}
+.firstPic {
+    position: absolute;
+}
+.picture {
+    width: 100%;
+}
 .link {
     position: absolute;
     bottom: 1rem;
     width: 18rem;
     right: 2rem;
 }
-
 .text {
     position: absolute;
     top: 0;
 }
-
 .middleClickMenu {
-    position: absolute;
-    bottom: 0;
-    left: 12vw;
-    right: 12vw;
+    display: none;
 }
-
 .middleClickMenu li {
     float: left;
     width: 20%;
@@ -192,7 +446,6 @@ a .point:link {
     color: white;
     background-color: #55b327;
 }
-
 .middleMenuNumber {
     background-color: #418713;
     color: white;
@@ -202,7 +455,6 @@ a .point:link {
     height: 1.7rem;
     line-height: 1.7rem;
 }
-
 .newsBody {
     position: absolute;
     width: 24vw;
@@ -212,7 +464,6 @@ a .point:link {
     overflow: hidden;
     border-bottom: 1px solid rgba(200, 200, 200, 0.8);
 }
-
 .newsName {
     position: absolute;
     top: 0;
@@ -220,7 +471,6 @@ a .point:link {
     width: 24vw;
     left: 0;
 }
-
 .newsName li {
     float: left;
     height: inherit;
@@ -234,12 +484,10 @@ a .point:link {
     font-weight: bold;
     text-align: center;
 }
-
 .newsName li:hover {
     background-color: rgb(120, 120, 120);
     color: white;
 }
-
 .texts {
     position: absolute;
     top: 2.5rem;
@@ -248,7 +496,6 @@ a .point:link {
     border-left: 1px solid rgba(200, 200, 200, 0.8);
     border-right: 1px solid rgba(200, 200, 200, 0.8);
 }
-
 .texts li {
     height: 1.9rem;
     font-size: 0.8rem;
@@ -257,53 +504,47 @@ a .point:link {
     width: 290px;
     text-overflow: ellipsis;
 }
-
 .study {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 48vw;
+    left: 5vw;
+    right: 5vw;
     height: 10.5rem;
 }
-
 .emoticon {
     background-color: #55b327;
     display: block;
-    line-height: 4rem;
-    width: 4rem;
-    height: 4rem;
+    line-height: 5rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
     color: white;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 1.5rem auto;
 }
-
 .emoticon:hover {
     background-color: white;
-    border: 4px solid rgba(85, 179, 39, 0.7);
+    border: 3px solid rgba(85, 179, 39, 1);
     color: #55b327;
-    font-size: 2.1rem;
-    line-height: 3.8rem;
+    font-size: 2.5rem;
+    line-height: 4.5rem;
 }
-
 .studyName li {
     float: left;
     width: 20%;
     height: 12.5rem;
 }
-
 .firstBigName {
     position: absolute;
-    top: 0;
+    top: -2.5rem;
     left: 0;
     height: 2.5rem;
-    width: 98%;
+    width: 100%;
     font-weight: bold;
     line-height: 2.5rem;
-    border-top: 2.7px solid rgba(255, 236, 17, 0.75);
+    /*    border-bottom: 2.7px solid rgba(255, 236, 17, 0.75);*/
 }
-
 .studyName {
     position: absolute;
     top: 2.5rem;
@@ -311,114 +552,112 @@ a .point:link {
     right: 0;
     height: 12.5rem;
 }
-
 .studyNameTag {
-    height: 1rem;
+    height: 1.5rem;
     text-align: center;
-    font-size: 0.8rem;
+    position: relative;
+    line-height: 1.5rem;
+    font-size: 0.9rem;
 }
-
 .finish {
     border-right: 1px solid rgba(200, 200, 200, 0.8);
 }
-
 .select {
     color: white !important;
     background-color: rgb(120, 120, 120);
 }
-
 .greenPoint {
     color: #336a0f;
     font-weight: bold;
 }
-
 .letterSpace {
     word-spacing: 0.1rem;
-    padding-top: 0.5rem;
 }
-
 .studyPicture {
+   display: none;
+}
+.dochoPicture {
+  display: none;
+}
+.realStudyPic {
+    width: 100%;
     position: absolute;
     top: 0;
-    left: 0;
-    width: 24vw;
-    height: 16.5rem;
+    border: 1px solid rgba(200, 200, 200, 0.8);
 }
-
-.dochoPicture {
-    position: absolute;
-    top: 0rem;
-    right: 25.34vw;
-    width: 24vw;
-    height: 16.5rem;
-}
-
-.realStudyPic {
-    width: 98%;
-    position: absolute;
-    bottom: 0;
-    border: 2px solid rgba(200, 200, 200, 0.8);
-}
-
 .middleFoot {
     position: absolute;
-    top: 17.5rem;
+    top: 33vw;
     left: 0;
     right: 0;
 }
-
 .studybigName {
     position: absolute;
+    padding-top:1.5rem;
     top: 0;
-    left: 0;
+    left: 1rem;
     font-weight: bold;
 }
-
-.fastClick {
-    position: absolute;
-    top: 2.5rem;
-    width: 100%;
-    height: 8rem;
-    border: 1px solid rgba(200, 200, 200, 0.8);
-    border-radius: 4px;
-}
-
-.fastClick li {
-    float: left;
-    width: 50%;
-    height: 50%;
-    text-align: center;
-    line-height: 4rem;
-}
-
 .enrollment {
     position: absolute;
+    top: 2vw;
+    left: 0;
     right: 0;
-    width: 24vw;
-    height: 10.5rem;
+    background-color: #B3C905;
+    height: 12rem;
 }
 
-.sandwich {
-    border-right: 1px solid rgba(200, 200, 200, 0.8);
+.newsBody {
+    display: none;
 }
-
-.hamburger {
-    border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-    border-right: 1px solid rgba(200, 200, 200, 0.8);
+.fa-circle {
+    color: rgba(200, 200, 200, 0.8);
 }
-
-.bread {
-    border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+.middleClickDot li i:hover {
+    color: grey;
 }
-
+.middleClickDot {
+    display: block;
+    position: relative;
+    top: 47vw;
+    left: 0;
+    right: 0;
+    width: 6rem;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+    margin: 0 auto;
+}
+.middleClickDot li {
+    margin: 0 auto;
+    float: left;
+    width: 20%;
+    text-align: center;
+}
+.fastClick {
+    position: absolute;
+    top: 3.5rem;
+    left: 6vw;
+    right: 6vw;
+}
+.fastClick li {
+    float: left;
+    width: 22%;
+    margin: 1.5%;
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+}
+.fastClick li:hover {
+    font-weight: bold;
+}
 .fa-pencil {
     color: #55b327;
 }
-
 .fa-paper-plane-o {
     color: #55b327;
 }
-
 .bigName {
     position: absolute;
     top: 0;
@@ -427,18 +666,17 @@ a .point:link {
     font-weight: bold;
     line-height: 2.5rem;
 }
-
 .secondBigName {
-    border-top: 2.7px solid rgba(226, 160, 188, 0.8);
+    /*    border-bottom: 2.7px solid rgba(226, 160, 188, 0.8);*/
+    
     width: 98%;
     position: absolute;
-    top: 0;
+    top: -2.5rem;
     left: 0;
     height: 2.5rem;
     font-weight: bold;
     line-height: 2.5rem;
 }
-
 .circle {
     width: 2rem;
     height: 2rem;
@@ -446,7 +684,6 @@ a .point:link {
     background-color: pink;
     border-radius: 50%;
 }
-
 .middleFootBottom {
     position: absolute;
     top: 36rem;
@@ -454,20 +691,542 @@ a .point:link {
     right: 0;
     height: 20rem;
 }
-
-.shop li {
-    float: left;
-    width: 25%;
-    height: 6rem;
-}
-
-.shop ul {
+.fa-chevron-circle-right {
+    color: #c3d620;
     position: absolute;
-    top: 2.5rem;
+    right: 0.7rem;
+    line-height: 0.8rem;
+    font-size: 1rem !important;
+}
+.textEX {
+    position: absolute;
+    bottom: 0.9rem;
+    font-size: 0.8rem;
+    padding-left: 1rem;
+    font-weight: bold;
     width: 100%;
 }
+.textslid {
+    padding-left: 0.3rem;
+    font-weight: normal;
+    color: dimgrey;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.campain {
+    margin-bottom: 2.5rem;
+    font-weight: bold;
+    padding-left: 1rem;
+}
 
-.shop img {
-    width: 60%;
-    margin: 1.5rem auto;
+/* -----------------------------------getLidOf------------------------------------------------*/
+.bottomPic {
+    display: none;
+}
+
+/*}*/
+.search {
+    display: none;
+    padding: 0;
+}
+#inputGoogle {
+    display: none;
+}
+.topRightSide {
+    position: absolute;
+    left: 30vw;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.sevenRP {
+    padding-left: 1rem;
+    width: 470px;
+}
+.sevenr {
+    position: absolute;
+    top:38vw;
+    left: 5vw;
+    right: 5vw;
+}
+.enrollbigName {
+    position: absolute;
+    top: 1rem;
+    left: 5vw;
+    padding-left: 1rem;
+    font-weight: bold;
+}
+.looking {
+    background-color: rgba(153, 212, 230, 0.9);
+    color: #1e7ebc;
+    text-align: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 7.8rem;
+    right: 5vw;
+}
+.forBr {
+    display: none;
+}
+.find {
+    position: absolute;
+    left: 5vw;
+    right: 5vw;
+}
+.thislogo {
+    width:12rem;
+    padding-top:0.7rem;
+    
+}
+
+.business {
+    
+    position: absolute;
+    top:68vw;
+    left:0;
+    right:0;
+}
+
+.businessUl li{
+    float:left;
+    width:33.33333333333333333333333333333333333333333%;
+    height:100%;
+    line-height:6rem;
+    text-align:center;
+    
+}
+
+.businessUl {
+    height:10rem;
+    padding-top:2rem;
+}
+}
+
+/*---------------------------here-----------------------------*/
+
+@media screen and (min-width: 769px) {
+    .fseven {display: none;}
+    .top {
+        position: absolute;
+        top: 0;
+        height: 5rem;
+        left: 0;
+        right: 0;
+    }
+    .topBody {
+        position: absolute;
+        top: 0;
+        left: 12vw;
+        right: 12vw;
+    }
+    .middle {
+        position: absolute;
+        top: 4.5rem;
+        left: 0;
+        right: 0;
+        height: 30.5rem;
+    }
+    .middleTop {
+        position: absolute;
+        height: 29.5rem;
+        top: 0;
+        left: 12vw;
+        right: 12vw;
+    }
+    .middleMiddle {
+        position: absolute;
+        top: 34rem;
+        height: 43.5rem;
+        left: 12vw;
+        right: 12vw;
+    }
+    .bottom {
+        position: absolute;
+        height: 9rem;
+        top: 103.5rem;
+        left: 12vw;
+        right: 12vw;
+        border-top: 1.8px solid #55b327;
+        font-size: 0.78rem;
+        line-height: 1.2rem;
+        padding-top: 0.5rem;
+        color: rgb(100, 100, 100);
+    }
+    .logo {
+        width: 12rem;
+        margin: 1rem auto;
+    }
+    .topRightSide {
+        position: absolute;
+        left: 14rem;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    .loginMenu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 0.7rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+    }
+    .loginMenu li {
+        float: left;
+        padding-left: 1rem;
+    }
+    .topMenu {
+        position: absolute;
+        bottom: 1.2rem;
+        left: 0;
+        right: 0;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .topMenu li {
+        float: left;
+        padding-left: 3rem;
+    }
+    #inputGoogle {
+        width: 11.4rem;
+    }
+    .fa-search {
+        position: absolute;
+        right: 0.3rem;
+        line-height: 21px;
+    }
+    .colorPoint {
+        background-color: #55b327;
+        color: white;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+    }
+    .point {
+        color: white;
+    }
+    a .point:link {
+        color: white !important;
+    }
+    .input_text {
+        position: absolute;
+        right: 0;
+    }
+    .middleTop li {
+        position: absolute;
+        height: 440px;
+        left: 0;
+        right: 0;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .firstPic {
+        position: absolute;
+    }
+    .picture {
+        width: 100%;
+    }
+    .link {
+        position: absolute;
+        bottom: 1rem;
+        width: 18rem;
+        right: 2rem;
+    }
+    .text {
+        position: absolute;
+        top: 0;
+    }
+    .middleClickMenu {
+        position: absolute;
+        bottom: 0;
+        left: 12vw;
+        right: 12vw;
+    }
+    .middleClickMenu li {
+        float: left;
+        width: 20%;
+        height: 1.7rem;
+        line-height: 0.5rem;
+        font-size: 0.9rem;
+        color: white;
+        background-color: #55b327;
+    }
+    .middleMenuNumber {
+        background-color: #418713;
+        color: white;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        display: inline-block;
+        height: 1.7rem;
+        line-height: 1.7rem;
+    }
+    .newsBody {
+        position: absolute;
+        width: 24vw;
+        right: 0;
+        top: 0;
+        height: 16.5rem;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .newsName {
+        position: absolute;
+        top: 0;
+        height: 2.5rem;
+        width: 24vw;
+        left: 0;
+    }
+    .newsName li {
+        float: left;
+        height: inherit;
+        width: 33.333333333333333333333333333333333333%;
+        line-height: 2.5rem;
+        color: rgb(150, 150, 150);
+        border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+        border-left: 1px solid rgba(200, 200, 200, 0.8);
+        border-top: 1px solid rgba(200, 200, 200, 0.8);
+        font-size: 0.95rem;
+        font-weight: bold;
+        text-align: center;
+    }
+    .newsName li:hover {
+        background-color: rgb(120, 120, 120);
+        color: white;
+    }
+    .texts {
+        position: absolute;
+        top: 2.5rem;
+        width: inherit;
+        padding-top: 0.5rem;
+        border-left: 1px solid rgba(200, 200, 200, 0.8);
+        border-right: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .texts li {
+        height: 1.9rem;
+        font-size: 0.8rem;
+        padding-left: 10px;
+        line-height: 1.9rem;
+        width: 290px;
+        text-overflow: ellipsis;
+    }
+    .study {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right:0;
+        width: 100%;
+        height: 10.5rem;
+    }
+    .emoticon {
+        background-color: #55b327;
+        display: block;
+        line-height: 5rem;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        color: white;
+        text-align: center;
+        font-size: 2.5rem;
+        margin: 1.5rem auto;
+    }
+    .emoticon:hover {
+        background-color: white;
+        border: 4px solid rgba(85, 179, 39, 0.7);
+        color: #55b327;
+        font-size: 2.5rem;
+        line-height: 4.5rem;
+    }
+    .studyName li {
+        float: left;
+        width: 20%;
+        height: 12.5rem;
+    }
+    .firstBigName {
+        position: absolute;
+        top: -2.5rem;
+        left: 0;
+        height: 2.5rem;
+        width: 100%;
+        font-weight: bold;
+        line-height: 2.5rem;
+        /*    border-bottom: 2.7px solid rgba(255, 236, 17, 0.75);*/
+    }
+    .studyName {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        height: 12.5rem;
+    }
+    .studyNameTag {
+        height: 1.5rem;
+        text-align: center;
+        font-size: 1rem;
+    }
+    .finish {
+        border-right: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .select {
+        color: white !important;
+        background-color: rgb(120, 120, 120);
+    }
+    .greenPoint {
+        color: #336a0f;
+        font-weight: bold;
+    }
+    .letterSpace {
+        word-spacing: 0.1rem;
+        padding-top: 0.5rem;
+    }
+    .studyPicture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 24vw;
+        height: 16.5rem;
+        background-color: #ba4e88;
+    }
+    .dochoPicture {
+        position: absolute;
+        top: 0rem;
+        right: 25.34vw;
+        width: 24vw;
+        height: 16.5rem;
+        background-color: #c3d620;
+    }
+    .realStudyPic {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        border: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .middleFoot {
+        position: absolute;
+        top: 17.5rem;
+        left: 0;
+        right: 0;
+    }
+    .studybigName {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-weight: bold;
+    }
+    .fastClick {
+        position: absolute;
+        top: 2.5rem;
+        width: 100%;
+        height: 8rem;
+        border: 1px solid rgba(200, 200, 200, 0.8);
+        border-radius: 4px;
+    }
+    .fastClick li {
+        float: left;
+        width: 50%;
+        height: 50%;
+        text-align: center;
+        line-height: 4rem;
+    }
+    .enrollment {
+        position: absolute;
+        top:20rem;
+        right: 0;
+        width: 24vw;
+        height: 10.5rem;
+    }
+    .sandwich {
+        border-right: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .hamburger {
+        border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+        border-right: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .bread {
+        border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .fa-pencil {
+        color: #55b327;
+    }
+    .fa-paper-plane-o {
+        color: #55b327;
+    }
+    .bigName {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 2.5rem;
+        font-weight: bold;
+        line-height: 2.5rem;
+    }
+    .secondBigName {
+        /*    border-bottom: 2.7px solid rgba(226, 160, 188, 0.8);*/
+        width: 98%;
+        position: absolute;
+        top: -2.5rem;
+        left: 0;
+        height: 2.5rem;
+        font-weight: bold;
+        line-height: 2.5rem;
+    }
+    .circle {
+        width: 2rem;
+        height: 2rem;
+        text-align: center;
+        background-color: pink;
+        border-radius: 50%;
+    }
+    .middleFootBottom {
+        position: absolute;
+        top: 36rem;
+        left: 0;
+        right: 0;
+        height: 20rem;
+    }
+    .shop li {
+        float: left;
+        width: 25%;
+        height: 6rem;
+    }
+    .shop ul {
+        position: absolute;
+        top: 2.5rem;
+        width: 100%;
+    }
+    .shop img {
+        width: 60%;
+        margin: 1.5rem auto;
+    }
+    .fa-chevron-circle-right {
+        color: #c3d620;
+        position: absolute;
+        right: 0.7rem;
+        line-height: 0.8rem;
+        font-size: 1rem !important;
+    }
+    .textEX {
+        position: absolute;
+        bottom: 0.9rem;
+        font-size: 0.8rem;
+        padding-left: 1rem;
+        font-weight: bold;
+        width: 100%;
+    }
+    .textslid {
+        padding-left: 0.3rem;
+        font-weight: normal;
+        color: dimgrey;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+   
+/* -----------------------------------getLidOf------------------------------------------------*/
+    .fa-bars{display:none;} 
+    .middleClickDot{display: none;}
+    .bottomPic{display:none;}
 }
