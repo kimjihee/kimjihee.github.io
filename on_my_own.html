@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Making</title>
+
+    <script src="d3.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <svg></svg>
+    <script>
+        var dataSet = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+        var group = d3.select("svg")
+            .append("g")
+            .attr('width', 150)
+            .attr('height', 50);
+
+        var rect = d3.select("g")
+            .selectAll("rect")
+            .data(dataSet)
+            .enter()
+            .append('rect')
+            .attr("width", '10')
+            .attr('height', '10')
+            .attr('x', function (d, i) {
+                return (i%15) * 11
+            })//%이것은 나머지 이다.
+            .attr('y', function (d, i) {
+                return Math.ceil((i+1)/15)*11;
+            })
+        .style('fill', 'red');
+    </script>
+</body>
+
+</html>
