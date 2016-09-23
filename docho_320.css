@@ -95,8 +95,8 @@ a:hover {
 .middleMiddle {
     list-style-type: none;
     position: absolute;
-    top: 60vw;
-    left: 0rem;
+    top:53vw;
+    left: 0;
     right: 0;
     padding-left: 1rem;
 }
@@ -151,7 +151,7 @@ a:hover {
 
 .enrollment {
     position: absolute;
-    top: 308vw;
+    top: 298vw;
     left: 0;
     right: 0;
     background-color: #B3C905;
@@ -267,7 +267,7 @@ a:hover {
 
 .sevenr {
     position: absolute;
-    top: 252vw;
+    top: 245vw;
     left: 5vw;
     right: 5vw;
 }
@@ -313,7 +313,7 @@ a:hover {
 
 .business {
     position: absolute;
-    top: 445vw;
+    top: 420vw;
     left: 0;
     right: 0;
 }
