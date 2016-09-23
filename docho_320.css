@@ -28,7 +28,7 @@ a:hover {
 .top {
     position: absolute;
     top: 0;
-    height: 5rem;
+    height: 4rem;
     left: 0;
     right: 0;
     border-bottom: 3px solid #55b327;
@@ -42,7 +42,7 @@ a:hover {
 
 .fa-bars {
     font-size: 1.6rem;
-    padding-top: 1.5rem;
+    padding-top: 1rem;
     position: absolute;
     right: 5%;
 }
@@ -54,7 +54,7 @@ a:hover {
 .middle {
     list-style-type: none;
     position: absolute;
-    top: 5rem;
+    top: 4rem;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -62,7 +62,7 @@ a:hover {
 
 .bottom {
     position: absolute;
-    top: 170rem;
+    top: 880vw;
     padding-top: 1rem;
     padding-bottom: 1rem;
     left: 0;
@@ -95,7 +95,7 @@ a:hover {
 .middleMiddle {
     list-style-type: none;
     position: absolute;
-    top: 11rem;
+    top: 60vw;
     left: 0rem;
     right: 0;
     padding-left: 1rem;
@@ -140,7 +140,7 @@ a:hover {
 
 .studybigName {
     margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom:2.5rem;
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600%;
@@ -151,7 +151,7 @@ a:hover {
 
 .enrollment {
     position: absolute;
-    top: 53rem;
+    top: 308vw;
     left: 0;
     right: 0;
     background-color: #B3C905;
@@ -184,7 +184,7 @@ a:hover {
 .middleClickDot {
     display: block;
     position: absolute;
-    top: 10.5rem;
+    top: 50vw;
     left: 0;
     right: 0;
     width: 6rem;
@@ -267,7 +267,7 @@ a:hover {
 
 .sevenr {
     position: absolute;
-    top: 79rem;
+    top: 252vw;
     left: 5vw;
     right: 5vw;
 }
@@ -277,16 +277,15 @@ a:hover {
 }
 
 .sevenRP {
-    position: absolute;
+    
     width: 100%;
     
-    top:2rem;
+    
 }
 
 .campain {
-    display: none;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
+    margin-top: 0;
+   margin-bottom:2.5rem;
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600%;
@@ -296,7 +295,7 @@ a:hover {
 
 .thislogo {
     width: 10rem;
-    padding-top: 0.7rem;
+    padding-top: 0.4rem;
     padding-left: 0.7rem;
 }
 
@@ -314,7 +313,7 @@ a:hover {
 
 .business {
     position: absolute;
-    top: 85rem;
+    top: 445vw;
     left: 0;
     right: 0;
 }
@@ -350,4 +349,11 @@ a:hover {
 .boxFoot {height:4rem;}
 .looking {
     display: none;
+}
+
+.middleFoot {
+    position: absolute;
+    top:15vw;
+    left:0;
+    right:0;
 }
