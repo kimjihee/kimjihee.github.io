@@ -268,8 +268,8 @@ a:hover {
 .sevenr {
     position: absolute;
     top: 79rem;
-    left: 5%;
-    right: 5%;
+    left: 5vw;
+    right: 5vw;
 }
 
 #imsvg {
@@ -278,9 +278,8 @@ a:hover {
 
 .sevenRP {
     position: absolute;
-    width: 75vw;
-    left: 5vw;
-    right: 20vw;
+    width: 100%;
+    
     top:2rem;
 }
 
