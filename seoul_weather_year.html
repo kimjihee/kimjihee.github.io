@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    body {
+        font: 10px sans-serif;
+        shape-rendering: crispEdges;
+    }
+    
+    
+   
+</style>
+
+<body>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script>
+        var dateFormat = d3.time.format('%Y-%m-%d');
+        var dataSet = [];
+        var Sweather = d3.csv('data/seoul_weather_year.csv', function (err, weather) {
+            weather.forEach(function (row) {
+                row['aver'] = +row['aver'];
+                row['date'] = dateFormat.parse(row['date']); // d3 format으로 검색하면 나옵니다.
+
+            })
+
+            dataSet = weather;
+            redraw();
+        });
+
+        console.log(dataSet);
+
+
+
+        //--- Layout--------------------------------------------
+
+        var redraw = function () {
+
+
+            MARGIN = {
+
+                TOP: 100,
+                LEFT: 50,
+                RIGHT: 100,
+                BOTTOM: 100
+
+            };
+
+            //--- chart Size ---------------------------------------------
+
+            var Width = 1000;
+            var Height = 100;
+
+
+
+            //--- Scale --------------------------------------------
+
+
+            var xScale = d3.time.scale()
+                .domain([
+                new Date(dataSet[0].date),
+                d3.time.month.offset(new Date(dataSet.length.date), 1)
+            ]) //여기서 1은 offset 안에 있는것이므로 이것을 검색하면 알 수 있다.
+                //day.offset이므로 new Date()에서는 날자를 ,1은 간격을 의미한다.
+                .rangeRound([0, Width - MARGIN.LEFT]);
+
+
+            var yScale = d3.time.scale()
+                .domain([new Date(dataSet[0].date),
+                     d3.time.year.offset(new Date(dataSet.length.date), 0)]) //여기서 0은 시작점점
+                .rangeRound([Height - MARGIN.TOP - MARGIN.BOTTOM, 0]);
+
+
+            var colorScale = d3.scale.quantize()
+                .domain([d3.max(dataSet, function (d) {
+                    return d.aver;
+                }), d3.min(dataSet, function (d) {
+                    return d.aver;
+                })])//min과 max는 이렇게 쓰는거다.
+                .range(["red",'rgb(215, 48, 39)', 'rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
+                'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgb(0, 104, 55)']);
+
+
+
+            var cellSize = Height/12; // cell size
+
+
+            var svg = d3.select("body").selectAll("svg")
+                .data(d3.range(2010, 2015))
+                .enter()
+                .append("svg")
+                .attr("width", Width)
+                .attr("height", Height)
+                .attr("class", "RdYlGn")
+                .append("g")
+                .attr("transform", "translate(" + cellSize * 20 + ",  0 )");
+
+            svg.append("text")
+                .attr("transform", "translate(-60," + cellSize * 3.5 + ")")
+                .style("text-anchor", "middle")
+                .text(function (d) {
+                    return d;
+                });
+
+            var rect = svg.selectAll(".day")
+                .data(function (d) {
+                    return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1));
+                })
+                .enter()
+                .append("rect")
+                .attr("class", "day")
+                .attr("width", cellSize)
+                .attr("height", cellSize)
+                .attr("x", function (d) {
+                    return d.getDate(d) * cellSize;
+                })
+                .attr("y", function (d) {
+                    return d.getMonth() * cellSize;
+                                        
+                })
+                .datum(dateFormat);
+            
+            
+            rect.data(dataSet)
+                .enter()
+                .style("fill", function (d) {
+                    return colorScale(d.aver);
+                });
+
+
+            rect.append("title")
+                .text(function (d) {
+                    return d;
+                });
+
+
+            //            var imdata = d3.csv("data/seoul_weather_year.csv", function (error, csv) {
+            //                if (error) throw error;
+            //                var data = d3.nest().key(function (d) {
+            //                        return d.date;
+            //
+            //                    })
+            //                    .rollup(function (d) {
+            //                        return d.aver
+            //
+            //                    })
+            //                    .map(csv);
+            //
+            //
+            //
+            //                rect.filter(function (d) {
+            //                        return d in data;
+            //                    })
+            //                    .attr("class", function (d) {
+            //                        return "day " + color(data[d.aver]);
+            //
+            //                    })
+            //
+            //            });
+
+
+
+        };
+    </script>
