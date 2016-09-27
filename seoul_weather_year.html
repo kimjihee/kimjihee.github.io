@@ -75,10 +75,9 @@
                 }), d3.min(dataSet, function (d) {
                     return d.aver;
                 })])//min과 max는 이렇게 쓰는거다.
-                .range(["red",'rgb(215, 48, 39)', 'rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
-                'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgb(0, 104, 55)']);
+                .range(['red','blue','green']);
 
-
+console.log(colorScale.domain());
 
             var cellSize = Height/12; // cell size
 
@@ -116,12 +115,13 @@
                     return d.getMonth() * cellSize;
                                         
                 })
-                .style("fill", function (d) {
-                    return colorScale(d.aver);
+                .style("fill", function (d,i) {
+                    return colorScale(dataSet[i].aver);
+                   
                 })
                 .datum(dateFormat);
             
-            
+             console.log(colorScale(5));
             
                 
 
