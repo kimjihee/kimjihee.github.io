@@ -116,14 +116,14 @@
                     return d.getMonth() * cellSize;
                                         
                 })
+                .style("fill", function (d) {
+                    return colorScale(d.aver);
+                })
                 .datum(dateFormat);
             
             
-            rect.data(dataSet)
-                .enter()
-                .style("fill", function (d) {
-                    return colorScale(d.aver);
-                });
+            
+                
 
 
             rect.append("title")
