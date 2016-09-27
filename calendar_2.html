@@ -1,0 +1,106 @@
+
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+@import url(//d3js.org/colorbrewer.v1.css);
+
+svg {
+  font: 10px sans-serif;
+}
+
+.day {
+  fill: #fff;
+  stroke: #ccc;
+}
+
+.month {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+    
+//    
+//            var day = function(d) { return d.getDay(); },
+//                week = d3.time.format("%U");
+//
+//
+//            var day = function(d) { return (d.getDay() + 6) % 7; },
+//                week = d3.time.format("%W");
+
+
+            var margin = {top: 5.5, right: 0, bottom: 5.5, left: 19.5},
+                width = 960 - margin.left - margin.right,
+                height = 130 - margin.top - margin.bottom,
+                size = height / 7;
+
+            var day = function(d) { return (d.getDay() + 6) % 7; }, // monday = 0
+                week = d3.time.format("%W"), // monday-based week number
+                date = d3.time.format("%Y-%m-%d"),
+                percent = d3.format("+.1%"); //여기까진 포맷 단위를 정해주는것
+    
+            var color = d3.scale.quantize()
+                .domain([-.05, .05])
+                .range(d3.range(9));
+            //range(9) = [0 1 2 3 4 5 6 7 8];// 색을 나누었다.
+
+            var svg = d3.select("body").selectAll("svg")
+                .data(d3.range(1990, 2011))//[1990 1991 2011]
+                .enter()
+                .append("svg")
+                .attr("class", "RdYlGn")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                 // 1년 단위로 svg를 만들어 주고!!
+
+            svg.append("text")
+                .attr("transform", "translate(-6," + size * 3.5 + ")rotate(-90)")
+                .attr("text-anchor", "middle")
+                .text(function(d) { return d; });
+
+            var rect = svg.selectAll(".day")
+                .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+                  //d3.time.days = d3.time.days.range와 같고 (start,stop[,step])이다.
+                  //new Date(); 이럼 숫자가 나옵니다.
+                  //new Date(d, 0, 1); 이면 d는 연이고, 0은 달 1은 일이다.
+                .enter()
+                .append("rect")
+                .attr("class", "day")
+                .attr("width", size)
+                .attr("height", size)
+                .attr("x", function(d) { return week(d) * size; })
+                .attr("y", function(d) { return day(d) * size; })
+                .datum(date);
+
+            rect.append("title")
+                .text(function(d) { return d; });
+
+            svg.selectAll(".month")
+                .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+                .enter()
+                .append("path")
+                .attr("class", "month")
+                .attr("d", monthPath);// path에서 d는 외곽 선의 두께 등을 말한다.
+
+            d3.csv("dji.csv", function(csv) {
+              var data = d3.nest()
+                .key(function(d) { return d.Date; })
+                .rollup(function(d) { return (d[0].Close - d[0].Open) / d[0].Open; })
+                .map(csv);
+
+              rect.filter(function(d) { return d in data; })
+                  .attr("class", function(d) { return "day q" + color(data[d]) + "-9"; })
+                  .select("title")
+                  .text(function(d) { return d + ": " + percent(data[d]); });
+            });
+
+      
+</script>
