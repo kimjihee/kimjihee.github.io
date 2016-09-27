@@ -75,25 +75,27 @@
                 }), d3.min(dataSet, function (d) {
                     return d.aver;
                 })])//min과 max는 이렇게 쓰는거다.
-                .range(['red','blue','green']);
+                .range(["red",'rgb(215, 48, 39)', 'rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
+               'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgb(0, 104, 55)']);
 
 console.log(colorScale.domain());
 
-            var cellSize = Height/12; // cell size
+            var cellSize = Height/12;
+             // cell size
 
 
             var svg = d3.select("body").selectAll("svg")
-                .data(d3.range(2010, 2015))
+                .data(d3.range(2011, 2016))
                 .enter()
                 .append("svg")
                 .attr("width", Width)
                 .attr("height", Height)
-                .attr("class", "RdYlGn")
+                .style("margin-bottom",10)
                 .append("g")
-                .attr("transform", "translate(" + cellSize * 20 + ",  0 )");
+                .attr("transform", "translate(" + cellSize * 10 + ",  0 )");
 
             svg.append("text")
-                .attr("transform", "translate(-60," + cellSize * 3.5 + ")")
+                .attr("transform", "translate(-30," + cellSize * 6 + ")")
                 .style("text-anchor", "middle")
                 .text(function (d) {
                     return d;
@@ -108,6 +110,7 @@ console.log(colorScale.domain());
                 .attr("class", "day")
                 .attr("width", cellSize)
                 .attr("height", cellSize)
+                
                 .attr("x", function (d) {
                     return d.getDate(d) * cellSize;
                 })
