@@ -86,7 +86,7 @@ a:hover {
 .bottom {
     position: absolute;
     height: 9rem;
-    top: 260vw;
+    top: 410vw;
     left: 0;
     right: 0;
     border-top: 1.8px solid #55b327;
@@ -236,7 +236,7 @@ a .point:link {
 }
 .study {
     position: absolute;
-    top: 200vw;
+    top: 0;
     left: 5vw;
     right: 5vw;
     height: 10.5rem;
@@ -315,20 +315,21 @@ a .point:link {
 }
 .middleFoot {
     position: absolute;
-    top: 135vw;
+    top: 190vw;
     left: 0;
     right: 0;
+  
 }
 .studybigName {
     position: relative;
     height: 1.2rem;
     top: 0;
-    left: 0;
+    left: 1rem;
     font-weight: bold;
 }
 .enrollment {
     position: absolute;
-    top: 200vw;
+    top: 38vw;
     left: 0;
     right: 0;
     background-color: rgba(179, 201, 5, 0.8);
@@ -475,7 +476,7 @@ a .point:link {
 }
 .sevenr {
     position: absolute;
-    top: 80vw;
+    top: 77vw;
     left: 5vw;
     right: 5vw;
 }
@@ -515,7 +516,7 @@ a .point:link {
 }
 .business {
     position: absolute;
-    top: 50vw;
+    top: 60vw;
     left: 0;
     right: 0;
 }
@@ -524,7 +525,8 @@ a .point:link {
     width: 33.33333333333333333333333333333333333333333%;
     height: 100%;
     text-align: center;
-    padding: 0.1rem;
+    padding:0.1rem;
+    
 }
 .businessUl {
     position: absolute;
@@ -533,15 +535,18 @@ a .point:link {
 }
 .businessUl img {
     width: 100%;
-    padding: 0.1rem;
+   padding:0.05rem;
 }
 .boxDown {
     height: 1.5rem;
-    text-align: center;
+    padding-left:5vw;
     position: relative;
+    text-align:left !important;
     line-height: 1.5rem;
     font-size: 0.9rem;
     font-weight: bold;
+    padding-top:1rem;
+    padding-bottom:1rem;
 }
 .fa-fax {
     color: #55b327;
@@ -550,7 +555,11 @@ a .point:link {
     color: #55b327;
 }
 .sitesLink {
-    display: none;
+   position: absolute;
+    top:120vw;
+    left:5vw;
+    right:5vw;
+   
 }
 .pen {
     color: #0B4F2B !important;
@@ -567,7 +576,10 @@ a .point:link {
     padding-bottom: 1rem;
     padding-top: 1.5rem;
 }
+
+/*.introduce img {border-radius: 5px;}*/
 .align {
+    font-size:0.8rem;
     margin: 0;
     text-align: left !important;
     padding-left: 5rem;
@@ -578,6 +590,7 @@ a .point:link {
     margin: 0;
     padding: 0;
     font-weight: bold;
+    padding-top:1rem;
 }
 .philosophy {
     position: absolute;
@@ -596,11 +609,11 @@ a .point:link {
 }
 .facility {
     /*    border:1px solid red;*/
-    
+   
     position: absolute;
     left: 0;
     right: 0;
-    top: 108vw;
+    top: 133vw;
     height: 15rem;
 }
 .facilityUl li {
@@ -618,10 +631,11 @@ a .point:link {
     margin-top: 7%;
     margin-bottom: 5%;
 */
+    
 }
 .facilityUl {
     /*    border:1px solid red;*/
-    
+   
     height: inherit;
    
 }
@@ -642,8 +656,32 @@ a .point:link {
     width: 12rem !important;
     height: 2rem !important;
     line-height: 2rem;
-}
-.forColor {
-     background-color: rgba(179, 201, 5, 0.8);
+   
    
 }
+.forColor {
+     
+    background-color: rgba(179, 201, 5, 0.8); 
+}
+
+.boxFoot {
+    padding-top:1rem;
+    font-size:0.8rem;
+    text-align: left !important;
+    padding-left: 5vw;
+    line-height: 1.6rem;
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+.banners li{ float:left;
+    width:20%;
+    padding:1rem;
+    
+}
+.banners img {width:100%;}
+
+.banners {
+    padding-top:1.5rem;
+    
+}
+
