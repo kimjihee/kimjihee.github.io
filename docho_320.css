@@ -62,7 +62,7 @@ a:hover {
 
 .bottom {
     position: absolute;
-    top: 880vw;
+    top: 1270vw;
     padding-top: 1rem;
     padding-bottom: 1rem;
     left: 0;
@@ -70,6 +70,10 @@ a:hover {
     font-size: 0.7rem;
     line-height: 1.2rem;
     color: rgb(100, 100, 100);
+}
+
+.bottom img {width:80%;
+   
 }
 
 .letterSpace {
@@ -95,7 +99,7 @@ a:hover {
 .middleMiddle {
     list-style-type: none;
     position: absolute;
-    top:53vw;
+    top: 53vw;
     left: 0;
     right: 0;
     padding-left: 1rem;
@@ -140,7 +144,7 @@ a:hover {
 
 .studybigName {
     margin-top: 2.5rem;
-    margin-bottom:2.5rem;
+    margin-bottom: 2.5rem;
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600%;
@@ -151,7 +155,7 @@ a:hover {
 
 .enrollment {
     position: absolute;
-    top: 298vw;
+    top: 318vw;
     left: 0;
     right: 0;
     background-color: #B3C905;
@@ -163,7 +167,12 @@ a:hover {
 }
 
 .newsBody {
-    display: none;
+    position: absolute;
+    top: 460vw;
+    left: 4vw;
+    right: 4vw;
+    border: 1px solid rgba(200, 200, 200, 0.4);
+    overflow: hidden;
 }
 
 .studyNameTag {
@@ -267,7 +276,7 @@ a:hover {
 
 .sevenr {
     position: absolute;
-    top: 245vw;
+    top: 0;
     left: 5vw;
     right: 5vw;
 }
@@ -277,15 +286,12 @@ a:hover {
 }
 
 .sevenRP {
-    
     width: 100%;
-    
-    
 }
 
 .campain {
     margin-top: 0;
-   margin-bottom:2.5rem;
+    margin-bottom: 2.5rem;
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600%;
@@ -313,9 +319,10 @@ a:hover {
 
 .business {
     position: absolute;
-    top: 420vw;
+    top: 120vw;
     left: 0;
     right: 0;
+    text-align: center;
 }
 
 .businessUl {
@@ -335,25 +342,167 @@ a:hover {
 .boxDown {
     text-align: center;
     position: relative;
+    margin-top: 0.6rem;
     line-height: 1.5rem;
-    font-weight:bold;
-    font-size:0.9rem;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
-
-
-
 
 .jump {
     display: none;
 }
-.boxFoot {height:4rem;}
+
+.boxFoot {
+    padding-top: 1.5rem;
+    font-size: 0.8rem;
+    text-align: left !important;
+    padding-left: 2vw;
+    line-height: 1.6rem;
+    font-family: 'Nanum Myeongjo', serif;
+}
+
 .looking {
     display: none;
 }
 
 .middleFoot {
     position: absolute;
-    top:15vw;
-    left:0;
-    right:0;
+    top: 680vw;
+    left: 0;
+    right: 0;
 }
+
+.introduce {
+    display: none;
+}
+
+.introduce img {
+    width: 60%;
+}
+
+.facility {
+    position: absolute;
+    top: 520vw;
+    left: 0;
+    right: 0;
+}
+
+.philosophy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.philosophy img {
+    width: 100%;
+}
+
+.name {
+    font-weight: bold;
+    padding-top: 1rem;
+}
+
+.align {
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.3rem;
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+.businessbigName {
+    position: absolute;
+    height: 1.2rem;
+    top: -4rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600%;
+    margin-bottom: 2rem;
+}
+
+.forBrThree {
+    display: none;
+}
+
+.facilityUl li {
+    width: 100%;
+}
+
+.facilityUl img {
+    width: 100%;
+}
+
+.facilIn li {
+    float: none !important;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    margin: 0.8rem auto;
+    width: 12rem !important;
+    height: 2rem !important;
+    line-height: 2rem;
+}
+
+.facilityUl {
+    background-color: rgba(179, 201, 5, 0.8);
+    padding-bottom: 1rem;
+}
+
+.study {
+    position: absolute;
+    top: 50vw;
+    left: 0;
+    right: 0;
+}
+
+.em {
+    display: none;
+}
+
+.newseName {
+    position: absolute;
+    left: 0;
+    right: 60vw;
+    height: 8rem;
+}
+
+.newseName li:hover {
+    background-color: #55b327;
+    color: white;
+}
+
+.newseName li {
+    text-align: center;
+    height: 50%;
+    line-height: 4rem;
+    width:6rem;
+}
+
+.texts {
+    position: relative;
+    left: 6rem;
+   right:0;
+    font-size: 0.8rem;
+    height: 8rem;
+}
+
+.texts li {
+    padding: 0.5rem;
+    height: 25%;
+}
+
+.texts li:hover {
+    background-color: rgba(200, 200, 200, 0.4);
+}
+
+.finish {
+    display: none;
+}
+.find {
+     text-align:center;
+}
+
+
