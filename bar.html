@@ -51,7 +51,8 @@ svg {
             .tickSize(13)
             .tickValues(threshold.domain())
             //threshold 로 도메인을 만들어 놔서 임의값 스케일로 축이 알아서 적용이 됩니다용
-            .tickFormat(function(d) { return d === .5 ? formatPercent(d) : formatNumber(100 * d); });// 이건 멀까 왜 100을 곱할까?
+            .tickFormat(function(d) { return d === .5 ? formatPercent(d) : formatNumber(100 * d); });
+    //if 5이면 앞에거 else면 뒤에거를 해주는 단순한 식.
 
         var svg = d3.select("body").append("svg")
             .attr("width", width)
@@ -68,7 +69,10 @@ svg {
               if (d[1] == null) d[1] = x.domain()[1];
               return d;
             }))
-          .enter().append("rect")
+//invertExtent 역함수와 같고, 컬러를 숫자로 매치해서 반대로 수치의 범위를 알려주는 식 
+        
+            .enter()
+            .append("rect")
             .attr("height", 8)
             .attr("x", function(d) { return x(d[0]); })
             .attr("width", function(d) { return x(d[1]) - x(d[0]); })
