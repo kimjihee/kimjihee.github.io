@@ -45,6 +45,7 @@ a:hover {
     padding-top: 1rem;
     position: absolute;
     right: 5%;
+   color: #B3C905;
 }
 
 .topRightSide {
@@ -147,7 +148,7 @@ a:hover {
     margin-bottom: 2.5rem;
     text-align: center;
     font-size: 1.2rem;
-    font-weight: 600%;
+    font-weight: bolder;
 }
 
 
@@ -155,7 +156,7 @@ a:hover {
 
 .enrollment {
     position: absolute;
-    top: 318vw;
+    top: 322vw;
     left: 0;
     right: 0;
     background-color: #B3C905;
@@ -169,8 +170,9 @@ a:hover {
 .newsBody {
     position: absolute;
     top: 460vw;
-    left: 4vw;
-    right: 4vw;
+    left: 2vw;
+    right: 2vw;
+    border-radius:5px;
     border: 1px solid rgba(200, 200, 200, 0.4);
     overflow: hidden;
 }
@@ -286,7 +288,7 @@ a:hover {
 }
 
 .sevenRP {
-    width: 100%;
+    width: 95%;
 }
 
 .campain {
@@ -294,7 +296,7 @@ a:hover {
     margin-bottom: 2.5rem;
     text-align: center;
     font-size: 1.2rem;
-    font-weight: 600%;
+    font-weight: bolder;
     margin-left: 1rem;
     margin-right: 1rem;
 }
@@ -367,7 +369,7 @@ a:hover {
 
 .middleFoot {
     position: absolute;
-    top: 680vw;
+    top: 670vw;
     left: 0;
     right: 0;
 }
@@ -382,7 +384,7 @@ a:hover {
 
 .facility {
     position: absolute;
-    top: 520vw;
+    top: 500vw;
     left: 0;
     right: 0;
 }
@@ -418,7 +420,7 @@ a:hover {
     right: 0;
     text-align: center;
     font-size: 1.2rem;
-    font-weight: 600%;
+    font-weight: bolder;
     margin-bottom: 2rem;
 }
 
@@ -453,7 +455,7 @@ a:hover {
 
 .study {
     position: absolute;
-    top: 50vw;
+    top:60vw;
     left: 0;
     right: 0;
 }
@@ -470,8 +472,9 @@ a:hover {
 }
 
 .newseName li:hover {
-    background-color: #55b327;
+    background-color: rgba(179, 201, 5, 0.9);
     color: white;
+    font-weight:bold;
 }
 
 .newseName li {
@@ -485,7 +488,7 @@ a:hover {
     position: relative;
     left: 6rem;
    right:0;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     height: 8rem;
 }
 
