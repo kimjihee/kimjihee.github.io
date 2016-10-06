@@ -160,7 +160,7 @@ a:hover {
     top: 322vw;
     left: 0;
     right: 0;
-    background-color: #B3C905;
+    background-color:rgba(85, 179,39, 0.8);
     height: 25rem;
 }
 
@@ -270,7 +270,7 @@ a:hover {
 
 .fax {
     font-weight: bold;
-    color: #B3C905;
+    color:#55b327;
 }
 
 .adress {
@@ -452,7 +452,7 @@ a:hover {
 }
 
 .facilityUl {
-    background-color: rgba(179, 201, 5, 0.8);
+    background-color: rgba(85, 179,39, 0.8);
     
     padding-bottom: 1rem;
 }
@@ -476,7 +476,7 @@ a:hover {
 }
 
 .newseName li:hover {
-    background-color: rgba(179, 201, 5, 0.8);
+    background-color: rgba(85, 179,39, 0.8);
     font-weight:bold;
 }
 
@@ -518,7 +518,7 @@ a:hover {
 
 
 .select  {
-    background-color: rgba(179, 201, 5, 0.8);
+    background-color: rgba(85, 179,39, 0.8);
     font-weight:bold;
     color:white;
 
