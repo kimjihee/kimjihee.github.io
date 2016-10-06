@@ -45,7 +45,8 @@ a:hover {
     padding-top: 1rem;
     position: absolute;
     right: 5%;
-   color: #B3C905;
+   
+   color: #55b327;
 }
 
 .topRightSide {
@@ -63,7 +64,7 @@ a:hover {
 
 .bottom {
     position: absolute;
-    top: 1270vw;
+    top: 1295vw;
     padding-top: 1rem;
     padding-bottom: 1rem;
     left: 0;
@@ -317,6 +318,7 @@ a:hover {
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600%;
+/*    color: #0B4F2B;*/
 }
 
 .business {
@@ -369,7 +371,7 @@ a:hover {
 
 .middleFoot {
     position: absolute;
-    top: 670vw;
+    top: 700vw;
     left: 0;
     right: 0;
 }
@@ -438,18 +440,20 @@ a:hover {
 
 .facilIn li {
     float: none !important;
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-align: center;
     background-color: white;
     border-radius: 5px;
-    margin: 0.8rem auto;
+    margin: 1rem auto;
     width: 12rem !important;
-    height: 2rem !important;
-    line-height: 2rem;
+    height: 3rem !important;
+    line-height: 3rem;
+   
 }
 
 .facilityUl {
     background-color: rgba(179, 201, 5, 0.8);
+    
     padding-bottom: 1rem;
 }
 
@@ -472,8 +476,7 @@ a:hover {
 }
 
 .newseName li:hover {
-    background-color: rgba(179, 201, 5, 0.9);
-    color: white;
+    background-color: rgba(179, 201, 5, 0.8);
     font-weight:bold;
 }
 
@@ -486,19 +489,23 @@ a:hover {
 
 .texts {
     position: relative;
-    left: 6rem;
-   right:0;
-    font-size: 0.75rem;
+    left: 6.15rem;
+    right:0;
+    font-size: 0.8rem;
     height: 8rem;
+   
+    background-color: rgba(179, 201, 5, 0.35);
+
 }
 
 .texts li {
-    padding: 0.5rem;
-    height: 25%;
+    padding: 0.8rem;
+    height: 33.3333333333333333333333333%;
+    color: #0B4F2B;
 }
 
 .texts li:hover {
-    background-color: rgba(200, 200, 200, 0.4);
+    background-color: rgba(179, 201, 5, 0.5);
 }
 
 .finish {
@@ -509,3 +516,22 @@ a:hover {
 }
 
 
+
+.select  {
+    background-color: rgba(179, 201, 5, 0.8);
+    font-weight:bold;
+    color:white;
+
+}
+
+
+
+.facilIn {
+     font-size: 0.9rem;
+   padding-top:1rem;
+    /*    border:1px solid red;*/
+    
+    height: inherit;
+}
+
+.facilIn li:hover{font-weight:bold;}
