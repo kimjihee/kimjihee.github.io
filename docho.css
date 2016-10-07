@@ -91,7 +91,6 @@ a:hover {
     .picture {
         width: 100%;
     }
-    
     .middleTop {
         list-style-type: none;
         position: absolute;
@@ -119,7 +118,7 @@ a:hover {
     }
     .studyName {
         position: relative;
-        top:1.5rem;
+        top: 1.5rem;
         left: 0;
         right: 0;
         text-align: center;
@@ -171,7 +170,6 @@ a:hover {
         right: 2vw !important;
         border-radius: 5px;
         border: 1px solid rgba(200, 200, 200, 0.4) !important;
-        
         height: 8rem !important;
     }
     .fa-circle {
@@ -200,12 +198,12 @@ a:hover {
     .middleClickMenu {
         display: none;
     }
-.fastClick {
+    .fastClick {
         position: absolute !important;
         top: 7rem !important;
         left: 12vw !important;
         right: 12vw !important;
-      text-align:center;
+        text-align: center;
     }
     .fastClick li {
         float: none !important;
@@ -214,25 +212,24 @@ a:hover {
         margin: 0 !important;
         margin-bottom: 0.9rem !important;
         width: 100% !important;
-        background-color:white;
-        border-radius:5px;
+        background-color: white;
+        border-radius: 5px;
     }
     .fastClick li:hover {
         font-weight: bold;
     }
     .contact {
         position: relative;
-        top:-1rem;
+        top: -1rem;
         text-align: center;
         color: black;
-      
     }
     .greenPoint {
         display: none;
     }
     .bottomPic {
         position: absolute;
-        top: -2.5rem;
+        top: -3rem;
         width: 100%;
         margin: 0 auto;
         text-align: center;
@@ -288,7 +285,7 @@ a:hover {
         position: absolute;
         top: 0 !important;
         left: 0 !important;
-        right:0;
+        right: 0;
         padding-left: 0 !important;
         text-align: center !important;
         font-size: 1.2rem !important;
@@ -322,10 +319,8 @@ a:hover {
         padding-left: 0 !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
-        font-weight:bold;
-        font-size:0.9rem;
-        
-        
+        font-weight: bold;
+        font-size: 0.9rem;
     }
     .jump {
         display: none;
@@ -359,9 +354,8 @@ a:hover {
         left: 0 !important;
         right: 0 !important;
     }
-    .secondNews { 
+    .secondNews {
         border-bottom-left-radius: 5px;
-    
     }
     .philosophy {
         position: absolute;
@@ -392,7 +386,6 @@ a:hover {
         font-size: 1.2rem;
         font-weight: bolder;
     }
-    
     .forBrThree {
         display: none;
     }
@@ -417,12 +410,12 @@ a:hover {
         height: 3rem !important;
         line-height: 3rem !important;
     }
-    .facilIn li :hover{font-weight:bold;}
+    .facilIn li:hover {
+        font-weight: bold;
+    }
     .facilityUl {
         background-color: #75b449 !important;
-            background-color: #75b449;
-
-
+       
     }
     .facilIn {
         background-color: #75b449;
@@ -442,28 +435,24 @@ a:hover {
     .em {
         display: none;
     }
-    .newseName {
+    .newsName {
         position: absolute;
         left: 0 !important;
         right: 60vw !important;
     }
-    
-    .newseName li {
+    .newsName li {
         text-align: center;
         height: 50%;
         line-height: 4rem;
         width: 6rem;
-       
     }
-    
-    .newseName li:hover {
+    .newsName li:hover {
         background-color: rgba(85, 179, 39, 0.8);
         font-weight: bold;
-        color:white;
+        color: white;
     }
     .texts {
         position: absolute;
-        
         left: 6rem !important;
         right: 0 !important;
         font-size: 0.8rem;
@@ -472,8 +461,8 @@ a:hover {
         padding-left: 0!important;
         padding-top: 0!important;
         overflow: hidden !important;
-        border: 1px solid rgba(200, 200, 200, 0.4) !important ;
-        border-radius:5px !important;
+        border: 1px solid rgba(200, 200, 200, 0.4) !important;
+        border-radius: 5px !important;
     }
     .texts li {
         background-color: rgba(143, 189, 108, 0.35);
@@ -481,11 +470,9 @@ a:hover {
         height: 33.3333333333333333333333333% !important;
         color: #0B4F2B;
         width: 100% !important;
-        
     }
     .texts li:hover {
         background-color: rgba(143, 189, 108, 0.5);
-        
     }
     .finish {
         display: none;
@@ -549,8 +536,7 @@ a:hover {
         left: 0;
         right: 0;
     }
-    
-.bottom {
+    .bottom {
         position: absolute;
         height: 9rem;
         top: 390vw;
@@ -563,669 +549,598 @@ a:hover {
         color: rgb(100, 100, 100);
         padding-left: 1rem;
     }
+    .bottom img {
+        display: none;
+    }
+    .fa-search {
+        font-size: 1.3rem;
+        padding-top: 2rem;
+        position: absolute;
+        right: 5%;
+        font-weight: lighter;
+    }
+    .loginMenu {
+        display: none;
+    }
+    .topMenu {
+        position: absolute;
+        top: 2rem;
+        left: 0;
+        right: 0;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+    .topMenu li {
+        float: left;
+        font-size: 0.8rem;
+        width: 16.66666666666666666666666%;
+    }
+    .colorPoint {
+        background-color: #55b327;
+        color: white;
+        font-size: 0.8rem;
+        padding: 0.1rem;
+        padding-left: 0.3rem;
+        padding-right: 0.35rem;
+        padding-bottom: 0.2rem;
+        border-radius: 3px;
+    }
+    .point {
+        color: white;
+    }
+    a .point:link {
+        color: white !important;
+    }
+    .input_text {
+        position: absolute;
+        right: 0;
+    }
+    .firstPic {
+        position: absolute;
+    }
+    .picture {
+        width: 100%;
+    }
+    .link {
+        position: absolute;
+        bottom: 1rem;
+        width: 18rem;
+        right: 2rem;
+    }
+    .text {
+        position: absolute;
+        top: 0;
+    }
+    .middleClickMenu {
+        display: none;
+    }
+    .middleClickMenu li {
+        float: left;
+        width: 20%;
+        height: 1.7rem;
+        line-height: 0.5rem;
+        font-size: 0.9rem;
+        color: white;
+        background-color: #55b327;
+    }
+    .middleMenuNumber {
+        background-color: #418713;
+        color: white;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        display: inline-block;
+        height: 1.7rem;
+        line-height: 1.7rem;
+    }
+    .newsBody {
+        position: absolute;
+        top: 77vw;
+        left: 55vw;
+        right: 3vw;
+        height: 16.5rem;
+        overflow: hidden;
+    }
+    .newsName {
+        position: absolute;
+        top: 0;
+        height: 2.5rem;
+        width: 18rem;
+    }
+    .newsName li {
+        float: left;
+        height: inherit;
+        width: 33.333333333333333333333333333333333333%;
+        line-height: 2.5rem;
+        color: rgb(150, 150, 150);
+        border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+        border-left: 1px solid rgba(200, 200, 200, 0.8);
+        border-top: 1px solid rgba(200, 200, 200, 0.8);
+        font-size: 0.95rem;
+        font-weight: bold;
+        text-align: center;
+    }
     
-    .bottom img{display:none;}
-    
-    
-.fa-search {
-    font-size: 1.3rem;
-    padding-top: 2rem;
-    position: absolute;
-    right: 5%;
-    font-weight: lighter;
-}
-
-.loginMenu {
-    display: none;
-}
-
-.topMenu {
-    position: absolute;
-    top: 2rem;
-    left: 0;
-    right: 0;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.topMenu li {
-    float: left;
-    font-size: 0.8rem;
-    width: 16.66666666666666666666666%;
-}
-
-.colorPoint {
-    background-color: #55b327;
-    color: white;
-    font-size: 0.8rem;
-    padding: 0.1rem;
-    padding-left: 0.3rem;
-    padding-right: 0.35rem;
-    padding-bottom: 0.2rem;
-    border-radius: 3px;
-}
-
-.point {
-    color: white;
-}
-
-a .point:link {
-    color: white !important;
-}
-
-.input_text {
-    position: absolute;
-    right: 0;
-}
-
-.firstPic {
-    position: absolute;
-}
-
-.picture {
-    width: 100%;
-}
-
-.link {
-    position: absolute;
-    bottom: 1rem;
-    width: 18rem;
-    right: 2rem;
-}
-
-.text {
-    position: absolute;
-    top: 0;
-}
-
-.middleClickMenu {
-    display: none;
-}
-
-.middleClickMenu li {
-    float: left;
-    width: 20%;
-    height: 1.7rem;
-    line-height: 0.5rem;
-    font-size: 0.9rem;
-    color: white;
-    background-color: #55b327;
-}
-
-.middleMenuNumber {
-    background-color: #418713;
-    color: white;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
-    display: inline-block;
-    height: 1.7rem;
-    line-height: 1.7rem;
-}
-
-.newsBody {
-    position: absolute;
-    top: 77vw;
-    left: 55vw;
-    right: 3vw;
-    height: 16.5rem;
-    overflow: hidden;
-}
-
-.newsName {
-    position: absolute;
-    top: 0;
-    height: 2.5rem;
-    width: 18rem;
-}
-
-.newsName li {
-    float: left;
-    height: inherit;
-    width: 33.333333333333333333333333333333333333%;
-    line-height: 2.5rem;
-    color: rgb(150, 150, 150);
-    border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-    border-left: 1px solid rgba(200, 200, 200, 0.8);
-    border-top: 1px solid rgba(200, 200, 200, 0.8);
-    font-size: 0.95rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-.newsName li:hover {
-    background-color: #55b327;
-    color: white;
-}
-
-.texts {
-    position: absolute;
-    top: 2.5rem;
-    width: 18rem;
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    border: 1px solid rgba(200, 200, 200, 0.8);
-}
-
-.texts li {
-    height: 1.9rem;
-    font-size: 0.8rem;
-    padding-left: 10px;
-    line-height: 1.9rem;
-    width: 290px;
-    text-overflow: ellipsis;
-}
-
-.study {
-    position: absolute;
-    top: 0;
-    left: 5vw;
-    right: 5vw;
-    height: 10.5rem;
-}
-
-.emoticon {
-    background-color: #55b327;
-    display: block;
-    line-height: 5rem;
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-    color: white;
-    text-align: center;
-    font-size: 2.5rem;
-    margin: 1.5rem auto;
-}
-
-.emoticon:hover {
-    font-size: 2.5rem;
-    line-height: 4.5rem;
-}
-
-.studyName li {
-    float: left;
-    width: 20%;
-    height: 12.5rem;
-}
-
-.firstBigName {
-    position: absolute;
-    top: -2.5rem;
-    left: 0;
-    height: 2.5rem;
-    width: 100%;
-    font-weight: bold;
-    line-height: 2.5rem;
-    /*    border-bottom: 2.7px solid rgba(255, 236, 17, 0.75);*/
-}
-
-.studyName {
-    position: relative;
-    top: 2.5rem;
-    left: 0;
-    right: 0;
-    height: 12.5rem;
-}
-
-.studyNameTag {
-    height: 1.5rem;
-    text-align: center;
-    font-size: 0.9rem;
-}
-
-.finish {
-    border-right: 1px solid rgba(200, 200, 200, 0.8);
-}
-
-.select {
-    color: white !important;
-    background-color: #55b327;
-}
-
-.greenPoint {
-    color: #336a0f;
-    font-weight: bold;
-}
-
-.letterSpace {
-    word-spacing: 0.1rem;
-}
-
-.dochoPicture {
-    display: none;
-}
-
-.middleFoot {
-    position: absolute;
-    top: 187vw;
-    left: 0;
-    right: 0;
-}
-
-.fa-circle {
-    color: rgba(200, 200, 200, 0.8);
-}
-
-.middleClickDot li i:hover {
-    color: grey;
-}
-
-.middleClickDot {
-    display: block;
-    position: relative;
-    top: 47vw;
-    left: 0;
-    right: 0;
-    width: 6rem;
-    box-sizing: border-box;
-    font-size: 0.8rem;
-    margin: 0 auto;
-}
-
-.middleClickDot li {
-    margin: 0 auto;
-    float: left;
-    width: 20%;
-    text-align: center;
-}
-
-.enrollment {
-    position: absolute;
-    top: 34vw;
-    left: 0;
-    right: 0;
-    height: 12rem;
-}
-
-.fastClick {
-    position: absolute;
-    top: 3.5rem;
-    left: 6vw;
-    right: 6vw;
-}
-
-.fastClick li {
-    float: left;
-    width: 22%;
-    margin: 1.5%;
-    height: 5rem;
-    font-size: 0.94rem;
-    line-height: 5rem;
-    text-align: center;
-    background-color: white;
-    border-radius: 5px;
-}
-
-.fastClick li:hover {
-    font-weight: bold;
-}
-
-.fa-pencil {
-    color: #55b327;
-}
-
-.fa-paper-plane-o {
-    color: #55b327;
-}
-
-.bigName {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2.5rem;
-    font-weight: bold;
-    line-height: 2.5rem;
-}
-
-.secondBigName {
-    /*    border-bottom: 2.7px solid rgba(226, 160, 188, 0.8);*/
-    width: 98%;
-    position: absolute;
-    top: -2.5rem;
-    left: 0;
-    height: 2.5rem;
-    font-weight: bold;
-    line-height: 2.5rem;
-}
-
-.circle {
-    width: 2rem;
-    height: 2rem;
-    text-align: center;
-    background-color: pink;
-    border-radius: 50%;
-}
-
-.middleFootBottom {
-    position: absolute;
-    top: 36rem;
-    left: 0;
-    right: 0;
-    height: 20rem;
-}
-
-.fa-chevron-circle-right {
-    color: #c3d620;
-    position: absolute;
-    right: 0.7rem;
-    line-height: 0.8rem;
-    font-size: 1rem !important;
-}
-
-.textEX {
-    position: absolute;
-    bottom: 0.9rem;
-    font-size: 0.8rem;
-    padding-left: 1rem;
-    font-weight: bold;
-    width: 100%;
-}
-
-.textslid {
-    padding-left: 0.3rem;
-    font-weight: normal;
-    color: dimgrey;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.campain {
-    margin-bottom: 2.5rem;
-    font-weight: bold;
-    padding-left: 1rem;
-}
-
-.bottomPic {
-    display: none;
-}
-
-
-.search {
-    display: none;
-    padding: 0;
-}
-
-#inputGoogle {
-    display: none;
-}
-
-.topRightSide {
-    position: absolute;
-    left: 30vw;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-
-.sevenRP {
-    padding: 1rem;
-    width: 100%;
-}
-
-.sevenr {
-    position: absolute;
-    top: 77vw;
-    left: 5vw;
-    right: 50vw;
-}
-
-.enrollbigName {
-    position: absolute;
-    top: 1rem;
-    left: 5vw;
-    right: 0;
-    padding-left: 1rem;
-    font-weight: bold;
-}
-
-.looking {
-    background-color: rgba(153, 212, 230, 0.9);
-    color: #1e7ebc;
-    text-align: center;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding: 0.5rem;
-    border-radius: 2px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    position: absolute;
-    top: 7.8rem;
-    right: 5vw;
-}
-
-.forBr {
-    display: none;
-}
-
-.find {
-    position: absolute;
-    left: 5vw;
-    right: 5vw;
-}
-
-.thislogo {
-    width: 12rem;
-    padding-top: 0.7rem;
-}
-
-.business {
-    position: absolute;
-    top: 60vw;
-    left: 0;
-    right: 0;
-}
-
-.businessUl li {
-    float: left;
-    width: 33.33333333333333333333333333333333333333333%;
-    height: 100%;
-    text-align: center;
-    padding: 0.02rem;
-}
-
-.businessUl {
-    position: absolute;
-    left: 0;
-    right: 0;
-}
-
-.businessUl img {
-    width: 100%;
-}
-
-.boxDown {
-    height: 1.5rem;
-    padding-left: 5vw;
-    position: relative;
-    text-align: left;
-    line-height: 1.5rem;
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-
-.fa-fax {
-    color: #55b327;
-}
-
-.fa-phone {
-    color: #55b327;
-}
-
-.sitesLink {
-    position: absolute;
-    top: 117vw;
-    left: 0;
-    right: 0;
-}
-
-.pen {
-    color: #0B4F2B !important;
-}
-
-.introduce {
-    position: absolute;
-    right: 0;
-    left: 50vw;
-    top: 0;
-    text-align: center;
-    font-size: 0.9rem;
-    /*    background-color: #e0e565;*/
-    padding-bottom: 1rem;
-    padding-top: 1.5rem;
-}
-
-
-/*.introduce img {border-radius: 5px;}*/
-
-.align {
-    font-size: 0.8rem;
-    margin: 0;
-    text-align: left !important;
-    padding-left: 5rem;
-    line-height: 1.3rem;
-    font-family: 'Nanum Myeongjo', serif;
-}
-
-.name {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    padding-top: 1rem;
-}
-
-.philosophy {
-    position: absolute;
-    top: 0;
-    left: 5vw;
-    right: 50vw;
-    height: 12rem;
-}
-
-.businessbigName {
-    position: absolute;
-    height: 1.2rem;
-    top: -3rem;
-    left: 5vw;
-    right: 0;
-    font-weight: bold;
-    margin-bottom: 2rem;
-}
-
-.facility {
-    /*    border:1px solid red;*/
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 133vw;
-    height: 15rem;
-}
-
-.facilityUl li {
-    /*    border:1px solid red;*/
-    float: left;
-    width: 50%;
-    text-align: center;
-}
-
-.forColor {
-    background-color: #75b449;
-}
-
-.facilityUl img {
-    width: 100%;
-    /*
+    .newsName li:hover {
+        background-color: #55b327;
+        color: white;
+    }
+    .texts {
+        position: absolute;
+        top: 2.5rem;
+        width: 18rem;
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+        border: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .texts li {
+        height: 1.9rem;
+        font-size: 0.8rem;
+        padding-left: 10px;
+        line-height: 1.9rem;
+        width: 290px;
+        text-overflow: ellipsis;
+    }
+    .study {
+        position: absolute;
+        top: 0;
+        left: 5vw;
+        right: 5vw;
+        height: 10.5rem;
+    }
+    .studybigName {
+        position: absolute;
+        height: 1.2rem;
+        top: -3rem;
+        left:0;
+        right: 0;
+        font-size:1.07rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        
+    }
+    .emoticon {
+        background-color: #55b327;
+        display: block;
+        line-height: 5rem;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        color: white;
+        text-align: center;
+        font-size: 2.5rem;
+        margin: 1.5rem auto;
+    }
+    .emoticon:hover {
+        font-size: 2.5rem;
+        line-height: 4.5rem;
+    }
+    .studyName li {
+        float: left;
+        width: 20%;
+        height: 12.5rem;
+    }
+    .firstBigName {
+        position: absolute;
+        top: -3rem;
+        left: 0;
+        height: 2.5rem;
+        width: 100%;
+        font-size:1.07rem;
+        font-weight: bold;
+        line-height: 2.5rem;
+        /*    border-bottom: 2.7px solid rgba(255, 236, 17, 0.75);*/
+    }
+    .studyName {
+        position: relative;
+        top: 2.5rem;
+        left: 0;
+        right: 0;
+        height: 12.5rem;
+    }
+    .studyNameTag {
+        height: 1.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    .finish {
+        border-right: 1px solid rgba(200, 200, 200, 0.8);
+    }
+    .select {
+        color: white !important;
+        background-color: #55b327;
+    }
+    .greenPoint {
+        color: #336a0f;
+        font-weight: bold;
+    }
+    .letterSpace {
+        word-spacing: 0.1rem;
+    }
+    .dochoPicture {
+        display: none;
+    }
+    .middleFoot {
+        position: absolute;
+        top: 245vw;
+        left: 0;
+        right: 0;
+    }
+    .fa-circle {
+        color: rgba(200, 200, 200, 0.8);
+    }
+    .middleClickDot li i:hover {
+        color: grey;
+    }
+    .middleClickDot {
+        display: block;
+        position: relative;
+        top: 47vw;
+        left: 0;
+        right: 0;
+        width: 6rem;
+        box-sizing: border-box;
+        font-size: 0.8rem;
+        margin: 0 auto;
+    }
+    .middleClickDot li {
+        margin: 0 auto;
+        float: left;
+        width: 20%;
+        text-align: center;
+    }
+    .enrollment {
+        position: absolute;
+        top: 34vw;
+        left: 0;
+        right: 0;
+        height: 12rem;
+        background-color: #75b449;
+    }
+    .fastClick {
+        position: absolute;
+        top: 3.5rem;
+        left: 6vw;
+        right: 6vw;
+         
+    }
+    .fastClick li {
+        float: left;
+        width: 22%;
+        margin: 1.5%;
+        height: 5rem;
+        font-size: 0.94rem;
+        line-height: 5rem;
+        text-align: center;
+        background-color: white;
+        border-radius: 5px;
+    }
+    .fastClick li:hover {
+        font-weight: bold;
+    }
+    .fa-pencil {
+        color: #55b327;
+    }
+    .fa-paper-plane-o {
+        color: #55b327;
+    }
+    .bigName {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 2.5rem;
+        font-weight: bold;
+        line-height: 2.5rem;
+        font-size:1.07rem;
+    }
+    .secondBigName {
+        /*    border-bottom: 2.7px solid rgba(226, 160, 188, 0.8);*/
+        width: 98%;
+        position: absolute;
+        top: -3rem;
+        left: 0;
+        height: 2.5rem;
+        font-weight: bold;
+        line-height: 2.5rem;
+        font-size:1.07rem;
+        
+    }
+    .circle {
+        width: 2rem;
+        height: 2rem;
+        text-align: center;
+        background-color: pink;
+        border-radius: 50%;
+    }
+    .middleFootBottom {
+        position: absolute;
+        top: 36rem;
+        left: 0;
+        right: 0;
+        height: 20rem;
+    }
+    .fa-chevron-circle-right {
+        color: #c3d620;
+        position: absolute;
+        right: 0.7rem;
+        line-height: 0.8rem;
+        font-size: 1rem !important;
+    }
+    .textEX {
+        position: absolute;
+        bottom: 0.9rem;
+        font-size: 0.8rem;
+        padding-left: 1rem;
+        font-weight: bold;
+        width: 100%;
+    }
+    .textslid {
+        padding-left: 0.3rem;
+        font-weight: normal;
+        color: dimgrey;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .campain {
+        margin-bottom: 2.5rem;
+        font-weight: bold;
+        padding-left: 1rem;
+        font-size:1.07rem;
+    }
+    .bottomPic {
+        display: none;
+    }
+    .search {
+        display: none;
+        padding: 0;
+    }
+    #inputGoogle {
+        display: none;
+    }
+    .topRightSide {
+        position: absolute;
+        left: 30vw;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    .sevenRP {
+        padding: 1rem;
+        width: 100%;
+    }
+    .sevenr {
+        position: absolute;
+        top: 77vw;
+        left: 5vw;
+        right: 50vw;
+    }
+    .enrollbigName {
+        position: absolute;
+        top: 1rem;
+        left: 5vw;
+        right: 0;
+        padding-left: 1rem;
+        font-weight: bold;
+        font-size:1.07rem;
+         color: #0B4F2B;
+    }
+    .looking {
+        background-color: rgba(153, 212, 230, 0.9);
+        color: #1e7ebc;
+        text-align: center;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding: 0.5rem;
+        border-radius: 2px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        position: absolute;
+        top: 7.8rem;
+        right: 5vw;
+    }
+    .forBr {
+        display: none;
+    }
+    .find {
+        position: absolute;
+        left: 5vw;
+        right: 5vw;
+    }
+    .thislogo {
+        width: 12rem;
+        padding-top: 0.7rem;
+    }
+    .business {
+        position: absolute;
+        top: 60vw;
+        left: 0;
+        right: 0;
+    }
+    .businessUl li {
+        float: left;
+        width: 33.33333333333333333333333333333333333333333%;
+        height: 100%;
+        text-align: center;
+        padding: 0.02rem;
+    }
+    .businessUl {
+        position: absolute;
+        left: 0;
+        right: 0;
+        border-top:3px solid #55b327;
+    }
+    .businessUl img {
+        width: 100%;
+    }
+    .boxDown {
+        height: 1.5rem;
+        padding-left: 5vw;
+        position: relative;
+        text-align: left;
+        line-height: 1.5rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .fa-fax {
+        color: #55b327;
+    }
+    .fa-phone {
+        color: #55b327;
+    }
+    .sitesLink {
+        position: absolute;
+        top: 117vw;
+        left: 0;
+        right: 0;
+    }
+    .pen {
+        color: #0B4F2B !important;
+    }
+    .introduce {
+        position: absolute;
+        right: 0;
+        left: 50vw;
+        top: 0;
+        text-align: center;
+        font-size: 0.9rem;
+        /*    background-color: #e0e565;*/
+        padding-bottom: 1rem;
+        padding-top: 1.5rem;
+    }
+    /*.introduce img {border-radius: 5px;}*/
+    .align {
+        font-size: 0.8rem;
+        margin: 0;
+        text-align: left !important;
+        padding-left: 5rem;
+        line-height: 1.3rem;
+        font-family: 'Nanum Myeongjo', serif;
+    }
+    .name {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        padding-top: 1rem;
+    }
+    .philosophy {
+        position: absolute;
+        top: 0;
+        left: 5vw;
+        right: 50vw;
+        height: 12rem;
+    }
+    .businessbigName {
+        position: absolute;
+        height: 1.2rem;
+        top: -3rem;
+        left: 5vw;
+        right: 0;
+        font-size:1.07rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+    .facility {
+        /*    border:1px solid red;*/
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 133vw;
+        height: 15rem;
+    }
+    .facilityUl li {
+        /*    border:1px solid red;*/
+        float: left;
+        width: 50%;
+        text-align: center;
+    }
+    .forColor {
+        background-color: #75b449;
+    }
+    .facilityUl img {
+        width: 100%;
+     
+        /*
     border-radius: 10px;
     margin-top: 7%;
     margin-bottom: 5%;
 */
-}
-
-.facilityUl {
-background-color: #75b449;
-    height: inherit;
-}
-
-.facilIn {
-    font-size: 0.9rem;
-    margin: auto 0;
-    /*    border:1px solid red;*/
-    background-color: #75b449;
-    height: inherit;
-}
-
-.facilIn li {
-    float: none !important;
-    font-size: 0.9rem;
-    text-align: center;
-    background-color: white;
-    border-radius: 5px;
-    margin: 0.8rem auto;
-    width: 12rem;
-    height: 2rem;
-    line-height: 2rem;
-}
-
-.facilIn li:hover {
-    font-weight: bold;
-    color: #3a7820;
-}
-
-.boxFoot {
-    padding-top: 1rem;
-    font-size: 0.8rem;
-    text-align: left !important;
-    padding-left: 5vw;
-    line-height: 1.6rem;
-    font-family: 'Nanum Myeongjo', serif;
-}
-
-.banners li {
-    float: left;
-    width: 16%;
-    padding: 1rem;
-    padding-left: 0;
-    /*    border: 1px solid red;*/
-    height: inherit;
-}
-
-.banners img {
-    height: 100%;
-    line-height: 2rem;
-}
-
-.banners {
-    border-top: 1px solid rgba(200, 200, 200, 0.8);
-    border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-    height: 3.5rem;
-    position: absolute;
-    left: 2vw;
-    right: 2vw;
-}
-
-.jeon-nam {
-    padding-left: 1.4rem;
-}
-
-.em {
-    color: #21a2ff;
-    font-weight: bold;
-    font-family: 'Baloo Bhai', cursive;
-    font-size: 1.2rem;
-}
-
-.bannerEm {
-    font-weight: bold;
-    width: 20% !important;
-    text-align: center;
-    /*
+    }
+    .facilityUl {
+        background-color: #75b449;
+        height: inherit;
+       
+    }
+    .facilIn {
+        font-size: 0.9rem;
+        margin: auto 0;
+        /*    border:1px solid red;*/
+        background-color: #75b449;
+        height: inherit;
+    }
+    .facilIn li {
+        float: none !important;
+        font-size: 0.9rem;
+        text-align: center;
+        background-color: white;
+        border-radius: 5px;
+        margin: 0.8rem auto;
+        width: 12rem;
+        height: 2rem;
+        line-height: 2rem;
+    }
+    .facilIn li:hover {
+        font-weight: bold;
+        color: #3a7820;
+    }
+    .boxFoot {
+        padding-top: 1rem;
+        font-size: 0.8rem;
+        text-align: left !important;
+        padding-left: 5vw;
+        line-height: 1.6rem;
+        font-family: 'Nanum Myeongjo', serif;
+    }
+    .banners li {
+        float: left;
+        width: 16%;
+        padding: 1rem;
+        padding-left: 0;
+        /*    border: 1px solid red;*/
+        height: inherit;
+    }
+    .banners img {
+        height: 100%;
+        line-height: 2rem;
+    }
+    .banners {
+        border-top: 1px solid rgba(200, 200, 200, 0.8);
+        border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+        height: 3.5rem;
+        position: absolute;
+        left: 2vw;
+        right: 2vw;
+    }
+    .jeon-nam {
+        padding-left: 1.4rem;
+    }
+    .em {
+        color: #21a2ff;
+        font-weight: bold;
+        font-family: 'Baloo Bhai', cursive;
+        font-size: 1.2rem;
+    }
+    .bannerEm {
+        font-weight: bold;
+        width: 20% !important;
+        text-align: center;
+        /*
     color:white;
     background-color:#66b327;
 */
+    }
 }
 
-
-}
 
 /*---------------------------here-----------------------------*/
