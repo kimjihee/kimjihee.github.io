@@ -87,8 +87,7 @@
                'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgb(0, 104, 55)']);
 
 console.log(dataSet);
-        
-            
+
         var barX = d3.scale.linear()
             .domain([d3.max(dataSet, function (d) {
                     return d.aver;
@@ -117,7 +116,7 @@ console.log(dataSet);
             .attr("transform", "translate(" + 50 + "," + 50 +")");
             
 //invertExtent 역함수와 같고, 컬러를 숫자로 매치해서 반대로 수치의 범위를 알려주는 식 
-        G.selectAll("rect")
+        G.selectAll("rect.scale-bar")
               .data(colorScale.range().map(function(color) {
               var d = colorScale.invertExtent(color);
               if (d[0] == null) d[0] = barX.domain()[0];
@@ -126,6 +125,7 @@ console.log(dataSet);
             }))
             .enter()
             .append("rect")
+            .attr('class', 'scale-bar')
             .attr("height", 8)
             .attr("x", function(d) { return barX(d[0]); })
             .attr("width", function(d) { return barX(d[1]) - barX(d[0]); })
@@ -146,10 +146,11 @@ console.log(dataSet);
 
 
             var svg = d3.select("body")
-                .selectAll("svg")
-                .data(d3.range(2011, 2016))
+                .selectAll("svg.year")
+                .data(d3.range(2010, 2015))
                 .enter()
                 .append("svg")
+                .attr('class', 'year')
                 .attr("width", Width)
                 .attr("height", Height)
                 .style("margin-bottom",10)
@@ -167,7 +168,7 @@ console.log(dataSet);
 
             var rect = svg.selectAll(".day")
                 .data(function (d,i) {
-                    return d3.time.days(new Date(d-1, 0, 1), new Date(d+i-1 , 0, 1),1);
+                    return d3.time.days(new Date(d, 0, 1), new Date(d+1, 0, 1),1);
                 })
                 .enter()
                 .append("rect")
@@ -187,8 +188,8 @@ console.log(dataSet);
        
             
              rect.style("fill", function (d,i) {
-                    
-                    return colorScale(dataSet[i].aver);
+                    console.log((4 - (+d.substr(0, 4) - 2010)) * 365 + i)
+                    return colorScale(dataSet[(4 - (+d.substr(0, 4) - 2010)) * 365 + i].aver);
                    
                 });
 
