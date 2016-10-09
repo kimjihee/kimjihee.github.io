@@ -6,8 +6,12 @@
         shape-rendering: crispEdges;
     }
     
-    
+    .barChart {position:absolute;
+    left:25rem;} 
    
+    .key path , .key line{
+    fill:none;
+    stroke:#000;}
 </style>
 
 <body>
@@ -94,26 +98,30 @@ console.log(dataSet);
                 }), d3.min(dataSet, function (d) {
                     return d.aver;
                 })])
-            .range([0,100]);
+            .range([0,200]);
 
         var barXaxis = d3.svg.axis()
             .scale(barX)
-            .orient("bottom")  
-            .tickSize(13)
-            .tickValues(colorScale.domain());
-            
+            .orient("bottom");
+//            .tickSize(14)
+//            .tickValues(colorScale.domain());
+//            .tickFormat(function(d) { return d; });
+        
+   
            
     //if 5이면 앞에거 else면 뒤에거를 해주는 단순한 식.
 
         var barSvg = d3.select("body")
             .append("svg")
-            .attr("width",200)
-            .attr("height", 100);
+            .attr("width",400)
+            .attr("height", 100)
+            .attr('class', "barChart");
             
 
         var G= barSvg.append("g")
             .attr("class", "key")
-            .attr("transform", "translate(" + 50 + "," + 50 +")");
+            .attr("transform", "translate(" + 50 + "," + 50 +")")
+        .call(barXaxis);
             
 //invertExtent 역함수와 같고, 컬러를 숫자로 매치해서 반대로 수치의 범위를 알려주는 식 
         G.selectAll("rect.scale-bar")
@@ -147,7 +155,7 @@ console.log(dataSet);
 
             var svg = d3.select("body")
                 .selectAll("svg.year")
-                .data(d3.range(2010, 2015))
+                .data(d3.range(2010, 2016))
                 .enter()
                 .append("svg")
                 .attr('class', 'year')
@@ -188,18 +196,19 @@ console.log(dataSet);
        
             
              rect.style("fill", function (d,i) {
-                    console.log((4 - (+d.substr(0, 4) - 2010)) * 365 + i)
-                    return colorScale(dataSet[(4 - (+d.substr(0, 4) - 2010)) * 365 + i].aver);
+//                 console.log((+d.substr(0, 4) - 2010));
+                    console.log(
+                       (+d.substr(0, 4) - 2010)* 365 + i);
+                    return colorScale(dataSet[ (+d.substr(0, 4) - 2010) * 365 + i].aver);
                    
                 });
 
 
-              rect.append("title")
+             rect.append("title")
                   .text(function (d,i) {
                     return d+", "+dataSet[i].aver+"º" ;
                 });
-
-            
+        
             
             
 
