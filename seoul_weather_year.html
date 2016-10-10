@@ -4,14 +4,21 @@
     body {
         font: 10px sans-serif;
         shape-rendering: crispEdges;
+        position:absolute;
+        top:5vh;
     }
     
-    .barChart {position:absolute;
-    left:25rem;} 
+    .barChart {
+        position:relative;
+        left:100px;
+        bottom: 0;} 
    
     .key path , .key line{
     fill:none;
     stroke:#000;}
+    
+    
+    
 </style>
 
 <body>
@@ -48,7 +55,7 @@
 
             MARGIN = {
 
-                TOP: 200,
+                TOP: 500,
                 LEFT: 100,
                 RIGHT: 100,
                 BOTTOM: 100
@@ -58,7 +65,7 @@
             //--- chart Size ---------------------------------------------
 
             var Width = 1000;
-            var Height = 100;
+            var Height = 80;
 
 //            var formatPercent = d3.format(".0%");
 //            var formatNumber = d3.format(".0f");
@@ -98,7 +105,7 @@ console.log(dataSet);
                 }), d3.min(dataSet, function (d) {
                     return d.aver;
                 })])
-            .range([0,200]);
+            .range([0,150]);
 
         var barXaxis = d3.svg.axis()
             .scale(barX)
@@ -114,14 +121,14 @@ console.log(dataSet);
         var barSvg = d3.select("body")
             .append("svg")
             .attr("width",400)
-            .attr("height", 100)
+            .attr("height", 30)
             .attr('class', "barChart");
             
 
         var G= barSvg.append("g")
             .attr("class", "key")
-            .attr("transform", "translate(" + 50 + "," + 50 +")")
-        .call(barXaxis);
+            .attr("transform", "translate(" +6 + ",0)")
+            .call(barXaxis);
             
 //invertExtent 역함수와 같고, 컬러를 숫자로 매치해서 반대로 수치의 범위를 알려주는 식 
         G.selectAll("rect.scale-bar")
@@ -183,7 +190,6 @@ console.log(dataSet);
                 .attr("class", "day")
                 .attr("width", cellSize)
                 .attr("height", cellSize)
-                
                 .attr("x", function (d) {
                     return d.getDate(d) * cellSize;
                 })
