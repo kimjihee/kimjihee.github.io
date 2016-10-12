@@ -65,7 +65,6 @@
                         x: d.Value,
                         y: d.Year,
                        
-                       
                     };
  
                 });
@@ -81,143 +80,13 @@
 //            이렇게 하면 돼 안될까?
 //            var countryName = function(d,i){return oneYear[i].Country;};
 //            
-
-//            
           
             
        });
          console.log(dataSet);        
-//----------------------------------------CountryName----------------------------------------    
-             
 
-//--- Layout--------------------------------------------
       
-            
-             var redraw = function () {
-             
-            
-
-                    
-            
-            MARGIN = {
-                
-                TOP :100,
-                LEFT:50,
-                RIGHT:100,
-                BOTTOM:100
-                
-            };
-
-//--- chart Size ---------------------------------------------
-            
-          var Width = 1000;
-          var Height = 400;
-          
-//--- Timeformat ---------------------------------------
-            
-//            var parseDate = d3.time.format("%y-%b-%d").parse; parse 이게 object로 바꾸는것.
-  
-//--- Scale --------------------------------------------
-            
-//            
-//            var xScale = d3.time.scale()
-//            .domain([
-//                new Date(dataSet[0].Year),
-//                new Date(dataSet[dataSet.length - 1].Year), 1
-//            ])//여기서 1은 offset 안에 있는것이므로 이것을 검색하면 알 수 있다.
-//            .rangeRound([0,Width-MARGIN.LEFT]);
-//            
-            
-            var yScale = d3.scale.linear()
-            .domain([d3.max(dataSet, function(d) { return d.high; }),0])//여기서 0은 시작점점
-            .rangeRound([0,Height-MARGIN.TOP-MARGIN.BOTTOM]);
-            
-//--- Axis ---------------------------------------------    
-            
-            var xAxis = d3.svg.axis()//axis 라는 함수안에 data, enter, append 가 알아서 생성되는게 들어있다.
-                .scale(xScale)
-                .orient('bottom')
-                .ticks(d3.time.date, 1)//start stop //이렇게 1이 스탑인데 맞나요?
-                .tickFormat(d3.time.format('%Y-%m-%d'))//이거랑 어떻게 써야하는것인가? %e 이거 썻는데 망함
-                .tickSize(0)
-                .tickPadding(8)
-                ;
-            
-
-            var yAxis = d3.svg.axis()
-                .scale(yScale)
-                .orient('left')
-                .tickPadding(8)
-                ; 
-
-            
-            
-// call Axis-------------------------------------------                        
-            var svg = d3.select("svg")
-                .attr("width",Width+100)
-                .attr("height", Height);
-            
-            var realChart = svg
-                .append('g')
-                .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
-
-            //원래는 이걸 안만들고 위의 svg를 이용하려고 했으나 없으면 안되서 만들어 주었다.
-            
-            realChart.append('g')
-                .attr('class', 'x axis')
-                .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
-                .style('stroke-width','3')
-                .call(xAxis)
-            ; 
-           
-
-            realChart.append('g')
-              .attr('class', 'y axis')
-              .call(yAxis)
-              .append("text")
-              .attr("transform", "rotate(-90)")
-              .attr("y", 6)
-              .attr("dy", "1em") // dy를 검색하면 된다. 
-              .style("text-anchor", "end")
-              .text("Degree ºC");
-
-//--- Gragph --------------------------------------------
-
-          var lineAverage= d3.svg.line()
-                    .x(function(d) { return xScale(d.date); })
-                    .y(function(d) { return yScale(d.average); }).interpolate("monotone");
-
-            realChart.append("path")
-                    .attr("d", lineAverage(dataSet))// .data(dataSet)을 없애니 되었다. 교수님도 모른다고 한다.
-                    .attr("class", "lineAverage")
-                    .style('fill',"none")
-                    .style('stroke',"green")
-                    .style('stroke-width',"2px");
-            
-            
-            var linehigh= d3.svg.line()
-                    .x(function(d) { return xScale(d.date); })
-                    .y(function(d) { return yScale(d.high); }).interpolate("monotone");
-
-            realChart.append("path")
-                    .attr("d", linehigh(dataSet))// .data(dataSet)을 없애니 되었다.
-                    .attr("class", "linehigh")
-                    .style('fill',"none")
-                    .style('stroke',"red")
-                    .style('stroke-width',"2px");
-
-            var linelow= d3.svg.line()
-                    .x(function(d) { return xScale(d.date); })
-                    .y(function(d) { return yScale(d.low); }).interpolate("monotone");
-
-            realChart.append("path")
-                    .attr("d", linelow(dataSet))// .data(dataSet)을 없애니 되었다.
-                    .attr("class", "linelow")
-                    .style('fill',"none")
-                    .style('stroke',"blue")
-                    .style('stroke-width',"2px");
-
-        };    //이것은 redraw function;        
+       
     
         </script>
 </body>
