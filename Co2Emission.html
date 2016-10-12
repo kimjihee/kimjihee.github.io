@@ -35,26 +35,86 @@
         var Emission = d3.csv('data/CO2emissions.csv', function (err, CO2) {
             CO2.forEach(function (row) {
                 row['Country'] = row['Country'];
-                row['Value'] = +row['Value'];    
-                row['Year']= +row['Year'];// d3 format으로 검색하면 나옵니다.
+                row['Value'] = +row['Value'];            
                
-            })    
-         
-            dataSet = CO2;
-            redraw();
+            });   
+            
+            var oneYear = CO2.filter(function (row) {
+                    return row['Year'].startsWith('2011');
+                });  
+            
+
+            
+//            var mergedDict = {};
+//                oneYear.forEach(function (row, i) {
+//                    var key = row['Country']; //key라는 변수는 Country 열이다.
+//                    mergedDict[key] = row; // m함수의 key라는 key는 열이다.
+//                    mergedDict[key].countryName = oneYear[i].County;
+//                    console.log(mergedDict[key]);
+//                });
+//            
+//            var mergedData = [];
+//                for (var key in mergedDict) {
+//                    mergedData.push(mergedDict[key]);
+//                }
+                   
+            
+            var Mapping = {};
+                 oneYear.forEach(function (row, i) {
+                     
+                    var key = row["Country"]
+                    Mapping[key] = row;
+                    Mapping[key] = oneYear[i].Country;
+                    
+                });
+            
+             var MappingData = [];
+             for (var key in Mapping) {
+                    MappingData.push(Mapping[key]);
+                }
+            
+               
+            dataSet = MappingData;
+            redraw();           
+           
+//             var CO2data = Mapping.map(function (c) {
+//                return dataSet.map(function (d) {
+//                    return {
+//                        x: d.국가,
+//                        y: d[c],
+//                       
+//                       
+//                    };
+// 
+//                });
+//            });
+            
+            
+            
+//            이렇게 하면 돼 안될까?
+//            var countryName = function(d,i){return oneYear[i].Country;};
+//            
+
+//            
+          
+            
        });
-        
-         console.log(dataSet);  
-              
+         console.log(dataSet);        
+//----------------------------------------CountryName----------------------------------------    
+             
 
 //--- Layout--------------------------------------------
+      
             
-        var redraw = function () {
+             var redraw = function () {
+             
+            
+
                     
             
             MARGIN = {
                 
-                TOP : 100,
+                TOP :100,
                 LEFT:50,
                 RIGHT:100,
                 BOTTOM:100
@@ -72,14 +132,14 @@
   
 //--- Scale --------------------------------------------
             
-            
-            var xScale = d3.time.scale()
-            .domain([
-                new Date(dataSet[0].date),
-                d3.time.day.offset(new Date(dataSet[dataSet.length - 1].date), 1)
-            ])//여기서 1은 offset 안에 있는것이므로 이것을 검색하면 알 수 있다.
-            .rangeRound([0,Width-MARGIN.LEFT]);
-            
+//            
+//            var xScale = d3.time.scale()
+//            .domain([
+//                new Date(dataSet[0].Year),
+//                new Date(dataSet[dataSet.length - 1].Year), 1
+//            ])//여기서 1은 offset 안에 있는것이므로 이것을 검색하면 알 수 있다.
+//            .rangeRound([0,Width-MARGIN.LEFT]);
+//            
             
             var yScale = d3.scale.linear()
             .domain([d3.max(dataSet, function(d) { return d.high; }),0])//여기서 0은 시작점점
