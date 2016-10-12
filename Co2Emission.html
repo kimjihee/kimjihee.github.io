@@ -42,22 +42,7 @@
             var oneYear = CO2.filter(function (row) {
                     return row['Year'].startsWith('2011');
                 });  
-            
 
-            
-//            var mergedDict = {};
-//                oneYear.forEach(function (row, i) {
-//                    var key = row['Country']; //key라는 변수는 Country 열이다.
-//                    mergedDict[key] = row; // m함수의 key라는 key는 열이다.
-//                    mergedDict[key].countryName = oneYear[i].County;
-//                    console.log(mergedDict[key]);
-//                });
-//            
-//            var mergedData = [];
-//                for (var key in mergedDict) {
-//                    mergedData.push(mergedDict[key]);
-//                }
-                   
             
             var Mapping = {};
                  oneYear.forEach(function (row, i) {
@@ -73,21 +58,23 @@
                     MappingData.push(Mapping[key]);
                 }
             
+                      
+            var Data = MappingData.map(function (c) {
+                return CO2.map(function (d) {
+                    return {
+                        x: d.Value,
+                        y: d.Year,
+                       
+                       
+                    };
+ 
+                });
+            });
+            
                
-            dataSet = MappingData;
+            dataSet = Data;
             redraw();           
            
-//             var CO2data = Mapping.map(function (c) {
-//                return dataSet.map(function (d) {
-//                    return {
-//                        x: d.국가,
-//                        y: d[c],
-//                       
-//                       
-//                    };
-// 
-//                });
-//            });
             
             
             
