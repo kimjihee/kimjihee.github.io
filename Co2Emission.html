@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Seoul Weather</title>
+    <title>C02 Emission</title>
     <style>
         @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
         body {
@@ -46,7 +46,6 @@
             
             var Mapping = {};
                  oneYear.forEach(function (row, i) {
-                     
                     var key = row["Country"]
                     Mapping[key] = row;
                     Mapping[key] = oneYear[i].Country;
@@ -58,7 +57,9 @@
                     MappingData.push(Mapping[key]);
                 }
             
-                      
+            console.log(MappingData);
+            
+           
             var Data = MappingData.map(function (c) {
                 return CO2.map(function (d) {
                     return {
