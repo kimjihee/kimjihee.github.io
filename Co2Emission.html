@@ -35,44 +35,71 @@
         var Emission = d3.csv('data/CO2emissions.csv', function (err, CO2) {
             CO2.forEach(function (row) {
                 row['Country'] = row['Country'];
-                row['Value'] = +row['Value'];            
-               
+                row['Value'] = +row['Value']; 
+                row['Year'] = +row['Year']; 
+                
             });   
             
-            var oneYear = CO2.filter(function (row) {
-                    return row['Year'].startsWith('2011');
-                });  
+            var Nest = d3.nest()
+            .key(function(d){
+                return d.Country;
+               
+            })
+            .entries(CO2);         
+            
 
             
-            var Mapping = {};
-                 oneYear.forEach(function (row, i) {
-                    var key = row["Country"]
-                    Mapping[key] = row;
-                    Mapping[key] = oneYear[i].Country;
-                    
-                });
-            
-             var MappingData = [];
-             for (var key in Mapping) {
-                    MappingData.push(Mapping[key]);
-                }
-            
-            console.log(MappingData);
-            
-           
-            var Data = MappingData.map(function (c) {
-                return CO2.map(function (d) {
-                    return {
-                        x: d.Value,
-                        y: d.Year,
                        
-                    };
- 
-                });
-            });
-            
+//             var C02Small = {};
+//            
+//                 C02.forEach(function (row, i) {
+//                    var Number= +row['Year'];
+//                     
+//                    C02Small = [(Number.substr(0, 4) - 1960)  + i].Year;
+//                     console.log(d.substr(0, 4));
+//                });
+//            
+//            
+//             var MappingData = [];
+//             for (var key in Mapping) {
+//                    MappingData.push(Mapping[key]);
+//                }
+//            
+//            
+//            var oneYear = CO2.filter(function (row) {
+//                    return row['Year'].startsWith('2011');
+//                });  
+//
+//            
+//            var Mapping = {};
+//                 oneYear.forEach(function (row, i) {
+//                    var key = row["Country"]
+//                    Mapping[key] = row;
+//                    Mapping[key] = oneYear[i].Country;
+//                    
+//                });
+//            
+//             var MappingData = [];
+//             for (var key in Mapping) {
+//                    MappingData.push(Mapping[key]);
+//                }
+//            
+//            console.log(MappingData);
+//            
+//           
+//            var Data = MappingData.map(function (c) {
+//                return CO2.map(function (d) {
+//                    return {
+//                        x: d.Value,
+//                        y: d.Year,
+//                       
+//                    };
+// 
+//                });
+//            });
+//            
                
-            dataSet = Data;
+            dataSet = Nest;
             redraw();           
            
             
@@ -84,6 +111,8 @@
           
             
        });
+            
+        
          console.log(dataSet);        
 
       
