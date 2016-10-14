@@ -96,27 +96,89 @@
 //                    };
 // 
 //                });
-//            });
-//            
-               
-            dataSet = Nest;
-            redraw();           
-           
-            
-            
-            
+//            });            
 //            이렇게 하면 돼 안될까?
 //            var countryName = function(d,i){return oneYear[i].Country;};
 //            
-          
+                       
+            dataSet = Nest;
+            redraw();           
+           
+  
             
-       });
-            
+       });     
         
-         console.log(dataSet);        
+       console.log(dataSet);  
+            
+            var redraw= function(){
+     
+            
+            var Width = 200;
+            var Height = 100;
+                
+                
+            var xScale = d3.time.scale()
+                .domain([
+                new Date(dataSet[0].values[0].Year), d3.time.year.offset(new Date(dataSet[0].values[52].Year)
+               ,1)])      
+                .rangeRound([0, Width]);
+                
+                
+            console.log(xScale.domain);// console.log로 도메인은 어떻게 보는걸까?
+            
+            var yScale = d3.scale.linear()
+                .domain([0, d3.max(dataSet, function (d,i) {
+                   
+                    return d[0].values[i].Value;
+                                })
+                        ])
+                .rangeRound([Height, 0]);
+            
 
-      
-       
+          var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .ticks(d3.time.date, 1)//start stop //이렇게 1이 스탑인데 맞나요?
+                .tickFormat(d3.time.format('%Y'))
+                .tickSize(0)
+                .tickPadding(8)
+                ;
+            
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left')
+                .tickPadding(8)
+                ; 
+            
+            
+                var svg = d3.select("svg")
+                .attr("width",Width+100)
+                .attr("height", Height);
+            
+            var realChart = svg
+                .append('g');
+                
+
+            
+            realChart.append('g')
+                .attr('class', 'x axis')
+                .style('stroke-width','3')
+                .call(xAxis);
+            
+           
+
+            realChart.append('g')
+              .attr('class', 'y axis')
+              .call(yAxis)
+              .append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("y", 6)
+              .attr("dy", "1em") 
+              .style("text-anchor", "end")
+              .text("Tons Per Capita");
+
+       };
     
         </script>
 </body>
