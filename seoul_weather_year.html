@@ -97,22 +97,30 @@
                 .range(["red",'rgb(215, 48, 39)', 'rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
                'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgb(0, 104, 55)']);
 
-console.log(dataSet);
-
         var barX = d3.scale.linear()
             .domain([d3.max(dataSet, function (d) {
                     return d.aver;
                 }), d3.min(dataSet, function (d) {
                     return d.aver;
                 })])
-            .range([0,150]);
+            .range([0,300]);
 
+        var tickValues = colorScale.range().map(function(color) {
+          var d = colorScale.invertExtent(color);
+          if (d[0] == null) d[0] = barX.domain()[0];
+          if (d[1] == null) d[1] = barX.domain()[1];
+          return d;
+        });
+        var tickValuesToShow = tickValues.map(function(d) {return d[0];});
+        tickValuesToShow.push(tickValues[tickValues.length - 1][1]);
+        
+        var tickFormat = d3.format(".1f");
         var barXaxis = d3.svg.axis()
             .scale(barX)
-            .orient("bottom");
-//            .tickSize(14)
-//            .tickValues(colorScale.domain());
-//            .tickFormat(function(d) { return d; });
+            .orient("bottom")
+            .tickSize(14)
+            .tickValues(tickValuesToShow)
+            .tickFormat(tickFormat);
         
    
            
@@ -132,12 +140,7 @@ console.log(dataSet);
             
 //invertExtent 역함수와 같고, 컬러를 숫자로 매치해서 반대로 수치의 범위를 알려주는 식 
         G.selectAll("rect.scale-bar")
-              .data(colorScale.range().map(function(color) {
-              var d = colorScale.invertExtent(color);
-              if (d[0] == null) d[0] = barX.domain()[0];
-              if (d[1] == null) d[1] = barX.domain()[1];
-              return d;
-            }))
+              .data(tickValues)
             .enter()
             .append("rect")
             .attr('class', 'scale-bar')
@@ -202,9 +205,6 @@ console.log(dataSet);
        
             
              rect.style("fill", function (d,i) {
-//                 console.log((+d.substr(0, 4) - 2010));
-                    console.log(
-                       (+d.substr(0, 4) - 2010)* 365 + i);
                     return colorScale(dataSet[ (+d.substr(0, 4) - 2010) * 365 + i].aver);
                    
                 });

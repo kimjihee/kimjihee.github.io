@@ -29,16 +29,18 @@
         <script>
 
 //--- Data---------------------------------------------
-        var dateFormat = d3.time.format('%Y');
         var dataSet = [];
+        var yearExtent = [];
+        var valueExtent = [];
 //            tonsPerCapita;
         var Emission = d3.csv('data/CO2emissions.csv', function (err, CO2) {
             CO2.forEach(function (row) {
                 row['Country'] = row['Country'];
                 row['Value'] = +row['Value']; 
-                row['Year'] = +row['Year']; 
-                
-            });   
+                row['Year'] = new Date(+row['Year'], 0 ,1);
+            });
+            yearExtent = d3.extent(CO2, function(d) {return d.Year;});
+            valueExtent = [0, d3.max(CO2, function(d) {return d.Value;})];
             
             var Nest = d3.nest()
             .key(function(d){
@@ -103,37 +105,21 @@
                        
             dataSet = Nest;
             redraw();           
-           
-  
-            
+                       
        });     
         
-       console.log(dataSet);  
             
-            var redraw= function(){
-     
-            
-            var Width = 200;
-            var Height = 100;
-                
+        var redraw = function(){
+           console.log(dataSet);  
+            var Width = 400;
+            var Height = 200;
                 
             var xScale = d3.time.scale()
-                .domain([
-                new Date(dataSet[0].values[0].Year), d3.time.year.offset(new Date(dataSet[0].values[52].Year)
-               ,1)])      
+                .domain(yearExtent)
                 .rangeRound([0, Width]);
-                
-                
-            console.log(xScale.domain);// console.log로 도메인은 어떻게 보는걸까?
-            
             var yScale = d3.scale.linear()
-                .domain([0, d3.max(dataSet, function (d,i) {
-                   
-                    return d[0].values[i].Value;
-                                })
-                        ])
-                .rangeRound([Height, 0]);
-            
+                .domain(valueExtent)
+                .rangeRound([Height,0]);
 
           var xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -152,17 +138,19 @@
                 ; 
             
             
-                var svg = d3.select("svg")
+            var svg = d3.select("svg")
                 .attr("width",Width+100)
-                .attr("height", Height);
+                .attr("height", Height+100);
             
             var realChart = svg
-                .append('g');
+                .append('g')
+                .attr("transform", "translate( "+30+" ," + 20 + ")");
                 
 
             
             realChart.append('g')
                 .attr('class', 'x axis')
+                .attr("transform", "translate( 0 ," + Height + ")")
                 .style('stroke-width','3')
                 .call(xAxis);
             
@@ -177,6 +165,25 @@
               .attr("dy", "1em") 
               .style("text-anchor", "end")
               .text("Tons Per Capita");
+            
+            var lineCO2 = d3.svg.line()
+                .x(function(d,i) { return xScale(d.Year); })
+                .y(function(d,i) { return yScale(d.Value); })
+                .interpolate("monotone");
+
+            var dataLines = realChart.selectAll('path.lineCO2').data(dataSet);
+            dataLines.enter()
+                .append("path")
+                .attr("class", "lineCO2")
+                .style('fill',"none")
+                .style('stroke',"green")
+                .style('opacity', 0.2)
+                .style('stroke-width',"1px");
+            dataLines.exit()
+                .remove();
+            dataLines
+                .attr("d", function(d) {return lineCO2(d.values);}) // .data(dataSet)을 없애니 되었다. 교수님도 모른다고 한다.
+            
 
        };
     
