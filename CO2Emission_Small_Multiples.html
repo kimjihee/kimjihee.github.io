@@ -44,60 +44,60 @@
             
             var Nest = d3.nest()
             .key(function(d){
-                
                 return d.Country;
                
             })
             .entries(CO2);         
-           
-                       
+          
+            
+            
             dataSet = Nest;
             redraw();           
                        
        });     
         
             
-       
+     var redraw = function () {   
             
   //------------------------------------------Draw------------------------------------------
        
-            var redraw = function () {
-            var MARGIN = {
-                START:0
-                , TOP: 0
-                , LEFT: 230
-                , RIGHT: 0
-                , BOTTOM: 0
-            , }
-            var Width = document.querySelector('#chart').clientWidth;
-            var Height = document.querySelector('#chart').clientHeight;
-                
-            
-//----------------------------------------column----------------------------------------
-                
-                
-            var columnBand = d3.scale.ordinal()
-                .domain(['a', 'b', 'c', 'd', 'e'])
-                .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.07);
-                
-                
-            var yBand = d3.scale.ordinal()
-                .domain(['A', 'B', 'C', 'D', 'E'])
-                .rangeBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 7.9);
-            
-            var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
-            
-            columnSel.enter()
-                .append('g')
-                .attr('class', function (d) {
-                return 'column ' + d;
-            });
-            columnSel.exit().remove();
-            
-            columnSel.attr('transform', function (d) {
-                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')'; //++의 정체는 무엇인가!!!
-            });
-                
+//           
+//            var MARGIN = {
+//                START:0
+//                , TOP: 0
+//                , LEFT: 230
+//                , RIGHT: 0
+//                , BOTTOM: 0
+//            , }
+//            var Width = document.querySelector('#chart').clientWidth;
+//            var Height = document.querySelector('#chart').clientHeight;
+//                
+//            
+////----------------------------------------column----------------------------------------
+//                
+//                
+//            var columnBand = d3.scale.ordinal()
+//                .domain(['a', 'b', 'c', 'd', 'e'])
+//                .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.07);
+//                
+//                
+//            var yBand = d3.scale.ordinal()
+//                .domain(['A', 'B', 'C', 'D', 'E'])
+//                .rangeBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 7.9);
+//            
+//            var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
+//            
+//            columnSel.enter()
+//                .append('g')
+//                .attr('class', function (d) {
+//                return 'column ' + d;
+//            });
+//            columnSel.exit().remove();
+//            
+//            columnSel.attr('transform', function (d) {
+//                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')'; //++의 정체는 무엇인가!!!
+//            });
+//                
                 
                 
                 
@@ -105,85 +105,88 @@
                 
                 
 //------------------------------------------One Graph----------------------------------------------       
-//            var width = 400;
-//            var height = 200;
-//                
-//            var xScale = d3.time.scale()
-//                .domain(yearExtent)
-//                .rangeRound([0, width]);
-//            var yScale = d3.scale.linear()
-//                .domain(valueExtent)
-//                .rangeRound([height,0]);
-//
-//          var xAxis = d3.svg.axis()
-//                .scale(xScale)
-//                .orient('bottom')
-//                .ticks(d3.time.date, 1)
-//                .tickFormat(d3.time.format('%Y'))
-//                .tickSize(0)
-//                .tickPadding(8)
-//                ;
-//            
-//
-//            var yAxis = d3.svg.axis()
-//                .scale(yScale)
-//                .orient('left')
-//                .tickPadding(8)
-//                ; 
-//            
-//            
-//            var svg = d3.select("svg")
-//                .attr("width",width+100)
-//                .attr("height", height+100);
-//            
-//            var realChart = svg
-//                .append('g')
-//                .attr("transform", "translate( "+30+" ," + 20 + ")");
-//                
-//
-//            
-//            realChart.append('g')
-//                .attr('class', 'x axis')
-//                .attr("transform", "translate( 0 ," + height + ")")
-//                .style('stroke-width','3')
-//                .call(xAxis);
-//            
-//           
-//
-//            realChart.append('g')
-//              .attr('class', 'y axis')
-//              .call(yAxis)
-//              .append("text")
-//              .attr("transform", "rotate(-90)")
-//              .attr("y", 6)
-//              .attr("dy", "1em") 
-//              .style("text-anchor", "end")
-//              .text("Tons Per Capita");
-//            
-//                
-//                
-//            var lineCO2 = d3.svg.line()
-//                .x(function(d) { return xScale(d.Year); })
-//                .y(function(d) { return yScale(d.Value); })
-//                .interpolate("monotone");           
-//            
-//           
-//                       
-//            var dataLines = realChart.selectAll('path.lineCO2').data(dataSet);
-//            dataLines.enter()
-//                .append("path")
-//                .attr("class", "lineCO2")
-//                .style('fill',"none")
-//                .style('stroke',"green")
-//                .style('opacity', 0.2)
-//                .style('stroke-width',"1px");
-//            dataLines.exit()
-//                .remove();
-//            dataLines
-//                .attr("d",   function(d){
-//              return lineCO2(d.values[0]);}
-//                )
+            var width = 400;
+            var height = 200;
+                
+            var xScale = d3.time.scale()
+                .domain(yearExtent)
+                .rangeRound([0, width]);
+            var yScale = d3.scale.linear()
+                .domain(valueExtent)
+                .rangeRound([height,0]);
+
+          var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .ticks(d3.time.date, 1)
+                .tickFormat(d3.time.format('%Y'))
+                .tickSize(0)
+                .tickPadding(8)
+                ;
             
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left')
+                .tickPadding(8)
+                ; 
+            
+            
+            var svg = d3.select("svg")
+                .attr("width",width+100)
+                .attr("height", height+100);
+            
+            var realChart = svg
+                .append('g')
+                .attr("transform", "translate( "+30+" ," + 20 + ")");
+                
+
+            
+            realChart.append('g')
+                .attr('class', 'x axis')
+                .attr("transform", "translate( 0 ," + height + ")")
+                .style('stroke-width','3')
+                .call(xAxis);
+            
+           
+
+            realChart.append('g')
+              .attr('class', 'y axis')
+              .call(yAxis)
+              .append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("y", 6)
+              .attr("dy", "1em") 
+              .style("text-anchor", "end")
+              .text("Tons Per Capita");
+        
+           
+       
+            var lineCO2 = d3.svg.line()
+                .x(function(d) { return xScale(d.Year);
+                                })
+                .y(function(d) { return yScale(d.Value); })
+                .interpolate("monotone");           
+            
+         
+         
+               realChart
+                .append("path")
+                .attr("d", lineCO2(dataSet[220].values)
+                )
+                .style('fill',"none")
+                .style('stroke',"green")
+                .style('opacity', 0.2)
+                .style('stroke-width',"2px")
+                ;
+      
+          
+            //data binding을 하는것과 안하는것의 차이는 무엇인가???
+            // 데이터 바인딩을 했을때 i는 어떻게 적용이 되는가? 계속 다 처음부터 끝까지?
+            // 데이터를 가져올때 d를 쓰는것과 dataSet을 쓰는 것의 차이
+            // dataSet.values; 또는 dataSet[0].values.Year 이렇게 햇을때 아무것도 안나오는 이유는?
+            // d3 안에서 for은 어떻게 사용이 되는 것인가?
+           
 
        };
     
