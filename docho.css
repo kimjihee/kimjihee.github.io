@@ -158,7 +158,7 @@
             top: 332vw !important;
             left: 0;
             right: 0;
-            background-color: #75b449;
+            background-color:rgba(172, 188, 48, 1);
             height: 25rem !important;
         }
         .newsBody {
@@ -462,15 +462,13 @@
             border-radius: 5px !important;
         }
         .texts li {
-            background-color: rgba(143, 189, 108, 0.35);
+           
             padding: 0.7rem !important;
             height: 33.3333333333333333333333333% !important;
             color: #0B4F2B;
             width: 100% !important;
         }
-        .texts li:hover {
-            background-color: rgba(143, 189, 108, 0.5);
-        }
+       
         .finish {
             display: none;
         }
@@ -533,8 +531,7 @@
         }
         .bottom {
             position: absolute;
-            height: 9rem;
-            top: 390vw;
+            top: 370vw;
             left: 0;
             right: 0;
             border-top: 1.9px solid #55b327;
@@ -543,6 +540,7 @@
             padding-top: 0.5rem;
             color: rgb(100, 100, 100);
             padding-left: 1rem;
+            margin-bottom:1rem;
         }
         .bottom img {
             display: none;
@@ -678,9 +676,7 @@
             width: 290px;
             text-overflow: ellipsis;
         }
-        .texts li:hover {
-            background-color: rgba(143, 189, 108, 0.5);
-        }
+       
         .study {
             position: absolute;
             top: 0;
@@ -756,6 +752,7 @@
         }
         .letterSpace {
             word-spacing: 0.1rem;
+            padding-bottom:1rem;
         }
         .dochoPicture {
             display: none;
@@ -791,11 +788,11 @@
         }
         .enrollment {
             position: absolute;
-            top: 34vw;
+            top: 38vw;
             left: 0;
             right: 0;
             height: 12rem;
-            background-color: #75b449;
+            background-color:rgba(172, 188, 48, 1);
         }
         .fastClick {
             position: absolute;
@@ -1163,7 +1160,7 @@
         .middleTop {
             position: absolute;
             top: 0;
-            left: 12vw;
+            left:12vw;
             right: 12vw;
         }
         .middleMiddle {
@@ -1174,10 +1171,10 @@
         }
         .bottom {
             position: absolute;
-            top: 220vw;
+            top: 217vw;
             left: 12vw;
             right: 12vw;
-            border-top: 1.8px solid #55b327;
+            border-top: 2px solid #55b327;
             font-size: 0.78rem;
             line-height: 1.2rem;
             padding-top: 0.5rem;
@@ -1225,12 +1222,16 @@
             padding-left: 3rem;
         }
         #inputGoogle {
-            width: 11.4rem;
+            width: 20%;
+            position: absolute;
+            top:-0.05rem;
+            right:0;
+            
         }
         .fa-search {
             position: absolute;
             right: 0.3rem;
-            line-height: 21px;
+            line-height: 18px;
         }
         .colorPoint {
             background-color: #55b327;
@@ -1302,11 +1303,10 @@
         }
         .newsBody {
             position: absolute;
-            top: 47vw;
-            
+            top: 49vw;
             left:45vw;
             height: 16.5rem;
-            width: 20rem;
+            right: 0;
             overflow: hidden;
             border-radius: 5px;
         }
@@ -1314,7 +1314,8 @@
             position: absolute;
             top: 0;
             height: 2.5rem;
-            width: 18rem;
+            left:0;
+            right:0;
         }
         .newsName li {
             float: left;
@@ -1447,7 +1448,7 @@
             left: 0;
             right: 0;
             height: 12rem;
-            background-color: #75b449;
+            background-color:rgba(172, 188, 48, 1);
             border-radius: 5px;
         }
         .enrollbigName {
@@ -1572,7 +1573,7 @@
         .middleClickDot {
             display: block;
             position: absolute;
-            top: 30rem;
+            top: 31rem;
             left: 0;
             right: 0;
             width: 6rem;
@@ -1732,7 +1733,7 @@
         }
         .sevenr {
             position: absolute;
-            top: 42vw;
+            top: 44vw;
             left: 0;
             right: 20vw;
         }
@@ -1805,7 +1806,8 @@
         .texts {
             position: absolute;
             top: 2.5rem;
-            width: 18rem;
+            left:0;
+            right:0;
             border: 1px solid rgba(200, 200, 200, 0.8);
             border-radius: 5px;
             border-top-left-radius: 0;
@@ -1816,12 +1818,10 @@
             font-size: 0.8rem;
             padding-left: 1rem;
             line-height: 1.9rem;
-            width: 290px;
+            width: 100%;
             text-overflow: ellipsis;
         }
-        .texts li:hover {
-            background-color: rgba(143, 189, 108, 0.5);
-        }
+       
         .banners {
             border-top: 1px solid rgba(200, 200, 200, 0.8);
             border-bottom: 1px solid rgba(200, 200, 200, 0.8);
@@ -1868,4 +1868,5 @@
          .fa-fax {
             color: #55b327;
         }
+
     }
