@@ -32,9 +32,6 @@
     /*--------------------------here-----------------------------*/
     
     @media screen and (max-width: 400px) {
-        .forBr {
-            display: inline !important;
-        }
         .top {
             position: absolute;
             top: 0;
@@ -50,7 +47,7 @@
         }
         .fa-bars {
             font-size: 1.6rem;
-            padding-top: 1rem;
+            padding-top: 1.2rem;
             position: absolute;
             right: 5%;
             color: #55b327;
@@ -76,9 +73,6 @@
             font-size: 0.7rem;
             line-height: 1.2rem;
             color: rgb(100, 100, 100);
-        }
-        .bottom img {
-            width: 80%;
         }
         .letterSpace {
             text-align: center;
@@ -106,70 +100,12 @@
             padding-left: 1rem;
             width: 100%;
         }
-        .studybigName {
-            margin-top: 2.5rem;
-            margin-bottom: 2.5rem !important;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bolder;
-            width: 100%;
+        .thislogo {
+            width: 7rem !important;
+            padding-top: 0.4rem !important;
+            padding-left: 0.7rem!important;
         }
-        .studyName {
-            position: relative;
-            top: 1.5rem;
-            left: 0;
-            right: 0;
-            text-align: center;
-        }
-        .studyName li {
-            list-style-type: none !important;
-            width: 100% !important;
-            margin: 0 auto;
-            height: 9rem !important;
-            padding-bottom: 2rem !important;
-            text-align: center;
-        }
-        .emoticon {
-            background-color: #55b327;
-            display: block;
-            line-height: 5rem;
-            width: 5rem;
-            height: 5rem;
-            border-radius: 50%;
-            color: white;
-            text-align: center;
-            font-size: 2.5rem;
-            margin: 0 auto !important;
-        }
-        .emoticon:hover {
-            width: 5.5rem !important;
-            height: 5.5rem !important;
-            font-size: 3rem !important;
-            line-height: 5.6rem !important;
-        }
-        .studyNameTag {
-            position: relative;
-            height: 3rem !important;
-            line-height: 3rem !important;
-            font-size: 0.9rem !important;
-        }
-        .enrollment {
-            position: absolute;
-            top: 332vw !important;
-            left: 0;
-            right: 0;
-            background-color:rgba(172, 188, 48, 1);
-            height: 25rem !important;
-        }
-        .newsBody {
-            position: absolute;
-            top: 468vw !important;
-            left: 2vw !important;
-            right: 2vw !important;
-            border-radius: 5px;
-            border: 1px solid rgba(200, 200, 200, 0.4) !important;
-            height: 8rem !important;
-        }
+        /*----------------------------------------middle---------------------------------------------*/
         .fa-circle {
             color: rgba(200, 200, 200, 0.8);
         }
@@ -216,67 +152,6 @@
         .fastClick li:hover {
             font-weight: bold;
         }
-        .contact {
-            position: relative;
-            top: -1rem;
-            text-align: center;
-            color: black;
-        }
-        .greenPoint {
-            display: none;
-        }
-        .bottomPic {
-            position: absolute;
-            top: -3rem;
-            width: 100%;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .contactNumber {
-            font-size: 1.4rem;
-            line-height: 3rem;
-            font-weight: bold;
-        }
-        .telephone {
-            font-weight: bold;
-            color: #89653B !important;
-        }
-        .fax {
-            font-weight: bold;
-            color: rgb(179, 201, 5) !important;
-        }
-        .adress {
-            display: none;
-        }
-        .sevenr {
-            position: absolute;
-            top: 0 !important;
-            left: 5vw !important;
-            right: 5vw !important;
-        }
-        #imsvg {
-            width: 800px;
-        }
-        .sevenRP {
-            width: 95%;
-        }
-        .campain {
-            margin-top: 0;
-            margin-bottom: 2.5rem;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bolder;
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
-        .thislogo {
-            width: 10rem !important;
-            padding-top: 0.4rem !important;
-            padding-left: 0.7rem!important;
-        }
-        .sitesLink {
-            display: none;
-        }
         .enrollbigName {
             margin-top: 2.5rem !important;
             margin-bottom: 1.5rem !important;
@@ -319,6 +194,9 @@
             padding-bottom: 0 !important;
             font-weight: bold;
             font-size: 0.9rem;
+        }
+        .forBr {
+            display: inline !important;
         }
         .jump {
             display: none;
@@ -432,6 +310,91 @@
         .em {
             display: none;
         }
+        .studybigName {
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem !important;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bolder;
+            width: 100%;
+        }
+        .studyName {
+            position: relative;
+            top: 1.5rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        .studyName li {
+            list-style-type: none !important;
+            width: 100% !important;
+            margin: 0 auto;
+            height: 9rem !important;
+            padding-bottom: 2rem !important;
+            text-align: center;
+        }
+        .emoticon {
+            background-color: #55b327;
+            display: block;
+            line-height: 5rem;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 0 auto !important;
+        }
+        .emoticon:hover {
+            width: 5.5rem !important;
+            height: 5.5rem !important;
+            font-size: 3rem !important;
+            line-height: 5.6rem !important;
+        }
+        .studyNameTag {
+            position: relative;
+            height: 3rem !important;
+            line-height: 3rem !important;
+            font-size: 0.9rem !important;
+        }
+        .enrollment {
+            position: absolute;
+            top: 332vw !important;
+            left: 0;
+            right: 0;
+            background-color: rgba(172, 188, 48, 1);
+            height: 25rem !important;
+        }
+        .sevenr {
+            position: absolute;
+            top: 0 !important;
+            left: 5vw !important;
+            right: 5vw !important;
+        }
+        #imsvg {
+            width: 800px;
+        }
+        .sevenRP {
+            width: 95%;
+        }
+        .campain {
+            margin-top: 0;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bolder;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+        .newsBody {
+            position: absolute;
+            top: 468vw !important;
+            left: 2vw !important;
+            right: 2vw !important;
+            border-radius: 5px;
+            border: 1px solid rgba(200, 200, 200, 0.4) !important;
+            height: 8rem !important;
+        }
         .newsName {
             position: absolute;
             left: 0 !important;
@@ -462,13 +425,11 @@
             border-radius: 5px !important;
         }
         .texts li {
-           
             padding: 0.7rem !important;
             height: 33.3333333333333333333333333% !important;
             color: #0B4F2B;
             width: 100% !important;
         }
-       
         .finish {
             display: none;
         }
@@ -484,13 +445,46 @@
             color: white;
             border-top-left-radius: 5px;
         }
+        /*---------------------------------------bottom-------------------------------------------*/
+        .contact {
+            position: relative;
+            top: -1rem;
+            text-align: center;
+            color: black;
+        }
+        .greenPoint {
+            display: none;
+        }
+        .bottomPic {
+            position: absolute;
+            top: -3rem;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .contactNumber {
+            font-size: 1.4rem;
+            line-height: 3rem;
+            font-weight: bold;
+        }
+        .telephone {
+            font-weight: bold;
+            color: #89653B !important;
+        }
+        .fax {
+            font-weight: bold;
+            color: rgb(179, 201, 5) !important;
+        }
+        .adress {
+            display: none;
+        }
+        .bottom img {
+            width: 80%;
+        }
     }
     /*------------------------------------------here----------------------------------------------*/
     
     @media screen and (min-width: 401px) and (max-width: 768px) {
-        .fa-bars {
-            display: none;
-        }
         .top {
             position: absolute;
             top: 0;
@@ -540,7 +534,7 @@
             padding-top: 0.5rem;
             color: rgb(100, 100, 100);
             padding-left: 1rem;
-            margin-bottom:1rem;
+            margin-bottom: 1rem;
         }
         .bottom img {
             display: none;
@@ -558,7 +552,7 @@
         .topMenu {
             position: absolute;
             top: 2rem;
-            left: 0;
+            left: 2rem;
             right: 0;
             font-size: 0.9rem;
             font-weight: bold;
@@ -566,7 +560,21 @@
         .topMenu li {
             float: left;
             font-size: 0.8rem;
-            width: 16.66666666666666666666666%;
+            width: 20%;
+        }
+        .search {
+            display: none;
+            padding: 0;
+        }
+        #inputGoogle {
+            display: none;
+        }
+        .topRightSide {
+            position: absolute;
+            left: 30vw;
+            right: 0;
+            top: 0;
+            bottom: 0;
         }
         .colorPoint {
             background-color: #55b327;
@@ -604,6 +612,10 @@
             position: absolute;
             top: 0;
         }
+        .fa-bars {
+            display: none;
+        }
+        /*------------------------------------------middle------------------------------------------*/
         .middleClickMenu {
             display: none;
         }
@@ -625,58 +637,6 @@
             height: 1.7rem;
             line-height: 1.7rem;
         }
-        .newsBody {
-            position: absolute;
-            top: 80vw;
-            left: 55vw;
-            right: 3vw;
-            height: 16.5rem;
-            overflow: hidden;
-            border-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-        .newsName {
-            position: absolute;
-            top: 0;
-            height: 2.5rem;
-            width: 18rem;
-            border-top-right-radius: 5px;
-        }
-        .newsName li {
-            float: left;
-            height: inherit;
-            width: 33.333333333333333333333333333333333333%;
-            line-height: 2.5rem;
-            color: rgb(150, 150, 150);
-            border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-            border-left: 1px solid rgba(200, 200, 200, 0.8);
-            border-top: 1px solid rgba(200, 200, 200, 0.8);
-            font-size: 0.95rem;
-            font-weight: bold;
-            text-align: center;
-        }
-        .newsName li:hover {
-            background-color: #55b327;
-            color: white;
-        }
-        .texts {
-            position: absolute;
-            top: 2.5rem;
-            width: 18rem;
-            border: 1px solid rgba(200, 200, 200, 0.8);
-            border-radius: 5px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-        .texts li {
-            height: 1.9rem;
-            font-size: 0.8rem;
-            padding-left: 1rem;
-            line-height: 1.9rem;
-            width: 290px;
-            text-overflow: ellipsis;
-        }
-       
         .study {
             position: absolute;
             top: 0;
@@ -752,7 +712,7 @@
         }
         .letterSpace {
             word-spacing: 0.1rem;
-            padding-bottom:1rem;
+            padding-bottom: 1rem;
         }
         .dochoPicture {
             display: none;
@@ -792,7 +752,7 @@
             left: 0;
             right: 0;
             height: 12rem;
-            background-color:rgba(172, 188, 48, 1);
+            background-color: rgba(172, 188, 48, 1);
         }
         .fastClick {
             position: absolute;
@@ -813,12 +773,6 @@
         }
         .fastClick li:hover {
             font-weight: bold;
-        }
-        .fa-pencil {
-            color: #55b327;
-        }
-        .fa-paper-plane-o {
-            color: #55b327;
         }
         .bigName {
             position: absolute;
@@ -883,23 +837,6 @@
             padding-left: 1rem;
             font-size: 1.07rem;
         }
-        .bottomPic {
-            display: none;
-        }
-        .search {
-            display: none;
-            padding: 0;
-        }
-        #inputGoogle {
-            display: none;
-        }
-        .topRightSide {
-            position: absolute;
-            left: 30vw;
-            right: 0;
-            top: 0;
-            bottom: 0;
-        }
         .sevenRP {
             padding: 1rem;
             width: 100%;
@@ -943,7 +880,7 @@
             right: 5vw;
         }
         .thislogo {
-            width: 12rem;
+            width: 8rem;
             padding-top: 0.7rem;
         }
         .business {
@@ -978,21 +915,6 @@
             padding-top: 1rem;
             padding-bottom: 1rem;
         }
-        .fa-fax {
-            color: #55b327;
-        }
-        .fa-phone {
-            color: #55b327;
-        }
-        .sitesLink {
-            position: absolute;
-            top: 117vw;
-            left: 0;
-            right: 0;
-        }
-        .pen {
-            color: #0B4F2B !important;
-        }
         .introduce {
             position: absolute;
             right: 0;
@@ -1004,7 +926,6 @@
             padding-bottom: 1rem;
             padding-top: 1.5rem;
         }
-        /*.introduce img {border-radius: 5px;}*/
         .align {
             font-size: 0.8rem;
             margin: 0;
@@ -1055,11 +976,6 @@
         }
         .facilityUl img {
             width: 100%;
-            /*
-    border-radius: 10px;
-    margin-top: 7%;
-    margin-bottom: 5%;
-*/
         }
         .facilityUl {
             background-color: #75b449;
@@ -1095,43 +1011,69 @@
             line-height: 1.6rem;
             font-family: 'Nanum Myeongjo', serif;
         }
-        .banners li {
-            float: left;
-            width: 16%;
-            padding: 1rem;
-            padding-left: 0;
-            /*    border: 1px solid red;*/
-            height: inherit;
-        }
-        .banners img {
-            height: 100%;
-            line-height: 2rem;
-        }
-        .banners {
-            border-top: 1px solid rgba(200, 200, 200, 0.8);
-            border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-            height: 3.5rem;
+        .newsBody {
             position: absolute;
-            left: 2vw;
-            right: 2vw;
+            top: 80vw;
+            left: 55vw;
+            right: 3vw;
+            height: 16.5rem;
+            overflow: hidden;
+            border-radius: 5px;
+            border-top-right-radius: 5px;
         }
-        .jeon-nam {
-            padding-left: 1.4rem;
+        .newsName {
+            position: absolute;
+            top: 0;
+            height: 2.5rem;
+            width: 18rem;
+            border-top-right-radius: 5px;
         }
-        .em {
-            color: #21a2ff;
+        .newsName li {
+            float: left;
+            height: inherit;
+            width: 33.333333333333333333333333333333333333%;
+            line-height: 2.5rem;
+            color: rgb(150, 150, 150);
+            border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+            border-left: 1px solid rgba(200, 200, 200, 0.8);
+            border-top: 1px solid rgba(200, 200, 200, 0.8);
+            font-size: 0.95rem;
             font-weight: bold;
-            font-family: 'Baloo Bhai', cursive;
-            font-size: 1.2rem;
-        }
-        .bannerEm {
-            font-weight: bold;
-            width: 20% !important;
             text-align: center;
-            /*
-    color:white;
-    background-color:#66b327;
-*/
+        }
+        .newsName li:hover {
+            background-color: #55b327;
+            color: white;
+        }
+        .texts {
+            position: absolute;
+            top: 2.5rem;
+            width: 18rem;
+            border: 1px solid rgba(200, 200, 200, 0.8);
+            border-radius: 5px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        .texts li {
+            height: 1.9rem;
+            font-size: 0.8rem;
+            padding-left: 1rem;
+            line-height: 1.9rem;
+            width: 290px;
+            text-overflow: ellipsis;
+        }
+        /*---------------------------------------bottom------------------------------------------*/
+        .fa-fax {
+            color: #55b327;
+        }
+        .fa-phone {
+            color: #55b327;
+        }
+        .pen {
+            color: #0B4F2B !important;
+        }
+        .bottomPic {
+            display: none;
         }
     }
     /*--------------------------------------------here---------------------------------------*/
@@ -1160,7 +1102,7 @@
         .middleTop {
             position: absolute;
             top: 0;
-            left:12vw;
+            left: 12vw;
             right: 12vw;
         }
         .middleMiddle {
@@ -1186,9 +1128,9 @@
             margin: 1rem auto;
         }
         .thislogo {
-            width: 12rem;
+            width: 10rem;
             position: absolute;
-            top: 1.5rem;
+            top: -0.2rem;
         }
         .topRightSide {
             position: absolute;
@@ -1212,7 +1154,7 @@
         .topMenu {
             position: absolute;
             top: 2.8rem;
-            left: 0;
+            left: 4rem;
             right: 0;
             font-size: 0.9rem;
             font-weight: bold;
@@ -1224,9 +1166,8 @@
         #inputGoogle {
             width: 20%;
             position: absolute;
-            top:-0.05rem;
-            right:0;
-            
+            top: -0.05rem;
+            right: 0;
         }
         .fa-search {
             position: absolute;
@@ -1252,6 +1193,7 @@
             position: absolute;
             right: 0;
         }
+        /*----------------------------------------middle-----------------------------------------------*/
         .middleTop li {
             position: absolute;
             height: 440px;
@@ -1304,7 +1246,7 @@
         .newsBody {
             position: absolute;
             top: 49vw;
-            left:45vw;
+            left: 45vw;
             height: 16.5rem;
             right: 0;
             overflow: hidden;
@@ -1314,8 +1256,8 @@
             position: absolute;
             top: 0;
             height: 2.5rem;
-            left:0;
-            right:0;
+            left: 0;
+            right: 0;
         }
         .newsName li {
             float: left;
@@ -1448,7 +1390,7 @@
             left: 0;
             right: 0;
             height: 12rem;
-            background-color:rgba(172, 188, 48, 1);
+            background-color: rgba(172, 188, 48, 1);
             border-radius: 5px;
         }
         .enrollbigName {
@@ -1671,19 +1613,17 @@
             font-weight: bold;
             padding-top: 1rem;
             padding-bottom: 1rem;
-            
         }
         .boxFoot {
             padding-top: 1rem;
             font-size: 0.8rem;
-            padding-right:1rem;
+            padding-right: 1rem;
             text-align: left !important;
             line-height: 1.6rem;
             font-family: 'Nanum Myeongjo', serif;
         }
         .businessUl img {
             width: 100%;
-           
         }
         .forBrThree {
             display: none;
@@ -1738,8 +1678,7 @@
             right: 20vw;
         }
         .sevenRP {
-           
-            width:70%;
+            width: 70%;
         }
         .bigName {
             position: absolute;
@@ -1806,8 +1745,8 @@
         .texts {
             position: absolute;
             top: 2.5rem;
-            left:0;
-            right:0;
+            left: 0;
+            right: 0;
             border: 1px solid rgba(200, 200, 200, 0.8);
             border-radius: 5px;
             border-top-left-radius: 0;
@@ -1821,52 +1760,18 @@
             width: 100%;
             text-overflow: ellipsis;
         }
-       
-        .banners {
-            border-top: 1px solid rgba(200, 200, 200, 0.8);
-            border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-            height: 3.5rem;
-            position: absolute;
-            left: 0;
-            right: 0;
-        }
-        .bannerEm {
-            font-weight: bold;
-            width: 20% !important;
-            text-align: center;
-        }
-        .banners img {
-            height: 100%;
-        }
-        .banners li {
-            float: left;
-            width: 16%;
-            padding: 1rem;
-            padding-left: 0;
-            height: inherit;
-        }
-        .sitesLink {
-            position: absolute;
-            top: 63vw;
-            left: 0;
-            right: 0;
-        }
-        .jeon-nam {
-            padding-left: 1.4rem;
-        }
+        /*--------------------------------------------bottom------------------------------------------*/
         .bottom img {
             display: none;
         }
         .forBr {
             display: none;
         }
-        
         .fa-phone {
-             font-weight: bold;
+            font-weight: bold;
             color: #55b327;
         }
-         .fa-fax {
+        .fa-fax {
             color: #55b327;
         }
-
     }
