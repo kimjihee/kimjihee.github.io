@@ -7,7 +7,7 @@
         @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
         body {
             font-family: 'Roboto', sans-serif;
-            font-size:0.5rem;
+            font-size:0.4rem;
         }
 
         
@@ -16,7 +16,7 @@
         stroke: #000;
         shape-rendering: crispEdges;
       }
-        
+       
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     
@@ -59,45 +59,45 @@
             
      var redraw = function () {   
             
-  //------------------------------------------Draw------------------------------------------
+//  ------------------------------------------Draw------------------------------------------
        
-//           
-//            var MARGIN = {
-//                START:0
-//                , TOP: 0
-//                , LEFT: 230
-//                , RIGHT: 0
-//                , BOTTOM: 0
-//            , }
+           
+            var MARGIN = {
+                START:0
+                , TOP: 50
+                , LEFT: 100
+                , RIGHT: 100
+                , BOTTOM: 0
+            , }
 //            var Width = document.querySelector('#chart').clientWidth;
 //            var Height = document.querySelector('#chart').clientHeight;
-//                
-//            
+                
+            var Width = 1200;
+            var Height = 500;
 ////----------------------------------------column----------------------------------------
-//                
-//                
-//            var columnBand = d3.scale.ordinal()
-//                .domain(['a', 'b', 'c', 'd', 'e'])
-//                .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.07);
-//                
-//                
-//            var yBand = d3.scale.ordinal()
-//                .domain(['A', 'B', 'C', 'D', 'E'])
-//                .rangeBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 7.9);
-//            
-//            var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
-//            
-//            columnSel.enter()
-//                .append('g')
-//                .attr('class', function (d) {
-//                return 'column ' + d;
-//            });
-//            columnSel.exit().remove();
-//            
-//            columnSel.attr('transform', function (d) {
-//                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')'; //++의 정체는 무엇인가!!!
-//            });
-//                
+                
+                
+            var columnBand = d3.scale.ordinal()
+                .domain(['a', 'b', 'c', 'd', 'e'])
+                .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.07);
+                
+                
+            var yBand = d3.scale.ordinal()
+                .domain(['A', 'B', 'C', 'D', 'E'])
+                .rangeBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 7.9);
+            
+            var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
+            
+            columnSel.enter()
+                .append('g')
+                .attr('class', function (d) {
+                return 'column ' + d;
+            });
+            columnSel.exit().remove();
+            
+            columnSel.attr('transform', function (d) {
+                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')';
+            });
                 
                 
                 
@@ -105,8 +105,8 @@
                 
                 
 //------------------------------------------One Graph----------------------------------------------       
-            var width = 400;
-            var height = 200;
+            var width = 200;
+            var height = 100;
                 
             var xScale = d3.time.scale()
                 .domain(yearExtent)
@@ -118,34 +118,54 @@
           var xAxis = d3.svg.axis()
                 .scale(xScale)
                 .orient('bottom')
-                .ticks(d3.time.date, 1)
+                .ticks(d3.time.year,10)
+                //.ticks(d3.time.date,1) 이렇게 바꿨더니 원하는것처럼 tick 개수가 줄어들엇음
+                    
                 .tickFormat(d3.time.format('%Y'))
                 .tickSize(0)
                 .tickPadding(8)
+                
                 ;
             
 
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
-                .tickPadding(8)
+                .tickValues([5,20,50,90])//원하는 숫자 넣을 수 있다.
+                .tickSize(0)// 튀어나온 선의 크기
+                .tickPadding(5)// 축과 글자 사이의 간격
                 ; 
             
             
             var svg = d3.select("svg")
-                .attr("width",width+100)
-                .attr("height", height+100);
-            
-            var realChart = svg
-                .append('g')
-                .attr("transform", "translate( "+30+" ," + 20 + ")");
+                .attr("width",Width)
+                .attr("height", Height);
+        
+         
+           var realChart = svg.select('g.column.a').selectAll('g').data(dataSet);
+         
+                realChart.enter()
+                    .append("g")
+                    .attr("width",width+100)
+                    .attr("height", height+100)
+                    .attr('class',function(d){return 'columna'+ d.values.Country;} );
+                realChart.exit()
+                    .remove();
+                realChart
+                    .attr('x', function(d) {
+                        return columnBand.rangeBand();
+                    })
+                    .attr('y', function(d, i) {return yBand(i);})
+                    ;
                 
-
-            
+         
+                   
+         
+                       
             realChart.append('g')
                 .attr('class', 'x axis')
                 .attr("transform", "translate( 0 ," + height + ")")
-                .style('stroke-width','3')
+                .style('stroke-width','2')//축 두께
                 .call(xAxis);
             
            
@@ -153,15 +173,9 @@
             realChart.append('g')
               .attr('class', 'y axis')
               .call(yAxis)
-              .append("text")
-              .attr("transform", "rotate(-90)")
-              .attr("y", 6)
-              .attr("dy", "1em") 
-              .style("text-anchor", "end")
-              .text("Tons Per Capita");
+              ;
         
            
-       
             var lineCO2 = d3.svg.line()
                 .x(function(d) { return xScale(d.Year);
                                 })
@@ -176,8 +190,8 @@
                 )
                 .style('fill',"none")
                 .style('stroke',"green")
-                .style('opacity', 0.2)
-                .style('stroke-width',"2px")
+                .style('opacity', 1)
+                .style('stroke-width',"1px")
                 ;
       
           
