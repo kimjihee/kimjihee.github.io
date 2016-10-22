@@ -51,7 +51,7 @@
           
             
             
-            dataSet = Nest;
+            dataSet = Nest.splice(0, 4);
             redraw();           
                        
        });     
@@ -75,124 +75,112 @@
             var Width = 1200;
             var Height = 500;
 ////----------------------------------------column----------------------------------------
-                
-                
+            var countryNames = dataSet.map(function(d) {return d['key'];});
             var columnBand = d3.scale.ordinal()
-                .domain(['a', 'b', 'c', 'd', 'e'])
-                .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.07);
-                
-                
-            var yBand = d3.scale.ordinal()
-                .domain(['A', 'B', 'C', 'D', 'E'])
-                .rangeBands([0, Height - MARGIN.TOP - MARGIN.BOTTOM], 0.12, 7.9);
+                .domain(countryNames)
+                .rangeRoundBands([MARGIN.LEFT, Width - MARGIN.RIGHT], 0.2);
             
-            var columnSel = d3.select('#chart').selectAll('g.column').data(columnBand.domain());
-            
+            var columnSel = d3.select('#chart')
+                .attr("width", Width)
+                .attr("height", Height)
+                .selectAll('g.column').data(dataSet);
+
             columnSel.enter()
                 .append('g')
                 .attr('class', function (d) {
-                return 'column ' + d;
-            });
+                    return 'column ' + d.key;
+                });
             columnSel.exit().remove();
-            
             columnSel.attr('transform', function (d) {
-                return 'translate(' + columnBand(d) + ', ' + MARGIN.TOP + ')';
+                return 'translate(' + columnBand(d.key) + ', ' + MARGIN.TOP + ')';
             });
-                
-                
-                
-                
-                
                 
 //------------------------------------------One Graph----------------------------------------------       
-            var width = 200;
-            var height = 100;
-                
             var xScale = d3.time.scale()
                 .domain(yearExtent)
-                .rangeRound([0, width]);
+                .rangeRound([0, columnBand.rangeBand()]);
             var yScale = d3.scale.linear()
                 .domain(valueExtent)
-                .rangeRound([height,0]);
+                .rangeRound([columnBand.rangeBand() * 0.5, 0]);
 
-          var xAxis = d3.svg.axis()
+            var xAxis = d3.svg.axis()
                 .scale(xScale)
                 .orient('bottom')
-                .ticks(d3.time.year,10)
-                //.ticks(d3.time.date,1) 이렇게 바꿨더니 원하는것처럼 tick 개수가 줄어들엇음
-                    
+                .ticks(d3.time.year, 10)
+                //.ticks(d3.time.date, 1) 이렇게 바꿨더니 원하는것처럼 tick 개수가 줄어들엇음
                 .tickFormat(d3.time.format('%Y'))
                 .tickSize(0)
-                .tickPadding(8)
-                
-                ;
-            
-
+                .tickPadding(8);
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
-                .tickValues([5,20,50,90])//원하는 숫자 넣을 수 있다.
-                .tickSize(0)// 튀어나온 선의 크기
-                .tickPadding(5)// 축과 글자 사이의 간격
-                ; 
-            
-            
-            var svg = d3.select("svg")
-                .attr("width",Width)
-                .attr("height", Height);
-        
+                .tickValues([5, 20, 50, 90]) //원하는 숫자 넣을 수 있다.
+                .tickSize(0) // 튀어나온 선의 크기
+                .tickPadding(5); // 축과 글자 사이의 간격
          
-           var realChart = svg.select('g.column.a').selectAll('g').data(dataSet);
-         
-                realChart.enter()
-                    .append("g")
-                    .attr("width",width+100)
-                    .attr("height", height+100)
-                    .attr('class',function(d){return 'columna'+ d.values.Country;} );
-                realChart.exit()
-                    .remove();
-                realChart
-                    .attr('x', function(d) {
-                        return columnBand.rangeBand();
-                    })
-                    .attr('y', function(d, i) {return yBand(i);})
-                    ;
-                
-         
-                   
-         
-                       
-            realChart.append('g')
-                .attr('class', 'x axis')
-                .attr("transform", "translate( 0 ," + height + ")")
-                .style('stroke-width','2')//축 두께
+            columnSel
+                .append('g')
+                .attr('class', 'axis x')
+                .attr("transform", "translate( 0 ," + yScale.range()[0] + ")")
+                .style('stroke-width','2') //축 두께
                 .call(xAxis);
-            
-           
+            columnSel
+                .append('g')
+                .attr('class', 'axis y')
+                .call(yAxis);
 
-            realChart.append('g')
-              .attr('class', 'y axis')
-              .call(yAxis)
-              ;
-        
-           
             var lineCO2 = d3.svg.line()
-                .x(function(d) { return xScale(d.Year);
-                                })
+                .x(function(d) { return xScale(d.Year); })
                 .y(function(d) { return yScale(d.Value); })
                 .interpolate("monotone");           
-            
-         
-         
-               realChart
-                .append("path")
-                .attr("d", lineCO2(dataSet[220].values)
-                )
+            columnSel
+                .append('path')
+                .attr('class', 'data')
                 .style('fill',"none")
                 .style('stroke',"green")
                 .style('opacity', 1)
                 .style('stroke-width',"1px")
-                ;
+                .attr('d', function(d) {
+                    return lineCO2(d.values);
+                });
+         
+         
+          };
+                    
+            
+//           var realChart = svg.select('g.column.a').selectAll('g').data(dataSet);
+//                       
+//            realChart.append('g')
+//                .attr('class', 'x axis')
+//                .attr("transform", "translate( 0 ," + height + ")")
+//                .style('stroke-width','2')//축 두께
+//                .call(xAxis);
+//            
+//           
+//
+//            realChart.append('g')
+//              .attr('class', 'y axis')
+//              .call(yAxis)
+//              ;
+//        
+//           
+//            var lineCO2 = d3.svg.line()
+//                .x(function(d) { return xScale(d.Year);
+//                                })
+//                .y(function(d) { return yScale(d.Value); })
+//                .interpolate("monotone");           
+//            
+//         
+//         
+//               realChart
+//                .append("path")
+//                .attr("d", lineCO2(dataSet[220].values)
+//                )
+//                .style('fill',"none")
+//                .style('stroke',"green")
+//                .style('opacity', 1)
+//                .style('stroke-width',"1px")
+//                ;
       
           
             //data binding을 하는것과 안하는것의 차이는 무엇인가???
@@ -202,7 +190,7 @@
             // d3 안에서 for은 어떻게 사용이 되는 것인가?
            
 
-       };
+      
     
         </script>
 </body>
