@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>suicide number</title>
+    <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size:0.5rem;
+        }
+        
+        #chart{ border :1px solid black;}
+        
+        .axis path, .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+        
+      </style>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    
+    <script src="d3.min.js" type="text/javascript"></script></head>
+    <body>
+        <svg id="chart"> </svg>
+        
+        
+        
+        <script>
+
+//--- Data---------------------------------------------
+        var dataSet = [];
+        var yearExtent = [];
+        var valueExtent = [];
+//           
+        var Suicide = d3.csv('data/Number_of_deaths_attributed_to_suicide.csv', function (err, suicide) {
+            suicide.forEach(function (row) {
+                row['ReferenceArea'] = row['ReferenceArea'];
+                row['Sex'] = row['Sex'];
+                row['Value'] = +row['Value']; 
+                row['TimePeriod'] = +row['TimePeriod'];
+            });
+           
+            yearExtent = d3.extent(suicide, function(d) {return d.TimePeriod;});
+            valueExtent = [0, d3.max(suicide, function(d) {return d.Value;})];
+                        
+            var Nest = d3.nest()
+            .key(function(d){
+                return d.ReferenceArea;
+               
+            })
+            .entries(suicide);
+            
+            dataSet = Nest;
+            
+            //14까지는 묶음이다.  15부터 나라 하나하나  
+            redraw();    
+        }); 
+            
+       
+        var redraw = function(){
+           
+            var Width = 400;
+            var Height = 200;
+                
+                          
+            var xScale = d3.scale.linear()
+                .domain(yearExtent)
+                .rangeRound([0, Width]);
+            var yScale = d3.scale.linear()
+                .domain(valueExtent)
+                .rangeRound([Height,0]);
+                      
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .tickValues([2000, 2012])//start stop //이렇게 1이 스탑인데 맞나요?
+                .tickSize(0)
+                .tickPadding(8)
+                ;
+            
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left')
+                .tickPadding(8)
+                ; 
+            
+            var svg = d3.select("svg")
+                .attr("width",Width+100)
+                .attr("height", Height+100);
+            
+            var realChart = svg
+                .append('g')
+                .attr("transform", "translate( "+40+" ," + 20 + ")");
+              
+            realChart.append('g')
+                .attr('class', 'x axis')
+                .attr("transform", "translate( 0 ," + Height + ")")
+                .style('stroke-width','3')
+                .call(xAxis);
+            
+            realChart.append('g')
+              .attr('class', 'y axis')
+              .call(yAxis)
+              ;
+            
+          
+                
+                realChart
+                .append("rect")
+                .attr("class", "number")
+                .attr("width", 10 )
+                .attr('height', dataSet[0].values[0].Value*10)
+                .style('fill','red')
+                ;
+                
+                
+
+            
+
+       };                    
+        </script>
+    </body>
+</html>
