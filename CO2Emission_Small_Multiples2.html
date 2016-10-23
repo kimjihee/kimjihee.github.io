@@ -12,7 +12,7 @@
                 
       .axis path, .axis line {
         fill: none;
-        stroke: rgba(100,100,100,0.6);
+        stroke: rgba(100,100,100,0.5);
         shape-rendering: crispEdges;
       }
        
@@ -50,7 +50,7 @@
           
             
             
-            dataSet = Nest.splice(0, 15);
+            dataSet = Nest.splice(150, 170);
             redraw();           
                        
        });     
@@ -62,7 +62,7 @@
                  
             var MARGIN = {
                   TOP: 50
-                , LEFT: 50
+                , LEFT: 100
                 , RIGHT: 100
                 , BOTTOM: 0
             , }
@@ -75,7 +75,7 @@
                     
             var columnSel = d3.select('#chart')
                 .attr("width", Width+100)
-                .attr("height", Height+100)
+                .attr("height", Height+500)
                 .selectAll('g.column').data(dataSet);
 
             columnSel.enter()
@@ -116,7 +116,7 @@
                 .append('g')
                 .attr('class', 'axis x')
                 .attr("transform", "translate(  "+ - (padding/1.5) +" ," + yScale.range()[0] + ")")
-                .style('stroke-width','2') //축 두께
+                .style('stroke-width','1') //축 두께
                 .call(xAxis);
             columnSel
                 .append('g')
