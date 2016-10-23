@@ -12,10 +12,13 @@
                 
       .axis path, .axis line {
         fill: none;
-        stroke: rgba(100,100,100,0.5);
+        stroke: rgba(100,100,100,0.4);
         shape-rendering: crispEdges;
       }
-       
+        .axis text {
+           fill:rgba(100,100,100,0.85);
+            
+        } 
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     
@@ -50,7 +53,7 @@
           
             
             
-            dataSet = Nest.splice(150, 170);
+            dataSet = Nest.splice(20, 40);
             redraw();           
                        
        });     
@@ -69,7 +72,7 @@
             
           
             var padding = 40;
-            var Width = 1000;
+            var Width = 1100;
             var Height = 700;
 ////----------------------------------------column----------------------------------------
                     
@@ -110,14 +113,23 @@
                 .orient('left')
                 .tickValues([5, 20, 50, 90]) //원하는 숫자 넣을 수 있다.
                 .tickSize(0) // 튀어나온 선의 크기
-                .tickPadding(5); // 축과 글자 사이의 간격
+                .tickPadding(4); // 축과 글자 사이의 간격
          
             columnSel
                 .append('g')
                 .attr('class', 'axis x')
                 .attr("transform", "translate(  "+ - (padding/1.5) +" ," + yScale.range()[0] + ")")
-                .style('stroke-width','1') //축 두께
-                .call(xAxis);
+                .style('stroke-width','1')
+                .call(xAxis)
+                .append("text")
+                .attr("y", -90)
+                .attr("x", 10)
+                .attr("dy", "3em") 
+                .style("text-anchor", "start")
+                .style("font-weight", "bold")
+                .style('fill','black')
+                .text(function (d){return d.key; });
+         
             columnSel
                 .append('g')
                 .attr('class', 'axis y')
@@ -131,9 +143,10 @@
                 .append('path')
                 .attr('class', 'data')
                 .style('fill',"none")
-                .style('stroke',"green")
+                .style('z-index',"2")
+                .style('stroke',"red")
                 .style('opacity', 1)
-                .style('stroke-width',"2px")
+                .style('stroke-width',"1.5px")
                  .attr("transform", "translate(  "+ - (padding/1.5) +" ,0 )")
                 .attr('d', function(d) {
                     return lineCO2(d.values);//여기서 d는 dataSet은 아니고, dataSet[0] dataSet[1] ... 이다.  
