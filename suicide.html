@@ -7,11 +7,10 @@
         @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
         body {
             font-family: 'Roboto', sans-serif;
-            font-size:0.5rem;
+            font-size:0.4rem;
         }
         
-        #chart{ border :1px solid black;}
-        
+               
         .axis path, .axis line {
         fill: none;
         stroke: #000;
@@ -33,8 +32,9 @@
         var dataSet = [];
         var yearExtent = [];
         var valueExtent = [];
-//           
-        var Suicide = d3.csv('data/Number_of_deaths_attributed_to_suicide.csv', function (err, suicide) {
+        var Female = [];
+        var Male = [];
+        var Suicide = d3.csv('data/suicide_rate.csv', function (err, suicide) {
             suicide.forEach(function (row) {
                 row['ReferenceArea'] = row['ReferenceArea'];
                 row['Sex'] = row['Sex'];
@@ -44,33 +44,78 @@
            
             yearExtent = d3.extent(suicide, function(d) {return d.TimePeriod;});
             valueExtent = [0, d3.max(suicide, function(d) {return d.Value;})];
-                        
-            var Nest = d3.nest()
+            
+           var Female = suicide.filter(function (row) {
+                    return row['Sex'].startsWith('Female');
+                });
+            
+            var Male = suicide.filter(function (row) {
+                    return row['Sex'].startsWith('Male');
+                });
+            
+            
+            var Fenest = d3.nest()
             .key(function(d){
                 return d.ReferenceArea;
                
             })
-            .entries(suicide);
+            .entries(Female);
+           
             
-            dataSet = Nest;
+           var Mnest = d3.nest()
+            .key(function(d){
+                return d.ReferenceArea;
+               
+            })
+            .entries(Male);
             
-            //14까지는 묶음이다.  15부터 나라 하나하나  
+            dataSet = Fenest.splice(0, 5);
+            MaleDataset = Mnest.splice(0, 5);          
+            
             redraw();    
         }); 
             
-       
-        var redraw = function(){
+     
+            var redraw = function(){
            
-            var Width = 400;
-            var Height = 200;
-                
+                  
+            var MARGIN = {
+                  TOP: 50
+                , LEFT: 100
+                , RIGHT: 100
+                , BOTTOM: 0
+            , }
+            
+          
+            var padding = 40;
+            var Width = 1100;
+            var Height = 600;
+////----------------------------------------column----------------------------------------
+                    
+            var columnSel = d3.select('#chart')
+                .attr("width", Width+100)
+                .attr("height", Height)
+                .selectAll('g.column').data(dataSet);
+
+            columnSel.enter()
+                .append('g')
+                .attr('class', function (d) {
+                    return 'column ' + d.key;
+                })
+               ;
+                    
+            columnSel.exit().remove();
+            columnSel.attr('transform', function (d,i) {
+                return 'translate(' + ( Math.floor(i%6)* (Width/6) + MARGIN.LEFT )+ ', '+ ((Height/5)* Math.floor(i/5) +  MARGIN.TOP  )+ ')';
+            });
+         
                           
             var xScale = d3.scale.linear()
                 .domain(yearExtent)
-                .rangeRound([0, Width]);
+                .rangeRound([padding/1.5, (Width/6) - padding/1.5]);
             var yScale = d3.scale.linear()
                 .domain(valueExtent)
-                .rangeRound([Height,0]);
+                .rangeRound([(Height/4) - padding , padding]);
                       
             var xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -83,41 +128,84 @@
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
+                .tickValues([10,20,40,60,80])
                 .tickPadding(8)
+                .tickSize(0)
                 ; 
             
-            var svg = d3.select("svg")
-                .attr("width",Width+100)
-                .attr("height", Height+100);
-            
-            var realChart = svg
+          columnSel
                 .append('g')
-                .attr("transform", "translate( "+40+" ," + 20 + ")");
-              
-            realChart.append('g')
-                .attr('class', 'x axis')
-                .attr("transform", "translate( 0 ," + Height + ")")
-                .style('stroke-width','3')
-                .call(xAxis);
-            
-            realChart.append('g')
-              .attr('class', 'y axis')
-              .call(yAxis)
-              ;
-            
-          
+                .attr('class', 'axis x')
+                .attr("transform", "translate(  "+ - (padding/1.5) +" ," + yScale.range()[0] + ")")
+                .style('stroke-width','1')
+                .call(xAxis)
+//                .append("text")
+//                .attr("y", -110)
+//                .attr("x", 10)
+//                .attr("dy", "3em") 
+//                .style("text-anchor", "start")
+//                .style("font-weight", "bold")
+//                .style('fill','black')
+//                .text(function (d){return d.key; })
+                ;
+         
+            columnSel
+                .append('g')
+                .attr('class', 'axis y')
+                .style('stroke-width','0')
+                .call(yAxis);
+//          
                 
-                realChart
-                .append("rect")
-                .attr("class", "number")
-                .attr("width", 10 )
-                .attr('height', dataSet[0].values[0].Value*10)
-                .style('fill','red')
+                
+            var circle = d3.svg.line()
+                .x(function(d) { return xScale(d.TimePeriod); })
+                .y(function(d) { return yScale(d.Value); })
+                .interpolate("monotone")
+                ;  
+         
+                
+           columnSel
+                .append('path')
+                .attr('class', 'data')
+                .attr("transform", "translate(  "+ - (padding/1.5) +" ,0)")
+                .style('fill',"none")
+                .style('stroke',"red")
+                .style('opacity', 1)
+                .style('stroke-width',"1px")
+                .attr('d', function(d) {
+                    return circle(d.values);
+                })
                 ;
                 
                 
-
-            
+                
+                
+                
+//               var makeDot = d3.select('columnSel')
+//                .selectAll('circle.dot')
+//                .data(dataSet.values);
+//               
+//                makeDot
+//                .enter()
+//                .append("circle")
+//                .attr('class','dot')
+//                .attr('cx',function(d) { return xScale(d.TimePeriod); })
+//                .attr('cy',function(d) { return yScale(d.Value); })
+//                .attr("r", 3 )
+//                .style('fill','red');
+//                
+    
+//            var circle = 
+//                 columnSel.data('d', function(d){return d.values});                 
+//             columnSel
+//                .append("circle")
+//                .attr("class", "number")
+//                .attr("cx", 30)
+//                .attr("cy", ((Height/4) - padding) - function(d){return circle(d.Value);} )
+//                .attr("r", 3 )
+//                .style('fill','red')
+//                ;
+                            
 
        };                    
         </script>
