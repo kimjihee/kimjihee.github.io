@@ -1,6 +1,5 @@
     * {
         outdline: 1px solid black;
-        background-color:white;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -1131,11 +1130,11 @@
         .thislogo {
             width: 10rem;
             position: absolute;
-            top: -0.2rem;
+            top: 0.1rem;
         }
         .topRightSide {
             position: absolute;
-            left: 14vw;
+            left: 11rem;
             right: 0;
             top: 0;
             bottom: 0;
@@ -1155,14 +1154,15 @@
         .topMenu {
             position: absolute;
             top: 2.8rem;
-            left: 4rem;
+            left: 0;
             right: 0;
             font-size: 0.9rem;
             font-weight: bold;
         }
         .topMenu li {
             float: left;
-            padding-left: 3rem;
+            padding-left: 2.5rem;
+            width:15%;
         }
         #inputGoogle {
             width: 20%;
@@ -1679,7 +1679,7 @@
             right: 20vw;
         }
         .sevenRP {
-            width: 70%;
+            width: 14rem;
         }
         .bigName {
             position: absolute;
@@ -1776,3 +1776,13 @@
             color: #55b327;
         }
     }
+.shinAn {
+    position: absolute;
+    top:2.9rem;
+    left:0.7rem;
+    z-index:1;
+    font-size:0.8rem;
+    font-weight:bolder;
+    letter-spacing: 0.08rem;
+    
+}
