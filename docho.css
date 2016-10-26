@@ -365,8 +365,9 @@
             top: 332vw !important;
             left: 0;
             right: 0;
-            background-color: rgba(172, 188, 48, 1);
+            background-color:rgba(172, 188, 48, 1);
             height: 25rem !important;
+            
         }
         .sevenr {
             position: absolute;
@@ -858,7 +859,7 @@
             padding-left: 1rem;
             font-weight: bold;
             font-size: 1.07rem;
-            color: #0B4F2B;
+            
         }
         .looking {
             background-color: rgba(153, 212, 230, 0.9);
@@ -1112,13 +1113,13 @@
         }
         .middleMiddle {
             position: absolute;
-            top: 34rem;
+            top: 36rem;
             left: 12vw;
             right: 12vw;
         }
         .bottom {
             position: absolute;
-            top: 217vw;
+            top: 181vw;
             left: 12vw;
             right: 12vw;
             border-top: 2px solid #55b327;
@@ -1213,7 +1214,7 @@
             top: 0;
         }
         .picture {
-            width: 100%;
+         width:100%;
         }
         .link {
             position: absolute;
@@ -1251,7 +1252,7 @@
         }
         .newsBody {
             position: absolute;
-            top: 49vw;
+            top: 47vw;
             left: 45vw;
             height: 16.5rem;
             right: 0;
@@ -1376,7 +1377,7 @@
         }
         .middleFoot {
             position: absolute;
-            top: 140vw;
+            top: 112vw;
             left: 12vw;
             right: 12vw;
         }
@@ -1396,7 +1397,7 @@
             left: 0;
             right: 0;
             height: 12rem;
-            background-color: rgba(172, 188, 48, 1);
+            background-color: rgba(172, 188, 48, 0.9);
             border-radius: 5px;
         }
         .enrollbigName {
@@ -1407,7 +1408,7 @@
             padding-left: 1rem;
             font-weight: bold;
             font-size: 1.3rem;
-            color: #0B4F2B;
+            
         }
         .fastClick {
             position: absolute;
@@ -1561,7 +1562,7 @@
         }
         .business {
             position: absolute;
-            top: 35vw;
+            top: 29vw;
             left: 0;
             right: 0;
         }
@@ -1570,7 +1571,7 @@
             position: absolute;
             left: 0;
             right: 0;
-            top: 72vw;
+            top: 0;
             height: 15rem;
             border-radius: 5px;
         }
@@ -1600,7 +1601,7 @@
         }
         .businessUl {
             position: absolute;
-            left: 0;
+            left: -0.5rem;
             right: 0;
         }
         .businessUl li {
@@ -1630,12 +1631,13 @@
         }
         .businessUl img {
             width: 100%;
+            border-radius: 5px;
         }
         .forBrThree {
             display: none;
         }
         .facilityUl {
-            background-color: #75b449;
+            background-color: rgba(172, 188, 48, 0.9);
             height: 241.72px;
             border-radius: 5px;
         }
@@ -1655,7 +1657,7 @@
             font-size: 0.9rem;
             margin: auto 0;
             /*    border:1px solid red;*/
-            background-color: #75b449;
+/*            background-color: rgba(172, 188, 48, 0.9);*/
             height: inherit;
         }
         .facilIn li {
@@ -1675,7 +1677,7 @@
         }
         .sevenr {
             position: absolute;
-            top: 44vw;
+            top: 42vw;
             left: 0;
             right: 20vw;
         }
