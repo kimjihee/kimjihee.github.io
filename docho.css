@@ -12,19 +12,19 @@
     a:link {
         color: black;
         text-decoration: none;
-        background-color:white;
+        background-color: white;
     }
     
     a:visited {
         color: black;
         text-decoration: none;
-         background-color:white;
+        background-color: white;
     }
     
     a:hover {
         color: black;
         text-decoration: none;
-         background-color:white;
+        background-color: white;
     }
     
     .logo {
@@ -68,7 +68,7 @@
         }
         .bottom {
             position: absolute;
-            top: 1305vw !important;
+            top: 1195vw !important;
             padding-top: 1rem;
             padding-bottom: 1rem;
             left: 0 !important;
@@ -97,16 +97,26 @@
         .middleMiddle {
             list-style-type: none;
             position: absolute;
-            top: 53vw;
+            top: 4vw;
             left: 0;
             right: 0;
             padding-left: 1rem;
             width: 100%;
+            z-index:-1;
         }
         .thislogo {
             width: 7rem !important;
             padding-top: 0.4rem !important;
             padding-left: 0.7rem!important;
+        }
+        .shinAn {
+            position: absolute;
+            top: 2.3rem;
+            left: 0.7rem;
+            z-index: 1;
+            font-size: 0.6rem;
+            font-weight: bolder;
+            letter-spacing: 0.08rem;
         }
         /*----------------------------------------middle---------------------------------------------*/
         .fa-circle {
@@ -169,7 +179,7 @@
         }
         .business {
             position: absolute;
-            top: 120vw !important;
+            top: 220vw !important;
             left: 0;
             right: 0;
             text-align: center !important;
@@ -217,7 +227,7 @@
         }
         .middleFoot {
             position: absolute;
-            top: 760vw !important;
+            top: 610vw !important;
             left: 0;
             right: 0;
         }
@@ -229,7 +239,7 @@
         }
         .facility {
             position: absolute;
-            top: 500vw !important;
+            top: 10vw !important;
             left: 0 !important;
             right: 0 !important;
         }
@@ -365,13 +375,12 @@
             top: 332vw !important;
             left: 0;
             right: 0;
-            background-color:rgba(172, 188, 48, 1);
+            background-color: rgba(172, 188, 48, 1);
             height: 25rem !important;
-            
         }
         .sevenr {
             position: absolute;
-            top: 0 !important;
+            top: 468vw !important;
             left: 5vw !important;
             right: 5vw !important;
         }
@@ -392,7 +401,7 @@
         }
         .newsBody {
             position: absolute;
-            top: 468vw !important;
+            top: 528vw !important;
             left: 2vw !important;
             right: 2vw !important;
             border-radius: 5px;
@@ -522,14 +531,14 @@
         }
         .middleMiddle {
             position: absolute;
-            top: 58vw;
+            top: 62vw;
             height: 43.5rem;
             left: 0;
             right: 0;
         }
         .bottom {
             position: absolute;
-            top: 370vw;
+            top: 290vw;
             left: 0;
             right: 0;
             border-top: 1.9px solid #55b327;
@@ -618,6 +627,15 @@
         }
         .fa-bars {
             display: none;
+        }
+        .shinAn {
+            position: absolute;
+            top: 2.9rem;
+            left: 0.7rem;
+            z-index: 1;
+            font-size: 0.8rem;
+            font-weight: bolder;
+            letter-spacing: 0.08rem;
         }
         /*------------------------------------------middle------------------------------------------*/
         .middleClickMenu {
@@ -723,7 +741,7 @@
         }
         .middleFoot {
             position: absolute;
-            top: 245vw;
+            top: 176vw;
             left: 0;
             right: 0;
         }
@@ -859,7 +877,6 @@
             padding-left: 1rem;
             font-weight: bold;
             font-size: 1.07rem;
-            
         }
         .looking {
             background-color: rgba(153, 212, 230, 0.9);
@@ -889,7 +906,7 @@
         }
         .business {
             position: absolute;
-            top: 60vw;
+            top: 48vw;
             left: 0;
             right: 0;
         }
@@ -966,7 +983,7 @@
             position: absolute;
             left: 0;
             right: 0;
-            top: 133vw;
+            top: 0;
             height: 15rem;
         }
         .facilityUl li {
@@ -979,8 +996,7 @@
             background-color: #75b449;
         }
         .facilityUl img {
-            height:240px;
-          
+            height: 240px;
         }
         .facilityUl {
             background-color: #75b449;
@@ -989,7 +1005,7 @@
         .facilIn {
             font-size: 0.9rem;
             margin: auto 0;
-            margin-left:7rem;
+            margin-left: 7rem;
             /*    border:1px solid red;*/
             background-color: #75b449;
             height: inherit;
@@ -1168,7 +1184,7 @@
         .topMenu li {
             float: left;
             padding-left: 2.5rem;
-            width:15%;
+            width: 15%;
         }
         #inputGoogle {
             width: 20%;
@@ -1200,6 +1216,15 @@
             position: absolute;
             right: 0;
         }
+        .shinAn {
+            position: absolute;
+            top: 2.9rem;
+            left: 0.7rem;
+            z-index: 1;
+            font-size: 0.8rem;
+            font-weight: bolder;
+            letter-spacing: 0.08rem;
+        }
         /*----------------------------------------middle-----------------------------------------------*/
         .middleTop li {
             position: absolute;
@@ -1214,7 +1239,7 @@
             top: 0;
         }
         .picture {
-         width:100%;
+            width: 100%;
         }
         .link {
             position: absolute;
@@ -1408,7 +1433,6 @@
             padding-left: 1rem;
             font-weight: bold;
             font-size: 1.3rem;
-            
         }
         .fastClick {
             position: absolute;
@@ -1649,15 +1673,14 @@
         }
         .facility img {
             width: 100%;
-            border-top-left-radius:5px;
+            border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
         }
-     
         .facilIn {
             font-size: 0.9rem;
             margin: auto 0;
             /*    border:1px solid red;*/
-/*            background-color: rgba(172, 188, 48, 0.9);*/
+            /*            background-color: rgba(172, 188, 48, 0.9);*/
             height: inherit;
         }
         .facilIn li {
@@ -1779,13 +1802,3 @@
             color: #55b327;
         }
     }
-.shinAn {
-    position: absolute;
-    top:2.9rem;
-    left:0.7rem;
-    z-index:1;
-    font-size:0.8rem;
-    font-weight:bolder;
-    letter-spacing: 0.08rem;
-    
-}
