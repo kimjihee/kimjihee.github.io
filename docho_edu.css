@@ -183,7 +183,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 370vw;
+        top: 490vw;
         left: 0;
         right: 0;
         border-top: 1.9px solid #55b327;
@@ -481,11 +481,12 @@ a:hover {
 }
 
 .class {
-    margin-top: 17rem;
+    margin-top: 1.5rem;
 }
 
 .class li {
         height: 11rem;
+    margin-bottom:2rem;
 }
 
 .class li pic {
@@ -499,7 +500,7 @@ a:hover {
 .smallName {
     position:relative;
     left:1.5rem;
-    top:-5.7rem;
+    top:-7.25rem;
     width:10rem;
     text-align:center;
     padding:0.5rem;
@@ -511,8 +512,8 @@ a:hover {
     letter-spacing: 0.03rem;
 }
 .smallPic {
-    width:10rem;
-    height:7rem;
+    width:12rem;
+   
     margin-top:1.5rem;
 }
 .text {
@@ -520,8 +521,8 @@ a:hover {
     position:relative;
     right:-12vw;
     
-    left:11.5rem !important;
-    top:-4.8rem !important;
+    left:13.4rem !important;
+    top:-6.3rem;
     width:70%;
     font-size:0.9rem;
     line-height:1.5rem;
