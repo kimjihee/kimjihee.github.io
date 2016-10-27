@@ -312,7 +312,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 100vw;
+        top: 105vw;
         left: 12vw;
         right: 12vw;
         border-top: 2px solid #55b327;
@@ -503,9 +503,12 @@ a:hover {
     width:10rem;
     text-align:center;
     padding:0.5rem;
+    padding-top:0.3rem;
+    padding-bottom:0.3rem;
     background-color:#75b449;
     color:white;
     font-size:0.9rem;
+    letter-spacing: 0.03rem;
 }
 .smallPic {
     width:10rem;
