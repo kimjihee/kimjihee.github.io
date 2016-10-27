@@ -68,7 +68,7 @@
         }
         .bottom {
             position: absolute;
-            top: 1195vw !important;
+            top: 1210vw !important;
             padding-top: 1rem;
             padding-bottom: 1rem;
             left: 0 !important;
@@ -388,7 +388,7 @@
             width: 800px;
         }
         .sevenRP {
-            width: 95%;
+            width: 100%;
         }
         .campain {
             margin-top: 0;
@@ -494,6 +494,7 @@
         .bottom img {
             width: 80%;
         }
+        .min700 {display:none;}
     }
     /*------------------------------------------here----------------------------------------------*/
     
@@ -538,7 +539,7 @@
         }
         .bottom {
             position: absolute;
-            top: 290vw;
+            top: 291vw;
             left: 0;
             right: 0;
             border-top: 1.9px solid #55b327;
@@ -741,7 +742,7 @@
         }
         .middleFoot {
             position: absolute;
-            top: 176vw;
+            top: 175vw;
             left: 0;
             right: 0;
         }
@@ -860,14 +861,20 @@
             font-size: 1.07rem;
         }
         .sevenRP {
-            padding: 1rem;
+            padding: 0;
             width: 100%;
         }
         .sevenr {
             position: absolute;
-            top: 77vw;
+            top: 76vw;
             left: 5vw;
             right: 50vw;
+        }
+         .em {
+            color: #21a2ff;
+            font-weight: bold;
+            font-family: 'Baloo Bhai', cursive;
+            font-size: 1.5rem;
         }
         .enrollbigName {
             position: absolute;
@@ -1035,7 +1042,7 @@
         }
         .newsBody {
             position: absolute;
-            top: 80vw;
+            top: 77vw;
             left: 55vw;
             right: 3vw;
             height: 16.5rem;
@@ -1096,7 +1103,8 @@
         }
         .bottomPic {
             display: none;
-        }
+        } 
+        .min700 {display:none;}
     }
     /*--------------------------------------------here---------------------------------------*/
     
@@ -1135,7 +1143,7 @@
         }
         .bottom {
             position: absolute;
-            top: 181vw;
+            top: 185vw;
             left: 12vw;
             right: 12vw;
             border-top: 2px solid #55b327;
@@ -1277,7 +1285,7 @@
         }
         .newsBody {
             position: absolute;
-            top: 47vw;
+            top: 43vw;
             left: 45vw;
             height: 16.5rem;
             right: 0;
@@ -1402,7 +1410,7 @@
         }
         .middleFoot {
             position: absolute;
-            top: 112vw;
+            top: 110vw;
             left: 12vw;
             right: 12vw;
         }
@@ -1672,7 +1680,7 @@
             text-align: center;
         }
         .facility img {
-            width: 100%;
+            height:241.718px;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
         }
