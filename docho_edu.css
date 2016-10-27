@@ -267,10 +267,7 @@ a:hover {
         width: 18rem;
         right: 2rem;
     }
-    .text {
-        position: absolute;
-        top: 0;
-    }
+   
     .fa-bars {
         display: none;
     }
@@ -488,7 +485,7 @@ a:hover {
 }
 
 .class li {
-        height: 10rem;
+        height: 11rem;
 }
 
 .class li pic {
@@ -518,6 +515,11 @@ a:hover {
 .text {
     display:block;
     position:relative;
+    right:-12vw;
+    
     left:11.5rem !important;
     top:-4.8rem !important;
+    width:70%;
+    font-size:0.9rem;
+    line-height:1.5rem;
 }
