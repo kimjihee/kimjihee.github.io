@@ -34,28 +34,30 @@
         var dataSet = [];
         var yearExtent = [];
         var valueExtent = [];
-
+        
         var Emission = d3.csv('data/CO2emissions.csv', function (err, CO2) {
             CO2.forEach(function (row) {
                 row['Country'] = row['Country'];
                 row['Value'] = +row['Value']; 
                 row['Year'] = new Date(+row['Year'], 0 ,1);
             });
-            yearExtent = d3.extent(CO2, function(d) {return d.Year;});
-            valueExtent = [0, d3.max(CO2, function(d) {return d.Value;})];
+            var myCountries = ['Korea','United States','United Kingdom','China','Japan'];
+            var pickCountries = CO2.filter(function (row) {
+                for(var i = 0; i < myCountries.length; i++) {
+                    if(row['Country'] === myCountries[i]) return true;
+                }
+                return false;
+            });
             
-            var Nest = d3.nest()
-            .key(function(d){
-                return d.Country;
-               
-            })
-            .entries(CO2);         
-          
+            yearExtent = d3.extent(pickCountries, function(d) {return d.Year;});
+            valueExtent = [0, d3.max(pickCountries, function(d) {return d.Value;})];
             
-            
-            dataSet = Nest.splice(20, 40);
+            dataSet = d3.nest()
+                .key(function(d){
+                    return d.Country;
+                })
+                .entries(pickCountries);
             redraw();           
-                       
        });     
         
             
@@ -75,7 +77,7 @@
             var Width = 1100;
             var Height = 700;
 ////----------------------------------------column----------------------------------------
-                    
+            console.log(dataSet);
             var columnSel = d3.select('#chart')
                 .attr("width", Width+100)
                 .attr("height", Height+500)
@@ -147,7 +149,7 @@
                 .style('stroke',"#cc0000")
                 .style('opacity', 1)
                 .style('stroke-width',"1.5px")
-                 .attr("transform", "translate(  "+ - (padding/1.5) +" ,0 )")
+                .attr("transform", "translate(  "+ - (padding/1.5) +" ,0 )")
                 .attr('d', function(d) {
                     return lineCO2(d.values);//여기서 d는 dataSet은 아니고, dataSet[0] dataSet[1] ... 이다.  
                 });
