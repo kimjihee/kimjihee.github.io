@@ -42,9 +42,34 @@
             
             time.forEach(function (row){
                 row['Country'] = row['Country'];
-                for(var i = 1980; i < 2008; i++) {
-                row['i']= +row['i'];  
-                }
+                row['1980']= +row['1980'];
+                 row['1981']= +row['1981'];
+                 row['1982']= +row['1982'];
+                 row['1983']= +row['1983'];
+                 row['1984']= +row['1984'];
+                 row['1985']= +row['1985'];
+                 row['1986']= +row['1986'];
+                 row['1987']= +row['1987'];
+                 row['1988']= +row['1988'];
+                 row['1989']= +row['1989'];
+                 row['1990']= +row['1990'];
+                 row['1991']= +row['1991'];
+                 row['1992']= +row['1992'];
+                 row['1993']= +row['1993'];
+                 row['1994']= +row['1994'];
+                 row['1995']= +row['1995'];
+                 row['1996']= +row['1996'];
+                 row['1997']= +row['1997'];
+                 row['1998']= +row['1998'];
+                 row['1999']= +row['1999'];
+                 row['2000']= +row['2000'];
+                 row['2001']= +row['2001'];
+                 row['2002']= +row['2002'];
+                 row['2003']= +row['2003'];
+                 row['2004']= +row['2004'];
+                 row['2005']= +row['2005'];
+                 row['2006']= +row['2006'];
+                 row['2007']= +row['2007'];
                   });                                    
                        
             dataSet = time; 
@@ -144,7 +169,7 @@
                         .attr("height", cellSize)
                         .attr("x", 0)
                         .attr("y", function (d,i) {
-                            return d.Country[i] * cellSize;
+                            return (i*cellSize) + 20;
                         });
 //                        .datum(dateFormat);//이건 머지?
                  
