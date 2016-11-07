@@ -114,16 +114,19 @@
                     
                     var colorScale = d3.scale.quantize()
                         .domain([d3.max(dataSet, function (d) {
-                            
-                             for (var i=1980; i<2008; i++){
-                             return d.i;}
-                    }), d3.min(dataSet, function (d) {
-                             for (var i=1980; i<2008; i++){
-                             return d.i;}
-                    })])
+                          for(var i =1980; i<2008; i++){
+                                return d[i];
+                                 }//왜 너는 너이냐?
+                                 }) 
+                    , d3.min(dataSet, function (d) {
+                             for(var i =1980; i<2008; i++){
+                             if(d[i] !== 0){ return d[i];}
+                           }}
+                            )])
                     .range(["red",'rgb(215, 48, 39)', 'rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
-                    'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgb(0, 104, 55)']); 
+                    'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgb(250, 250, 250)']); 
                  
+                    console.log(colorScale.domain());// domain은 이렇게 알수 있다.
                     var xAxis = d3.svg.axis()
                         .scale(xScale)
                         .orient('bottom')
@@ -173,10 +176,12 @@
                         });
 //                        .datum(dateFormat);//이건 머지?
                  
-                     rect.style("fill", function (d,i) {
-                            return colorScale(d.i);
-
-                        });
+                     rect.style("fill", function (d) {
+                        
+                            return colorScale( 
+                                d['1980']
+                                 );}
+                                 );
 
                      rect.append("title")
                           .text(function (d,i) {
