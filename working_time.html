@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>workingTime</title>
     <style>
-        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+/*        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);*/
         body {
             font-family: 'Roboto', sans-serif;
             font-size: 0.4rem;
@@ -17,6 +17,7 @@
             stroke: #000;
             shape-rendering: crispEdges;
         }
+        
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script src="d3.min.js" type="text/javascript"></script>
@@ -38,56 +39,30 @@
 //            console.log(pickCountries);
         
         var dataSet = [];
-        var Workingtime = d3.csv('data/working_hours_per_week.csv', function (err, time) {
+        var valueData = [];
+        var Workingtime = d3.csv('data/working_hours_per_week.csv', function (err, times) {
+            for(var i = 0; i < times.length; i++) {
+                var time = times[i];
+                var country = time['Country'];
+                delete time['Country'];
+                for(var year in time) {
+                    valueData.push({
+                        Country: country,
+                        Year: +year,
+                        Value: +time[year]
+                    });
+                }
+              }
             
-            time.forEach(function (row){
-                row['Country'] = row['Country'];
-                row['1980']= +row['1980'];
-                 row['1981']= +row['1981'];
-                 row['1982']= +row['1982'];
-                 row['1983']= +row['1983'];
-                 row['1984']= +row['1984'];
-                 row['1985']= +row['1985'];
-                 row['1986']= +row['1986'];
-                 row['1987']= +row['1987'];
-                 row['1988']= +row['1988'];
-                 row['1989']= +row['1989'];
-                 row['1990']= +row['1990'];
-                 row['1991']= +row['1991'];
-                 row['1992']= +row['1992'];
-                 row['1993']= +row['1993'];
-                 row['1994']= +row['1994'];
-                 row['1995']= +row['1995'];
-                 row['1996']= +row['1996'];
-                 row['1997']= +row['1997'];
-                 row['1998']= +row['1998'];
-                 row['1999']= +row['1999'];
-                 row['2000']= +row['2000'];
-                 row['2001']= +row['2001'];
-                 row['2002']= +row['2002'];
-                 row['2003']= +row['2003'];
-                 row['2004']= +row['2004'];
-                 row['2005']= +row['2005'];
-                 row['2006']= +row['2006'];
-                 row['2007']= +row['2007'];
-                  });                                    
-                       
-            dataSet = time; 
+            dataSet = d3.nest()
+                .key(function(d){
+                    return d.Country;
+                })
+                .entries(valueData);
             redraw();
-            //여기 네스트 쓰면 망함 왜일까? i가 들어가지고 nan이 된다.
+      
        });
-        
-        
-           console.log(dataSet);
-                 
-//        var maxMin =[];  
-//        maxMin =    d3.max(dataSet, function (d) {
-//                      for (var i=1980; i<2008; i++) {
-//                      return d.values[i];
-//                     }})
-//                     //for은 단독으로 쓸수잇나?
-//                      console.log(maxMin);
-                    
+       console.log(dataSet);
              var redraw = function () {   
 //------------------------------------------Draw------------------------------------------
                                  
@@ -100,31 +75,44 @@
                     , }
          
                     var Width = 1000;
-                    var Height =500;
+                    var Height =600;
+//-----------------------------------------AddColunm--------------------------------------                 
+           var columnSel = d3.select('#chart')
+                .attr("width", Width+100)
+                .attr("height", Height+500)
+                .selectAll('g.column').data(dataSet);
+
+            columnSel.enter()
+                .append('g')
+                .attr('class', function (d) {
+                    return 'column ' + d.key;
+                })
+               ;
+                    
+            columnSel.exit().remove();
+            columnSel.attr('transform', function (d,i) {
+                return 'translate(0,' + (Math.floor(i%52)*(Height/52))+') ';
+            });
 
 //------------------------------------------One Graph-------------------------------------                         console.log(yearExtent);
-                    var countryNames = dataSet.map(function(d) {return d.Country;});
+                    var countryNames = dataSet.map(function(d) {return d.key;});
                     var xScale = d3.scale.linear()
-                        .domain([1980,2007])// 여기는 데이터 전체가 아니라 시작부터 끝.
+                        .domain([1980,2008])//여기는 데이터 전체가 아니라 시작부터 끝.
                         .rangeRound([0, Width]);//라운드랑 밴드랑 먼지모름.
                  
                     var yScale = d3.scale.ordinal()
                         .domain(countryNames)
-                        .rangeBands([0,Height - MARGIN.TOP - MARGIN.BOTTOM],0.1);
+                        .rangeBands([0,Height],0.1);
                     
                     var colorScale = d3.scale.quantize()
-                        .domain([d3.max(dataSet, function (d) {
-                          for(var i =1980; i<2008; i++){
-                                return d[i];
-                                 }//왜 너는 너이냐?
-                                 }) 
-                    , d3.min(dataSet, function (d) {
-                             for(var i =1980; i<2008; i++){
-                             if(d[i] !== 0){ return d[i];}
-                           }}
-                            )])
-                    .range(["red",'rgb(215, 48, 39)', 'rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
-                    'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgba(250, 250, 250,0)']); 
+                    .domain([d3.max(valueData, function (d) {
+                    return d.Value;
+                    }), d3.min(valueData, function (d) {
+                        if(d.Value !==0){
+                    return d.Value;}
+                    })])
+                    .range(["red",'rgb(215, 48, 39)','rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
+                    'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgba(200, 200, 200,0)']); 
                  
                     console.log(colorScale.domain());// domain은 이렇게 알수 있다.
                     var xAxis = d3.svg.axis()
@@ -133,14 +121,15 @@
                         .tickSize(3)
                         .tickFormat(function (d) {
                          return d;
-                         });   
+                         })
+                        .tickPadding(2) ;   
                  
                     var yAxis = d3.svg.axis()
                         .scale(yScale)
                         .orient('left')
                         .tickFormat(function(d) {return d;})
                         .tickSize(3);
-                     
+                      
                     var svg = d3.select("svg")
                         .attr("width",Width+200)
                         .attr("height", Height+40);
@@ -148,47 +137,49 @@
                     var realChart = svg
                         .append('g')
                         .attr("transform", "translate( "+130+" ," + 20 + ")");
-
-                    realChart.append('g')
+ 
+                 realChart.append('g')
                         .attr('class', 'x axis')
-                        .attr("transform", "translate( 0 ," + 450 + ")")//이건 어떻게 해야할까?
+                        .attr("transform", "translate( 0 ," + Height + ")")//이건 어떻게 해야할까?
                         .style('stroke-width','0')
-                        .call(xAxis);
+                        .call(xAxis)
+                        .selectAll('text')
+                        .style('text-anchor', 'start');//x축 텍스트 정렬은 이렇게!!
 
-                    realChart.append('g')
+                   realChart.append('g')
                       .attr('class', 'y axis')
                       .style('stroke-width','0')
+                      .style('text-anchor','end')// 이게 x축에 적용이 된다.
                       .call(yAxis);
                   
-                    var cellSize = 450/52;
+                    var cellHeight = Height/52;
+                     var cellWidth = Width/28;       
+                 
                                       
-                    var rect = svg.selectAll(".day")
-                        .data(dataSet)
+                    var rect = columnSel.selectAll(".day")
+                        .data(function(d){
+                              return d.values;})
                         .enter()
                         .append("rect")
                         .attr("class", function(d){
                               return  "day " + d.Country;})
-                        .attr("width",  Width/(2008-1980))
-                        .attr("height", cellSize)
-                        .attr("x", function(d){
-                            for(var i =1980; i<2008; i++){
-                                return (Width/(2008-1980))*(i-1980)+125}
-                        })
+                         .attr("transform", "translate( " + 130 + " ,"+ 20 +")")
+                        .attr("width", cellWidth)
+                        .attr("height", cellHeight)
+                        .attr("x", function(d,i){
+                          return cellWidth*(i%28);})
                         .attr("y", function (d,i) {
-                            return (i*cellSize) + 20;
+                            return Math.floor(i/52)*cellHeight;
                         });
 //                        .datum(dateFormat);//이건 머지?
                  
                      rect.style("fill", function (d) {
-                                return colorScale( 
-                                d[1980]
-                                 );}
-                                 );
+                                return colorScale(d.Value);});
 
-                     rect.append("title")
+                      rect.append("title")
                           .text(function (d,i) {
-                            return d.Country;
-                        });    
+                    return d.Country+" " + d.Year;
+                });
              };
                  
     </script>
