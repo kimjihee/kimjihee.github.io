@@ -207,20 +207,18 @@ a:hover {
     .loginMenu {
         display: none;
     }
-    .topMenu {
-        position: absolute;
-        top: 2rem;
-        left: 2rem;
-        right: 0;
-        font-size: 0.9rem;
-        font-weight: bold;
-    }
-    .topMenu li {
-        float: left;
-        font-size: 0.8rem;
-        width: 20%;
-        text-align: left;
-    }
+   .topMenu {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            right: 0;
+            font-weight: bold;
+        }
+        .topMenu li {
+            float: left;
+            font-size: 0.95rem;
+            width: 20%;
+        }
     .search {
         display: none;
         padding: 0;
@@ -228,13 +226,13 @@ a:hover {
     #inputGoogle {
         display: none;
     }
-    .topRightSide {
-        position: absolute;
-        left: 30vw;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
+      .topRightSide {
+            position: absolute;
+            left: 23vw;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
     .colorPoint {
         background-color: #55b327;
         color: white;
@@ -243,12 +241,11 @@ a:hover {
         padding-left: 0.3rem;
         padding-right: 0.35rem;
         padding-bottom: 0.2rem;
-        border-radius: 3px;
+        
     }
     .point {
         color: white;
     }
-   
     a .point:link {
         color: white !important;
     }
@@ -332,37 +329,37 @@ a:hover {
         top: 0.1rem;
     }
     .topRightSide {
-        position: absolute;
-        left: 11rem;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
-    .loginMenu {
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 0.7rem;
-        padding-top: 0.7rem;
-        padding-bottom: 0.7rem;
-    }
-    .loginMenu li {
-        float: left;
-        padding-left: 1rem;
-    }
-    .topMenu {
-        position: absolute;
-        top: 2.8rem;
-        left: 0;
-        right: 0;
-        font-size: 0.9rem;
-        font-weight: bold;
-    }
-    .topMenu li {
-        float: left;
-        padding-left: 2.5rem;
-        width: 15%;
-    }
+            position: absolute;
+            left: 11rem;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .loginMenu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 0.7rem;
+            padding-top: 0.7rem;
+            padding-bottom: 0.7rem;
+        }
+        .loginMenu li {
+            float: left;
+            padding-left: 1rem;
+        }
+        .topMenu {
+            position: absolute;
+            top: 2.6rem;
+            left: 0;
+            right: 0;
+            font-size: 1.05rem;
+            font-weight: bold;
+        }
+        .topMenu li {
+            float: left;
+            padding-left: 2.5rem;
+            width: 15%;
+        }
     #inputGoogle {
         width: 20%;
         position: absolute;
@@ -381,7 +378,7 @@ a:hover {
         padding-left: 0.3rem;
         padding-right: 0.35rem;
         padding-bottom: 0.2rem;
-        border-radius: 3px;
+        
     }
     .point {
         color: white;
@@ -433,8 +430,6 @@ a:hover {
     .bigName {
         font-size: 1.5rem;
         font-weight: bold;
-      
-      
     }
 }
 
@@ -482,49 +477,50 @@ a:hover {
 }
 
 .class {
-    margin-top:30rem;
+    margin-top: 31rem;
 }
-.class li {
-margin-top :3rem;
-height:inherit;}
 
+.class li {
+    margin-top: 4rem;
+    height: inherit;
+}
 
 .class li img {
-    margin-top:1rem;
+    margin-top: 1rem;
 }
-
 
 .actText {
     font-size: 0.8rem;
     padding-top: 1rem;
-     padding-left:none;
+    padding-left: none;
 }
 
 .campain {
     font-size: 0.7rem !important;
 }
 
-p { font-size:0.9rem;
-line-height:1.5rem;
-padding-top:1rem;}
-
+p {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    padding-top: 1rem;
+}
 
 .sevenRP {
     position: absolute;
-    top:49rem;
-    width:27rem;
-   
+    top: 51rem;
+    width: 24rem;
 }
 
 .BigName {
-     font-size: 1.1rem;
-        font-weight: bold;
-       
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .two {
-    width:27rem;
+    width: 27rem;
 }
- .Ecopoint {
-        color:#21a2dd;
-        font-weight:bolder;}
+
+.Ecopoint {
+    color: #21a2dd;
+    font-weight: bolder;
+}

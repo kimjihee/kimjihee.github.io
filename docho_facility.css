@@ -183,7 +183,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 370vw;
+        top: 490vw;
         left: 0;
         right: 0;
         border-top: 1.9px solid #55b327;
@@ -212,14 +212,12 @@ a:hover {
         top: 2rem;
         left: 2rem;
         right: 0;
-        font-size: 0.9rem;
         font-weight: bold;
     }
     .topMenu li {
         float: left;
-        font-size: 0.8rem;
+        font-size: 0.95rem;
         width: 20%;
-        text-align: left;
     }
     .search {
         display: none;
@@ -230,7 +228,7 @@ a:hover {
     }
     .topRightSide {
         position: absolute;
-        left: 30vw;
+        left: 23vw;
         right: 0;
         top: 0;
         bottom: 0;
@@ -243,12 +241,10 @@ a:hover {
         padding-left: 0.3rem;
         padding-right: 0.35rem;
         padding-bottom: 0.2rem;
-        border-radius: 3px;
     }
     .point {
         color: white;
     }
-   
     a .point:link {
         color: white !important;
     }
@@ -312,7 +308,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 100vw;
+        top: 105vw;
         left: 12vw;
         right: 12vw;
         border-top: 2px solid #55b327;
@@ -352,10 +348,10 @@ a:hover {
     }
     .topMenu {
         position: absolute;
-        top: 2.8rem;
+        top: 2.6rem;
         left: 0;
         right: 0;
-        font-size: 0.9rem;
+        font-size: 1.05rem;
         font-weight: bold;
     }
     .topMenu li {
@@ -381,7 +377,6 @@ a:hover {
         padding-left: 0.3rem;
         padding-right: 0.35rem;
         padding-bottom: 0.2rem;
-        border-radius: 3px;
     }
     .point {
         color: white;
@@ -433,8 +428,6 @@ a:hover {
     .bigName {
         font-size: 1.5rem;
         font-weight: bold;
-      
-      
     }
 }
 
@@ -450,7 +443,7 @@ a:hover {
 
 .name {
     margin-top: 0.2rem;
-    height: 9rem;
+    height: 12rem;
     border: 1px solid rgba(200, 200, 200, 0.6);
     border-bottom: none;
 }
@@ -470,61 +463,60 @@ a:hover {
 }
 
 .pic {
+    width: 739px;
+    height: 216px !important;
+    background-color: #75b449;
     position: absolute;
-    top: 5rem;
-    left: 0;
-    right: 12vw;
-    text-align: center;
+    top: 3rem;
 }
 
 .pic img {
-    width: 500px;
+    height: 215px !important;
 }
 
 .class {
-    margin-top:30rem;
+    margin-top: 1.5rem;
 }
+
 .class li {
-margin-top :3rem;
-height:inherit;}
-
-
-.class li img {
-    margin-top:1rem;
+    height: 11rem;
+    margin-bottom: 2rem;
 }
 
-
-.actText {
-    font-size: 0.8rem;
-    padding-top: 1rem;
-     padding-left:none;
-}
-
-.campain {
-    font-size: 0.7rem !important;
-}
-
-p { font-size:0.9rem;
-line-height:1.5rem;
-padding-top:1rem;}
-
-
-.sevenRP {
+.class li pic {
+    height: 7rem;
     position: absolute;
-    top:49rem;
-    width:27rem;
-   
+    top: 1.5rem;
+    left: 0;
 }
 
-.BigName {
-     font-size: 1.1rem;
-        font-weight: bold;
-       
+.smallName {
+    position: relative;
+    left: 1.5rem;
+    top: -7.25rem;
+    width: 10rem;
+    text-align: center;
+    padding: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    background-color: #75b449;
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.03rem;
 }
 
-.two {
-    width:27rem;
+.smallPic {
+    width: 12rem;
+    margin-top: 1.5rem;
 }
- .Ecopoint {
-        color:#21a2dd;
-        font-weight:bolder;}
+
+.text {
+    display: block;
+    position: relative;
+    right: -12vw;
+    left: 13.4rem !important;
+    top: -6.3rem;
+    width: 70%;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+}

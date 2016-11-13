@@ -208,19 +208,17 @@ a:hover {
         display: none;
     }
     .topMenu {
-        position: absolute;
-        top: 2rem;
-        left: 2rem;
-        right: 0;
-        font-size: 0.9rem;
-        font-weight: bold;
-    }
-    .topMenu li {
-        float: left;
-        font-size: 0.8rem;
-        width: 20%;
-        text-align: left;
-    }
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            right: 0;
+            font-weight: bold;
+        }
+        .topMenu li {
+            float: left;
+            font-size: 0.95rem;
+            width: 20%;
+        }
     .search {
         display: none;
         padding: 0;
@@ -228,13 +226,13 @@ a:hover {
     #inputGoogle {
         display: none;
     }
-    .topRightSide {
-        position: absolute;
-        left: 30vw;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
+       .topRightSide {
+            position: absolute;
+            left: 23vw;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
     .colorPoint {
         background-color: #55b327;
         color: white;
@@ -243,7 +241,7 @@ a:hover {
         padding-left: 0.3rem;
         padding-right: 0.35rem;
         padding-bottom: 0.2rem;
-        border-radius: 3px;
+        
     }
     .point {
         color: white;
@@ -330,38 +328,38 @@ a:hover {
         position: absolute;
         top: 0.1rem;
     }
-    .topRightSide {
-        position: absolute;
-        left: 11rem;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
-    .loginMenu {
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 0.7rem;
-        padding-top: 0.7rem;
-        padding-bottom: 0.7rem;
-    }
-    .loginMenu li {
-        float: left;
-        padding-left: 1rem;
-    }
-    .topMenu {
-        position: absolute;
-        top: 2.8rem;
-        left: 0;
-        right: 0;
-        font-size: 0.9rem;
-        font-weight: bold;
-    }
-    .topMenu li {
-        float: left;
-        padding-left: 2.5rem;
-        width: 15%;
-    }
+      .topRightSide {
+            position: absolute;
+            left: 11rem;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .loginMenu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 0.7rem;
+            padding-top: 0.7rem;
+            padding-bottom: 0.7rem;
+        }
+        .loginMenu li {
+            float: left;
+            padding-left: 1rem;
+        }
+        .topMenu {
+            position: absolute;
+            top: 2.6rem;
+            left: 0;
+            right: 0;
+            font-size: 1.05rem;
+            font-weight: bold;
+        }
+        .topMenu li {
+            float: left;
+            padding-left: 2.5rem;
+            width: 15%;
+        }
     #inputGoogle {
         width: 20%;
         position: absolute;
@@ -380,7 +378,7 @@ a:hover {
         padding-left: 0.3rem;
         padding-right: 0.35rem;
         padding-bottom: 0.2rem;
-        border-radius: 3px;
+       
     }
     .point {
         color: white;
@@ -447,7 +445,7 @@ a:hover {
 
 .name {
     margin-top: 0.2rem;
-    height: 12rem;
+    height: 9rem;
     border: 1px solid rgba(200, 200, 200, 0.6);
     border-bottom: none;
 }
@@ -467,10 +465,10 @@ a:hover {
 }
 
 .pic {
-     position: absolute;
+    position: absolute;
     top: 5rem;
     left:0;
-    right:0;
+    right:12vw;
     text-align: center;
 }
 
@@ -481,6 +479,7 @@ a:hover {
 
 .class {
     margin-top: 19rem;
+    
 }
 
 .class li {
@@ -508,11 +507,14 @@ a:hover {
 }
 
 .text {
-    display: block;
     position: relative;
-    top: -1rem;
-    left: 0;
+    top:0;
+    
+    display: block;
     padding-left: 0.5;
     line-height: 1.5rem;
     font-size:0.9rem;
+}
+.campain {
+    font-size:0.7rem !important;
 }

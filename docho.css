@@ -65,7 +65,7 @@
         }
         .bottom {
             position: absolute;
-            top: 1210vw !important;
+            top: 1135vw !important;
             padding-top: 1rem;
             padding-bottom: 1rem;
             left: 0 !important;
@@ -142,175 +142,6 @@
         .middleClickMenu {
             display: none;
         }
-        .fastClick {
-            position: absolute !important;
-            top: 7rem !important;
-            left: 12vw !important;
-            right: 12vw !important;
-            text-align: center;
-        }
-        .fastClick li {
-            float: none !important;
-            height: 3rem !important;
-            line-height: 3rem !important;
-            margin: 0 !important;
-            margin-bottom: 2rem !important;
-            width: 100% !important;
-            background-color: white;
-            border-radius: 5px;
-        }
-        .fastClick li:hover {
-            font-weight: bold;
-        }
-        .enrollbigName {
-            margin-top: 2.5rem !important;
-            margin-bottom: 1.5rem !important;
-            position: absolute;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0;
-            padding-left: 0 !important;
-            text-align: center !important;
-            font-size: 1.2rem !important;
-            /*    color: #0B4F2B;*/
-        }
-        .business {
-            position: absolute;
-            top: 220vw !important;
-            left: 0;
-            right: 0;
-            text-align: center !important;
-        }
-        .businessUl {
-            position: absolute;
-            left: 2vw !important;
-            right: 2vw !important;
-            text-align: center !important;
-        }
-        .businessUl img {
-            width: 100%;
-        }
-        .businessUl li {
-            padding-bottom: 2rem !important;
-            float: none !important;
-            width: 100% !important;
-        }
-        .boxDown {
-            text-align: center !important;
-            position: relative !important;
-            margin-top: 0.6rem !important;
-            padding-left: 0 !important;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        .forBr {
-            display: inline !important;
-        }
-        .jump {
-            display: none;
-        }
-        .boxFoot {
-            padding-top: 1.5rem !important;
-            font-size: 0.8rem !important;
-            text-align: left !important;
-            padding-left: 2vw !important;
-            line-height: 1.6rem !important;
-            font-family: 'Nanum Myeongjo', serif;
-        }
-        .looking {
-            display: none;
-        }
-        .middleFoot {
-            position: absolute;
-            top: 610vw !important;
-            left: 0;
-            right: 0;
-        }
-        .introduce {
-            display: none;
-        }
-        .introduce img {
-            width: 60%;
-        }
-        .facility {
-            position: absolute;
-            top: 10vw !important;
-            left: 0 !important;
-            right: 0 !important;
-        }
-        .secondNews {
-            border-bottom-left-radius: 5px;
-        }
-        .philosophy {
-            position: absolute;
-            top: 0;
-            left: 0 !important;
-            right: 0 !important;
-        }
-        .philosophy img {
-            width: 100%;
-        }
-        .name {
-            font-weight: bold;
-            padding-top: 1rem;
-        }
-        .align {
-            font-size: 0.9rem;
-            margin: 0;
-            line-height: 1.2rem;
-            font-family: 'Nanum Myeongjo', serif;
-        }
-        .businessbigName {
-            position: absolute;
-            height: 1.2rem;
-            top: -4rem !important;
-            left: 0 !important;
-            right: 0 !important;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bolder;
-        }
-        .forBrThree {
-            display: none;
-        }
-        .facilityUl li {
-            width: 100% !important;
-            float: none !important;
-        }
-        .facilityUl img {
-            width: 100%;
-        }
-        .forColor: {
-            padding-bottom: 1rem;
-        }
-        .facilIn li {
-            float: none !important;
-            font-size: 0.94rem !important;
-            text-align: center;
-            background-color: white;
-            border-radius: 5px;
-            margin: 1rem auto !important;
-            width: 12rem !important;
-            height: 3rem !important;
-            line-height: 3rem !important;
-        }
-        .facilIn li:hover {
-            font-weight: bold;
-        }
-        .facilityUl {
-            background-color: #75b449 !important;
-        }
-        .facilIn {
-            background-color: #75b449;
-            padding-top: 1rem;
-            padding-bottom: 1rem ! important;
-            height: inherit;
-            position: absolute;
-            left: 0 !important;
-            right: 0 !important;
-        }
         .study {
             position: absolute;
             top: 60vw !important;
@@ -352,14 +183,14 @@
             border-radius: 50%;
             color: white;
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin: 0 auto !important;
         }
         .emoticon:hover {
-            width: 5.5rem !important;
-            height: 5.5rem !important;
+            width: 5.1rem !important;
+            height: 5.1rem !important;
             font-size: 3rem !important;
-            line-height: 5.6rem !important;
+            line-height: 5.2rem !important;
         }
         .studyNameTag {
             position: relative;
@@ -369,15 +200,163 @@
         }
         .enrollment {
             position: absolute;
-            top: 332vw !important;
+            top: 335vw !important;
             left: 0;
             right: 0;
-            background-color: rgba(172, 188, 48, 1);
-            height: 25rem !important;
+            height: inherit;
+        }
+        .fastClick {
+            position: absolute !important;
+            top: 3rem !important;
+            left: 12vw !important;
+            right: 12vw !important;
+            text-align: center;
+        }
+        .fastClick li {
+            border: 1px solid rgb(190, 190, 190);
+            float: none !important;
+            height: 3rem !important;
+            line-height: 3rem !important;
+            margin: 0 !important;
+            margin-bottom: 1rem !important;
+            width: 100% !important;
+            background-color: white;
+        }
+        .enrollbigName {
+            font-weight: bold;
+            position: absolute;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0;
+            padding-left: 0 !important;
+            text-align: center !important;
+            font-size: 1.2rem !important;
+            /*    color: #0B4F2B;*/
+        }
+        .business {
+            position: absolute;
+            top: 144vw !important;
+            left: 0;
+            right: 0;
+            text-align: center !important;
+        }
+        .businessUl {
+            position: absolute;
+            left: 2vw !important;
+            right: 2vw !important;
+            text-align: center !important;
+        }
+        .businessUl img {
+            width: 100%;
+        }
+        .businessUl li {
+            padding-bottom: 2rem !important;
+            float: none !important;
+            width: 100% !important;
+        }
+        .boxDown {
+            text-align: center !important;
+            position: relative !important;
+            margin-top: 0.6rem !important;
+            padding-left: 0 !important;
+            padding-top: 1rem;
+            padding-bottom: 0 !important;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .forBr {
+            display: inline !important;
+        }
+        .jump {
+            display: none;
+        }
+        .boxFoot {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1rem !important;
+            font-size: 0.8rem !important;
+            text-align: left !important;
+            padding-left: 2vw !important;
+            line-height: 1.6rem !important;
+            font-family: 'Nanum Myeongjo', serif;
+        }
+        .looking {
+            display: none;
+        }
+        .middleFoot {
+            position: absolute;
+            top: 590vw !important;
+            left: 0;
+            right: 0;
+        }
+        .introduce {
+            display: none;
+        }
+        .introduce img {
+            width: 60%;
+        }
+        .facility {
+            position: absolute;
+            top: 430vw;
+            left: 0 !important;
+            right: 0 !important;
+        }
+        .businessbigName {
+            position: absolute;
+            height: 1.2rem;
+            top: -4rem !important;
+            left: 0 !important;
+            right: 0 !important;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bolder;
+        }
+        .facilbigName {
+            position: absolute;
+            height: 1.2rem;
+            top: -4rem !important;
+            left: 0 !important;
+            right: 0 !important;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bolder;
+        }
+        .forBrThree {
+            display: none;
+        }
+        .facilityUl li {
+            width: 100% !important;
+            float: none !important;
+        }
+        .facilityUl img {
+            width: 100%;
+        }
+        .forColor: {
+            padding-bottom: 1rem;
+        }
+        .facilIn li {
+            float: none !important;
+            font-size: 0.94rem !important;
+            text-align: center;
+            background-color: white;
+            margin: 1rem auto !important;
+            width: 12rem !important;
+            height: 3rem !important;
+            line-height: 3rem !important;
+            border: 1px solid rgb(130, 130, 130);
+        }
+        .facilIn {
+            padding-top: 1rem;
+            padding-bottom: 1rem ! important;
+            height: inherit;
+            position: relative;
+            top: -0.4rem;
+            left: 0 !important;
+            right: 0 !important;
+            background: -webkit-linear-gradient(top, #9caa2d, #55b327, #55a633);
         }
         .sevenr {
             position: absolute;
-            top: 468vw !important;
+            top: 10vw !important;
             left: 5vw !important;
             right: 5vw !important;
         }
@@ -398,11 +377,10 @@
         }
         .newsBody {
             position: absolute;
-            top: 528vw !important;
+            top: 61vw !important;
             left: 2vw !important;
             right: 2vw !important;
-            border-radius: 5px;
-            border: 1px solid rgba(200, 200, 200, 0.4) !important;
+            border: 1px solid rgb(190, 190, 190);
             height: 8rem !important;
         }
         .newsName {
@@ -417,7 +395,7 @@
             width: 6rem;
         }
         .newsName li:hover {
-            background-color: rgba(85, 179, 39, 0.8);
+            background-color: #55b327;
             font-weight: bold;
             color: white;
         }
@@ -431,12 +409,12 @@
             padding-left: 0!important;
             padding-top: 0!important;
             overflow: hidden !important;
-            border: 1px solid rgba(200, 200, 200, 0.4) !important;
-            border-radius: 5px !important;
+            border-left: 1px solid rgb(190, 190, 190);
         }
         .texts li {
             padding: 0.7rem !important;
-            height: 33.3333333333333333333333333% !important;
+            height: 33.3333333333333333333333333%;
+            line-height: 1.2rem;
             color: #0B4F2B;
             width: 100% !important;
         }
@@ -450,10 +428,12 @@
             right: 0 !important;
         }
         .select {
-            background-color: #75b449;
+            background-color: #55b327;
             font-weight: bold;
             color: white;
-            border-top-left-radius: 5px;
+        }
+        .texts li:hover {
+            background-color: rgba(150, 150, 150, 0.2);
         }
         /*---------------------------------------bottom-------------------------------------------*/
         .contact {
@@ -494,6 +474,14 @@
         .min700 {
             display: none;
         }
+        .fa-check {
+            color: #21a2ff;
+            font-size: 1rem;
+        }
+        .fa-pencil {
+            color: #21a2ff;
+            font-size: 1rem;
+        }
     }
     /*------------------------------------------here----------------------------------------------*/
     
@@ -509,7 +497,7 @@
         .topBody {
             position: absolute;
             top: 0;
-            left: 3vw;
+            left: 2vw;
             right: 0;
         }
         .middle {
@@ -531,14 +519,14 @@
         }
         .middleMiddle {
             position: absolute;
-            top: 57vw;
+            top: 54vw;
             height: 43.5rem;
             left: 0;
             right: 0;
         }
         .bottom {
             position: absolute;
-            top: 230vw;
+            top: 227vw;
             left: 0;
             right: 0;
             border-top: 1.9px solid #55b327;
@@ -546,7 +534,6 @@
             line-height: 1.2rem;
             padding-top: 0.5rem;
             color: rgb(100, 100, 100);
-            padding-left: 1rem;
             margin-bottom: 1rem;
         }
         .bottom img {
@@ -567,12 +554,11 @@
             top: 2rem;
             left: 2rem;
             right: 0;
-            font-size: 0.9rem;
             font-weight: bold;
         }
         .topMenu li {
             float: left;
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             width: 20%;
         }
         .search {
@@ -584,7 +570,7 @@
         }
         .topRightSide {
             position: absolute;
-            left: 30vw;
+            left: 23vw;
             right: 0;
             top: 0;
             bottom: 0;
@@ -592,12 +578,12 @@
         .colorPoint {
             background-color: #55b327;
             color: white;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             padding: 0.1rem;
             padding-left: 0.3rem;
             padding-right: 0.35rem;
             padding-bottom: 0.2rem;
-            border-radius: 3px;
+            : 3px;
         }
         .point {
             color: white;
@@ -633,7 +619,7 @@
             top: 2.9rem;
             left: 0.7rem;
             z-index: 1;
-            font-size: 0.8rem;
+            font-size: 0.8rem !important;
             font-weight: bolder;
             letter-spacing: 0.08rem;
         }
@@ -646,7 +632,7 @@
             width: 20%;
             height: 1.7rem;
             line-height: 0.5rem;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             color: white;
             background-color: #55b327;
         }
@@ -662,35 +648,29 @@
         .study {
             position: absolute;
             top: 0;
-            left: 2vw;
-            right: 30vw;
+            left: 0;
+            right: 28vw;
             height: 10.5rem;
         }
         .studybigName {
             position: absolute;
             height: 1.2rem;
             top: 0;
-            left: 3vw;
+            left: 2vw !important;
             right: 0;
             font-size: 1.07rem;
             font-weight: bold;
             margin-bottom: 2rem;
         }
         .emoticon {
-            background-color: #55b327;
+            color: #55b327;
             display: block;
             line-height: 4rem;
             width: 4rem;
             height: 4rem;
-            border-radius: 50%;
-            color: white;
             text-align: center;
             font-size: 2rem;
             margin: 1rem auto;
-        }
-        .emoticon:hover {
-            font-size: 2rem;
-            line-height: 4rem;
         }
         .studyName li {
             float: left;
@@ -716,13 +696,12 @@
             height: 12.5rem;
         }
         .studyNameTag {
-            height: 1.5rem;
+            height: 1.2rem;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
         .finish {
             border-right: 1px solid rgba(200, 200, 200, 0.8);
-            border-top-right-radius: 5px;
         }
         .select {
             color: white !important;
@@ -741,7 +720,7 @@
         }
         .middleFoot {
             position: absolute;
-            top: 130vw;
+            top: 127vw;
             left: 0;
             right: 0;
         }
@@ -754,7 +733,7 @@
         .middleClickDot {
             display: block;
             position: relative;
-            top: 47vw;
+            top: 44vw;
             left: 0;
             right: 0;
             width: 6rem;
@@ -771,8 +750,8 @@
         .enrollment {
             position: absolute;
             top: 0;
-            left: 72vw;
-            right: 4vw;
+            left: 74vw;
+            right: 2vw;
             height: 12rem;
         }
         .enrollbigName {
@@ -785,19 +764,16 @@
         }
         .fastClick {
             position: absolute;
-            top: 3rem;
-            border: 1px solid rgba(200, 200, 200, 0.7);
-            border-radius: 5px;
+            top: 3.2rem;
             width: 100%;
         }
         .fastClick li {
-            height: 3rem;
-            font-size: 0.94rem;
-            line-height: 3rem;
+            border: 1px solid rgb(190, 190, 190);
+            height: 2.8rem;
+            font-size: 0.8rem;
+            line-height: 2.8rem;
             text-align: center;
-        }
-        .fastClick li:hover {
-            font-weight: bold;
+            margin-bottom: 10px;
         }
         .bigName {
             position: absolute;
@@ -824,7 +800,7 @@
             height: 2rem;
             text-align: center;
             background-color: pink;
-            border-radius: 50%;
+            : 50%;
         }
         .middleFootBottom {
             position: absolute;
@@ -859,12 +835,12 @@
         .campain {
             margin-bottom: 2.5rem;
             font-weight: bold;
-            padding-left: 1rem;
             font-size: 1.07rem;
         }
         .sevenRP {
-            padding: 0;
-            width: 100%;
+            width: 90%;
+            position: absolute;
+            top: 4.5rem;
         }
         .sevenr {
             position: absolute;
@@ -885,7 +861,7 @@
             padding-left: 1.5rem;
             padding-right: 1.5rem;
             padding: 0.5rem;
-            border-radius: 2px;
+            : 2px;
             font-weight: bold;
             font-size: 0.9rem;
             position: absolute;
@@ -897,25 +873,26 @@
         }
         .find {
             position: absolute;
-            left: 5vw;
-            right: 5vw;
+            left: 2vw;
+            right: 2vw;
         }
         .thislogo {
             width: 8rem;
             padding-top: 0.7rem;
+            margin-left:1rem;
         }
         .business {
             position: absolute;
             top: 32vw;
-            left: 0;
-            right: 0;
+            left: 2vw;
+            right: 1vw;
         }
         .businessUl li {
             float: left;
             width: 33.33333333333333333333333333333333333333333%;
             height: 100%;
             text-align: center;
-            padding: 0.25rem;
+            padding-right: 0.5rem;
         }
         .businessUl {
             position: absolute;
@@ -927,7 +904,6 @@
         }
         .boxDown {
             height: 1.5rem;
-            padding-left: 1rem;
             position: relative;
             text-align: left;
             line-height: 1.5rem;
@@ -935,6 +911,13 @@
             font-weight: bold;
             padding-top: 1rem;
             padding-bottom: 1rem;
+        }
+        .boxFoot {
+            padding-top: 1rem;
+            font-size: 0.8rem;
+            text-align: left !important;
+            line-height: 1.6rem;
+            font-family: 'Nanum Myeongjo', serif;
         }
         .introduce {
             position: absolute;
@@ -961,18 +944,21 @@
             font-weight: bold;
             padding-top: 1rem;
         }
-        .philosophy {
-            position: absolute;
-            top: 0;
-            left: 5vw;
-            right: 50vw;
-            height: 12rem;
-        }
         .businessbigName {
             position: absolute;
             height: 1.2rem;
             top: -3rem;
-            left: 5vw;
+            left: 0;
+            right: 0;
+            font-size: 1.07rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        .facilbigName {
+            position: absolute;
+            height: 1.2rem;
+            top: -3rem;
+            left: 2vw;
             right: 0;
             font-size: 1.07rem;
             font-weight: bold;
@@ -985,32 +971,36 @@
             right: 0;
             top: 38vw;
             height: 186px;
-            border: 1px solid rgba(200, 200, 200, 0.7);
+            background-color:#9caa2d;
         }
         .facilityUl li {
-            /*    border:1px solid red;*/
             float: left;
             width: 50%;
             text-align: center;
+           
         }
         .facilityUl img {
             width: 100%;
         }
         .facilIn {
             font-size: 0.8rem;
-            height: 186px;
+            height: 185.5px;
+            width:100%;
+            background: -webkit-linear-gradient(left, #9caa2d, #55b327, #55a633);
         }
         .facilIn li {
+            background-color: white !important;
+            border: 1px solid rgb(190, 190, 190);
             float: left;
-            width: 50%;
-            height: 33.33333333333333333333333333%;
+            width: 40%;
+            height: 3rem;
+            margin: 0.5rem;
+            position: relative;
+            top: 2rem;
+            left: 1.4rem;
             font-size: 0.8rem;
             text-align: center;
-            line-height: 4rem;
-        }
-        .facilIn li:hover {
-            font-weight: bold;
-            color: #3a7820;
+            line-height: 3rem;
         }
         .sandwich {
             border-top: 1px solid rgba(200, 200, 200, 0.7);
@@ -1022,42 +1012,31 @@
         .facilIn .fa {
             color: #55b327;
         }
-        .boxFoot {
-            padding-top: 1rem;
-            font-size: 0.8rem;
-            text-align: left !important;
-            padding-left: 1rem;
-            line-height: 1.6rem;
-            font-family: 'Nanum Myeongjo', serif;
-        }
         .newsBody {
             position: absolute;
             top: 0;
-            left: 55vw;
-            right: 3vw;
+            left: 50vw;
+            right: 2vw;
             height: 16.5rem;
             overflow: hidden;
-            border-radius: 5px;
-            border-top-right-radius: 5px;
         }
         .newsName {
             position: absolute;
             top: 0;
-            height: 2.5rem;
-            width: 18rem;
-            border-top-right-radius: 5px;
+            height: 2rem;
+            width: 100%;
             border-bottom: none;
         }
         .newsName li {
             float: left;
             height: inherit;
             width: 33.333333333333333333333333333333333333%;
-            line-height: 2.5rem;
+            line-height: 2rem;
             color: rgb(150, 150, 150);
-            border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-            border-left: 1px solid rgba(200, 200, 200, 0.8);
-            border-top: 1px solid rgba(200, 200, 200, 0.8);
-            font-size: 0.95rem;
+            border-bottom: 1px solid rgb(190, 190, 190);
+            border-left: 1px solid rgb(190, 190, 190);
+            border-top: 1px solid rgb(190, 190, 190);
+            font-size: 0.8rem;
             font-weight: bold;
             text-align: center;
         }
@@ -1067,19 +1046,22 @@
         }
         .texts {
             position: absolute;
-            top: 2.5rem;
-            width: 18rem;
-            border: 1px solid rgba(200, 200, 200, 0.8);
-            border-radius: 5px;
+            top: 2rem;
+            width: 100%;
+            border: 1px solid rgb(190, 190, 190);
             border-top: none;
         }
         .texts li {
-            height: 1.9rem;
-            font-size: 0.8rem;
+            height: 1.7rem;
+            padding-top: 0.1rem;
+            font-size: 0.7rem;
             padding-left: 1rem;
-            line-height: 1.9rem;
-            width: 290px;
+            line-height: 1.7rem;
+            width: 100%;
             text-overflow: ellipsis;
+        }
+        .texts li:hover {
+            background-color: rgba(150, 150, 150, 0.2);
         }
         /*---------------------------------------bottom------------------------------------------*/
         .fa-fax {
@@ -1096,6 +1078,14 @@
         }
         .min700 {
             display: none;
+        }
+        .fa-check {
+            color: #21a2ff;
+            font-size: 1rem;
+        }
+        .fa-pencil {
+            color: #21a2ff;
+            font-size: 1rem;
         }
     }
     /*--------------------------------------------here---------------------------------------*/
@@ -1130,13 +1120,13 @@
         }
         .middleMiddle {
             position: absolute;
-            top: 36rem;
+            top: 34rem;
             left: 12vw;
             right: 12vw;
         }
         .bottom {
             position: absolute;
-            top: 158vw;
+            top: 155vw;
             left: 12vw;
             right: 12vw;
             border-top: 2px solid #55b327;
@@ -1176,10 +1166,10 @@
         }
         .topMenu {
             position: absolute;
-            top: 2.8rem;
+            top: 2.6rem;
             left: 0;
             right: 0;
-            font-size: 0.9rem;
+            font-size: 1.05rem;
             font-weight: bold;
         }
         .topMenu li {
@@ -1205,7 +1195,7 @@
             padding-left: 0.3rem;
             padding-right: 0.35rem;
             padding-bottom: 0.2rem;
-            border-radius: 3px;
+            : 3px;
         }
         .point {
             color: white;
@@ -1283,9 +1273,7 @@
             right: 0;
             height: 8.1rem;
             overflow: hidden;
-            border-radius: 5px;
-            border-left: 1px solid rgba(200, 200, 200, 0.6);
-            box-shadow: 2px 2px 2px rgb(150, 150, 150);
+            border: 1px solid rgb(190, 190, 190);
         }
         .newsName {
             position: absolute;
@@ -1301,9 +1289,8 @@
             width: 33.333333333333333333333333333333333333%;
             line-height: 2.5rem;
             color: rgb(150, 150, 150);
-            border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-            border-left: 1px solid rgba(200, 200, 200, 0.8);
-            border-top: 1.5px solid rgba(200, 200, 200, 0.8);
+            border-bottom: 1px solid rgb(190, 190, 190);
+            border-left: 1px solid rgb(190, 190, 190);
             font-size: 0.95rem;
             font-weight: bold;
             text-align: center;
@@ -1317,11 +1304,7 @@
             top: 2.5rem;
             left: 0;
             right: 0;
-            /*            border: 1px solid rgba(200, 200, 200, 0.8);*/
             border-top: none;
-            border-radius: 5px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
         }
         .texts li {
             height: 1.9rem;
@@ -1342,18 +1325,19 @@
             height: 10.5rem;
         }
         .emoticon {
-            background-color: #55b327;
+            color: #55b327;
             display: block;
             line-height: 4.5rem;
             width: 4.5rem;
             height: 4.5rem;
-            border-radius: 50%;
-            color: white;
+            : 50%;
+            /*            color: white;*/
             text-align: center;
             font-size: 2.5rem;
             margin: 1.5rem auto;
-            box-shadow: 1px 1.5px 2px rgb(100, 100, 100);
+            /*            box-shadow: 1px 1.5px 2px rgb(100, 100, 100);*/
         }
+        /*
         .emoticon:hover {
             background-color: white;
             border: 4px solid #55b327;
@@ -1361,6 +1345,7 @@
             font-size: 2.5rem;
             line-height: 4rem;
         }
+*/
         .studyName li {
             float: left;
             width: 20%;
@@ -1390,12 +1375,11 @@
         }
         .finish {
             /*            border-right: 1px solid rgba(200, 200, 200, 0.8);*/
-            border-top-right-radius: 5px;
         }
         .select {
             color: white !important;
             background-color: #55a633;
-            border-left:1px solid #55a633;
+            border-left: 1px solid #55a633;
         }
         .greenPoint {
             color: #336a0f;
@@ -1429,7 +1413,7 @@
         }
         .middleFoot {
             position: absolute;
-            top: 95vw;
+            top: 92vw;
             left: 12vw;
             right: 12vw;
         }
@@ -1450,7 +1434,6 @@
             right: 0;
             height: 12rem;
             /*            background-color: rgba(172, 188, 48, 0.9);*/
-            border-radius: 5px;
         }
         .enrollbigName {
             position: absolute;
@@ -1472,9 +1455,7 @@
             font-size: 0.9rem;
             line-height: 3rem;
             text-align: center;
-            border-radius: 5px;
-            border: 1.8px solid rgba(200, 200, 200, 0.7);
-            box-shadow: 2px 2px 2px rgba(150, 150, 150,0.9);
+            border: 1.8px solid rgb(190, 190, 190);
             margin-bottom: 0.5rem;
         }
         .bigName {
@@ -1500,7 +1481,7 @@
             height: 2rem;
             text-align: center;
             background-color: pink;
-            border-radius: 50%;
+            : 50%;
         }
         .middleFootBottom {
             position: absolute;
@@ -1553,7 +1534,7 @@
         .middleClickDot {
             display: block;
             position: absolute;
-            top: 31rem;
+            top: 29rem;
             left: 0;
             right: 0;
             width: 6rem;
@@ -1604,8 +1585,6 @@
             right: 0;
             top: 25vw;
             height: 15rem;
-            border-radius: 5px;
-            
         }
         .name {
             margin: 0;
@@ -1622,6 +1601,16 @@
             font-family: 'Nanum Myeongjo', serif;
         }
         .businessbigName {
+            position: absolute;
+            height: 1.2rem;
+            top: -3rem;
+            left: 0;
+            right: 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        .facilbigName {
             position: absolute;
             height: 1.2rem;
             top: -3rem;
@@ -1663,39 +1652,33 @@
         }
         .businessUl img {
             width: 100%;
-            border-radius: 5px;
         }
         .forBrThree {
             display: none;
         }
         .facilityUl {
             height: 241.72px;
-            border-radius: 5px;
-          
         }
         .facilityUl li {
             /*    border:1px solid red;*/
             float: left;
             width: 50%;
             text-align: center;
+            background-color:#9caa2d;
+            height: 242.72px;
         }
         .facility img {
-            height: 241px;
-            position: relative;
+            height: 241.72px;
+            position: absolute;
             top: 0.8px;
-            z-index: -1;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            box-shadow: 2px 2px 4px rgb(100,100,100);
+            left:0;
+            z-index: 1;
         }
         .facilIn {
             font-size: 0.9rem;
             width: 100%;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-            height: 241px;
+            height: 241.72px;
             background: -webkit-linear-gradient(left, #9caa2d, #55b327, #55a633);
-            box-shadow: 2px 2px 2px rgb(100,100,100);
             position: relative;
             top: 1px;
             left: -1px;
@@ -1710,11 +1693,9 @@
             border: 1px solid rgba(220, 220, 220, 0.7);
             text-align: center;
             line-height: 4.2rem;
-            border-radius: 5px;
             position: relative;
             left: 1.2rem;
             top: 1.2rem;
-            box-shadow: 1px 1px 2px rgb(50, 50, 50);
         }
         .sevenr {
             position: absolute;
@@ -1751,7 +1732,7 @@
             height: 2rem;
             text-align: center;
             background-color: pink;
-            border-radius: 50%;
+            : 50%;
         }
         .middleFootBottom {
             position: absolute;
@@ -1785,14 +1766,12 @@
         .fa-fax {
             color: #55b327;
         }
-    }
-    
-    .fa-check {
-        color: #69c5d9;
-        font-size: 1.2rem;
-    }
-    
-    .fa-pencil {
-        color: #69c5d9;
-        font-size: 1.2rem;
+        .fa-check {
+            color: #21a2ff;
+            font-size: 1rem;
+        }
+        .fa-pencil {
+            color: #21a2ff;
+            font-size: 1rem;
+        }
     }
