@@ -462,20 +462,36 @@ a:hover {
     color: white;
 }
 
+.forPic {
+    position: absolute;
+    left:10vw;
+    top:6rem;
+    width: 100%;
+   
+}
+
 .class {
-    margin-top: 3rem;
+    margin-top: 30rem;
 }
 
 .class li {
     height: 4rem;
     margin-bottom: 2rem;
 }
-
+.text:before {
+    color: #55b327;
+    content: "•";
+    position: relative;
+    left: 0;
+    top: 5px;
+    font-size: 2rem;
+    margin-left: -4px;
+}
 .spName {
     width: 5rem;
     position: relative;
     left: 0;
-    
+    top: -2rem;
     text-align: center;
     padding: 0.5rem;
     background-color: #75b449;
@@ -486,9 +502,8 @@ a:hover {
 .text {
     position: relative;
     top:0;
-    left:1rem;
-    font-weight:bold;
+    display: block;
+    padding-left: 0.5rem;
     line-height: 1.5rem;
-   
+    font-size:0.9rem;
 }
-
