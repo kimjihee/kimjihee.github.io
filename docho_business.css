@@ -445,7 +445,7 @@ a:hover {
 
 .name {
     margin-top: 0.2rem;
-    height: 12rem;
+    height: 9rem;
     border: 1px solid rgba(200, 200, 200, 0.6);
     border-bottom: none;
 }
@@ -587,4 +587,9 @@ a:hover {
 
 .businessPic img {
     height: 220px;
+}
+.campain {
+    font-weight: bold;
+    font-size: 0.7rem !important;
+    
 }

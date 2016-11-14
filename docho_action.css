@@ -524,3 +524,8 @@ p {
     color: #21a2dd;
     font-weight: bolder;
 }
+.campain {
+    font-weight: bold;
+    font-size: 0.7rem !important;
+   
+}
