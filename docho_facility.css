@@ -207,6 +207,42 @@ a:hover {
     .loginMenu {
         display: none;
     }
+  .rightBody {
+        position: absolute;
+        left: 7vw;
+        right: 7vw;
+        top: 21rem;
+    }
+    .forBr {
+        display: none;
+    }
+    .min700 {
+        display: none;
+    }
+    .text {
+        display: block;
+        position: relative;
+        right: -12vw;
+        left: 14rem !important;
+        top: -6.3rem;
+        width: 70%;
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+    }
+    .smallName {
+    position: relative;
+    left: 2rem;
+    top: -7.25rem;
+    width: 10rem;
+    text-align: center;
+    padding: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    background-color: #75b449;
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.03rem;
+}
     .topMenu {
         position: absolute;
         top: 2rem;
@@ -308,7 +344,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 105vw;
+        top: 95vw;
         left: 12vw;
         right: 12vw;
         border-top: 2px solid #55b327;
@@ -429,6 +465,37 @@ a:hover {
         font-size: 1.5rem;
         font-weight: bold;
     }
+    
+.smallName {
+    position: relative;
+    left: 1.5rem;
+    top: -7.25rem;
+    width: 10rem;
+    text-align: center;
+    padding: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    background-color: #75b449;
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 0.03rem;
+}
+
+.smallPic {
+    width: 12rem;
+    margin-top: 1.5rem;
+}
+
+.text {
+    display: block;
+    position: relative;
+    right: -12vw;
+    left: 13.4rem !important;
+    top: -6.3rem;
+    width: 70%;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+}
 }
 
 .liPoint {
@@ -488,35 +555,4 @@ a:hover {
     position: absolute;
     top: 1.5rem;
     left: 0;
-}
-
-.smallName {
-    position: relative;
-    left: 1.5rem;
-    top: -7.25rem;
-    width: 10rem;
-    text-align: center;
-    padding: 0.5rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-    background-color: #75b449;
-    color: white;
-    font-size: 0.9rem;
-    letter-spacing: 0.03rem;
-}
-
-.smallPic {
-    width: 12rem;
-    margin-top: 1.5rem;
-}
-
-.text {
-    display: block;
-    position: relative;
-    right: -12vw;
-    left: 13.4rem !important;
-    top: -6.3rem;
-    width: 70%;
-    font-size: 0.9rem;
-    line-height: 1.5rem;
 }

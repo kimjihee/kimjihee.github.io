@@ -61,7 +61,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 1305vw !important;
+        top: 405vw !important;
         padding-top: 1rem;
         padding-bottom: 1rem;
         left: 0 !important;
@@ -69,12 +69,8 @@ a:hover {
         font-size: 0.7rem;
         line-height: 1.2rem;
         color: rgb(100, 100, 100);
-    }
-    .letterSpace {
-        text-align: center;
-        margin-top: 1.5rem;
         border-top: 2px solid #55b327;
-        padding-top: 1rem;
+        padding-left: 0.2rem;
     }
     .picture {
         width: 100%;
@@ -101,41 +97,39 @@ a:hover {
         padding-top: 0.4rem !important;
         padding-left: 0.7rem!important;
     }
-    /*---------------------------------------bottom-------------------------------------------*/
-    .contact {
-        position: relative;
-        top: -1rem;
-        text-align: center;
-        color: black;
-    }
-    .greenPoint {
-        display: none;
-    }
-    .bottomPic {
+    .rightBody {
         position: absolute;
-        top: -3rem;
+        top: 17rem;
+        left: 7vw;
+        right: 7vw;
+    }
+    .pic img {
         width: 100%;
-        margin: 0 auto;
-        text-align: center;
+        position: relative;
+        top: 4rem;
     }
-    .contactNumber {
-        font-size: 1.4rem;
-        line-height: 3rem;
-        font-weight: bold;
-    }
-    .telephone {
-        font-weight: bold;
-        color: #89653B !important;
-    }
-    .fax {
-        font-weight: bold;
-        color: rgb(179, 201, 5) !important;
-    }
-    .adress {
+    .min700 {
         display: none;
     }
+    .class {
+        position: absolute;
+        top: 16rem;
+    }
+    .class li {
+        height: 12rem;
+        margin-bottom: 4rem;
+        border-bottom: 1px dotted rgb(150, 150, 150);
+    }
+    .bigName {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    /*---------------------------------------bottom-------------------------------------------*/
     .bottom img {
-        width: 80%;
+        display: none;
+    }
+    .forBr {
+        display: none;
     }
 }
 
@@ -183,15 +177,15 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 370vw;
+        top: 155vw;
         left: 0;
         right: 0;
-        border-top: 1.9px solid #55b327;
+        border-top: 2px solid #55b327;
         font-size: 0.78rem;
         line-height: 1.2rem;
         padding-top: 0.5rem;
         color: rgb(100, 100, 100);
-        padding-left: 1rem;
+        padding-left: 1.5rem;
         margin-bottom: 1rem;
     }
     .bottom img {
@@ -206,6 +200,45 @@ a:hover {
     }
     .loginMenu {
         display: none;
+    }
+    .bigName {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    .min700 {
+        display: none;
+    }
+    .class {
+        position: absolute;
+        top: 2rem;
+    }
+    .rightBody {
+        position: absolute;
+        left: 7vw;
+        right: 7vw;
+        top: 18rem;
+    }
+    .forBr {
+        display: none;
+    }
+    .thislogo {
+        width: 150px;
+        padding-top: 0.4rem !important;
+        padding-left: 0.7rem!important;
+    }
+    .class {
+        position: absolute;
+        top: 23rem;
+    }
+    .class li {
+        height: 9rem;
+        margin-bottom:1rem;
+    }
+    .pic {
+        text-align: center;
+    }
+    .pic img {
+        margin-top: 4rem;
     }
     .topMenu {
         position: absolute;
@@ -429,6 +462,28 @@ a:hover {
         font-size: 1.5rem;
         font-weight: bold;
     }
+    .pic img {
+        width: 500px;
+    }
+    .pic {
+        position: absolute;
+        top: 5rem;
+        left: 0;
+        right: 12vw;
+        text-align: center;
+    }
+    .class {
+        margin-top: 19rem;
+    }
+    .class li {
+        height: 10rem;
+    }
+    .class li pic {
+        height: 7rem;
+        position: absolute;
+        top: 1.5rem;
+        left: 0;
+    }
 }
 
 .liPoint {
@@ -462,33 +517,6 @@ a:hover {
     color: white;
 }
 
-.pic {
-    position: absolute;
-    top: 5rem;
-    left: 0;
-    right: 12vw;
-    text-align: center;
-}
-
-.pic img {
-    width: 500px;
-}
-
-.class {
-    margin-top: 19rem;
-}
-
-.class li {
-    height: 10rem;
-}
-
-.class li pic {
-    height: 7rem;
-    position: absolute;
-    top: 1.5rem;
-    left: 0;
-}
-
 .spName {
     width: 5rem;
     position: relative;
@@ -514,5 +542,4 @@ a:hover {
 .campain {
     font-weight: bold;
     font-size: 0.7rem !important;
-   
 }

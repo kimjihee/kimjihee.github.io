@@ -183,10 +183,10 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 490vw;
+        top: 170vw;
         left: 0;
         right: 0;
-        border-top: 1.9px solid #55b327;
+        border-top: 2px solid #55b327;
         font-size: 0.78rem;
         line-height: 1.2rem;
         padding-top: 0.5rem;
@@ -205,6 +205,24 @@ a:hover {
         font-weight: lighter;
     }
     .loginMenu {
+        display: none;
+    }
+   .thislogo {
+        width: 150px;
+        padding-top: 0.4rem !important;
+        padding-left: 0.7rem!important;
+    }
+    .bigName {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    .rightBody {
+        position: absolute;
+        left: 7vw;
+        right: 7vw;
+        top: 18rem;
+    }
+    .forBr {
         display: none;
     }
     .topMenu {

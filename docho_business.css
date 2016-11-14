@@ -96,11 +96,6 @@ a:hover {
         padding-left: 1rem;
         width: 100%;
     }
-    .thislogo {
-        width: 7rem !important;
-        padding-top: 0.4rem !important;
-        padding-left: 0.7rem!important;
-    }
     /*---------------------------------------bottom-------------------------------------------*/
     .contact {
         position: relative;
@@ -183,10 +178,10 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 370vw;
+        top: 210vw;
         left: 0;
         right: 0;
-        border-top: 1.9px solid #55b327;
+        border-top: 2px solid #55b327;
         font-size: 0.78rem;
         line-height: 1.2rem;
         padding-top: 0.5rem;
@@ -207,18 +202,51 @@ a:hover {
     .loginMenu {
         display: none;
     }
+    .thislogo {
+        width: 150px;
+        padding-top: 0.4rem !important;
+        padding-left: 0.7rem!important;
+    }
+    .bigName {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    .rightBody {
+        position: absolute;
+        left: 7vw;
+        right: 7vw;
+        top: 18rem;
+    }
+    .forBr {
+        display: none;
+    }
+    .map img {
+        width: 60vw;
+    }
+    .map {
+        position: relative;
+        top: 4.5rem;
+        left: 10vw;
+    }
+    .firstLI {
+        height: 33rem !important;
+    }
+    .class li {
+        height: 20rem;
+    }
+    .min700 {display:none;}
     .topMenu {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            right: 0;
-            font-weight: bold;
-        }
-        .topMenu li {
-            float: left;
-            font-size: 0.95rem;
-            width: 20%;
-        }
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        right: 0;
+        font-weight: bold;
+    }
+    .topMenu li {
+        float: left;
+        font-size: 0.95rem;
+        width: 20%;
+    }
     .search {
         display: none;
         padding: 0;
@@ -226,13 +254,13 @@ a:hover {
     #inputGoogle {
         display: none;
     }
-       .topRightSide {
-            position: absolute;
-            left: 23vw;
-            right: 0;
-            top: 0;
-            bottom: 0;
-        }
+    .topRightSide {
+        position: absolute;
+        left: 23vw;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
     .colorPoint {
         background-color: #55b327;
         color: white;
@@ -241,7 +269,6 @@ a:hover {
         padding-left: 0.3rem;
         padding-right: 0.35rem;
         padding-bottom: 0.2rem;
-        
     }
     .point {
         color: white;
@@ -328,38 +355,38 @@ a:hover {
         position: absolute;
         top: 0.1rem;
     }
-     .topRightSide {
-            position: absolute;
-            left: 11rem;
-            right: 0;
-            top: 0;
-            bottom: 0;
-        }
-        .loginMenu {
-            position: absolute;
-            top: 0;
-            right: 0;
-            font-size: 0.7rem;
-            padding-top: 0.7rem;
-            padding-bottom: 0.7rem;
-        }
-        .loginMenu li {
-            float: left;
-            padding-left: 1rem;
-        }
-        .topMenu {
-            position: absolute;
-            top: 2.6rem;
-            left: 0;
-            right: 0;
-            font-size: 1.05rem;
-            font-weight: bold;
-        }
-        .topMenu li {
-            float: left;
-            padding-left: 2.5rem;
-            width: 15%;
-        }
+    .topRightSide {
+        position: absolute;
+        left: 11rem;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    .loginMenu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 0.7rem;
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+    }
+    .loginMenu li {
+        float: left;
+        padding-left: 1rem;
+    }
+    .topMenu {
+        position: absolute;
+        top: 2.6rem;
+        left: 0;
+        right: 0;
+        font-size: 1.05rem;
+        font-weight: bold;
+    }
+    .topMenu li {
+        float: left;
+        padding-left: 2.5rem;
+        width: 15%;
+    }
     #inputGoogle {
         width: 20%;
         position: absolute;
@@ -378,7 +405,6 @@ a:hover {
         padding-left: 0.3rem;
         padding-right: 0.35rem;
         padding-bottom: 0.2rem;
-        
     }
     .point {
         color: white;
@@ -431,6 +457,51 @@ a:hover {
         font-size: 1.5rem;
         font-weight: bold;
     }
+    .map img {
+        width: 40vw;
+    }
+    .map {
+        /*    text-align: center;*/
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 13rem;
+        text-align: center;
+    }
+    .firstLI {
+        height: 40rem !important;
+        /*    border-top: 2px solid rgb(100, 100, 100) !important;*/
+    }
+    .detail {
+        position: relative;
+        top: 3rem;
+    }
+    .gift {
+        background-color: #9caa2d;
+        color: white;
+        position: absolute;
+        bottom: 5rem;
+        right: 0.6rem;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    .businessPic {
+        height: 220px;
+    }
+    .businessPic img {
+        height: 220px;
+    }
+    .map img {
+        width: 40vw;
+    }
+    .map {
+        /*    text-align: center;*/
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 10rem;
+        text-align: center;
+    }
 }
 
 .liPoint {
@@ -477,7 +548,7 @@ a:hover {
 }
 
 .class {
-    margin-top: 3.2rem;
+    margin-top: 2rem;
 }
 
 .class li {
@@ -486,7 +557,6 @@ a:hover {
     left: 0;
     right: 0;
     height: 20rem;
-    border-top: 1px dotted rgb(150, 150, 150);
 }
 
 .class li pic {
@@ -548,24 +618,6 @@ a:hover {
     margin-left: -4px;
 }
 
-.map img {
-    width: 40vw;
-}
-
-.map {
-    /*    text-align: center;*/
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 10rem;
-    text-align: center;
-}
-
-.firstLI {
-    height: 37rem !important;
-/*    border-top: 2px solid rgb(100, 100, 100) !important;*/
-}
-
 .detail {
     position: relative;
     top: 3rem;
@@ -588,8 +640,8 @@ a:hover {
 .businessPic img {
     height: 220px;
 }
+
 .campain {
     font-weight: bold;
     font-size: 0.7rem !important;
-    
 }

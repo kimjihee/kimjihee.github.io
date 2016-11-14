@@ -879,7 +879,7 @@
         .thislogo {
             width: 140px;
             padding-top: 0.7rem;
-            margin-left:1rem;
+            margin-left: 1rem;
         }
         .business {
             position: absolute;
@@ -971,13 +971,12 @@
             right: 0;
             top: 38vw;
             height: 186px;
-            background-color:#9caa2d;
+            background-color: #9caa2d;
         }
         .facilityUl li {
             float: left;
             width: 50%;
             text-align: center;
-           
         }
         .facilityUl img {
             width: 100%;
@@ -985,7 +984,7 @@
         .facilIn {
             font-size: 0.8rem;
             height: 185.5px;
-            width:100%;
+            width: 100%;
             background: -webkit-linear-gradient(left, #9caa2d, #55b327, #55a633);
         }
         .facilIn li {
@@ -1141,7 +1140,7 @@
             margin: 1rem auto;
         }
         .thislogo {
-            width:160px;
+            width: 160px;
             position: absolute;
             top: 0.1rem;
         }
@@ -1330,22 +1329,10 @@
             line-height: 4.5rem;
             width: 4.5rem;
             height: 4.5rem;
-            : 50%;
-            /*            color: white;*/
             text-align: center;
             font-size: 2.5rem;
             margin: 1.5rem auto;
-            /*            box-shadow: 1px 1.5px 2px rgb(100, 100, 100);*/
         }
-        /*
-        .emoticon:hover {
-            background-color: white;
-            border: 4px solid #55b327;
-            color: #55b327;
-            font-size: 2.5rem;
-            line-height: 4rem;
-        }
-*/
         .studyName li {
             float: left;
             width: 20%;
@@ -1664,14 +1651,14 @@
             float: left;
             width: 50%;
             text-align: center;
-            background-color:#9caa2d;
+            background-color: #9caa2d;
             height: 242.72px;
         }
         .facility img {
             height: 241.72px;
             position: absolute;
             top: 0.8px;
-            left:0;
+            left: 0;
             z-index: 1;
         }
         .facilIn {
