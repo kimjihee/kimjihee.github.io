@@ -61,7 +61,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 1305vw !important;
+        top: 220vw !important;
         padding-top: 1rem;
         padding-bottom: 1rem;
         left: 0 !important;
@@ -69,12 +69,9 @@ a:hover {
         font-size: 0.7rem;
         line-height: 1.2rem;
         color: rgb(100, 100, 100);
-    }
-    .letterSpace {
-        text-align: center;
-        margin-top: 1.5rem;
         border-top: 2px solid #55b327;
         padding-top: 1rem;
+        padding-left: 0.3rem;
     }
     .picture {
         width: 100%;
@@ -101,41 +98,22 @@ a:hover {
         padding-top: 0.4rem !important;
         padding-left: 0.7rem!important;
     }
-    /*---------------------------------------bottom-------------------------------------------*/
-    .contact {
-        position: relative;
-        top: -1rem;
-        text-align: center;
-        color: black;
+    .bigName {
+        font-size: 1.2rem;
+        font-weight: bold;
     }
-    .greenPoint {
-        display: none;
-    }
-    .bottomPic {
+    .rightBody {
         position: absolute;
-        top: -3rem;
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
+        top: 17rem;
+        left: 7vw;
+        right: 7vw;
     }
-    .contactNumber {
-        font-size: 1.4rem;
-        line-height: 3rem;
-        font-weight: bold;
-    }
-    .telephone {
-        font-weight: bold;
-        color: #89653B !important;
-    }
-    .fax {
-        font-weight: bold;
-        color: rgb(179, 201, 5) !important;
-    }
-    .adress {
+    /*---------------------------------------bottom-------------------------------------------*/
+    .forBr {
         display: none;
     }
     .bottom img {
-        width: 80%;
+        display: none;
     }
 }
 
@@ -493,20 +471,18 @@ a:hover {
     width: 5rem;
     position: relative;
     left: 0;
-    
     text-align: center;
     padding: 0.5rem;
     background-color: #75b449;
     color: white;
     font-size: 0.9rem;
-    font-weight:bold;
-}
-.text {
-    position: relative;
-    top:0;
-    left:1rem;
-    font-weight:bold;
-    line-height: 1.5rem;
-   
+    font-weight: bold;
 }
 
+.text {
+    position: relative;
+    top: 0;
+    left: 1rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+}

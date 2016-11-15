@@ -61,7 +61,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 1305vw !important;
+        top: 630vw !important;
         padding-top: 1rem;
         padding-bottom: 1rem;
         left: 0 !important;
@@ -69,12 +69,9 @@ a:hover {
         font-size: 0.7rem;
         line-height: 1.2rem;
         color: rgb(100, 100, 100);
-    }
-    .letterSpace {
-        text-align: center;
-        margin-top: 1.5rem;
         border-top: 2px solid #55b327;
         padding-top: 1rem;
+        padding-left: 0.3rem;
     }
     .picture {
         width: 100%;
@@ -101,41 +98,68 @@ a:hover {
         padding-top: 0.4rem !important;
         padding-left: 0.7rem!important;
     }
-    /*---------------------------------------bottom-------------------------------------------*/
-    .contact {
-        position: relative;
-        top: -1rem;
-        text-align: center;
-        color: black;
-    }
-    .greenPoint {
-        display: none;
-    }
-    .bottomPic {
+    .page {
+        margin-top: 1rem;
         position: absolute;
-        top: -3rem;
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
+        left: 10vw;
+        right: 10vw;
     }
-    .contactNumber {
-        font-size: 1.4rem;
-        line-height: 3rem;
-        font-weight: bold;
+    .page li {
+        float: left;
+        padding: 0.2rem;
+        border: 1px solid rgba(200, 200, 200, 0.4);
+        font-size: 0.7rem;
     }
-    .telephone {
-        font-weight: bold;
-        color: #89653B !important;
-    }
-    .fax {
-        font-weight: bold;
-        color: rgb(179, 201, 5) !important;
-    }
-    .adress {
+    /*---------------------------------------bottom-------------------------------------------*/
+    .forBr {
         display: none;
     }
     .bottom img {
-        width: 80%;
+        display: none;
+    }
+    .bigName {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .rightBody {
+        position: absolute;
+        top: 20rem;
+        left: 7vw;
+        right: 7vw;
+    }
+    .bodyMiddle {
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        right: 0;
+    }
+    .contents {
+        border-top: 2px solid rgba(150, 150, 150, 1);
+        overflow: hidden;
+    }
+    .contents li {
+        height: 4rem;
+        line-height: 4rem;
+        font-size: 0.9rem;
+        border-bottom: 1px dotted rgb(150, 150, 150) !important;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    .right {
+        display: none;
+    }
+    .left {
+        padding-left: 0.5rem !important;
+    }
+    .text {
+        position: absolute;
+        left: 12vw;
+        right: 0;
+        overflow: hidden;
+        height: 4rem;
+    }
+    .topLi {
+        display: none;
     }
 }
 
@@ -183,10 +207,10 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 140vw;
+        top: 160vw;
         left: 0;
         right: 0;
-        border-top: 1.9px solid #55b327;
+        border-top: 2px solid #55b327;
         font-size: 0.78rem;
         line-height: 1.2rem;
         padding-top: 0.5rem;
@@ -231,14 +255,32 @@ a:hover {
         left: 0;
         right: 0;
         font-size: 0.8rem;
-        height: 31.4rem;
+        height: 33rem;
         overflow: hidden;
         border-bottom: 2px solid rgba(200, 200, 200, 0.7);
     }
+    .topLi {
+        height: 3rem !important;
+        line-height: 3rem !important;
+        border-top: 2px solid rgba(150, 150, 150, 1);
+        border-bottom: 1px solid rgb(150, 150, 150) !important;
+        font-weight: bold;
+    }
+    .left {
+        padding-left: 1rem;
+    }
     .contents li {
-        padding: 0.5rem;
+        overflow: hidden;
         border-bottom: 1px solid rgba(150, 150, 150, 0.3);
-        padding: 0.7rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+    }
+    .text {
+        overflow: hidden;
+        height: 2rem;
+        position: absolute;
+        left:4rem;
+        right:6rem;
     }
     .page li {
         float: left;
@@ -249,7 +291,7 @@ a:hover {
     }
     .page {
         position: absolute;
-        top: 37rem;
+        top: 39rem;
         left: 20vw;
     }
     .topMenu {
@@ -324,6 +366,15 @@ a:hover {
     }
     .bottomPic {
         display: none;
+    }
+    .right {
+        position: relative;
+        left: 50vw;
+    }
+    
+    .right {
+        position: relative;
+        left: 67vw;
     }
 }
 
@@ -402,6 +453,8 @@ a:hover {
     }
     .contents li {
         padding: 0.5rem;
+        height: 2rem;
+        line-height: 2rem;
         border-bottom: 1px solid rgba(150, 150, 150, 0.3);
         padding: 0.7rem;
     }
@@ -518,6 +571,35 @@ a:hover {
         left: 0;
         right: 0;
     }
+    .left {
+        position: relative;
+        left: 1rem;
+    }
+    .right {
+        position: relative;
+        left: 50vw;
+    }
+    .text {
+        position: absolute;
+        left: 4rem;
+        right: 8rem;
+        height: 2rem;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+    .contents li {
+        height: 3rem;
+        line-height: 3rem;
+        padding: 0 !important;
+    }
+    .contents {
+        height: 30rem;
+    }
+    .topLi {
+        border-top: 2px solid rgba(150, 150, 150, 1);
+        border-bottom: 1px solid rgb(150, 150, 150) !important;
+        font-weight: bold;
+    }
 }
 
 .liPoint {
@@ -532,7 +614,7 @@ a:hover {
 
 .name {
     margin-top: 0.2rem;
-    height: 12rem;
+    height: 9rem;
     border: 1px solid rgba(200, 200, 200, 0.6);
     border-bottom: none;
 }
@@ -549,24 +631,6 @@ a:hover {
 .name li:hover {
     background-color: #55b327;
     color: white;
-}
-
-.right {
-    position: relative;
-    left: 50vw;
-}
-
-.text {
-    position: absolute;
-    left: 4rem;
-}
-
-.topLI {
-    border-top: 2px solid rgba(150, 150, 150, 1);
-    border-bottom: 1px solid rgb(150, 150, 150) !important;
-    font-weight: bold;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
 }
 
 .important {

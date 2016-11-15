@@ -61,7 +61,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 1305vw !important;
+        top: 405vw !important;
         padding-top: 1rem;
         padding-bottom: 1rem;
         left: 0 !important;
@@ -69,12 +69,9 @@ a:hover {
         font-size: 0.7rem;
         line-height: 1.2rem;
         color: rgb(100, 100, 100);
-    }
-    .letterSpace {
-        text-align: center;
-        margin-top: 1.5rem;
         border-top: 2px solid #55b327;
         padding-top: 1rem;
+        padding-left: 0.3rem;
     }
     .picture {
         width: 100%;
@@ -102,40 +99,36 @@ a:hover {
         padding-left: 0.7rem!important;
     }
     /*---------------------------------------bottom-------------------------------------------*/
-    .contact {
-        position: relative;
-        top: -1rem;
-        text-align: center;
-        color: black;
-    }
-    .greenPoint {
-        display: none;
-    }
-    .bottomPic {
-        position: absolute;
-        top: -3rem;
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .contactNumber {
-        font-size: 1.4rem;
-        line-height: 3rem;
-        font-weight: bold;
-    }
-    .telephone {
-        font-weight: bold;
-        color: #89653B !important;
-    }
-    .fax {
-        font-weight: bold;
-        color: rgb(179, 201, 5) !important;
-    }
-    .adress {
+    .forBr {
         display: none;
     }
     .bottom img {
-        width: 80%;
+        display: none;
+    }
+    .bigName {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .rightBody {
+        position: absolute;
+        top: 17rem;
+        left: 7vw;
+        right: 7vw;
+    }
+    .smallPic {
+        width: 100%;
+        position: absolute;
+        left: -2rem;
+        right: 0;
+    }
+    .class {
+        position: absolute;
+        top: 21rem;
+        margin: 0 !important;
+    }
+    .class li {
+        height: 10rem !important;
+        border-bottom: 1px dotted rgb(150, 150, 150);
     }
 }
 
@@ -181,6 +174,9 @@ a:hover {
         left: 0;
         right: 0;
     }
+    .min700 {
+        display: none;
+    }
     .bottom {
         position: absolute;
         top: 170vw;
@@ -207,7 +203,7 @@ a:hover {
     .loginMenu {
         display: none;
     }
-   .thislogo {
+    .thislogo {
         width: 150px;
         padding-top: 0.4rem !important;
         padding-left: 0.7rem!important;
@@ -482,10 +478,9 @@ a:hover {
 
 .forPic {
     position: absolute;
-    left:10vw;
-    top:6rem;
+    left: 10vw;
+    top: 6rem;
     width: 100%;
-   
 }
 
 .class {
@@ -496,6 +491,7 @@ a:hover {
     height: 4rem;
     margin-bottom: 2rem;
 }
+
 .text:before {
     color: #55b327;
     content: "•";
@@ -505,6 +501,7 @@ a:hover {
     font-size: 2rem;
     margin-left: -4px;
 }
+
 .spName {
     width: 5rem;
     position: relative;
@@ -515,13 +512,14 @@ a:hover {
     background-color: #75b449;
     color: white;
     font-size: 0.9rem;
-    font-weight:bold;
+    font-weight: bold;
 }
+
 .text {
     position: relative;
-    top:0;
+    top: 0;
     display: block;
     padding-left: 0.5rem;
     line-height: 1.5rem;
-    font-size:0.9rem;
+    font-size: 0.9rem;
 }

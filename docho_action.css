@@ -61,7 +61,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 1305vw !important;
+        top: 335vw !important;
         padding-top: 1rem;
         padding-bottom: 1rem;
         left: 0 !important;
@@ -69,12 +69,9 @@ a:hover {
         font-size: 0.7rem;
         line-height: 1.2rem;
         color: rgb(100, 100, 100);
-    }
-    .letterSpace {
-        text-align: center;
-        margin-top: 1.5rem;
         border-top: 2px solid #55b327;
-        padding-top: 1rem;
+        
+        padding-left:0.3rem;
     }
     .picture {
         width: 100%;
@@ -101,41 +98,43 @@ a:hover {
         padding-top: 0.4rem !important;
         padding-left: 0.7rem!important;
     }
-    /*---------------------------------------bottom-------------------------------------------*/
-    .contact {
-        position: relative;
-        top: -1rem;
-        text-align: center;
-        color: black;
+    .CO2chart {
+        display: none;
     }
+    .rightBody {
+        position: absolute;
+        top: 17rem;
+        left: 7vw;
+        right: 7vw;
+    }
+    .bigName {
+        font-weight: bold;
+    }
+    .class img {
+        width: 100%;
+        padding-top: 1.5rem;
+    }
+    .class {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-top: 0 !important;
+    }
+    .sevenRP {
+        position: relative !important;
+        top: 0 !important;
+    }
+    /*---------------------------------------bottom-------------------------------------------*/
     .greenPoint {
         display: none;
     }
-    .bottomPic {
-        position: absolute;
-        top: -3rem;
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .contactNumber {
-        font-size: 1.4rem;
-        line-height: 3rem;
-        font-weight: bold;
-    }
-    .telephone {
-        font-weight: bold;
-        color: #89653B !important;
-    }
-    .fax {
-        font-weight: bold;
-        color: rgb(179, 201, 5) !important;
-    }
-    .adress {
+    .forBr {
         display: none;
     }
+  
     .bottom img {
-        width: 80%;
+        display: none;
     }
 }
 
@@ -304,10 +303,7 @@ a:hover {
         left: -2.4rem !important;
         padding: 0;
     }
-    #chart {
-        width: 600px;
-    }
-   
+    #chart {width:600px;}
     .topLI {
         margin-bottom: 4.5rem !important;
     }

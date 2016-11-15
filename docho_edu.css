@@ -61,7 +61,7 @@ a:hover {
     }
     .bottom {
         position: absolute;
-        top: 1305vw !important;
+        top: 859vw !important;
         padding-top: 1rem;
         padding-bottom: 1rem;
         left: 0 !important;
@@ -69,12 +69,9 @@ a:hover {
         font-size: 0.7rem;
         line-height: 1.2rem;
         color: rgb(100, 100, 100);
-    }
-    .letterSpace {
-        text-align: center;
-        margin-top: 1.5rem;
         border-top: 2px solid #55b327;
         padding-top: 1rem;
+        padding-left: 0.3rem;
     }
     .picture {
         width: 100%;
@@ -101,41 +98,79 @@ a:hover {
         padding-top: 0.4rem !important;
         padding-left: 0.7rem!important;
     }
-    /*---------------------------------------bottom-------------------------------------------*/
-    .contact {
+    .rightBody {
+        position: absolute;
+        top: 20rem;
+        left: 7vw;
+        right: 7vw;
+    }
+    .pic img {
+        width: 100%;
+        position: relative;
+        top: 4rem;
+    }
+    .min700 {
+        display: none;
+    }
+    .smallPic {
+        position: relative;
+        top: 0;
+    }
+    .class {
+        position: absolute;
+        top: 2rem;
+    }
+    .class li {
+        height: 27rem !important;
+        margin-bottom: 4rem;
+        border-bottom: 1px dotted rgb(150, 150, 150);
+    }
+    .text {
+        position: relative;
+        top: 2rem;
+        padding-top: 2rem;
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+    }
+    .bigName {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .bodyMiddle {
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+    .smallName {
+        position: relative;
+        top: 0.5rem;
+        display: block;
+        left: 0;
+        width: 10rem;
+        text-align: center;
+        padding: 0.5rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        background-color: #75b449;
+        color: white;
+        font-size: 0.9rem;
+        letter-spacing: 0.03rem;
+    }
+    .smallPic {
         position: relative;
         top: -1rem;
-        text-align: center;
-        color: black;
+        width:100%;
+        
     }
+    /*---------------------------------------bottom-------------------------------------------*/
     .greenPoint {
         display: none;
     }
-    .bottomPic {
-        position: absolute;
-        top: -3rem;
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .contactNumber {
-        font-size: 1.4rem;
-        line-height: 3rem;
-        font-weight: bold;
-    }
-    .telephone {
-        font-weight: bold;
-        color: #89653B !important;
-    }
-    .fax {
-        font-weight: bold;
-        color: rgb(179, 201, 5) !important;
-    }
-    .adress {
+    .forBr {
         display: none;
     }
-    .bottom img {
-        width: 80%;
+    .find img {
+        display: none;
     }
 }
 
@@ -186,7 +221,7 @@ a:hover {
         top: 205vw;
         left: 0;
         right: 0;
-        border-top:2px solid #55b327;
+        border-top: 2px solid #55b327;
         font-size: 0.78rem;
         line-height: 1.2rem;
         padding-top: 0.5rem;
@@ -238,20 +273,6 @@ a:hover {
         font-size: 0.9rem;
         line-height: 1.5rem;
     }
-    .smallName {
-    position: relative;
-    left: 2rem;
-    top: -7.25rem;
-    width: 10rem;
-    text-align: center;
-    padding: 0.5rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-    background-color: #75b449;
-    color: white;
-    font-size: 0.9rem;
-    letter-spacing: 0.03rem;
-}
     .topMenu {
         position: absolute;
         top: 2rem;
@@ -325,6 +346,24 @@ a:hover {
     .bottomPic {
         display: none;
     }
+    .smallName {
+        position: relative;
+        left: 2rem;
+        top: -7.25rem;
+        width: 10rem;
+        text-align: center;
+        padding: 0.5rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        background-color: #75b449;
+        color: white;
+        font-size: 0.9rem;
+        letter-spacing: 0.03rem;
+    }
+    .smallPic {
+    width: 12rem;
+    margin-top: 1.5rem;
+}
 }
 
 
@@ -485,20 +524,26 @@ a:hover {
         line-height: 1.5rem;
     }
     .smallName {
-    position: relative;
-    left: 1.5rem;
-    top: -7.25rem;
-    width: 10rem;
-    text-align: center;
-    padding: 0.5rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-    background-color: #75b449;
-    color: white;
-    font-size: 0.9rem;
-    letter-spacing: 0.03rem;
+        position: relative;
+        left: 2rem;
+        top: -7.25rem;
+        width: 10rem;
+        text-align: center;
+        padding: 0.5rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        background-color: #75b449;
+        color: white;
+        font-size: 0.9rem;
+        letter-spacing: 0.03rem;
+    }
+    .smallPic {
+    width: 12rem;
+    margin-top: 1.5rem;
 }
 }
+
+
 
 .liPoint {
     height: 6rem;
@@ -557,11 +602,4 @@ a:hover {
     position: absolute;
     top: 1.5rem;
     left: 0;
-}
-
-
-
-.smallPic {
-    width: 12rem;
-    margin-top: 1.5rem;
 }

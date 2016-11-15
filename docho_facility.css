@@ -69,10 +69,6 @@ a:hover {
         font-size: 0.7rem;
         line-height: 1.2rem;
         color: rgb(100, 100, 100);
-    }
-    .letterSpace {
-        text-align: center;
-        margin-top: 1.5rem;
         border-top: 2px solid #55b327;
         padding-top: 1rem;
     }
@@ -102,40 +98,11 @@ a:hover {
         padding-left: 0.7rem!important;
     }
     /*---------------------------------------bottom-------------------------------------------*/
-    .contact {
-        position: relative;
-        top: -1rem;
-        text-align: center;
-        color: black;
-    }
-    .greenPoint {
-        display: none;
-    }
-    .bottomPic {
-        position: absolute;
-        top: -3rem;
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .contactNumber {
-        font-size: 1.4rem;
-        line-height: 3rem;
-        font-weight: bold;
-    }
-    .telephone {
-        font-weight: bold;
-        color: #89653B !important;
-    }
-    .fax {
-        font-weight: bold;
-        color: rgb(179, 201, 5) !important;
-    }
-    .adress {
+    forBr {
         display: none;
     }
     .bottom img {
-        width: 80%;
+        display: none;
     }
 }
 
@@ -207,7 +174,7 @@ a:hover {
     .loginMenu {
         display: none;
     }
-  .rightBody {
+    .rightBody {
         position: absolute;
         left: 7vw;
         right: 7vw;
@@ -230,19 +197,19 @@ a:hover {
         line-height: 1.5rem;
     }
     .smallName {
-    position: relative;
-    left: 2rem;
-    top: -7.25rem;
-    width: 10rem;
-    text-align: center;
-    padding: 0.5rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-    background-color: #75b449;
-    color: white;
-    font-size: 0.9rem;
-    letter-spacing: 0.03rem;
-}
+        position: relative;
+        left: 2rem;
+        top: -7.25rem;
+        width: 10rem;
+        text-align: center;
+        padding: 0.5rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        background-color: #75b449;
+        color: white;
+        font-size: 0.9rem;
+        letter-spacing: 0.03rem;
+    }
     .topMenu {
         position: absolute;
         top: 2rem;
@@ -465,37 +432,34 @@ a:hover {
         font-size: 1.5rem;
         font-weight: bold;
     }
-    
-.smallName {
-    position: relative;
-    left: 1.5rem;
-    top: -7.25rem;
-    width: 10rem;
-    text-align: center;
-    padding: 0.5rem;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-    background-color: #75b449;
-    color: white;
-    font-size: 0.9rem;
-    letter-spacing: 0.03rem;
-}
-
-.smallPic {
-    width: 12rem;
-    margin-top: 1.5rem;
-}
-
-.text {
-    display: block;
-    position: relative;
-    right: -12vw;
-    left: 13.4rem !important;
-    top: -6.3rem;
-    width: 70%;
-    font-size: 0.9rem;
-    line-height: 1.5rem;
-}
+    .smallName {
+        position: relative;
+        left: 1.5rem;
+        top: -7.25rem;
+        width: 10rem;
+        text-align: center;
+        padding: 0.5rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        background-color: #75b449;
+        color: white;
+        font-size: 0.9rem;
+        letter-spacing: 0.03rem;
+    }
+    .smallPic {
+        width: 12rem;
+        margin-top: 1.5rem;
+    }
+    .text {
+        display: block;
+        position: relative;
+        right: -12vw;
+        left: 13.4rem !important;
+        top: -6.3rem;
+        width: 70%;
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+    }
 }
 
 .liPoint {

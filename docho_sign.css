@@ -69,12 +69,9 @@ a:hover {
         font-size: 0.7rem;
         line-height: 1.2rem;
         color: rgb(100, 100, 100);
-    }
-    .letterSpace {
-        text-align: center;
-        margin-top: 1.5rem;
         border-top: 2px solid #55b327;
         padding-top: 1rem;
+        padding-left:0.3rem;
     }
     .picture {
         width: 100%;
@@ -102,40 +99,11 @@ a:hover {
         padding-left: 0.7rem!important;
     }
     /*---------------------------------------bottom-------------------------------------------*/
-    .contact {
-        position: relative;
-        top: -1rem;
-        text-align: center;
-        color: black;
-    }
-    .greenPoint {
-        display: none;
-    }
-    .bottomPic {
-        position: absolute;
-        top: -3rem;
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .contactNumber {
-        font-size: 1.4rem;
-        line-height: 3rem;
-        font-weight: bold;
-    }
-    .telephone {
-        font-weight: bold;
-        color: #89653B !important;
-    }
-    .fax {
-        font-weight: bold;
-        color: rgb(179, 201, 5) !important;
-    }
-    .adress {
+    .forBr {
         display: none;
     }
     .bottom img {
-        width: 80%;
+        display: none;
     }
 }
 
@@ -207,7 +175,7 @@ a:hover {
     .loginMenu {
         display: none;
     }
-  .thislogo {
+    .thislogo {
         width: 150px;
         padding-top: 0.4rem !important;
         padding-left: 0.7rem!important;
