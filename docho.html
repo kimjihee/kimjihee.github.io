@@ -43,7 +43,23 @@
     </div>
     <div class="middle">
         <ul class="middleTop">
-            <li class="firstPic"> <img class="picture" src='https://66.media.tumblr.com/c96bcdbba6d41f57c2ea77a03d89295a/tumblr_oghdtohbGk1urebxho1_1280.png' alt="연구소사진">
+            <li class="firstPic"> <img class="picture" id=mainImage src='https://66.media.tumblr.com/c96bcdbba6d41f57c2ea77a03d89295a/tumblr_oghdtohbGk1urebxho1_1280.png' alt="연구소사진">
+                            
+            
+            <script>
+            var myImage=document.getElementById("mainImage");
+            var imageArray=["https://66.media.tumblr.com/52a0b660d19c81a85c62870b7540153e/tumblr_ofpaqasupf1urebxho1_1280.png","https://66.media.tumblr.com/ace1dd9f6c5e8904cade58a8c6865110/tumblr_ogo1zcxEmN1urebxho2_1280.png",'https://65.media.tumblr.com/118f08d9c698fd752a995c7813fc9d0e/tumblr_ogo1zcxEmN1urebxho4_1280.png','https://67.media.tumblr.com/0b5f301b40f110f08bf39fb137d2b3a0/tumblr_ogo1zcxEmN1urebxho6_1280.png'];
+            var imageIndex=0;
+
+            function changeImage(){
+                myImage.setAttribute("src",imageArray[imageIndex]);
+                imageIndex++;
+                if(imageIndex>=imageArray.length){
+                    imageIndex=0;
+                }
+            }
+            setInterval(changeImage,2000);
+            </script>
                 <!--                <a href="http://www.naver.com"><img class="link" src="https://66.media.tumblr.com/b61f8c1c625e39a59a239a74313bc1a4/tumblr_oby1piYT2A1urebxho1_500.png" alt="링크걸기"></a>--></li>
             <!--
 
