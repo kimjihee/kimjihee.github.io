@@ -1,5 +1,5 @@
     * {
-        outdline: 1px solid black;
+        outsline: 1px solid black;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -47,13 +47,11 @@
         }
         .fa-bars {
             font-size: 1.6rem;
-            padding-top: 1.2rem;
             position: absolute;
+            top: 1rem;
             right: 5%;
             color: #55b327;
-        }
-        .topRightSide {
-            display: none;
+            display: block !important;
         }
         .middle {
             list-style-type: none;
@@ -106,14 +104,8 @@
             padding-top: 0.4rem !important;
             padding-left: 0.7rem!important;
         }
-        .shinAn {
-            position: absolute;
-            top: 2.3rem;
-            left: 0.7rem;
-            z-index: 1;
-            font-size: 0.6rem;
-            font-weight: bolder;
-            letter-spacing: 0.08rem;
+        .loginMenu {
+            display: none;
         }
         /*----------------------------------------middle---------------------------------------------*/
         .fa-circle {
@@ -342,7 +334,6 @@
             width: 12rem !important;
             height: 3rem !important;
             line-height: 3rem !important;
-           
         }
         .facilIn {
             padding-top: 1rem;
@@ -481,6 +472,13 @@
         .fa-pencil {
             color: #21a2ff;
             font-size: 1rem;
+        }
+        /*-----------------------------------script---------------------------------*/
+        .topMenu b {
+            cursor: pointer;
+        }
+        .topMenu .littleMenu {
+            display: none;
         }
     }
     /*------------------------------------------here----------------------------------------------*/
@@ -1174,7 +1172,7 @@
         .topMenu li {
             float: left;
             padding-left: 2.5rem;
-            width: 15%;
+            width: 8rem;
         }
         #inputGoogle {
             width: 20%;
@@ -1295,7 +1293,7 @@
             text-align: center;
         }
         .newsName li:hover {
-            background-color: #55a633;
+            background-color: #55b327;
             color: white;
         }
         .texts {
@@ -1365,7 +1363,8 @@
         }
         .select {
             color: white !important;
-            background: -webkit-linear-gradient(left, #9caa2d, #55b327, #55a633,#9caa2d);
+            /*            background: -webkit-linear-gradient(left, #9caa2d, #55b327, #55a633,#55b327,#9caa2d);*/
+            background-color: #55b327;
             border-left: 1px solid #55a633;
         }
         .greenPoint {
@@ -1644,28 +1643,29 @@
             display: none;
         }
         .facilityUl {
-            height: 241.72px;
+            height: 256px;
         }
         .facilityUl li {
             /*    border:1px solid red;*/
             float: left;
             width: 50%;
             text-align: center;
-            background-color: #9caa2d;
-            height: 242.72px;
+            background-color: #55b327;
+            height: 256px;
         }
         .facility img {
-            height: 241.72px;
+            height: 256px;
             position: absolute;
             top: 0.8px;
             left: 0;
-            z-index: 1;
+            z-index: 2;
         }
         .facilIn {
             font-size: 0.9rem;
             width: 100%;
             height: 241.72px;
-            background: -webkit-linear-gradient(left, #9caa2d,#55a633, #55b327, #55a633,#9caa2d);
+            /*            background: -webkit-linear-gradient(left, #9caa2d,#55a633, #55b327, #55a633,#9caa2d);*/
+            background-color: #55b327;
             position: relative;
             top: 1px;
             left: -1px;
@@ -1679,10 +1679,10 @@
             margin: 3%;
             border: 1px solid rgba(220, 220, 220, 0.7);
             text-align: center;
-            line-height: 4.2rem;
+            line-height: 4.5rem;
             position: relative;
-            left: 1rem;
-            top: 1.2rem;
+            left: 1.5rem;
+            top: 1.6rem;
         }
         .sevenr {
             position: absolute;
@@ -1704,7 +1704,7 @@
             font-size: 1.07rem;
         }
         .secondBigName {
-            /*    border-bottom: 2.7px solid rgba(226, 160, 188, 0.8);*/
+            /* border-bottom: 2.7px solid rgba(226, 160, 188, 0.8); */
             width: 98%;
             position: absolute;
             top: -3rem;
@@ -1719,7 +1719,6 @@
             height: 2rem;
             text-align: center;
             background-color: pink;
-            : 50%;
         }
         .middleFootBottom {
             position: absolute;
@@ -1761,4 +1760,31 @@
             color: #21a2ff;
             font-size: 1rem;
         }
+        /*-------------------------------------script--------------------------------------*/
+        .littleMenu {
+            position: absolute;
+            top: 5.4rem;
+            background-color:white;
+            right: 0;
+            height:9rem;
+            left: -11rem;
+            padding-top: 0.8rem;
+            z-index: 2;
+            padding-left: 11rem;
+        }
+        .littleMenu li {
+            float: left;
+            width: 8rem;
+        }
+        .smallSmall {
+            float: none !important;
+        }
+        .smallSmall li {
+            float: none !important;
+            font-size: 0.8rem;
+            padding-top: 0.7rem;
+            width: 100% !important;
+            padding-left: 2.5rem;
+        }
+      
     }

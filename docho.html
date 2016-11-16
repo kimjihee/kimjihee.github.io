@@ -14,52 +14,129 @@
     <title>신안군지역환경교육센터</title>
     <script type="text/javascript">
     </script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+        < script src = "jquery-3.1.1.min.js" >
+    </script>
 </head>
 
 <body>
     <div class="top">
         <div class="topBody">
-            <div class="topLeftLogo"> <a href="http://kimjihee.github.io/docho.html"><img class="thislogo" src='https://67.media.tumblr.com/f719e431a4d749424041a950627bba8b/tumblr_ogme52dmQB1urebxho1_540.png' alt="logo"></a><i class="fa fa-bars" aria-hidden="true"></i>
-<!--                <div class="shinAn">신안군지역환경교육센터</div>-->
+            <div class="topLeftLogo">
+                <a href="http://kimjihee.github.io/docho.html"><img class="thislogo" src='https://67.media.tumblr.com/f719e431a4d749424041a950627bba8b/tumblr_ogme52dmQB1urebxho1_540.png' alt="logo"></a>
+
             </div>
             <div class="topRightSide">
                 <ul class="loginMenu">
-                   <li><a href="http://www.naver.com">로그인</a></li>
+                    <li><a href="http://www.naver.com">로그인</a></li>
                     <li><a href="http://www.naver.com">회원가입</a></li>
                     <li><a href="http://kimjihee.github.io/docho_contact.html">CONTACT US</a></li>
                     <li><a href="http://www.naver.com">사이트맵</a></li>
                 </ul>
+                <b><i class="fa fa-bars" aria-hidden="true"></i></b>
                 <ul class="topMenu">
                     <li><a href="http://kimjihee.github.io/docho_act.html">&nbsp;활동&nbsp;</a></li>
                     <li><a href="http://kimjihee.github.io/docho_edu.html">교육</a></li>
                     <li><a href="http://kimjihee.github.io/docho_facility.html">시설</a></li>
                     <li><a href="http://kimjihee.github.io/docho_news.html">참여마당</a></li>
-                    <li><a href="http://kimjihee.github.io/docho_contact.html"><span class="colorPoint">신청하기</span></a></li>
+                    <li><a href="http://kimjihee.github.io/docho_contact.html"><span class="colorPoint">Contact</span></a></li>
                     <li class="search">
                         <input type="text" name="q" value="" class="input_text" id="inputGoogle"><a href="http://www.naver.com"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                 </ul>
+                <ul class="littleMenu">
+                    <li>
+                        <ul class="smallSmall">
+                            <li>소개</li>
+                            <li>사업</li>
+                            <li>ECOLIFE ACTION 20'20</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="smallSmall">
+                            <li>프로그램</li>
+                            <li>시설보기</li>
+                            <li>교육일정</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="smallSmall">
+                            <li>생태체험교육장</li>
+                            <li>생태학습관</li>
+                            <li>숙소시설</li>
+                            <li>식당시설</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="smallSmall">
+                            <li>사진갤러리</li>
+                            <li>공지사항</li>
+                            <li>언론보도</li>
+                            <li>환경뉴스</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="smallSmall">
+                            <li>연락처</li>
+                            <li>문의하기</li>
+                            <li>오시는길</li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+                <script>
+                    //                        //
+                    //                        //                        $(".topRightSide>b").hover(function () { //마우스를 topnav에 오버시
+                    //                        //                            $(this).parent().find(".topMenu").slideDown('normal').show(); //subnav가 내려옴.
+                    //                        //                            $(this).parent().hover(function () {}, function () {
+                    //                        //                                $(this).parent().find(".topMenu").slideUp('fast'); //subnav에서 마우스 벗어났을 시 원위치시킴  
+                    //                        //                            });
+                    //                        //                        }); 300px 일경우
+                    //
+                    $(document).ready(function () {
+                        $(".topRightSide").mouseover(function () {
+                            $(this).parent().find(".littleMenu").slideDown('normal');
+                            $(this).parent().mouseleave(function () {}, function () {
+                                $(this).parent().find(".littleMenu").slideUp('slow');
+                            });
+                        });
+                    });
+                    //                     $(document).ready(function(){
+                    //                            $(".topRightSide>b").mouseover(function(){
+                    //                                var submenu = $(this).next(".littleMenu");
+                    //                                if( submenu.is(":visible") ){
+                    //                                    submenu.slideUp();
+                    //                                }else{
+                    //                                    submenu.slideDown();
+                    //                                }
+                    //                            }).mouseover(function(){
+                    //                                $(this).next(".littleMenu").slideDown();
+                    //                            });
+                    //                        });
+                </script>
             </div>
         </div>
     </div>
     <div class="middle">
         <ul class="middleTop">
             <li class="firstPic"> <img class="picture" id=mainImage src='https://66.media.tumblr.com/52a0b660d19c81a85c62870b7540153e/tumblr_ofpaqasupf1urebxho1_1280.png' alt="연구소사진">
-                            
-            
-            <script>
-            var myImage=document.getElementById("mainImage");
-            var imageArray=['https://66.media.tumblr.com/52a0b660d19c81a85c62870b7540153e/tumblr_ofpaqasupf1urebxho1_1280.png',"https://66.media.tumblr.com/ace1dd9f6c5e8904cade58a8c6865110/tumblr_ogo1zcxEmN1urebxho2_1280.png",'https://65.media.tumblr.com/118f08d9c698fd752a995c7813fc9d0e/tumblr_ogo1zcxEmN1urebxho4_1280.png','https://67.media.tumblr.com/0b5f301b40f110f08bf39fb137d2b3a0/tumblr_ogo1zcxEmN1urebxho6_1280.png'];
-            var imageIndex=0;
 
-            function changeImage(){
-                myImage.setAttribute("src",imageArray[imageIndex]);
-                imageIndex++;
-                if(imageIndex>=imageArray.length){
-                    imageIndex=0;
-                }
-            }
-            setInterval(changeImage,6000);
-            </script>
+
+                <script>
+                    var myImage = document.getElementById("mainImage");
+                    var imageArray = ['https://66.media.tumblr.com/52a0b660d19c81a85c62870b7540153e/tumblr_ofpaqasupf1urebxho1_1280.png', "https://66.media.tumblr.com/ace1dd9f6c5e8904cade58a8c6865110/tumblr_ogo1zcxEmN1urebxho2_1280.png", 'https://65.media.tumblr.com/118f08d9c698fd752a995c7813fc9d0e/tumblr_ogo1zcxEmN1urebxho4_1280.png', 'https://67.media.tumblr.com/0b5f301b40f110f08bf39fb137d2b3a0/tumblr_ogo1zcxEmN1urebxho6_1280.png'];
+                    var imageIndex = 0;
+
+                    function changeImage() {
+                        myImage.setAttribute("src", imageArray[imageIndex]);
+                        imageIndex++;
+                        if (imageIndex >= imageArray.length) {
+                            imageIndex = 0;
+                        }
+                    }
+                    setInterval(changeImage, 6000);
+                </script>
                 <!--                <a href="http://www.naver.com"><img class="link" src="https://66.media.tumblr.com/b61f8c1c625e39a59a239a74313bc1a4/tumblr_oby1piYT2A1urebxho1_500.png" alt="링크걸기"></a>--></li>
             <!--
 
@@ -142,24 +219,45 @@
             </div>
             <div class="newsBody">
                 <ul class="newsName">
-                    <a href="http://kimjihee.github.io/docho_news.html">
-                        <li class="select">공지</li>
-                    </a>
-                    <a href="http://kimjihee.github.io/docho_news.html">
-                        <li class="secondNews">언론 보도</li>
-                    </a>
-                    <a href="http://kimjihee.github.io/docho_news.html">
-                        <li class="finish">환경 소식</li>
-                    </a>
+                    <li class="active" rel="tab1">공지사항</li>
+                    <li rel="tab2">언론보도</li>
+                    <li rel="tab3">환경소식</li>
+
                 </ul>
                 <a href="http://kimjihee.github.io/docho_news.html">
-                    <ul class="texts">
+                    <ul id="tab1" class="texts">
                         <li>블라블라블라블라</li>
+                        <li>블라블바블라블라</li>
+                        <li>블라블라블라블라</li>
+                    </ul>
+                    <ul id="tab2" class="texts">
+                        <li>fkfkfffkfkfff</li>
+                        <li>블라블바블라블라</li>
+                        <li>블라블라블라블라</li>
+                    </ul>
+                    <ul id="tab3" class="texts">
+                        <li>dddddddddddddd</li>
                         <li>블라블바블라블라</li>
                         <li>블라블라블라블라</li>
                     </ul>
                 </a>
             </div>
+            <script>
+                $(function () {
+
+                    $(".texts").hide();
+                    $(".texts:first").show();
+
+                    $("ul.newsName li").click(function () {
+                        $("ul.newsName li").removeClass("active").css("color", "rgb(190,190,190)").css("backgorund-color", "#55b327");
+                        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+                        $(this).addClass("active").css("color", "grey").css("backgorund-color", "#55b327");
+                        $(".texts").hide()
+                        var activeTab = $(this).attr("rel");
+                        $("#" + activeTab).fadeIn()
+                    });
+                });
+            </script>
             <div class="business">
                 <div class="businessbigName">사업</div>
                 <ul class="businessUl">
