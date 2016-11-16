@@ -213,7 +213,7 @@
             text-align: center;
         }
         .fastClick li {
-            border: 1px solid rgb(190, 190, 190);
+            border: 0.5px solid rgb(190, 190, 190);
             float: none !important;
             height: 3rem !important;
             line-height: 3rem !important;
@@ -342,7 +342,7 @@
             width: 12rem !important;
             height: 3rem !important;
             line-height: 3rem !important;
-            border: 1px solid rgb(130, 130, 130);
+            border: 0.5px solid rgb(130, 130, 130);
         }
         .facilIn {
             padding-top: 1rem;
@@ -380,7 +380,7 @@
             top: 61vw !important;
             left: 2vw !important;
             right: 2vw !important;
-            border: 1px solid rgb(190, 190, 190);
+            border: 0.5px solid rgb(190, 190, 190);
             height: 8rem !important;
         }
         .newsName {
@@ -409,7 +409,7 @@
             padding-left: 0!important;
             padding-top: 0!important;
             overflow: hidden !important;
-            border-left: 1px solid rgb(190, 190, 190);
+            border-left: 0.5px solid rgb(190, 190, 190);
         }
         .texts li {
             padding: 0.7rem !important;
@@ -1365,7 +1365,7 @@
         }
         .select {
             color: white !important;
-            background-color: #55a633;
+            background: -webkit-linear-gradient(left, #9caa2d, #55b327, #55a633,#9caa2d);
             border-left: 1px solid #55a633;
         }
         .greenPoint {
@@ -1665,7 +1665,7 @@
             font-size: 0.9rem;
             width: 100%;
             height: 241.72px;
-            background: -webkit-linear-gradient(left, #9caa2d, #55b327, #55a633);
+            background: -webkit-linear-gradient(left, #9caa2d,#55a633, #55b327, #55a633,#9caa2d);
             position: relative;
             top: 1px;
             left: -1px;
@@ -1681,7 +1681,7 @@
             text-align: center;
             line-height: 4.2rem;
             position: relative;
-            left: 1.2rem;
+            left: 1rem;
             top: 1.2rem;
         }
         .sevenr {
