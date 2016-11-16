@@ -1270,7 +1270,7 @@
             right: 0;
             height: 8.1rem;
             overflow: hidden;
-            border: 1px solid rgb(190, 190, 190);
+            border-bottom: 1px solid rgb(190, 190, 190);
         }
         .newsName {
             position: absolute;
@@ -1279,6 +1279,8 @@
             left: 0;
             right: 0;
             border-bottom: none;
+            border-top: 1px solid rgb(190, 190, 190);
+            border-right: 1px solid rgb(190, 190, 190);
         }
         .newsName li {
             float: left;
@@ -1302,6 +1304,8 @@
             left: 0;
             right: 0;
             border-top: none;
+            border-left: 1px solid rgb(190, 190, 190);
+            border-right: 1px solid rgb(190, 190, 190);
         }
         .texts li {
             height: 1.9rem;
@@ -1363,9 +1367,7 @@
         }
         .select {
             color: white !important;
-            /*            background: -webkit-linear-gradient(left, #9caa2d, #55b327, #55a633,#55b327,#9caa2d);*/
-            background-color: #55b327;
-            border-left: 1px solid #55a633;
+            background-color: #55b327 !important;
         }
         .greenPoint {
             color: #336a0f;
@@ -1462,40 +1464,12 @@
             font-weight: bold;
             line-height: 2.5rem;
         }
-        .circle {
-            width: 2rem;
-            height: 2rem;
-            text-align: center;
-            background-color: pink;
-            : 50%;
-        }
         .middleFootBottom {
             position: absolute;
             top: 36rem;
             left: 0;
             right: 0;
             height: 20rem;
-        }
-        .shop li {
-            float: left;
-            width: 25%;
-            height: 6rem;
-        }
-        .shop ul {
-            position: absolute;
-            top: 2.5rem;
-            width: 100%;
-        }
-        .shop img {
-            width: 60%;
-            margin: 1.5rem auto;
-        }
-        .fa-chevron-circle-right {
-            color: #c3d620;
-            position: absolute;
-            right: 0.7rem;
-            line-height: 0.8rem;
-            font-size: 1rem !important;
         }
         .textEX {
             position: absolute;
@@ -1656,7 +1630,7 @@
         .facility img {
             height: 256px;
             position: absolute;
-            top: 0.8px;
+            top: 0;
             left: 0;
             z-index: 2;
         }
@@ -1764,9 +1738,9 @@
         .littleMenu {
             position: absolute;
             top: 5.4rem;
-            background-color:white;
+            background-color: white;
             right: 0;
-            height:9rem;
+            height: 9rem;
             left: -11rem;
             padding-top: 0.8rem;
             z-index: 2;
@@ -1786,5 +1760,10 @@
             width: 100% !important;
             padding-left: 2.5rem;
         }
-      
+        .littleMenuImg {
+            position: absolute;
+            left: 1rem;
+            top:2rem;
+            width: 9rem;
+        }
     }

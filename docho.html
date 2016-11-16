@@ -45,6 +45,7 @@
                         <input type="text" name="q" value="" class="input_text" id="inputGoogle"><a href="http://www.naver.com"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                 </ul>
                 <ul class="littleMenu">
+                    <img class="littleMenuImg" src ="https://66.media.tumblr.com/d44c40adea36d97914922e09ea2c4164/tumblr_ogqnkxc9m61urebxho1_540.png" alt =" 이미지">
                     <li>
                         <ul class="smallSmall">
                             <li>소개</li>
@@ -249,9 +250,9 @@
                     $(".texts:first").show();
 
                     $("ul.newsName li").click(function () {
-                        $("ul.newsName li").removeClass("active").css("color", "rgb(190,190,190)").css("backgorund-color", "#55b327");
+                        $("ul.newsName li").removeClass("active").css("color", "rgb(120,120,120)").css("background", "white");
                         //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
-                        $(this).addClass("active").css("color", "grey").css("backgorund-color", "#55b327");
+                        $(this).addClass("active").css("color", "white").css("background", "#55b327");
                         $(".texts").hide()
                         var activeTab = $(this).attr("rel");
                         $("#" + activeTab).fadeIn()
