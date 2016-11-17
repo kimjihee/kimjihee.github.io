@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="intial-scale: 1, width=device-width">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="docho.css">
+    <link rel="stylesheet" href="docho_base.css">
     <style>
         @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
         @import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
@@ -25,7 +25,6 @@
         <div class="topBody">
             <div class="topLeftLogo">
                 <a href="http://kimjihee.github.io/docho.html"><img class="thislogo" src='https://67.media.tumblr.com/f719e431a4d749424041a950627bba8b/tumblr_ogme52dmQB1urebxho1_540.png' alt="logo"></a>
-
             </div>
             <div class="topRightSide">
                 <ul class="loginMenu">
@@ -33,8 +32,7 @@
                     <li><a href="http://www.naver.com">회원가입</a></li>
                     <li><a href="http://kimjihee.github.io/docho_contact.html">CONTACT US</a></li>
                     <li><a href="http://www.naver.com">사이트맵</a></li>
-                </ul>
-                <b><i class="fa fa-bars" aria-hidden="true"></i></b>
+                </ul> <b><i class="fa fa-bars" aria-hidden="true"></i>
                 <ul class="topMenu">
                     <li><a href="http://kimjihee.github.io/docho_act.html">&nbsp;활동&nbsp;</a></li>
                     <li><a href="http://kimjihee.github.io/docho_edu.html">교육</a></li>
@@ -43,21 +41,19 @@
                     <li><a href="http://kimjihee.github.io/docho_contact.html"><span class="colorPoint">Contact</span></a></li>
                     <li class="search">
                         <input type="text" name="q" value="" class="input_text" id="inputGoogle"><a href="http://www.naver.com"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                </ul>
-                <ul class="littleMenu">
-                    <img class="littleMenuImg" src ="https://66.media.tumblr.com/d44c40adea36d97914922e09ea2c4164/tumblr_ogqnkxc9m61urebxho1_540.png" alt =" 이미지">
+                </ul></b>
+                <ul class="littleMenu"> <img class="littleMenuImg" src="https://66.media.tumblr.com/d44c40adea36d97914922e09ea2c4164/tumblr_ogqnkxc9m61urebxho1_540.png" alt=" 이미지">
                     <li>
                         <ul class="smallSmall">
                             <li>소개</li>
                             <li>사업</li>
-                            <li>ECOLIFE ACTION 20'20</li>
                         </ul>
                     </li>
                     <li>
                         <ul class="smallSmall">
                             <li>프로그램</li>
-                            <li>시설보기</li>
                             <li>교육일정</li>
+                            <li>신청하기</li>
                         </ul>
                     </li>
                     <li>
@@ -84,8 +80,6 @@
                         </ul>
                     </li>
                 </ul>
-
-
                 <script>
                     //                        //
                     //                        //                        $(".topRightSide>b").hover(function () { //마우스를 topnav에 오버시
@@ -96,7 +90,7 @@
                     //                        //                        }); 300px 일경우
                     //
                     $(document).ready(function () {
-                        $(".topRightSide").mouseover(function () {
+                        $(".topRightSide>b").mouseover(function () {
                             $(this).parent().find(".littleMenu").slideDown('normal');
                             $(this).parent().mouseleave(function () {}, function () {
                                 $(this).parent().find(".littleMenu").slideUp('slow');
@@ -122,8 +116,6 @@
     <div class="middle">
         <ul class="middleTop">
             <li class="firstPic"> <img class="picture" id=mainImage src='https://66.media.tumblr.com/52a0b660d19c81a85c62870b7540153e/tumblr_ofpaqasupf1urebxho1_1280.png' alt="연구소사진">
-
-
                 <script>
                     var myImage = document.getElementById("mainImage");
                     var imageArray = ['https://66.media.tumblr.com/52a0b660d19c81a85c62870b7540153e/tumblr_ofpaqasupf1urebxho1_1280.png', "https://66.media.tumblr.com/ace1dd9f6c5e8904cade58a8c6865110/tumblr_ogo1zcxEmN1urebxho2_1280.png", 'https://65.media.tumblr.com/118f08d9c698fd752a995c7813fc9d0e/tumblr_ogo1zcxEmN1urebxho4_1280.png', 'https://67.media.tumblr.com/0b5f301b40f110f08bf39fb137d2b3a0/tumblr_ogo1zcxEmN1urebxho6_1280.png'];
@@ -197,42 +189,41 @@
                     <li class="forColor">
                         <ul class="facilIn">
                             <a href="">
-                                <li>생태체험교육장</li>
+                                <li id="fa1">생태체험교육장</li>
                             </a>
                             <a href="">
-                                <li>섬생태학습관</li>
+                                <li id="fa2">섬생태학습관</li>
                             </a>
                             <a href="">
-                                <li>숙박시설</li>
+                                <li id="fa3">숙박시설</li>
                             </a>
                             <a href="">
-                                <li>식당시설</li>
+                                <li id="fa4">식당시설</li>
                             </a>
                         </ul>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <div class="middleFoot">
-            <div class="sevenr">
-                <div class="campain">섬생태연구소와 함께하는 &nbsp; <span class="em">CAMPAIN</span></div>
-                <a href="http://kimjihee.github.io/docho_action.html"><img class="sevenRP" src="https://65.media.tumblr.com/1269b4e5356047be71d1c672478a3e24/tumblr_ofntci519k1urebxho1_540.png" alt="7r"> </a>
             </div>
             <div class="newsBody">
                 <ul class="newsName">
                     <li class="active" rel="tab1">공지사항</li>
                     <li rel="tab2">언론보도</li>
                     <li rel="tab3">환경소식</li>
-
                 </ul>
                 <a href="http://kimjihee.github.io/docho_news.html">
                     <ul id="tab1" class="texts">
                         <li>블라블라블라블라</li>
                         <li>블라블바블라블라</li>
                         <li>블라블라블라블라</li>
+                        <li>블라블라블라블라</li>
+                        <li>블라블바블라블라</li>
+                        <li>블라블라블라블라</li>
                     </ul>
                     <ul id="tab2" class="texts">
                         <li>fkfkfffkfkfff</li>
+                        <li>블라블바블라블라</li>
+                        <li>블라블라블라블라</li>
+                        <li>블라블라블라블라</li>
                         <li>블라블바블라블라</li>
                         <li>블라블라블라블라</li>
                     </ul>
@@ -243,12 +234,18 @@
                     </ul>
                 </a>
             </div>
+        </div>
+        <div class="middleFoot">
+            <!--
+            <div class="sevenr">
+                <div class="campain">섬생태연구소와 함께하는 &nbsp; <span class="em">CAMPAIN</span></div>
+                <a href="http://kimjihee.github.io/docho_action.html"><img class="sevenRP" src="https://65.media.tumblr.com/1269b4e5356047be71d1c672478a3e24/tumblr_ofntci519k1urebxho1_540.png" alt="7r"> </a>
+            </div>
+-->
             <script>
                 $(function () {
-
                     $(".texts").hide();
                     $(".texts:first").show();
-
                     $("ul.newsName li").click(function () {
                         $("ul.newsName li").removeClass("active").css("color", "rgb(120,120,120)").css("background", "white");
                         //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
@@ -260,7 +257,7 @@
                 });
             </script>
             <div class="business">
-                <div class="businessbigName">사업</div>
+                <div class="businessbigName">섬생태연구소 사업</div>
                 <ul class="businessUl">
                     <li>
                         <a href="http://kimjihee.github.io/docho_business.html"><img src="https://66.media.tumblr.com/c010a8c71115e9ceb9b9270e9e72d0bf/tumblr_ofm87niANF1urebxho1_540.png" alt="사업"></a>
