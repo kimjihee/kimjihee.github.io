@@ -90,9 +90,9 @@
                     //                        //                        }); 300px 일경우
                     //
                     $(document).ready(function () {
-                        $(".topRightSide>b").mouseover(function () {
+                        $(".topRightSide>b").hover(function () {
                             $(this).parent().find(".littleMenu").slideDown('normal');
-                            $(this).parent().mouseleave(function () {}, function () {
+                            $(this).parent().hover(function () {}, function () {
                                 $(this).parent().find(".littleMenu").slideUp('slow');
                             });
                         });
@@ -172,20 +172,70 @@
                 </ul>
             </div>
             <div class="enrollment">
-                <div class="enrollbigName">교육 신청</div>
-                <ul class="fastClick">
-                    <a href="http://www.naver.com">
-                        <li class="hamburger"><i class="fa fa-check" aria-hidden="true">&nbsp;&nbsp;</i>교육문의</li>
-                    </a>
-                    <a href="http://www.naver.com">
-                        <li class="bread"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;</i>신청하기</li>
-                    </a>
-                </ul>
+
+                <img src="https://65.media.tumblr.com/6196d7885eff550c861abcfb11484f68/tumblr_ogum0c27M81urebxho1_540.png">
+
+                <div class="button">교육 신청하기</div>
+
+                </div>
+
+                <div class="business">
+                    <div class="businessbigName">섬생태연구소 사업</div>
+                    <ul class="businessUl">
+                        <li>
+                            <a href="http://kimjihee.github.io/docho_business.html"><img src="https://66.media.tumblr.com/c010a8c71115e9ceb9b9270e9e72d0bf/tumblr_ofm87niANF1urebxho1_540.png" alt="사업"></a>
+                            <div class="boxDown">생태 체험학습장 조성</div>
+                            <div class="boxFoot"> 섬생태연구소는 생태교육과 생태체험교육을 통해
+                                <sapn class="min700">
+                                    <br> </sapn>인간성을 회복하고 창의력을 향상시키기 위해
+                                <sapn class="min700">
+                                    <br> </sapn> 자연속에 생태체험학습장을 조성하고 있습니다. </div>
+                        </li>
+                        <li>
+                            <a href="http://kimjihee.github.io/docho_business.html"><img src="https://65.media.tumblr.com/98a3ed7cc2e6d9b9047f899bace1d3ca/tumblr_ofm8csSjl31urebxho1_540.png" alt="사업"></a>
+                            <div class="boxDown">생태교구 제작 및 판매</div>
+                            <div class="boxFoot">섬생태연구소는 생태체험교육의 효율적 진행을 위해 생태교구를 제작하여 사용하고 있습니다. 교육생들이 자연과의 친화력을 높일 수 있도록 천연소재로 제작하였습니다. </div>
+                        </li>
+                        <li>
+                            <a href="http://kimjihee.github.io/docho_business.html"><img src="https://66.media.tumblr.com/6f60a5973a2fc429ef641f28b31ff3d6/tumblr_ofpqd8bmFY1urebxho1_540.png" alt="사업"></a>
+                            <div class="boxDown">생태상품 판매</div>
+                            <div class="boxFoot">섬생태연구소는 신안군의 생태적 우수성을 알리기 위해 신안군의 자연을 담은 생태소품을 제작하여
+                                <sapn class="min700">
+                                    <br> </sapn>판매하고 있습니다. </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <!--
+            
+            <div class="sevenr">
+                <div class="campain">섬생태연구소와 함께하는 &nbsp; <span class="em">CAMPAIN</span></div>
+                <a href="http://kimjihee.github.io/docho_action.html"><img class="sevenRP" src="https://65.media.tumblr.com/1269b4e5356047be71d1c672478a3e24/tumblr_ofntci519k1urebxho1_540.png" alt="7r"> </a>
             </div>
-            <div class="facility">
-                <div class="facilbigName">교육센터 시설</div>
-                <ul class="facilityUl">
-                    <li><img src="https://66.media.tumblr.com/5c93f34edd6566963768932192a4c8bc/tumblr_oflsccz1Yi1urebxho1_540.png"></li>
+
+            <script>
+                $(function () {
+                    $(".texts").hide();
+                    $(".texts:first").show();
+                    $("ul.newsName li").click(function () {
+                        $("ul.newsName li").removeClass("active").css("color", "rgb(120,120,120)").css("background", "white");
+                        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
+                        $(this).addClass("active").css("color", "white").css("background", "#55b327");
+                        $(".texts").hide()
+                        var activeTab = $(this).attr("rel");
+                        $("#" + activeTab).fadeIn()
+                    });
+                });
+            </script>
+-->
+            </div>
+            <div class="middleFoot">
+                <div class="facility">
+                    <div class="facilbigName">교육센터 시설</div>
+                    <ul class="facilityUl">
+                        <li><img src="https://66.media.tumblr.com/5c93f34edd6566963768932192a4c8bc/tumblr_oflsccz1Yi1urebxho1_540.png"></li>
+                        <!--
                     <li class="forColor">
                         <ul class="facilIn">
                             <a href="">
@@ -202,101 +252,46 @@
                             </a>
                         </ul>
                     </li>
-                </ul>
-            </div>
-            <div class="newsBody">
-                <ul class="newsName">
-                    <li class="active" rel="tab1">공지사항</li>
-                    <li rel="tab2">언론보도</li>
-                    <li rel="tab3">환경소식</li>
-                </ul>
-                <a href="http://kimjihee.github.io/docho_news.html">
-                    <ul id="tab1" class="texts">
-                        <li>블라블라블라블라</li>
-                        <li>블라블바블라블라</li>
-                        <li>블라블라블라블라</li>
-                        <li>블라블라블라블라</li>
-                        <li>블라블바블라블라</li>
-                        <li>블라블라블라블라</li>
-                    </ul>
-                    <ul id="tab2" class="texts">
-                        <li>fkfkfffkfkfff</li>
-                        <li>블라블바블라블라</li>
-                        <li>블라블라블라블라</li>
-                        <li>블라블라블라블라</li>
-                        <li>블라블바블라블라</li>
-                        <li>블라블라블라블라</li>
-                    </ul>
-                    <ul id="tab3" class="texts">
-                        <li>dddddddddddddd</li>
-                        <li>블라블바블라블라</li>
-                        <li>블라블라블라블라</li>
-                    </ul>
-                </a>
-            </div>
-        </div>
-        <div class="middleFoot">
-            <!--
-            <div class="sevenr">
-                <div class="campain">섬생태연구소와 함께하는 &nbsp; <span class="em">CAMPAIN</span></div>
-                <a href="http://kimjihee.github.io/docho_action.html"><img class="sevenRP" src="https://65.media.tumblr.com/1269b4e5356047be71d1c672478a3e24/tumblr_ofntci519k1urebxho1_540.png" alt="7r"> </a>
-            </div>
 -->
-            <script>
-                $(function () {
-                    $(".texts").hide();
-                    $(".texts:first").show();
-                    $("ul.newsName li").click(function () {
-                        $("ul.newsName li").removeClass("active").css("color", "rgb(120,120,120)").css("background", "white");
-                        //$(this).addClass("active").css({"color": "darkred","font-weight": "bolder"});
-                        $(this).addClass("active").css("color", "white").css("background", "#55b327");
-                        $(".texts").hide()
-                        var activeTab = $(this).attr("rel");
-                        $("#" + activeTab).fadeIn()
-                    });
-                });
-            </script>
-            <div class="business">
-                <div class="businessbigName">섬생태연구소 사업</div>
-                <ul class="businessUl">
-                    <li>
-                        <a href="http://kimjihee.github.io/docho_business.html"><img src="https://66.media.tumblr.com/c010a8c71115e9ceb9b9270e9e72d0bf/tumblr_ofm87niANF1urebxho1_540.png" alt="사업"></a>
-                        <div class="boxDown">생태 체험학습장 조성</div>
-                        <div class="boxFoot"> 섬생태연구소는 생태교육과 생태체험교육을 통해
-                            <sapn class="min700">
-                                <br> </sapn>인간성을 회복하고 창의력을 향상시키기 위해
-                            <sapn class="min700">
-                                <br> </sapn> 자연속에 생태체험학습장을 조성하고 있습니다.
-                            <sapn class="min700">
-                                <br> </sapn> 생태체험학습장은 생태체험교육을 진행하기 위해
-                            <sapn class="min700">
-                                <br> </sapn>섬생태연구소가 10년을 연구해 발명한 특허입니다. </div>
-                    </li>
-                    <li>
-                        <a href="http://kimjihee.github.io/docho_business.html"><img src="https://65.media.tumblr.com/98a3ed7cc2e6d9b9047f899bace1d3ca/tumblr_ofm8csSjl31urebxho1_540.png" alt="사업"></a>
-                        <div class="boxDown">생태교구 제작 및 판매</div>
-                        <div class="boxFoot">섬생태연구소는 생태체험교육의 효율적 진행을 위해 생태교구를 제작하여 사용하고 있습니다. 교육생들이 자연과의 친화력을 높일 수 있도록 천연소재로 제작하였습니다. </div>
-                    </li>
-                    <li>
-                        <a href="http://kimjihee.github.io/docho_business.html"><img src="https://66.media.tumblr.com/6f60a5973a2fc429ef641f28b31ff3d6/tumblr_ofpqd8bmFY1urebxho1_540.png" alt="사업"></a>
-                        <div class="boxDown">생태상품 판매</div>
-                        <div class="boxFoot">섬생태연구소는 신안군의 생태적 우수성을 알리기 위해 신안군의 자연을 담은 생태소품을 제작하여
-                            <sapn class="min700">
-                                <br> </sapn>판매하고 있습니다. </div>
-                    </li>
-                </ul>
+                    </ul>
+                </div>
+                <div class="newsBody">
+                    <div class="news">공지사항<span class="plus">+</span>
+                        <ul class="texts">
+                            <li>블라블라블라블라</li>
+                            <li>블라블바블라블라</li>
+                            <li>블라블바블라블라</li>
+
+                        </ul>
+                    </div>
+                    <div class="quest">문의하기<span class="plus">+</span>
+                        <ul class="texts">
+                            <li>블라블라블라블라</li>
+                            <li>블라블바블라블라</li>
+                            <li>블라블바블라블라</li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="Map">
+                    <div class="come">오시는길<span class="plus">+</span></div>
+                    <div class="mapInfo">
+                        <div class="adresss">전라남도 신안군 도초면 도초동부길 198
+                            <br> 도초동도초등학교
+                        </div>
+                        <img src="https://67.media.tumblr.com/759746c4623719c2f9637e4558984cb3/tumblr_oguhvzcGLQ1urebxho1_540.png"></div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="bottom">
-        <div class="find"> <img src="https://65.media.tumblr.com/5d4c3b65b248f2fd7880f71583a81f0b/tumblr_odcasz2P7b1urebxho1_540.jpg" alt="logo">
-            <div class="contact"><span class="greenPoint">신안군지역환경교육센터 섬생태연구소</span> <span class="forBr"><br></span>
-                <div class="adress">전라남도 신안군 도초면 도초동부길 198 <span class="forBr"><br></span>구)도초동도초등학교</div><span class="forBr"><br></span> <span class="contactNumber"><span class="telephone"><i class="fa fa-phone" aria-hidden="true"></i></span>&nbsp;&nbsp;061-261-5300<span class="jump">&nbsp;&nbsp;&nbsp;</span><span class="forBr"><br></span><span class="fax"><i class="fa fa-fax" aria-hidden="true"></i> </span>&nbsp;061-261-3700</span>
+        <div class="bottom">
+            <div class="find"> <img src="https://65.media.tumblr.com/5d4c3b65b248f2fd7880f71583a81f0b/tumblr_odcasz2P7b1urebxho1_540.jpg" alt="logo">
+                <div class="contact"><span class="greenPoint">신안군지역환경교육센터 섬생태연구소</span> <span class="forBr"><br></span>
+                    <div class="adress">전라남도 신안군 도초면 도초동부길 198 <span class="forBr"><br></span>구)도초동도초등학교</div><span class="forBr"><br></span> <span class="contactNumber"><span class="telephone"><i class="fa fa-phone" aria-hidden="true"></i></span>&nbsp;&nbsp;061-261-5300<span class="jump">&nbsp;&nbsp;&nbsp;</span><span class="forBr"><br></span><span class="fax"><i class="fa fa-fax" aria-hidden="true"></i> </span>&nbsp;061-261-3700</span>
+                </div>
+                <div class="letterSpace"><span class="greenPoint">개인정보 처리방침</span> | 이용약관 | 운영 및 관리방침 | SITE MAP | Contact Us |
+                    <br>사단법인 섬생태연구소 사업자등록번호: 102-82-07606 <span class="forBr"><br></span>COPYRIGHT <i class="fa fa-copyright" aria-hidden="true"></i> 섬생태연구소 ALL RIGHT RESERVED.</div>
             </div>
-            <div class="letterSpace"><span class="greenPoint">개인정보 처리방침</span> | 이용약관 | 운영 및 관리방침 | SITE MAP | Contact Us |
-                <br>사단법인 섬생태연구소 사업자등록번호: 102-82-07606 <span class="forBr"><br></span>COPYRIGHT <i class="fa fa-copyright" aria-hidden="true"></i> 섬생태연구소 ALL RIGHT RESERVED.</div>
         </div>
-    </div>
 </body>
 
 </html>
