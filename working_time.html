@@ -11,19 +11,50 @@
             font-size: 0.4rem;
         }
         
+        svg {
+            shape-rendering: crispEdges;
+          
+        }
         .axis path,
         .axis line {
             fill: none;
             stroke: #000;
             shape-rendering: crispEdges;
         }
-        
+        	#tooltip {
+				position: absolute;
+				
+				height: auto;
+				padding: 10px;
+				background-color: white;
+				
+				-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				pointer-events: none;
+			}
+			
+			#tooltip.hidden {
+				display: none;
+			}
+			
+			#tooltip p {
+				margin: 0;
+				font-family: sans-serif;
+				font-size: 0.8rem;
+				
+			}
+
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script src="d3.min.js" type="text/javascript"></script>
 </head>
 
 <body>
+    <div id="tooltip" class="hidden">
+       
+        <p><span id="value"></span>time</p>
+</div>
     <svg id="chart"> </svg>
     <script>
          
@@ -37,8 +68,7 @@
 //                }
 //                });           
 //            console.log(pickCountries);
-        
-        var dataSet = [];
+         var dataSet = [];
         var valueData = [];
         var Workingtime = d3.csv('data/working_hours_per_week.csv', function (err, times) {
             for(var i = 0; i < times.length; i++) {
@@ -62,8 +92,8 @@
             redraw();
       
        });
-       console.log(dataSet);
-             var redraw = function () {   
+
+        var redraw = function () {   
 //------------------------------------------Draw------------------------------------------
                                  
                     var MARGIN = {
@@ -105,14 +135,13 @@
                         .rangeBands([0,Height],0.1);
                     
                     var colorScale = d3.scale.quantize()
-                    .domain([d3.max(valueData, function (d) {
-                    return d.Value;
-                    }), d3.min(valueData, function (d) {
-                        if(d.Value !==0){
-                    return d.Value;}
-                    })])
-                    .range(["red",'rgb(215, 48, 39)','rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
-                    'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgba(200, 200, 200,0)']); 
+                    .domain([
+                        d3.max(valueData, function (d) {
+                            return d.Value;
+                        }),
+                        0
+                    ])
+                    .range([ 'rgb(227,26,28)', 'rgb(252,78,42)', 'rgb(253, 141, 60)', 'rgb(254, 178, 76)','rgb(254, 217, 118)','rgb(255, 237, 160)', 'rgb(255, 255, 204)']); 
                  
                     console.log(colorScale.domain());// domain은 이렇게 알수 있다.
                     var xAxis = d3.svg.axis()
@@ -164,8 +193,8 @@
                         .attr("class", function(d){
                               return  "day " + d.Country;})
                          .attr("transform", "translate( " + 130 + " ,"+ 20 +")")
-                        .attr("width", cellWidth)
-                        .attr("height", cellHeight)
+                        .attr("width", cellWidth - 1)
+                        .attr("height", cellHeight - 1)
                         .attr("x", function(d,i){
                           return cellWidth*(i%28);})
                         .attr("y", function (d,i) {
@@ -174,11 +203,29 @@
 //                        .datum(dateFormat);//이건 머지?
                  
                      rect.style("fill", function (d) {
-                                return colorScale(d.Value);});
+                                return colorScale(d.Value);})
+                     .on("mouseover", function(d) {
+
+					d3.select("#tooltip")
+						 .attr("x", "inherit")						
+						.select("#value")
+						.text(d.Value);
+			   
+					//Show the tooltip
+					d3.select("#tooltip").classed("hidden", false);
+
+			   })
+			   .on("mouseout", function() {
+			   
+					//Hide the tooltip
+					d3.select("#tooltip").classed("hidden", true);
+					
+			   })
+			  ;
 
                       rect.append("title")
                           .text(function (d,i) {
-                    return d.Country+" " + d.Year;
+                    return d.Country+" " + d.Value;
                 });
              };
                  
