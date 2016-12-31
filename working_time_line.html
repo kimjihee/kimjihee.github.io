@@ -17,7 +17,9 @@
             stroke: #000;
             shape-rendering: crispEdges;
         }
-        
+        xAxis {
+            stroke-width:1;
+        }
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script src="d3.min.js" type="text/javascript"></script>
@@ -63,7 +65,7 @@
                 .entries(valueData);
            
             
-            redraw();
+            
                 
 //             for(i=0; i<dataSet.length; i++){   
 //                    for(j=0; j<28; j++){
@@ -80,7 +82,7 @@
 //                            
 //                }}
                      
-                                   
+           redraw();                        
 //          values 와 Value의 차이  
             
        });
@@ -145,13 +147,16 @@
                     realChart.append('g')
                         .attr('class', 'x axis')
                         .attr("transform", "translate( 0 ," + Height + ")")
-                        .style('stroke-width','3')
-                        .call(xAxis);
+                        .attr('stroke-width','0')
+                        .call(xAxis)
+                        ;
 
 
 
                     realChart.append('g')
                       .attr('class', 'y axis')
+                      .attr('stroke-width','0')
+                      .attr("transform", "translate( "+-20+" ," + 0 + ")")
                       .call(yAxis)
                       .append("text")
                       .attr("transform", "rotate(-90)")
@@ -168,7 +173,7 @@
                     var dataLines = realChart.selectAll('path.workTime').data(dataSet);
                     dataLines.enter()
                         .append("path")
-                        .attr("class", function (d) { return "workTime "+" " +d.Country})
+                        .attr("class", "workTime")
                         .style('fill',"none")
                         .style('stroke',"green")
                         .style('opacity', 0.2)
@@ -182,12 +187,14 @@
                         )
                     ;
                    
-                    dataLines.on("mouseover", function (d) {
-                            d3.selectAll('.workTime' +d.Country).attr('fill-opacity', '1');}
+                    dataLines.on("mouseover", function () {
+                            d3.select('.workTime')
+                              .attr('fill-opacity', '1');}
                            )
-                        .on("mouseout",  function () {
-                            d3.selectAll('.workTime').attr('fill-opacity', '0.2');}
-                           )
+                          .on("mouseout",  function () {
+                            d3.select('.workTime')
+                              .attr('fill-opacity', '0.2');}
+                           );
 
              };
                  
