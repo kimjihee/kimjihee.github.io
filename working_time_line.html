@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>workingTime</title>
+    <style>
+/*        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);*/
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.4rem;
+        }
+        
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <script src="d3.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <svg id="chart"> </svg>
+    <script>
+         
+//--------------------------------------Data---------------------------------------------
+
+        
+        var dataSet = [];
+        var valueData = [];
+        var Workingtime = d3.csv('data/working_hours_per_week.csv', function (err, times) {
+            for(var i = 0; i < times.length; i++) {
+                var time = times[i];
+                var country = time['Country'];
+                delete time['Country'];
+                for(var year in time) {
+                    valueData.push({
+                        Country: country,
+                        Year: +year,
+                        Value: +time[year]
+                        });
+                   
+                }
+            
+            }
+            
+//            
+//             for(j=0; j<valueData.length; j++) {
+//                if(valueData[j].Value === 0){ return valueData[j].Value = 20; }
+//            }
+            yearExtent = d3.extent(valueData, function(d) {return d.Year;});
+            valueExtent = d3.extent(valueData, function(d) {return d.Value;});
+            
+                        
+            dataSet = d3.nest()
+                .key(function(d){
+                    return d.Country;
+                })
+                .entries(valueData);
+           
+            
+            redraw();
+                
+//             for(i=0; i<dataSet.length; i++){   
+//                    for(j=0; j<28; j++){
+//                        
+//                        
+//                        
+//                        if(dataSet[i].values[j].Value===0) {
+//                        dataSet[i].values[j].Value.forEach(
+//                            
+//                        dataSet[i].values[j].Value = 20;
+//                        
+//                        ); }
+//                         
+//                            
+//                }}
+                     
+                                   
+//          values 와 Value의 차이  
+            
+       });
+        
+     console.log(dataSet);
+        
+             var redraw = function () {   
+//------------------------------------------Draw------------------------------------------
+                                 
+                    var MARGIN = {
+                        START:0
+                        , TOP: 50
+                        , LEFT: 100
+                        , RIGHT: 100
+                        , BOTTOM: 0
+                    , }
+         
+                    var Width = 1200;
+                    var Height =400;
+
+//------------------------------------------One Graph-------------------------------------                         console.log(yearExtent);
+
+                    var xScale = d3.scale.linear()
+                        .domain([1980,2008])//여기는 데이터 전체가 아니라 시작부터 끝.
+                        .rangeRound([0, Width]);//라운드랑 밴드랑 먼지모름.
+                 
+                    var yScale = d3.scale.linear()
+                        .domain(valueExtent)
+                        .rangeRound([Height,0]);
+                 
+                    var xAxis = d3.svg.axis()
+                        .scale(xScale)
+                        .orient('bottom')
+                        .tickSize(0)
+                        .tickFormat(function (d) {
+                         return d;
+                         })
+                        .tickSize(0)
+                        .tickPadding(15);
+
+
+                    var yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient('left')
+                        .tickSize(0)
+                        .tickPadding(5)
+                        ;
+                         
+
+
+                    var svg = d3.select("svg")
+                        .attr("width",Width+100)
+                        .attr("height", Height+50);
+
+                    var realChart = svg
+                        .append('g')
+                        .attr("transform", "translate( "+50+" ,"+ 10 +")")
+                        ;
+
+
+
+                    realChart.append('g')
+                        .attr('class', 'x axis')
+                        .attr("transform", "translate( 0 ," + Height + ")")
+                        .style('stroke-width','3')
+                        .call(xAxis);
+
+
+
+                    realChart.append('g')
+                      .attr('class', 'y axis')
+                      .call(yAxis)
+                      .append("text")
+                      .attr("transform", "rotate(-90)")
+                      .attr("y", 6)
+                      ; 
+                  
+                 
+                  var time = d3.svg.line()
+                        .x(function(d) { return xScale(d.Year); })
+                        .y(function(d) { return yScale(d.Value); })
+                        .interpolate("monotone");
+
+                 
+                    var dataLines = realChart.selectAll('path.workTime').data(dataSet);
+                    dataLines.enter()
+                        .append("path")
+                        .attr("class", function (d) { return "workTime "+" " +d.Country})
+                        .style('fill',"none")
+                        .style('stroke',"green")
+                        .style('opacity', 0.2)
+                        .style('stroke-width',"3px");
+                        
+                    dataLines.exit()
+                        .remove();
+                    dataLines
+                        .attr("d",   function(d){
+                      return time(d.values);}
+                        )
+                    ;
+                   
+                    dataLines.on("mouseover", function (d) {
+                            d3.selectAll('.workTime' +d.Country).attr('fill-opacity', '1');}
+                           )
+                        .on("mouseout",  function () {
+                            d3.selectAll('.workTime').attr('fill-opacity', '0.2');}
+                           )
+
+             };
+                 
+    </script>
+    </body>
+</html>
