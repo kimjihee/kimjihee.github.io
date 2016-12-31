@@ -50,10 +50,20 @@
             
             }
             
-//            
+////            
 //             for(j=0; j<valueData.length; j++) {
-//                if(valueData[j].Value === 0){ return valueData[j].Value = 20; }
+//                if(valueData[j].Value === 0){ return  20; }
 //            }
+//            
+//              
+//                 valueData.forEach(function (d, i) {
+//                    if(d.Value===0){
+//                        return d.Value = 20;
+//                    } 
+//                    
+//                });
+            
+            
             yearExtent = d3.extent(valueData, function(d) {return d.Year;});
             valueExtent = d3.extent(valueData, function(d) {return d.Value;});
             
@@ -65,22 +75,25 @@
                 .entries(valueData);
            
             
-            
+          
                 
-//             for(i=0; i<dataSet.length; i++){   
-//                    for(j=0; j<28; j++){
-//                        
-//                        
-//                        
-//                        if(dataSet[i].values[j].Value===0) {
-//                        dataSet[i].values[j].Value.forEach(
-//                            
-//                        dataSet[i].values[j].Value = 20;
-//                        
-//                        ); }
-//                         
-//                            
-//                }}
+             for(i=0; i<dataSet.length; i++){     
+                         
+                        for(j=0; j<28; j++){
+                            
+                    var Sum = d3.sum(dataSet[i].values, function(d){
+                        if(d.Value !==0)
+                            {return d.Value;}
+                                }
+                            );    
+            
+                        if(dataSet[i].values[j].Value===0) {
+                                                  
+                        dataSet[i].values[j].Value = Sum/28;                      
+                                                   
+                }}}
+            
+          
                      
            redraw();                        
 //          values 와 Value의 차이  
@@ -189,7 +202,8 @@
                    
                     dataLines.on("mouseover", function () {
                             d3.select('.workTime')
-                              .attr('fill-opacity', '1');}
+                              .attr('fill-opacity', '1')
+                              .attr('text', function (d){return d.Country;} );}
                            )
                           .on("mouseout",  function () {
                             d3.select('.workTime')
