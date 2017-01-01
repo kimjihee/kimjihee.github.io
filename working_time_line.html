@@ -41,7 +41,9 @@
         
         .tick line{stroke:rgba(200,200,200,0.3);}
         
-        .xAxis text {text-anchor:start;}
+        .xAxis text {
+            text-anchor:start !important;
+        }
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script src="d3.min.js" type="text/javascript"></script>
@@ -157,14 +159,14 @@
                         .tickFormat(function (d) {
                          return d;})
                         .tickSize(-250)
-                        .tickPadding(15);
+                        .tickPadding(13);
 
 
                     var yAxis = d3.svg.axis()
                         .scale(yScale)
                         .orient('left')
                         .tickSize(0)
-                        .tickPadding(5)
+                        .tickPadding(-5)
                         ;            
 
                     var svg = d3.select("svg")
@@ -174,7 +176,7 @@
 
                     var realChart = svg
                         .append('g')
-                        .attr("transform", "translate( "+50+" ,"+ 60 +")")
+                        .attr("transform", "translate( "+40+" ,"+ 60 +")")
                         ;
 
 
@@ -197,10 +199,7 @@
                       .attr("transform", "translate( "+-20+" ," + 0 + ")")
                      
                       .call(yAxis)
-                      .append("text")
-                      .attr("transform", "rotate(-90)")
                       
-                      .attr("y", 6)
                       ; 
                   
                  
