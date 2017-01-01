@@ -208,6 +208,8 @@
                         .y(function(d) { return yScale(d.Value); })
                         .interpolate("monotone");
 
+                   var xposition = event.clientX + 20;
+                   var yposition = event.clientY + 20;
                  
                     var dataLines = realChart.selectAll('path.workTime').data(dataSet);
                     dataLines.enter()
@@ -218,13 +220,22 @@
                         .style('opacity', 0.3)
                         .style('stroke-width',"2.5px")
                         .on("mouseover", function () {
-                            d3.select("this")
-                              .style('opacity', 1);
+                            d3.select(this)
+                            .style('opacity', 1)
+                            .append('text')
+                            .text(function(d){
+                                return d.key
+                            })
+                            .attr('x','100')
+                            .attr('y','100')
+                            .style('color','red');
+                              
                               })
                           .on("mouseout",  function () {
-                            d3.select("this")
+                            d3.select(this)
                               .style('opacity', 0.3);}
                            );
+                 //이렇게 데이터값에 mouseover를 하는것은 enter안에 넣어준다.!!!
                         
                     dataLines.exit()
                         .remove();
@@ -233,7 +244,8 @@
                       return time(d.values);}
                         )
                     ;
-                   
+                  
+               
                   
 
              };
