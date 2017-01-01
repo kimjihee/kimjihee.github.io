@@ -216,7 +216,15 @@
                         .style('fill',"none")
                         .style('stroke',"rgb(255,180,0)")
                         .style('opacity', 0.3)
-                        .style('stroke-width',"2.5px");
+                        .style('stroke-width',"2.5px")
+                        .on("mouseover", function () {
+                            d3.select("this")
+                              .style('opacity', 1);
+                              })
+                          .on("mouseout",  function () {
+                            d3.select("this")
+                              .style('opacity', 0.3);}
+                           );
                         
                     dataLines.exit()
                         .remove();
@@ -226,15 +234,7 @@
                         )
                     ;
                    
-                    dataLines.on("mouseover", function () {
-                            d3.select("path.workTime")
-                              .attr('fill-opacity', '1')
-                              .append('text', function (d){return d.Country;} );}
-                           )
-                          .on("mouseout",  function () {
-                            d3.selectAll(this)
-                              .attr('fill-opacity', '0.2');}
-                           );
+                  
 
              };
                  

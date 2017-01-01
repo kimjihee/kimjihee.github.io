@@ -79,7 +79,7 @@
                     valueData.push({
                         Country: country,
                         Year: +year,
-                        Value: +time[year]
+                        Value: +time[year]//여기 다시 물어보기
                     });
                 }
               }
@@ -88,7 +88,21 @@
                 .key(function(d){
                     return d.Country;
                 })
-                .entries(valueData);
+                .entries(valueData); for(i=0; i<dataSet.length; i++){     
+                         
+                       
+                for(j=0; j<28; j++){
+                
+                    var Min = d3.min(dataSet[i].values.filter(function(d) {
+                        return d.Value !== 0;}), function(d) {return d.Value;}
+                                       );
+                        if(dataSet[i].values[j].Value===0) {
+                                                  
+                        dataSet[i].values[j].Value = Min;                      
+                                                   
+                }}
+            }        
+            
             redraw();
       
        });
@@ -127,7 +141,7 @@
 //------------------------------------------One Graph-------------------------------------                         console.log(yearExtent);
                     var countryNames = dataSet.map(function(d) {return d.key;});
                     var xScale = d3.scale.linear()
-                        .domain([1980,2008])//여기는 데이터 전체가 아니라 시작부터 끝.
+                        .domain([1980,2007])//여기는 데이터 전체가 아니라 시작부터 끝.
                         .rangeRound([0, Width]);//라운드랑 밴드랑 먼지모름.
                  
                     var yScale = d3.scale.ordinal()
@@ -141,7 +155,8 @@
                         }),
                         0
                     ])
-                    .range([ 'rgb(227,26,28)', 'rgb(252,78,42)', 'rgb(253, 141, 60)', 'rgb(254, 178, 76)','rgb(254, 217, 118)','rgb(255, 237, 160)', 'rgb(255, 255, 204)']); 
+                    .range([ '#e31a1c', '#fc4e2a','#fd8d3c','#feb24c','#fed976','#ffeda0','#ffffcc','white'
+]); 
                  
                     console.log(colorScale.domain());// domain은 이렇게 알수 있다.
                     var xAxis = d3.svg.axis()
@@ -204,14 +219,14 @@
                  
                      rect.style("fill", function (d) {
                                 return colorScale(d.Value);})
+                     .style('opacity',0.9)
                      .on("mouseover", function(d) {
-
+                  
 					d3.select("#tooltip")
-						 .attr("x", "inherit")						
+				        .attr("x", "inherit")						
 						.select("#value")
 						.text(d.Value);
 			   
-					//Show the tooltip
 					d3.select("#tooltip").classed("hidden", false);
 
 			   })
