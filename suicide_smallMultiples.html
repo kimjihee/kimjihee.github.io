@@ -8,24 +8,36 @@
         body {
             font-family: 'Roboto', sans-serif;
             font-size:0.4rem;
+           
         }
         
-     
+      #chart {
+        position: absolute;
+          top:5rem;
+          left:3.2rem;
+          right:10vw;
+        }
       .axis path, .axis line {
         fill: none;
         stroke: rgba(100,100,100,0.6);
         shape-rendering: crispEdges;
         }
       .axis text {
-           fill:rgba(100,100,100,0.6);
-            
+           fill:rgba(100,100,100,0.6); 
         } 
+        p{
+        font-size:1.5rem;
+        position: absolute;
+        top:2rem;
+        left:8rem;}
         
+        .number{font-size:0.9rem;}
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     
     <script src="d3.min.js" type="text/javascript"></script></head>
     <body>
+        <p>Suicide Rates<span class="number">&nbsp; Per 100,000 persons</span></p>
         <svg id="chart"> </svg>
         
         
@@ -128,7 +140,7 @@
                 .rangeRound([padding/1.5, (Width/6) - padding/1.5]);
             var yScale = d3.scale.linear()
                 .domain(valueExtent)
-                .rangeRound([(Height/6) - padding , padding]);
+                .rangeRound([(Height/5.8) - padding , padding]);
 
             var xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -142,8 +154,8 @@
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
-                .tickValues([0,10,30,50])
-                .tickPadding(8)
+                .tickValues([10,30,50])
+                .tickPadding(10)
                 .tickSize(0); 
             
           columnSel
@@ -151,15 +163,15 @@
                 .attr('class', 'axis x')
                 .attr("transform", "translate(  "+ - (padding/1.5) +" ," + yScale.range()[0] + ")")
                 .style('stroke-width','1')
-                .style('color','rgb(200,200,200)') 
+                .style('color','rgb(240,240,240)') 
                 .call(xAxis)
                 .append("text")
-                .attr("y", -75)
-                .attr("x", 8)
-                 
+                .attr("y", -79)
+                .attr("x", 5)
                 .style("text-anchor", "start")
                 .style("font-weight", "bold")
                 .style('fill','black')
+                .style('font-size','0.8rem')
                 .text(function (d){return d.key; });
          
          columnSel
@@ -176,7 +188,7 @@
             
          columnSel
                 .append('path')
-                .attr('class', 'data')
+                .attr('class', 'dataF')
                 .attr("transform", "translate(  "+ - (padding/1.5) +" ,0)")
                 .style('fill',"none")
                 .style('stroke',"#dc5147")
@@ -184,7 +196,16 @@
                 .style('stroke-width',"2.5px")
                 .attr('d', function(d) {
                     return dataLine(d.values);
-                });   
+                })
+                .on('mouseover',function(){
+                   d3.select(this).style("opacity",1);
+                   d3.selectAll('.numberFemale').attr("r",4);
+                   })
+                   .on('mouseout',function(){
+                   d3.select(this).style("opacity",0.5);
+                   d3.selectAll('.numberFemale').attr("r",3);
+                   })
+                ;   
                 
         
                
@@ -208,10 +229,11 @@
                 
             circle.enter()
                 .append("circle")
-                .attr("class", "number")
+                .attr("class", "numberFemale")
                 .attr("transform", "translate(  "+ - (padding/1.5) +" ,0)")
                 .attr("r", 3 )
-                .style('fill','#dc5147');
+                .style('fill','#dc5147')
+                ;
             circle.exit()
                 .remove();
             circle
@@ -242,7 +264,7 @@
                 .rangeRound([padding/1.5, (Width/6) - padding/1.5]);
             var yScale = d3.scale.linear()
                 .domain(valueExtent)
-                .rangeRound([(Height/6) - padding , padding]);//간격을 넓히려면 하이트를 더 큰수로 나눠주면된다.
+                .rangeRound([(Height/5.8) - padding , padding]);//간격을 넓히려면 하이트를 더 큰수로 나눠주면된다.
 
             var xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -256,8 +278,8 @@
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
-                .tickValues([0,10,30,50])
-                .tickPadding(8)
+                .tickValues([10,30,50])
+                .tickPadding(10)
                 .tickSize(0); 
             
           MlcolumnSel
@@ -265,7 +287,7 @@
                 .attr('class', 'axis x')
                 .attr("transform", "translate(  "+ - (padding/1.5) +" ," + yScale.range()[0] + ")")
                 .style('stroke-width','1')
-                .style('color','rgb(200,200,200)')
+                .style('color','rgb(240,240,240)')
                 .call(xAxis);
                 
             MlcolumnSel
@@ -281,10 +303,11 @@
                 
             circle.enter()
                 .append("circle")
-                .attr("class", "number")
+                .attr("class", "numberMale")
                 .attr("transform", "translate(  "+ - (padding/1.5) +" ,0)")
                 .attr("r", 3 )
-                .style('fill','#3579a8');
+                .style('fill','#3579a8')
+                ;
             circle.exit()
                 .remove();
             circle
@@ -306,7 +329,15 @@
                     .style('stroke-width',"2.5px")
                     .attr('d', function(d) {
                         return dataLine(d.values);
-                    });              
+                    })
+                    .on('mouseover',function(){
+                   d3.select(this).style("opacity",1);
+                   d3.selectAll(".numberMale").attr("r",4);
+                   })
+                   .on('mouseout',function(){
+                   d3.select(this).style("opacity",0.5);
+                   d3.selectAll(".numberMale").attr("r",3);
+                   });              
        };                    
         </script>
     </body>
