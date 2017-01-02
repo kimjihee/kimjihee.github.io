@@ -4,24 +4,35 @@
     body {
         font: 10px sans-serif;
         shape-rendering: crispEdges;
-        position:absolute;
-        top:5vh;
+        position: absolute;
+        top:3rem;
+        left:14rem;
+        font-size: 0.5rem;
     }
     
     .barChart {
         position:relative;
-        left:100px;
-        bottom: 0;} 
+        left:-11rem;
+        top:2rem;} 
    
     .key path , .key line{
     fill:none;
     stroke:#000;}
     
+    .tick text {
+        font-size: 0.2rem;
+    }
     
+    p{font-size:1.2rem;
+    position:absolute;
+    top:-3rem;
+    left:-10.7rem;}
     
 </style>
 
 <body>
+    <p>Seoul Mean Temperature</p>
+    
     <script src="//d3js.org/d3.v3.min.js"></script>
     <script>
         var dateFormat = d3.time.format('%Y-%m-%d');
@@ -97,30 +108,34 @@
                 .range(["red",'rgb(215, 48, 39)', 'rgb(244, 109, 67)', 'rgb(253, 174, 97)', 'rgb(254, 224, 139)', 'rgb(255, 255, 191)', 'rgb(217, 239, 139)',
                'rgb(166, 217, 106)', 'rgb(102, 189, 99)', 'rgb(26, 152, 80)', 'rgb(0, 104, 55)']);
 
-        var barX = d3.scale.linear()
-            .domain([d3.max(dataSet, function (d) {
-                    return d.aver;
-                }), d3.min(dataSet, function (d) {
-                    return d.aver;
-                })])
-            .range([0,300]);
+            var barX = d3.scale.linear()
+                .domain([d3.max(dataSet, function (d) {
+                        return d.aver;
+                    }), d3.min(dataSet, function (d) {
+                        return d.aver;
+                    })])
+                .range([0,200]);
 
-        var tickValues = colorScale.range().map(function(color) {
-          var d = colorScale.invertExtent(color);
-          if (d[0] == null) d[0] = barX.domain()[0];
-          if (d[1] == null) d[1] = barX.domain()[1];
-          return d;
-        });
-        var tickValuesToShow = tickValues.map(function(d) {return d[0];});
-        tickValuesToShow.push(tickValues[tickValues.length - 1][1]);
-        
-        var tickFormat = d3.format(".1f");
-        var barXaxis = d3.svg.axis()
-            .scale(barX)
-            .orient("bottom")
-            .tickSize(14)
-            .tickValues(tickValuesToShow)
-            .tickFormat(tickFormat);
+            var tickValues = colorScale.range().map(function(color) {
+              var d = colorScale.invertExtent(color);
+              if (d[0] == null) d[0] = barX.domain()[0];
+              if (d[1] == null) d[1] = barX.domain()[1];
+              return d;
+            });
+
+            var tickValuesToShow = tickValues.map(function(d) {return d[0];});
+            tickValuesToShow.push(tickValues[tickValues.length - 1][1]);
+
+            var tickFormat = d3.format(".f");
+            var barXaxis = d3.svg.axis()
+                .scale(barX)
+                .orient("bottom")
+                .tickSize(0)
+                .tickPadding(20)
+//              .tickValues(tickValuesToShow)
+                .tickFormat(tickFormat)
+
+            ;
         
    
            
@@ -136,24 +151,25 @@
         var G= barSvg.append("g")
             .attr("class", "key")
             .attr("transform", "translate(" +6 + ",0)")
-            .call(barXaxis);
+            .call(barXaxis)
+            ;
             
 //invertExtent 역함수와 같고, 컬러를 숫자로 매치해서 반대로 수치의 범위를 알려주는 식 
         G.selectAll("rect.scale-bar")
-              .data(tickValues)
-            .enter()
-            .append("rect")
-            .attr('class', 'scale-bar')
-            .attr("height", 8)
-            .attr("x", function(d) { return barX(d[0]); })
-            .attr("width", function(d) { return barX(d[1]) - barX(d[0]); })
-            .style("fill", function(d) { return colorScale(d[0]); });
+                .data(tickValues)
+                .enter()
+                .append("rect")
+                .attr('class', 'scale-bar')
+                .attr("height", 7)
+                .attr("x", function(d) { return barX(d[0]); })
+                .attr("width", function(d) { return barX(d[1]) - barX(d[0]); })
+                .style("fill", function(d) { return colorScale(d[0]); });
 
-        G.call(barXaxis)
-            .append("text")
-            .attr("class", "caption")
-            .attr("y", -6)
-            .text("Range of color");
+            G.call(barXaxis)
+                .append("text")
+                .attr("class", "caption")
+                .attr("y", -6)
+                .text("Range of color");
             
             
             
@@ -178,8 +194,9 @@
                 
 
             svg.append("text")
-                .attr("transform", "translate(-30," + cellSize * 6 + ")")
-                .style("text-anchor", "middle")
+                .attr("transform", "translate("+-30+"," + cellSize *1.2 + ")")
+                .style("text-anchor", "start")
+                .style("font-size", "0.7rem")   
                 .text(function (d) {
                     return d;
                 });
