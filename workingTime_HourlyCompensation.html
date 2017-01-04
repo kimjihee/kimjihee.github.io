@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hourly Compensation</title>
+  <style>
+/*        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);*/
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size:0.7rem;
+            
+        }
+      .compenChart {
+          position: absolute;
+            top:3vw;
+            left:10vw;
+            font-size: 0.4rem;
+      }
+        .workChart{
+            position: absolute;
+            top:3vw;
+            left:10vw;
+            font-size: 0.4rem;
+        }
+        P{position: absolute;
+            top:3vw;
+            left:11vw;
+      font-size:1rem;}
+      .yellow {
+             position: absolute;
+            top:3vw;
+            left:59.2vw;}
+      
+        .xAxis path,
+        .xAxis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        
+        .yAxis path,
+        .yAxis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+      
+        .domain{
+           stroke-width:0;
+        }
+     
+        
+        .tick line{stroke:rgba(200,200,200,0.3);}
+        
+        .xAxis text {
+            text-anchor:start !important;
+      }
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <script src="d3.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <P class="yellow">Hourly Compensation (US$) </P>
+    <P >WORKING TIME PER WEEK </P>
+    <svg id="chart">
+    
+        </svg>
+    <svg id="chartTwo">
+    
+        </svg>
+    <script>
+         
+//--------------------------------------Data---------------------------------------------
+
+        
+        var dataSet = [];
+        var valueData = [];
+        var Compensation = d3.csv('data/hour_compensation.csv', function (err, times) {
+            for(var i = 0; i < times.length; i++) {
+                var time = times[i];
+                var country = time['Country'];
+                delete time['Country'];
+                for(var year in time) {
+                    valueData.push({
+                        Country: country,
+                        Year: +year,
+                        Value: +time[year]
+                        });
+                   
+                }
+            
+            }
+            
+            yearExtent = d3.extent(valueData, function(d) {return d.Year;});
+            valueExtent = d3.extent(valueData, function(d) {return d.Value;});
+                          
+            dataSet = d3.nest()
+                .key(function(d){
+                    return d.Country;
+                })
+                .entries(valueData);
+           
+                        for(i=0; i<dataSet.length; i++){     
+                         
+                        for(j=0; j<27; j++){
+                   
+                    var Sum = d3.min(dataSet[i].values.filter(function(d) {
+                        return d.Value !== 0;}), function(d) {return d.Value;}
+                                       );
+                        if(dataSet[i].values[j].Value===0) {
+                                                  
+                        dataSet[i].values[j].Value = undefined;                      
+                                                   
+                }}}                  
+           redraw();                        
+       });
+        
+        
+        
+        var HourDataSet = [];
+        var hourValueData = [];
+        var Workingtime = d3.csv('data/working_hours_per_week.csv', function (err, times) {
+            for(var i = 0; i < times.length; i++) {
+                var time = times[i];
+                var country = time['Country'];
+                delete time['Country'];
+                for(var year in time) {
+                    hourValueData.push({
+                        Country: country,
+                        Year: +year,
+                        Value: +time[year]
+                        });
+                   
+                }
+            
+            }    
+            
+            hourYearExtent = d3.extent(hourValueData, function(d) {return d.Year;});
+            hourValueExtent = d3.extent(hourValueData, function(d) {return d.Value;});
+                          
+            HourDataSet = d3.nest()
+                .key(function(d){
+                    return d.Country;
+                })
+                .entries(hourValueData);
+           
+            for(i=0; i<HourDataSet.length; i++){     
+                         
+                        for(j=0; j<28; j++){
+                            
+                   
+                    var Min = d3.min(HourDataSet[i].values.filter(function(d) {
+                        return d.Value !== 0;}), function(d) {return d.Value;}
+                                       );
+                        if(HourDataSet[i].values[j].Value===0) {                      
+                        HourDataSet[i].values[j].Value = Min;                                   }
+                          
+                        }}
+       
+           redrawTwo();                        
+
+            
+       });    
+    console.log(HourDataSet);
+//--------------------------------------Working_Hour---------------------------------------------
+
+        
+    
+ 
+        
+             var redrawTwo = function () {   
+                 
+                                  
+                    var MARGIN = {
+                        START:0
+                        , TOP: 50
+                        , LEFT: 100
+                        , RIGHT: 100
+                        , BOTTOM: 0
+                    , }
+         
+                    var Width = 800;
+                    var Height =500;
+
+
+        
+//------------------------------------------One Graph-------------------------------------                      
+                    var XScale = d3.scale.linear()
+                        .domain([1980,2006])//여기는 데이터 전체가 아니라 시작부터 끝.
+                        .rangeRound([0, Width]);//라운드랑 밴드랑 먼지모름.
+                
+                    var YScale = d3.scale.linear()
+                        .domain(hourValueExtent)
+                        .rangeRound([Height,0]);
+                 
+                    var XAxis = d3.svg.axis()
+                        .scale(XScale)
+                        .orient('bottom')
+                        .tickFormat(function (d) {
+                         return d;})
+                        .tickSize(-500)
+                        .tickPadding(13);
+
+
+                    var YAxis = d3.svg.axis()
+                        .scale(YScale)
+                        .orient('left')
+                        .tickSize(0)
+                        .tickPadding(-5)
+                        ;            
+
+                    var svgTwo = d3.select("#chartTwo")
+                        .attr("width",Width+100)
+                        .attr("height", Height+80)
+                        .attr('class','workChart');
+
+                    var realChartTwo = svgTwo
+                        .append('g')
+                        .attr("transform", "translate( "+ 40 +" ,"+ 60 +")")
+                        ;
+
+                    realChartTwo.append('g')
+                        .attr('class', 'xAxis')
+                        .attr("transform", "translate( 0 ," + Height + ")")
+                        .call(XAxis)
+                        .append('path')
+                        .attr('d','M 0 0 H 800' )//path 그리기 // 하지만 질문하기
+                        .style('stroke','rgba(200,200,200,0.3)')
+                        .style('stroke-width','2')
+                        ;
+
+
+                    realChartTwo.append('g')
+                      .attr('class', 'yAxis')
+                      .attr('stroke-width','0')
+                      .attr("transform", "translate( "+-20+" ," + 0 + ")")
+                      .call(YAxis)
+                      .style('z-index','3')
+                      ; 
+                    
+                 var time = d3.svg.line()
+                        .x(function(d) { return XScale(d.Year); })
+                        .y(function(d) { return YScale(d.Value); })
+                        .interpolate("monotone");
+
+                    var dataLinesTwo = realChartTwo.selectAll('path.workTime').data(HourDataSet);
+                    dataLinesTwo.enter()
+                        .append("path")
+                        .attr("class", "workTime")
+                        .style('fill',"none")
+                        .style('stroke',"#f59144")
+                        .style('opacity', 0.3)
+                        .style('stroke-width',"2.5px")
+                        .on("mouseover", function () {
+                            d3.select(this)
+                            .style('opacity', 1); 
+                              })
+                          .on("mouseout",  function () {
+                            d3.select(this)
+                              .style('opacity', 0.3);}
+                           );
+             
+                        
+                    dataLinesTwo.exit()
+                        .remove();
+                    dataLinesTwo
+                        .attr("d",   function(d){
+                      return time(d.values);}
+                        );
+                                    
+                 
+//                 //Y축을 900옮기면 나옴
+//                  var rect = realChartTwo
+//                        .selectAll('g').data(HourDataSet);
+//                  var circle = rect.selectAll('circle.number')
+//                        .data(function(d){return d.values});   
+//
+//                        circle.enter()
+//                            .append("circle")
+//                            .attr("class", "number")
+//                            .attr("r", 2 )
+//                            .style('fill','#f59144')
+//                            ;
+//                        circle.exit()
+//                            .remove();
+//                        circle
+//                            .attr("cx", function(d) {return XScale(d.Year);})
+//                            .attr("cy", function(d) {return YScale(d.Value);}); 
+                          };        
+        
+        
+        
+        
+             var redraw = function () {   
+//------------------------------------------Draw------------------------------------------
+                                 
+                    var MARGIN = {
+                        START:0
+                        , TOP: 50
+                        , LEFT: 100
+                        , RIGHT: 100
+                        , BOTTOM: 0
+                    , }
+         
+                    var Width = 800;
+                    var Height =500;
+
+//------------------------------------------One Graph-------------------------------------                        
+
+                    var xScale = d3.scale.linear()
+                        .domain([1980,2006])
+                        .rangeRound([0, Width]);
+                
+                    var yScale = d3.scale.linear()
+                        .domain(valueExtent)
+                        .rangeRound([Height,0]);
+                 
+                    var xAxis = d3.svg.axis()
+                        .scale(xScale)
+                        .orient('bottom')
+                        .tickFormat(function (d) {
+                         return d;})
+                        .tickSize(-500)
+                        .tickPadding(13);
+
+
+                    var yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient('left')
+                        .tickSize(0)
+                        .tickPadding(-5)
+                        ;            
+
+                    var svg = d3.select("#chart")
+                        .attr("width",Width+100)
+                        .attr("height", Height+80)
+                        .attr('class','compenChart');
+
+                    var realChart = svg
+                        .append('g')
+                        .attr("transform", "translate( "+40+" ,"+ 60 +")")
+                        ;
+
+
+
+                    realChart.append('g')
+                        .attr('class', 'xAxis')
+                        .attr("transform", "translate( 0 ," + Height + ")")
+                        .call(xAxis)
+                        .append('path')
+                        .attr('d','M 0 0 H 800' )//path 그리기 // 하지만 질문하기
+                        .style('stroke','rgba(200,200,200,0.3)')
+                        .style('stroke-width','2')
+                        ;
+
+
+
+                    realChart.append('g')
+                      .attr('class', 'yAxis')
+                      .attr('stroke-width','0')
+                      .attr("transform", "translate( "+820+" ," + 0 + ")")
+                      .call(yAxis)
+                      ; 
+                  
+                 
+                  var compensation = d3.svg.line()
+                        .x(function(d) { return xScale(d.Year); })
+                        .y(function(d) { return yScale(d.Value); })
+                        .interpolate("monotone");
+
+
+                 
+                    var dataLines = realChart.selectAll('path.compensation').data(dataSet);
+                    dataLines.enter()
+                        .append("path")
+                        .attr("class", "compensation")
+                        .style('fill',"none")
+                        .style('stroke',"#275765")
+                        .style('opacity', 0.4)
+                        .style('stroke-width',"2.5px")
+                        .on("mouseover", function () {
+                            d3.select(this)
+                            .style('opacity', 1); 
+                              })
+                          .on("mouseout",  function () {
+                            d3.select(this)
+                              .style('opacity', 0.4);}
+                           );
+                    
+                    dataLines.exit()
+                        .remove();
+                    dataLines
+                        .attr("d",function(d){
+                         return compensation(d.values);}
+                        );
+                      };
+
+
+
+  
+         
+
+        
+                         
+    </script>
+    </body>
+</html>
