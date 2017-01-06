@@ -27,10 +27,10 @@
         .axis .domain {display:none;}
         .x text {text-anchor:start !important;}
         .tick line{stroke:rgb(240,240,240);}
-        .line {
+        .lineCO2 {
           fill: none;
           stroke: url(#temperature-gradient);
-          stroke-width: 1.5px;
+          stroke-width: 3px;
         }
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
@@ -64,61 +64,7 @@
                 return d.Country;
                
             })
-            .entries(CO2);         
-            
-
-            
-                       
-//             var C02Small = {};
-//            
-//                 C02.forEach(function (row, i) {
-//                    var Number= +row['Year'];
-//                     
-//                    C02Small = [(Number.substr(0, 4) - 1960)  + i].Year;
-//                     console.log(d.substr(0, 4));
-//                });
-//            
-//            
-//             var MappingData = [];
-//             for (var key in Mapping) {
-//                    MappingData.push(Mapping[key]);
-//                }
-//            
-//            
-//            var oneYear = CO2.filter(function (row) {
-//                    return row['Year'].startsWith('2011');
-//                });  
-//
-//            
-//            var Mapping = {};
-//                 oneYear.forEach(function (row, i) {
-//                    var key = row["Country"]
-//                    Mapping[key] = row;
-//                    Mapping[key] = oneYear[i].Country;
-//                    
-//                });
-//            
-//             var MappingData = [];
-//             for (var key in Mapping) {
-//                    MappingData.push(Mapping[key]);
-//                }
-//            
-//            console.log(MappingData);
-//            
-//           
-//            var Data = MappingData.map(function (c) {
-//                return CO2.map(function (d) {
-//                    return {
-//                        x: d.Value,
-//                        y: d.Year,
-//                       
-//                    };
-// 
-//                });
-//            });            
-//            이렇게 하면 돼 안될까?
-//            var countryName = function(d,i){return oneYear[i].Country;};
-//            
+            .entries(CO2);                 
                        
             dataSet = Nest;
             redraw();           
@@ -183,11 +129,12 @@
                 .y(function(d) { return yScale(d.Value); })
                 .interpolate("monotone");
             
-               realChart.append("linearGradient")
+               svg.append("linearGradient")
                   .attr("id", "temperature-gradient")
                   .attr("gradientUnits", "userSpaceOnUse")
-                  .attr("x1", 0).attr("y1", y(50))
-                  .attr("x2", 0).attr("y2",  y(60))
+                  .attr("x1", 0).attr("y1", yScale(40))//y값이 없다고 해서 질문했는데. y()을 쓰려면
+//                                                  어디엔가 y함수가 있어야 한다고 하셨다. 예를들어 yscale()
+                  .attr("x2", 0).attr("y2",  yScale(60))
                   .selectAll("stop")
                   .data([
                     {offset: "0%", color: "#6e8da6"},
