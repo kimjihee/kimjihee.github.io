@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>C02 Emission</title>
+    <style>
+       
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size:0.5rem;
+        }
+        #chart {position: absolute;
+        top:6rem;
+        left:6rem;}
+        .axis path, .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+        .unit {font-size:0.9rem;}
+        p{
+            font-size:1.2rem;
+            position: absolute;
+            top:2rem;
+            left:6rem;
+        }
+        .axis .domain {display:none;}
+        .x text {text-anchor:start !important;}
+        .tick line{stroke:rgb(240,240,240);}
+        .line {
+          fill: none;
+          stroke: url(#temperature-gradient);
+          stroke-width: 1.5px;
+        }
+      </style>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    
+    <script src="d3.min.js" type="text/javascript"></script></head>
+    <body>
+        <p> CO2 Emission <span class="unit">Tons Per Capita</span></p>
+        <svg id="chart" > </svg>
+        
+        
+        
+        <script>
+
+//--- Data---------------------------------------------
+        var dataSet = [];
+        var yearExtent = [];
+        var valueExtent = [];
+//            tonsPerCapita;
+        var Emission = d3.csv('data/CO2emissions.csv', function (err, CO2) {
+            CO2.forEach(function (row) {
+                row['Country'] = row['Country'];
+                row['Value'] = +row['Value']; 
+                row['Year'] = new Date(+row['Year'], 0 ,1);
+            });
+            
+            yearExtent = d3.extent(CO2, function(d) {return d.Year;});
+            valueExtent = [0, d3.max(CO2, function(d) {return d.Value;})];
+            
+            var Nest = d3.nest()
+            .key(function(d){
+                return d.Country;
+               
+            })
+            .entries(CO2);         
+            
+
+            
+                       
+//             var C02Small = {};
+//            
+//                 C02.forEach(function (row, i) {
+//                    var Number= +row['Year'];
+//                     
+//                    C02Small = [(Number.substr(0, 4) - 1960)  + i].Year;
+//                     console.log(d.substr(0, 4));
+//                });
+//            
+//            
+//             var MappingData = [];
+//             for (var key in Mapping) {
+//                    MappingData.push(Mapping[key]);
+//                }
+//            
+//            
+//            var oneYear = CO2.filter(function (row) {
+//                    return row['Year'].startsWith('2011');
+//                });  
+//
+//            
+//            var Mapping = {};
+//                 oneYear.forEach(function (row, i) {
+//                    var key = row["Country"]
+//                    Mapping[key] = row;
+//                    Mapping[key] = oneYear[i].Country;
+//                    
+//                });
+//            
+//             var MappingData = [];
+//             for (var key in Mapping) {
+//                    MappingData.push(Mapping[key]);
+//                }
+//            
+//            console.log(MappingData);
+//            
+//           
+//            var Data = MappingData.map(function (c) {
+//                return CO2.map(function (d) {
+//                    return {
+//                        x: d.Value,
+//                        y: d.Year,
+//                       
+//                    };
+// 
+//                });
+//            });            
+//            이렇게 하면 돼 안될까?
+//            var countryName = function(d,i){return oneYear[i].Country;};
+//            
+                       
+            dataSet = Nest;
+            redraw();           
+                       
+       });     
+        
+            
+        var redraw = function(){
+           console.log(dataSet);  
+            var Width = 800;
+            var Height = 400;
+                
+            var xScale = d3.time.scale()
+                .domain(yearExtent)
+                .rangeRound([0, Width]);
+            var yScale = d3.scale.linear()
+                .domain([0,100])
+                .rangeRound([Height,0]);
+
+          var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .ticks(d3.time.date, 1)//start stop //이렇게 1이 스탑인데 맞나요?
+                .tickFormat(d3.time.format('%Y'))
+                .tickSize(0)
+                .tickPadding(8)
+                ;
+            
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left')
+                .tickSize(-800)
+                .tickPadding(8)
+                ; 
+            
+            
+            var svg = d3.select("svg")
+                .attr("width",Width+100)
+                .attr("height", Height+100);
+            
+            var realChart = svg
+                .append('g')
+                .attr("transform", "translate( "+30+" ," + 20 + ")");
+                
+
+            realChart.append('g')
+                .attr('class', 'x axis')
+                .attr("transform", "translate( 0 ," + Height + ")")
+                .style('stroke-width','3')
+                
+                .call(xAxis);
+            
+            realChart.append('g')
+              .attr('class', 'y axis')
+              .call(yAxis)
+              ;
+            
+            var lineCO2 = d3.svg.line()
+                .interpolate("basis")   //interpolate는 무엇인가?
+                .x(function(d) { return xScale(d.Year); })
+                .y(function(d) { return yScale(d.Value); })
+                .interpolate("monotone");
+            
+               realChart.append("linearGradient")
+                  .attr("id", "temperature-gradient")
+                  .attr("gradientUnits", "userSpaceOnUse")
+                  .attr("x1", 0).attr("y1", y(50))
+                  .attr("x2", 0).attr("y2",  y(60))
+                  .selectAll("stop")
+                  .data([
+                    {offset: "0%", color: "#6e8da6"},
+                    {offset: "50%", color: "gray"},
+                    {offset: "100%", color: "red"}
+                  ])
+                .enter().append("stop")
+                  .attr("offset", function(d) { return d.offset; })
+                  .attr("stop-color", function(d) { return d.color; }); 
+            
+            var dataLines = realChart.selectAll('path.lineCO2').data(dataSet);
+            dataLines.enter()
+                .append("path")
+                .attr("class", "lineCO2")
+                .style('fill',"none")
+                .style('opacity', 0.3)
+                .style('stroke-width',2.2);
+            dataLines.exit()
+                .remove();
+            dataLines
+                .attr("d",   function(d){
+              return lineCO2(d.values);}
+                );
+            
+
+       };
+    
+        </script>
+</body>
+</html>
