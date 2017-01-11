@@ -219,19 +219,13 @@
                         .x(function(d) { return xScale(d.Year); })
                         .y(function(d) { return yScale(d.Value); })
                         .interpolate("monotone");
+                 
+           
 
-//                var xposition = event.clientX;
-//                var yposition = event.clientY; 
-                
-//                var tooltipSpan = document.getElementById('tooltip-span');
-//
-//                    window.onmousemove = function (e) {
-//                        var x = e.clientX,
-//                            y = e.clientY;
-//                        tooltipSpan.style.top = (y + 20) + 'px';
-//                        tooltipSpan.style.left = (x + 20) + 'px';
-//                    };
-
+                var xposition = window.event.clientX;
+                var yposition = window.event.clientY;
+              
+   
                 var Together = realChart.selectAll('g').data(dataSet);
                             
                  Together.enter()
@@ -263,7 +257,7 @@
                                         .style('opacity', 1)
                                         .attr('x',xposition)
                                         .attr('y',yposition)
-                                        .attr('font-size','0.7rem');
+                                        .attr('font-size','0.8rem');
                                     })
                                         .on("mouseout",  function () {
                                         d3.select(this)
