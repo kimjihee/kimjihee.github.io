@@ -11,6 +11,7 @@
             font-size: 0.4rem;
         }
         #chart {
+            width:1200px;
             position: absolute;
             top:5rem;
            }
@@ -86,9 +87,7 @@
                 .key(function(d){
                     return d.Stop;
                 })
-                .entries(trainAir); 
-            
-            
+                .entries(trainAir);    
             
             redraw();
       
@@ -108,14 +107,33 @@
             };
             
             var Width = 1200;
-            var Height = 50;
+            var Height = 1500;
             
+            var columnyBand = d3.scale.ordinal()
+                .domain(['PM10','CO2','HCHO','CO','NO2','Rn','TVOC','석면','O3'])
+                .rangeRoundBands([MARGIN.LEFT, Height- MARGIN.RIGHT], 0.07);   
+            
+            var columnSel = d3.select('#chart').selectAll('g.column').data(columnyBand.domain());
+            
+            columnSel.enter()
+                .append('g')
+                .attr('class', function (d) {
+                return 'column ' + d;
+            });
+
+            columnSel.exit().remove();
+            
+            columnSel.attr('transform', function (d) {
+                return 'translate('+0+',' + columnyBand(d) + ' )';
+            })
+            ;
+                
             var countryNames = dataSet.map(function(d) {return d.key;});
             var xScale= d3.scale.ordinal()
                 .domain(countryNames)//어떨때 ([])이고 어떨때 ("")인지 질문
-                .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.3);
+                .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.14);
             var PM10Scale= d3.scale.linear()
-                .domain([valuePM10])
+                .domain([valuePM10])//하나로 통일 하기 위해선 일정한 값의 yscale 이 가능할것같은 느낌.
                 .range([0,Height]);
             
             var colorScale = d3.scale.ordinal()
@@ -134,13 +152,8 @@
             .orient('left')
             .tickPadding(10)
             .tickSize(14);
-            
-            var svg = d3.select('svg')
-            .attr('width',Width+50)
-            .attr('height',Height+300);
-            
-            
-            var realChart = svg
+          
+            var realChart = columnSel
             .append('g')
             .attr('class','Airs')
             .attr("transform","translate("+50+","+30+")")
@@ -148,7 +161,7 @@
             
             realChart.append('g')
             .attr('class','x axis')
-            .attr('transform',"translate("+0+","+Height+")")
+            .attr('transform',"translate("+0+","+0+")")
             .call(xAxis);
             
              realChart.append('g')
@@ -159,18 +172,35 @@
             
             var groupData = d3.select('g.Airs').selectAll("g").data(dataSet);
             
-            var pickRect = groupData.selectAll("rect").data(function(d){return d.values});
-            pickRect
+            var PM10Rect = groupData.selectAll("rect.PM10").data(function(d){return d.values});
+            PM10Rect
                 .enter()
                 .append('rect')
-                .attr('class','bar')
+                .attr('class','PM10')
                 .attr('x',function(d,i){return Width/102*i;})
-                .attr('y',function(d){return Height-(d.PM10*0.2);})//반대로 채워준다고 생각하면 됨
-                .attr('height',function(d){return d.PM10*0.2;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return (140-d.PM10)*0.2;})
                 .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
                 .style("fill", function (d) {
                                 return colorScale(d.Number);})
-                .attr('transform',"translate("+0+","+-50+")")
+                .attr('transform',"translate("+0+","+0+")")
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    });
+            
+            var CO2Rect = groupData.selectAll("rect.CO2").data(function(d){return d.values});
+            CO2Rect
+                .enter()
+                .append('rect')
+                .attr('class','CO2')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return (1000-d.CO2)*0.2;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .attr('transform',"translate("+0+","+0+")")
                 .append("title")
                     .text(function (d,i) {
                     return d.Stop ;
