@@ -21,21 +21,23 @@
         #value {display:none;}
         h1 {
             position: absolute;
-        top:1rem;
-        left:8.5rem;
+            top:2rem;
+            left:3.7rem;
             font-size:1.5rem;
+            font-weight:400;
         }
-        .x text {font-size:0.5rem !important;
+        .x text {display:none;
         }
-        .y text {font-size:0.1rem !important;
+        .y text {
+         font-size:2rem !important;
          alignment-baseline:middle;}
         .axis path,
         .axis line {
             fill: none;
-            stroke: #000;
+            stroke: rgb(200,200,200);
             shape-rendering: crispEdges;
         }
-        
+       
         
         
 
@@ -70,7 +72,7 @@
                     
             })
             
-            valuePM10 = d3.extent(trainAir, function(d) {return d.PM10;});//nest하기전 dataSet=trainAir
+            valuePM10 = [0,d3.max(trainAir, function(d) {return d.PM10;})]//nest하기전 dataSet=trainAir
             valueCO2 = d3.extent(trainAir, function(d) {return d.CO2;});
             vlaueHCHO = d3.extent(trainAir, function(d) {return d.HCHO;});
             vlaueCO = d3.extent(trainAir, function(d) {return d.CO;});
@@ -92,6 +94,8 @@
       
        });
        
+        
+        
         var redraw = function(){
             
             
@@ -103,16 +107,20 @@
                 BOTTOM: 0
             };
             
-            var Width = 6000;
-            var Height = 150;
+            var Width = 1200;
+            var Height = 50;
             
             var countryNames = dataSet.map(function(d) {return d.key;});
             var xScale= d3.scale.ordinal()
                 .domain(countryNames)//어떨때 ([])이고 어떨때 ("")인지 질문
-                .rangeBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.1);
+                .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.3);
             var PM10Scale= d3.scale.linear()
                 .domain([valuePM10])
-                .range([Height,0]);
+                .range([0,Height]);
+            
+            var colorScale = d3.scale.ordinal()
+            .domain(['1호선','2호선','3호선','4호선'])
+            .range(['#5090cf','#57b057','#f78d41','#7bb6e2']);
             
             var xAxis = d3.svg.axis()
             .scale(xScale)
@@ -124,41 +132,50 @@
             var yAxis = d3.svg.axis()
             .scale(PM10Scale)
             .orient('left')
-            .tickFormat(function(d){return d;})
-            .tickPadding(10);
+            .tickPadding(10)
+            .tickSize(14);
             
             var svg = d3.select('svg')
-            .attr('width',Width+100)
+            .attr('width',Width+50)
             .attr('height',Height+300);
             
             
             var realChart = svg
             .append('g')
+            .attr('class','Airs')
             .attr("transform","translate("+50+","+30+")")
             ;
             
             realChart.append('g')
             .attr('class','x axis')
-            .attr('transform',"translate("+0+","+30+")")
+            .attr('transform',"translate("+0+","+Height+")")
             .call(xAxis);
             
              realChart.append('g')
             .attr('class','y axis')
-            .attr('transform',"translate("+0+","+-30+")")
+            .attr('transform',"translate("+0+","+0+")")
             .call(yAxis)
              ;
             
-            var rectData = realChart.selectAll("g").data(dataSet).enter().append('g');
+            var groupData = d3.select('g.Airs').selectAll("g").data(dataSet);
             
-            var pickRect = rectData.selectAll('rect.bar').data(function(d){d.values});
+            var pickRect = groupData.selectAll("rect").data(function(d){return d.values});
             pickRect
                 .enter()
                 .append('rect')
-            .attr('class','bar')
+                .attr('class','bar')
                 .attr('x',function(d,i){return Width/102*i;})
-            .attr('y',0)
-            .attr('height',function(d,i){return (d.values[i].PM10-140);});
-            
+                .attr('y',function(d){return Height-(d.PM10*0.2);})//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return d.PM10*0.2;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .attr('transform',"translate("+0+","+-50+")")
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    });
+
             
             
         };
