@@ -14,7 +14,7 @@
             width:1200px;
             height:1000px;
             position: absolute;
-            top:5rem;
+            top:7rem;
            }
         svg {
             shape-rendering: crispEdges;
@@ -28,21 +28,22 @@
             font-size:1.5rem;
             font-weight:400;
         }
-        .x text {display:none;
+        .x text { display:none;
         }
         .y text {
-         
-         font-size:2rem !important;
-         alignment-baseline:middle;}
+         font-size:0.7rem !important;
+         alignment-baseline:hanging;
+          }
         .axis path,
         .axis line {
             fill: none;
             stroke: rgb(220,220,220);
             shape-rendering: crispEdges;
-        }
-       
-        
-        
+            stroke-dasharray:1,1;
+          
+            }
+      
+              
 
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
@@ -52,7 +53,10 @@
 <body>
     <h1>Seoul Subway Air Polution</h1>
     <div id="tooltip" class="hidden">
-        <p><span id="value">단위,,,'㎍/㎥','ppm','㎍/㎥','ppm','ppm','Bq/㎥','㎍/㎥','개/cc','ppm'</span></p>
+        <p><span id="value">
+        단위,,,'㎍/㎥','ppm','㎍/㎥','ppm','ppm','Bq/㎥','㎍/㎥','개/cc','ppm'
+        기준,권고값,,140,1000,100,9,0.05,14.8,500,0.01,0.06
+        기준,전체평균,,90.7 ,556 ,11.9 ,0.9 ,0.026 ,17.3 ,168.8 ,0.01,0.013  </span></p>
 </div>
     <svg id="chart"> </svg>
     <script>
@@ -84,7 +88,7 @@
             valueTVOC = d3.extent(trainAir, function(d) {return d.TVOC;});
             value석면 = d3.extent(trainAir, function(d) {return d.석면;});
             valueO3 = d3.extent(trainAir, function(d) {return d.O3;});
-             console.log(valueO3);                                                                         
+            console.log(valueO3);                                                                         
             dataSet = d3.nest()
                 .key(function(d){
                     return d.Stop;
@@ -108,41 +112,46 @@
                 BOTTOM: 0
             };
             
-            var Width = 1200;
-            var Height = 1000;
+            var Width = 1100;
+            var Height = 700;
             
             var columnyBand = d3.scale.ordinal()
                 .domain(['PM10','CO2','HCHO','CO','NO2','Rn','TVOC','석면','O3'])
-                .rangeRoundBands([MARGIN.LEFT, Height- MARGIN.RIGHT], 0.07);   
+                .rangeBands([0, Height+200], 0.2);  //간격 만들어주려고 이렇게함 그런데 잘못된듯. 
             
             var columnSel = d3.select('#chart').selectAll('g.column').data(columnyBand.domain());
             
             columnSel.enter()
                 .append('g')
-            .attr('width',Width)
-           
+                .attr('width',Width)
+
                 .attr('class', function (d) {
                 return 'column ' + d;
             });
 
             columnSel.exit().remove();
             
-            columnSel.attr('transform', function (d) {
-                return 'translate('+0+',' + columnyBand(d) + ' )';
-            })
-            ;
-                
+            columnSel.attr('transform', function (d) {console.log(columnyBand(d));
+                return 'translate('+70+',' + columnyBand(d) +' )';
+                                                     })
+                    .append('text')
+                    .text(function(d){return d;})
+                    .style('alignment-baseline','central')
+                    .style('font-weight','500')
+                    .style('font-size','0.8rem')
+                    .attr('dx','-15');
+             
             var countryNames = dataSet.map(function(d) {return d.key;});
             var xScale= d3.scale.ordinal()
                 .domain(countryNames)//어떨때 ([])이고 어떨때 ("")인지 질문
-                .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.1);
+                .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.06,0);
             var PM10Scale= d3.scale.linear()
-                .domain([valuePM10])//하나로 통일 하기 위해선 일정한 값의 yscale 이 가능할것같은 느낌.
-                .range([0,Height]);
+                .domain(valuePM10)//하나로 통일 하기 위해선 일정한 값의 yscale 이 가능할것같은 느낌.
+                .range([0,Height/10]);
             
             var colorScale = d3.scale.ordinal()
             .domain(['1호선','2호선','3호선','4호선'])
-            .range(['#44496b','#57b057','#e17900','#72bde0']);
+            .range(['#44496b','#57b057','#f78d41','#92d4ee']);
             
             var xAxis = d3.svg.axis()
             .scale(xScale)
@@ -152,28 +161,31 @@
             .tickPadding(15);
             
             var yAxis = d3.svg.axis()
-            .scale(PM10Scale)
-            .orient('left')
-            .tickPadding(10)
-            .tickSize(14);
+            .scale(PM10Scale)       
+            .orient('right')
+            .tickValues([0,50,100])
+            .tickPadding(5)
+            .tickSize(0)
+            ;
           
             var realChart = columnSel
             .append('g')
             .attr('class','Airs')
-            .attr("transform","translate("+50+","+30+")")
-           
+            .attr("transform","translate("+50+",0)")
             ;
             
             realChart.append('g')
             .attr('class','x axis')
-            .attr('transform',"translate("+0+","+0+")")
-            .call(xAxis);
+            .call(xAxis)
+            ;          
             
              realChart.append('g')
             .attr('class','y axis')
-            .attr('transform',"translate("+0+","+0+")")
+            .attr('transform',"translate("+(Width-50)+","+-2+")")
+            .attr('stroke-width','0')
+            .style('fill','rgb(200,200,200)')
             .call(yAxis)
-             ;
+            ;           
             
             var PM10Data = d3.select('g.column.PM10').selectAll("g").data(dataSet);
             
@@ -210,35 +222,6 @@
                     return d.Stop ;
                     });
             
-            var HCHOData = d3.select('g.column.HCHO').selectAll("g").data(dataSet);
-            var HCHORect = HCHOData.selectAll("rect.HCHO","rect.HCHOTop").data(function(d){return d.values});
-            HCHORect
-                .enter()
-                .append('rect')
-                .attr('class','HCHO')
-                .attr('x',function(d,i){return Width/102*i;})
-                .attr('y',0)//반대로 채워준다고 생각하면 됨
-                .attr('height',function(d){return Math.abs(100-d.HCHO)*0.5;})
-                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-                .style("fill", function (d) {
-                                return colorScale(d.Number);})
-                .append("title")
-                    .text(function (d,i) {
-                    return d.Stop ;
-                    })
-                .append('rect')
-                .attr('class','HCHOTop')
-                .attr('x',function(d,i){return Width/102*i;})
-                .attr('y',function(d){return  (1000/9)-(d.HCHO-100)*3;})//반대로 채워준다고 생각하면 됨
-                .attr('height',function(d){return Math.abs(d.HCHO-100);})
-                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-                .style("fill", function (d) {
-                                return colorScale(d.Number);})
-                .append("title")
-                    .text(function (d,i) {
-                    return d.Stop ;
-                    });
-
             var COData = d3.select('g.column.CO').selectAll("g").data(dataSet);
             var CORect = COData.selectAll("rect.CO").data(function(d){return d.values});
             CORect
@@ -272,6 +255,92 @@
                     .text(function (d,i) {
                     return d.Stop ;
                     });
+                       
+            var RnData = d3.select('g.column.Rn').selectAll("g").data(dataSet);
+            var RnRect = RnData.selectAll("rect.Rn").data(function(d){return d.values});
+            RnRect
+                .enter()
+                .append('rect')
+                .attr('class','Rn')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return Math.abs(14.8-d.Rn);})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    });
+            
+            var TVOCData = d3.select('g.column.TVOC').selectAll("g").data(dataSet);
+            var TVOCRect = TVOCData.selectAll("rect.TVOC").data(function(d){return d.values});
+            TVOCRect
+                .enter()
+                .append('rect')
+                .attr('class','TVOC')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return Math.abs(500-d.TVOC)*0.1;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    });
+            
+            var 석면Data = d3.select('g.column.석면').selectAll("g").data(dataSet);
+            var 석면Rect = 석면Data.selectAll("rect.석면").data(function(d){return d.values});
+            석면Rect
+                .enter()
+                .append('rect')
+                .attr('class','석면')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return d.석면*100;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                            return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    }); 
+             
+            var O3Data = d3.select('g.column.O3').selectAll("g").data(dataSet);
+            var O3Rect = O3Data.selectAll("rect.O3").data(function(d){return d.values});
+            O3Rect
+                .enter()
+                .append('rect')
+                .attr('class','석면')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return Math.abs(0.06-d.O3)*100;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                            return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    }); 
+            
+            var HCHOData = d3.select('g.column.HCHO').selectAll("g").data(dataSet);
+            var HCHORect = HCHOData.selectAll("rect.HCHO","rect.HCHOTop").data(function(d){return d.values});
+            HCHORect
+                .enter()
+                .append('rect')
+                .attr('class','HCHO')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return Math.abs(100-d.HCHO)*0.5;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    });
+                
             
         };
     </script>
