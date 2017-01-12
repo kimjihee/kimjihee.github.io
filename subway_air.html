@@ -12,7 +12,7 @@
         }
         #chart {
             width:1200px;
-            height:2000px;
+            height:1000px;
             position: absolute;
             top:5rem;
            }
@@ -31,12 +31,13 @@
         .x text {display:none;
         }
         .y text {
+         
          font-size:2rem !important;
          alignment-baseline:middle;}
         .axis path,
         .axis line {
             fill: none;
-            stroke: rgb(200,200,200);
+            stroke: rgb(220,220,220);
             shape-rendering: crispEdges;
         }
        
@@ -108,7 +109,7 @@
             };
             
             var Width = 1200;
-            var Height = 1500;
+            var Height = 1000;
             
             var columnyBand = d3.scale.ordinal()
                 .domain(['PM10','CO2','HCHO','CO','NO2','Rn','TVOC','석면','O3'])
@@ -134,14 +135,14 @@
             var countryNames = dataSet.map(function(d) {return d.key;});
             var xScale= d3.scale.ordinal()
                 .domain(countryNames)//어떨때 ([])이고 어떨때 ("")인지 질문
-                .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.14);
+                .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.1);
             var PM10Scale= d3.scale.linear()
                 .domain([valuePM10])//하나로 통일 하기 위해선 일정한 값의 yscale 이 가능할것같은 느낌.
                 .range([0,Height]);
             
             var colorScale = d3.scale.ordinal()
             .domain(['1호선','2호선','3호선','4호선'])
-            .range(['#5090cf','#57b057','#f78d41','#7bb6e2']);
+            .range(['#44496b','#57b057','#e17900','#72bde0']);
             
             var xAxis = d3.svg.axis()
             .scale(xScale)
@@ -160,6 +161,7 @@
             .append('g')
             .attr('class','Airs')
             .attr("transform","translate("+50+","+30+")")
+           
             ;
             
             realChart.append('g')
@@ -199,7 +201,36 @@
                 .attr('class','CO2')
                 .attr('x',function(d,i){return Width/102*i;})
                 .attr('y',0)//반대로 채워준다고 생각하면 됨
-                .attr('height',function(d){return (1000-d.CO2)*0.2;})
+                .attr('height',function(d){return (1000-d.CO2)*0.08;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    });
+            
+            var HCHOData = d3.select('g.column.HCHO').selectAll("g").data(dataSet);
+            var HCHORect = HCHOData.selectAll("rect.HCHO","rect.HCHOTop").data(function(d){return d.values});
+            HCHORect
+                .enter()
+                .append('rect')
+                .attr('class','HCHO')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return Math.abs(100-d.HCHO)*0.5;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    })
+                .append('rect')
+                .attr('class','HCHOTop')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',function(d){return  (1000/9)-(d.HCHO-100)*3;})//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return Math.abs(d.HCHO-100);})
                 .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
                 .style("fill", function (d) {
                                 return colorScale(d.Number);})
@@ -208,7 +239,39 @@
                     return d.Stop ;
                     });
 
+            var COData = d3.select('g.column.CO').selectAll("g").data(dataSet);
+            var CORect = COData.selectAll("rect.CO").data(function(d){return d.values});
+            CORect
+                .enter()
+                .append('rect')
+                .attr('class','CO')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return Math.abs(9-d.CO);})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    });
             
+            var NO2Data = d3.select('g.column.NO2').selectAll("g").data(dataSet);
+            var NO2Rect = NO2Data.selectAll("rect.NO2").data(function(d){return d.values});
+            NO2Rect
+                .enter()
+                .append('rect')
+                .attr('class','NO2')
+                .attr('x',function(d,i){return Width/102*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d){return Math.abs(0.05-d.NO2)*100;})
+                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function (d) {
+                                return colorScale(d.Number);})
+                .append("title")
+                    .text(function (d,i) {
+                    return d.Stop ;
+                    });
             
         };
     </script>
