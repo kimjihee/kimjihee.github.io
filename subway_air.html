@@ -12,6 +12,7 @@
         }
         #chart {
             width:1200px;
+            height:2000px;
             position: absolute;
             top:5rem;
            }
@@ -117,6 +118,8 @@
             
             columnSel.enter()
                 .append('g')
+            .attr('width',Width)
+           
                 .attr('class', function (d) {
                 return 'column ' + d;
             });
@@ -170,9 +173,9 @@
             .call(yAxis)
              ;
             
-            var groupData = d3.select('g.Airs').selectAll("g").data(dataSet);
+            var PM10Data = d3.select('g.column.PM10').selectAll("g").data(dataSet);
             
-            var PM10Rect = groupData.selectAll("rect.PM10").data(function(d){return d.values});
+            var PM10Rect = PM10Data.selectAll("rect.PM10").data(function(d){return d.values});
             PM10Rect
                 .enter()
                 .append('rect')
@@ -183,13 +186,13 @@
                 .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
                 .style("fill", function (d) {
                                 return colorScale(d.Number);})
-                .attr('transform',"translate("+0+","+0+")")
                 .append("title")
                     .text(function (d,i) {
                     return d.Stop ;
                     });
             
-            var CO2Rect = groupData.selectAll("rect.CO2").data(function(d){return d.values});
+            var CO2Data = d3.select('g.column.CO2').selectAll("g").data(dataSet);
+            var CO2Rect = CO2Data.selectAll("rect.CO2").data(function(d){return d.values});
             CO2Rect
                 .enter()
                 .append('rect')
@@ -200,7 +203,6 @@
                 .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
                 .style("fill", function (d) {
                                 return colorScale(d.Number);})
-                .attr('transform',"translate("+0+","+0+")")
                 .append("title")
                     .text(function (d,i) {
                     return d.Stop ;
