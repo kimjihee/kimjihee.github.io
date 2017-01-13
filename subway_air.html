@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Seoul Subway Air Polution</title>
+    <title>Seoul Subway Air Pollution</title>
     <style>
 /*        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);*/
         body {
@@ -12,7 +12,7 @@
         }
         #chart {
             width:1200px;
-            height:1000px;
+            height:900px;
             position: absolute;
             top:7rem;
            }
@@ -32,7 +32,7 @@
         }
         .y text {
          font-size:0.7rem !important;
-         alignment-baseline:hanging;
+         alignment-baseline:central;
           }
         .axis path,
         .axis line {
@@ -42,8 +42,8 @@
             stroke-dasharray:1,1;
           
             }
-      
-              
+        .y .domain {display:none;}
+        .x .domain {display:none;}      
 
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
@@ -51,7 +51,7 @@
 </head>
 
 <body>
-    <h1>Seoul Subway Air Polution</h1>
+    <h1>Seoul Subway Air Pollution</h1>
     <div id="tooltip" class="hidden">
         <p><span id="value">
         단위,,,'㎍/㎥','ppm','㎍/㎥','ppm','ppm','Bq/㎥','㎍/㎥','개/cc','ppm'
@@ -94,17 +94,12 @@
                     return d.Stop;
                 })
                 .entries(trainAir);    
-            
-            redraw();
+                redraw();
       
        });
        
         
-        
-        var redraw = function(){
-            
-            
-            
+            var redraw = function(){        
             MARGIN = {
                 TOP: 0,
                 LEFT: 0,
@@ -124,14 +119,13 @@
             columnSel.enter()
                 .append('g')
                 .attr('width',Width)
-
                 .attr('class', function (d) {
                 return 'column ' + d;
             });
 
             columnSel.exit().remove();
             
-            columnSel.attr('transform', function (d) {console.log(columnyBand(d));
+            columnSel.attr('transform', function (d) {
                 return 'translate('+70+',' + columnyBand(d) +' )';
                                                      })
                     .append('text')
@@ -147,12 +141,12 @@
                 .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.06,0);
             var PM10Scale= d3.scale.linear()
                 .domain(valuePM10)//하나로 통일 하기 위해선 일정한 값의 yscale 이 가능할것같은 느낌.
-                .range([0,Height/10]);
+                .range([0,Height/9]);
             
             var colorScale = d3.scale.ordinal()
             .domain(['1호선','2호선','3호선','4호선'])
-            .range(['#44496b','#57b057','#f78d41','#92d4ee']);
-            
+            .range(['#44496b','#57b057','#f78d41','#92d4ee']);            
+                
             var xAxis = d3.svg.axis()
             .scale(xScale)
             .orient('bottom')
@@ -164,10 +158,9 @@
             .scale(PM10Scale)       
             .orient('right')
             .tickValues([0,50,100])
-            .tickPadding(5)
-            .tickSize(0)
-            ;
-          
+            .tickSize(-1050)
+            .tickPadding(5);
+            
             var realChart = columnSel
             .append('g')
             .attr('class','Airs')
@@ -181,12 +174,29 @@
             
              realChart.append('g')
             .attr('class','y axis')
-            .attr('transform',"translate("+(Width-50)+","+-2+")")
-            .attr('stroke-width','0')
+            .attr('transform',"translate("+(Width-50)+",0)")
+//            .attr('stroke-width','0')
             .style('fill','rgb(200,200,200)')
             .call(yAxis)
             ;           
-            
+       
+            var colorBar = d3.scale.ordinal()
+                        .domain(['#44496b','#57b057','#f78d41','#92d4ee'])
+                        .rangeRoundBands([0, 400]);
+    
+            var makeBar = d3.select('#chart').selectAll('rect.bar').data(colorBar.domain());  
+                    
+                makeBar.enter()
+                        .append('rect')
+                        .attr('class', 'bar')
+                        .style('fill', function (d) {
+                                return d;})
+                        .attr('x', function (d) {
+                                return colorBar.rangeBand(d);})
+                        .attr('y', 0)
+                        .attr('width', colorBar.rangeBand())
+                        .attr('height', 12);
+                                           
             var PM10Data = d3.select('g.column.PM10').selectAll("g").data(dataSet);
             
             var PM10Rect = PM10Data.selectAll("rect.PM10").data(function(d){return d.values});
@@ -204,6 +214,7 @@
                     .text(function (d,i) {
                     return d.Stop ;
                     });
+           
             
             var CO2Data = d3.select('g.column.CO2').selectAll("g").data(dataSet);
             var CO2Rect = CO2Data.selectAll("rect.CO2").data(function(d){return d.values});
