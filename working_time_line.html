@@ -52,12 +52,16 @@
             position:fixed;
             overflow:hidden;
         }
+        .workTime {
+          fill: none;
+          stroke: url(#temperature-gradient);
+        }
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script src="d3.min.js" type="text/javascript"></script>
-</head>
+    </head>
 
-<body>
+    <body>
     <P>WORKING TIME PER WEEK </P>
     <svg id="chart">
     
@@ -175,13 +179,12 @@
                         .tickSize(-250)
                         .tickPadding(13);
 
-
                     var yAxis = d3.svg.axis()
                         .scale(yScale)
                         .orient('left')
                         .tickSize(0)
-                        .tickPadding(-5)
-                        ;            
+                        .tickPadding(-5);
+                                   
 
                     var svg = d3.select("svg")
                         .attr("width",Width+100)
@@ -190,11 +193,8 @@
 
                     var realChart = svg
                         .append('g')
-                        .attr("transform", "translate( "+40+" ,"+ 60 +")")
-                        ;
-
-
-
+                        .attr("transform", "translate( "+40+" ,"+ 60 +")");
+                       
                     realChart.append('g')
                         .attr('class', 'xAxis')
                         .attr("transform", "translate( 0 ," + Height + ")")
@@ -202,69 +202,88 @@
                         .append('path')
                         .attr('d','M 0 0 H 800' )//path 그리기 // 하지만 질문하기
                         .style('stroke','rgba(200,200,200,0.3)')
-                        .style('stroke-width','2')
-                        ;
-
-
+                        .style('stroke-width','2');        
 
                     realChart.append('g')
                       .attr('class', 'yAxis')
                       .attr('stroke-width','0')
                       .attr("transform", "translate( "+-20+" ," + 0 + ")")
-                      .call(yAxis)
-                      ; 
-                  
+                      .call(yAxis);           
                  
                   var time = d3.svg.line()
                         .x(function(d) { return xScale(d.Year); })
                         .y(function(d) { return yScale(d.Value); })
                         .interpolate("monotone");
-                 
-           
-
-                var xposition = window.event.clientX;
-                var yposition = window.event.clientY;
               
-   
-                var Together = realChart.selectAll('g').data(dataSet);
+                 svg.append("linearGradient")
+                  .attr("id", "temperature-gradient")
+                  .attr("gradientUnits", "userSpaceOnUse")
+                  .attr("x1", 0).attr("y1", yScale(35))
+                  .attr("x2", 0).attr("y2",  yScale(55))
+                  .selectAll("stop")
+                  .data([
+                    {offset: "0%", color: "rgb(255,180,0)"},
+                    {offset: "50%", color: "#ff7600"},
+                    {offset: "100%", color: "red"}
+                    ])
+                    .enter().append("stop")
+                    .attr("offset", function(d) { return d.offset; })
+                    .attr("stop-color", function(d) { return d.color; });  
+
+                 
+                var Together = realChart.selectAll('g.data').data(dataSet);
                             
                  Together.enter()
                          .append('g')
-                         .each(function(d) {
+                         .attr('class', 'data')
+                         .each(function(d, i) {
                             var group = d3.select(this);
-                            
-                            
-                            group.append('text')
-                                .attr("class", "Text")
-                                .text(function(d) {return d.key;
-                                                  })
-                                .style("opacity", 0.0)
-                                ;
-                                
+                                 
                             group.append("path")
                                 .attr("class", "workTime")
                                 .style('fill',"none")
-                                .style('stroke',"rgb(255,180,0)")
                                 .style('opacity', 0.3)
                                 .style('stroke-width',"2.5px")
                                 .attr("d",   function(d){
                                     return time(d.values);}
                                 )
-                                .on("mouseover", function () {
+                                .on("mouseover", function (d) {
+                                    console.log(d);
+                                    var coords = d3.mouse(this);
+                                var newData= {
+                                x: Math.round( xScale.invert(coords[0])), 
+                                y: Math.round( yScale.invert(coords[1]))
+                              };
+                                    console.log(coords);
                                     d3.select(this)
                                         .style('opacity', 1); 
-                                    d3.select(this.previousSibling)
+                                    d3.select(this.nextSibling)
                                         .style('opacity', 1)
-                                        .attr('x',xposition)
-                                        .attr('y',yposition)
-                                        .attr('font-size','0.8rem');
+                                        .attr('x',coords[0])
+                                        .attr('y',coords[1])
+                                        .attr('font-size','0.8rem')
+                                        .text(d.key + ' ' + newData.y)
+                                    .style(fill);
                                     })
                                         .on("mouseout",  function () {
                                         d3.select(this)
                                         .style('opacity', 0.3);
-                                        d3.select(this.previousSibling)
+                                        d3.select(this.nextSibling)
                                         .style('opacity', 0);
                                 });
+                     
+                                group.append('text')
+                                .attr("class", "Text")
+                                .text(function(d) {return d.key;
+                                                  })
+                                .style("opacity", 0.0)
+                                ;
+                     
+                                group.append('rect')
+                                .attr("class", "Rect")
+                                .style("opacity", 0.0)
+                                ;
+                                
                         });
                           
                  
