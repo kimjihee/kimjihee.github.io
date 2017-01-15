@@ -9,20 +9,73 @@
             font-family: 'Roboto', sans-serif;
             font-size:0.5rem;
         }
-        #chart{ border :1px solid black;}
-        
+        #chart{
+            position: absolute;
+            top:2rem;
+        }
+        .name {
+            position: absolute;
+            top:4rem;
+            left:3.5rem;
+            font-size:1.5rem;
+        }
+        .x text{
+            text-anchor: end !important;
+        }
         .axis path, .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-      } /*        이거의 정체를 도저히 모르겠다..... */
-        
+            fill: none;
+            stroke: rgb(119,119,119);
+            stroke-width:1px;
+            shape-rendering: crispEdges;
+        } 
+        span {
+            display:block;
+            width:10px !important;
+            height:10px !important;
+            margin-left:5rem;
+            font-size:1rem;}
+        .a{
+            background-color:#fece31;
+        }   
+        .h{
+            background-color:#f78d41;
+        }
+        .l{
+            background-color:#57b057;
+            margin-left:3.5rem !important;
+        }
+        .W{
+            position: relative;
+            top:-1rem;
+            right:-1rem;
+        }
+        .P {position: relative;
+            left:-0.45rem !important;
+            
+        }
+        .colorChart{
+            position: absolute;
+            bottom:19.2rem;
+            right:22.5rem;
+        }   
+        .colorChart li {
+            float:left;
+            list-style-type:none;
+            
+        }
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     
     <script src="d3.min.js" type="text/javascript"></script></head>
     <body>
-        <svg id="chart" width="1200" height="400"> </svg>
+        <div class="name">Seoul degree on june, july
+        </div>
+         <ul class="colorChart">
+            <li><span class="a"></span><span class="W">average</span></li>
+            <li><span class="h"></span><span class="W">high</span></li>
+            <li><span class="l"></span><span class="W P">low</span></li>
+            </ul>
+        <svg id="chart" > </svg>
         
         
         
@@ -35,45 +88,34 @@
             weather.forEach(function (row) {
                 row['average'] = +row['average'];
                 row['low'] = +row['low'];
-                row['high'] = +row['high'];
- 
-               
+                row['high'] = +row['high'];        
                 
-//1번        parse 이용 Nan 이됨        
-//2번                
              row['date']= dateFormat.parse(row['date']);// d3 format으로 검색하면 나옵니다.
-////  
-//                            
-// 3번    
-//          
                 
             })    
          
             dataSet = weather;
             redraw();
        });
-                            
+        
            
               
 
 //--- Layout--------------------------------------------
             
-        var redraw = function () {
-                    
+        var redraw = function () {               
             
             MARGIN = {
-                
                 TOP : 100,
-                LEFT:100,
+                LEFT:50,
                 RIGHT:100,
-                BOTTOM:0
-                
-            };
+                BOTTOM:100
+                };
 
 //--- chart Size ---------------------------------------------
             
           var Width = 1000;
-          var Height = 300;
+          var Height = 400;
           
 //--- Timeformat ---------------------------------------
             
@@ -99,8 +141,8 @@
             var xAxis = d3.svg.axis()//axis 라는 함수안에 data, enter, append 가 알아서 생성되는게 들어있다.
                 .scale(xScale)
                 .orient('bottom')
-                .ticks(d3.time.date, 1)//start stop //이렇게 1이 스탑인데 맞나요?
-                .tickFormat(d3.time.format('%Y-%m-%d'))//이거랑 어떻게 써야하는것인가? %e 이거 썻는데 망함
+                .ticks(d3.time.date, 2)//start stop //이렇게 1이 스탑인데 맞나요?
+                .tickFormat(d3.time.format('%m-%d'))//이거랑 어떻게 써야하는것인가? %e 이거 썻는데 망함
                 .tickSize(0)
                 .tickPadding(8)
                 ;
@@ -109,13 +151,18 @@
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
+                .tickSize(0)
                 .tickPadding(8)
                 ; 
 
             
             
 // call Axis-------------------------------------------                        
-            var realChart = d3.select('svg')
+            var svg = d3.select("svg")
+                .attr("width",Width+100)
+                .attr("height", Height);
+            
+            var realChart = svg
                 .append('g')
                 .attr('transform', 'translate(' + MARGIN.LEFT + ', ' + MARGIN.TOP + ')');
 
@@ -125,8 +172,7 @@
                 .attr('class', 'x axis')
                 .attr('transform', 'translate(0, ' + (Height - MARGIN.TOP - MARGIN.BOTTOM) + ')')
                 .style('stroke-width','3')
-                .call(xAxis)
-            ; 
+                .call(xAxis);
            
 
             realChart.append('g')
@@ -138,8 +184,9 @@
               .attr("dy", "1em") // dy를 검색하면 된다. 
               .style("text-anchor", "end")
               .text("Degree ºC");
+          
 
-//--- Gragph --------------------------------------------
+//---------------------------------------- Gragph --------------------------------------------
 
           var lineAverage= d3.svg.line()
                     .x(function(d) { return xScale(d.date); })
@@ -149,9 +196,22 @@
                     .attr("d", lineAverage(dataSet))// .data(dataSet)을 없애니 되었다. 교수님도 모른다고 한다.
                     .attr("class", "lineAverage")
                     .style('fill',"none")
-                    .style('stroke',"green")
-                    .style('stroke-width',"2px");
+                    .style('stroke',"#fece31")
+                    .style('stroke-width',"2.5px");
+                
             
+            realChart.selectAll("dot")
+                    .data(dataSet)
+                    .enter()
+                    .append("circle")
+                    .style('fill',"#fece31")
+                    .style('opacity',0)
+                    .attr("r",4)
+                    .attr("cx", function(d) { return xScale(d.date); })
+                    .attr("cy", function(d) { return yScale(d.average); })
+                    .append('title')
+                    .style('fill','white')
+                    .text(function(d,i){return "low degree "+dataSet[i].average;});
             
             var linehigh= d3.svg.line()
                     .x(function(d) { return xScale(d.date); })
@@ -161,8 +221,23 @@
                     .attr("d", linehigh(dataSet))// .data(dataSet)을 없애니 되었다.
                     .attr("class", "linehigh")
                     .style('fill',"none")
-                    .style('stroke',"red")
-                    .style('stroke-width',"2px");
+                    .style('stroke',"#f78d41")
+                    .style('stroke-width',"2.5px");
+            
+            
+            realChart.selectAll("dot")
+                    .data(dataSet)
+                    .enter()
+                    .append("circle")
+                    .style('fill',"#f78d41")
+                    .style('opacity',0)
+                    .attr("r",4)
+                    .attr("cx", function(d) { return xScale(d.date); })
+                    .attr("cy", function(d) { return yScale(d.high); })
+                    .append('title')
+                    .style('fill','white')
+                    .text(function(d,i){return "low degree "+dataSet[i].high;});
+            
 
             var linelow= d3.svg.line()
                     .x(function(d) { return xScale(d.date); })
@@ -172,10 +247,25 @@
                     .attr("d", linelow(dataSet))// .data(dataSet)을 없애니 되었다.
                     .attr("class", "linelow")
                     .style('fill',"none")
-                    .style('stroke',"blue")
-                    .style('stroke-width',"2px");
+                    .style('stroke',"#57b057")
+                    .style('stroke-width',"2.5px");
+                    
+                     
 
-            //https://www.sitepoint.com/creating-simple-line-bar-charts-using-d3-js  축만들기 참고
+            realChart.selectAll("dot")
+                    .data(dataSet)
+                    .enter()
+                    .append("circle")
+                    .style('fill',"#57b057")
+                    .style('opacity',0)
+                    .attr("r",4)
+                    .attr("cx", function(d) { return xScale(d.date); })
+                    .attr("cy", function(d) { return yScale(d.low); })
+                    .append('title')
+                    .style('fill','white')
+                    .text(function(d,i){return "low degree "+dataSet[i].low;});
+          
+               //https://www.sitepoint.com/creating-simple-line-bar-charts-using-d3-js축만들기 참고
 
         };    //이것은 redraw function;        
     
