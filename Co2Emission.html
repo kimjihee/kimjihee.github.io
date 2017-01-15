@@ -9,17 +9,21 @@
             font-family: 'Roboto', sans-serif;
             font-size:0.5rem;
         }
-        #chart {position: absolute;
-        top:6rem;
-        left:6rem;}
+        #chart {
+            position: absolute;
+            top:8.5rem;
+            left:6rem;
+        }
         .axis path, .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-      }
-        .unit {font-size:0.9rem;}
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        .unit {
+            font-size:0.9rem;
+        }
         p{
-            font-size:1.2rem;
+            font-size:2rem;
             position: absolute;
             top:2rem;
             left:6rem;
@@ -60,10 +64,7 @@
                
             })
             .entries(CO2);         
-            
-
-            
-                       
+   
 //             var C02Small = {};
 //            
 //                 C02.forEach(function (row, i) {
@@ -72,19 +73,16 @@
 //                    C02Small = [(Number.substr(0, 4) - 1960)  + i].Year;
 //                     console.log(d.substr(0, 4));
 //                });
-//            
-//            
+//             
 //             var MappingData = [];
 //             for (var key in Mapping) {
 //                    MappingData.push(Mapping[key]);
 //                }
-//            
-//            
+//                        
 //            var oneYear = CO2.filter(function (row) {
 //                    return row['Year'].startsWith('2011');
 //                });  
-//
-//            
+//ㄴ            
 //            var Mapping = {};
 //                 oneYear.forEach(function (row, i) {
 //                    var key = row["Country"]
@@ -123,8 +121,8 @@
             
         var redraw = function(){
            console.log(dataSet);  
-            var Width = 800;
-            var Height = 400;
+            var Width = 700;
+            var Height = 350;
                 
             var xScale = d3.time.scale()
                 .domain(yearExtent)
@@ -146,7 +144,7 @@
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
-                .tickSize(-800)
+                .tickSize(-700)
                 .tickPadding(8)
                 ; 
             
@@ -164,21 +162,18 @@
                 .attr('class', 'x axis')
                 .attr("transform", "translate( 0 ," + Height + ")")
                 .style('stroke-width','3')
-                
                 .call(xAxis);
-            
+
             realChart.append('g')
-              .attr('class', 'y axis')
-              .call(yAxis)
-              ;
+                .attr('class', 'y axis')
+                .call(yAxis)
+                ;
             
             var lineCO2 = d3.svg.line()
                 .x(function(d) { return xScale(d.Year); })
                 .y(function(d) { return yScale(d.Value); })
                 .interpolate("monotone");
-            
-            
-            
+                        
             var dataLines = realChart.selectAll('path.lineCO2').data(dataSet);
             dataLines.enter()
                 .append("path")
@@ -186,7 +181,7 @@
                 .style('fill',"none")
                 .style('stroke','#6e8da6')
                 .style('opacity', 0.3)
-                .style('stroke-width',2.5);
+                .style('stroke-width',2.2);
             dataLines.exit()
                 .remove();
             dataLines

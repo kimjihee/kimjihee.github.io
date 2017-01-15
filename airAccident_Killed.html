@@ -24,7 +24,7 @@
         }
         .x text {font-size:0.9rem !important;}
         .y text {font-size:0.1rem !important;
-        /}
+       alignment-baseline:middle;}
         .axis path,
         .axis line {
             fill: none;
@@ -112,7 +112,10 @@
                     var Width = 1000;
                     var Height =1300;
 //-----------------------------------------AddColunm--------------------------------------                 
-           var columnSel = d3.select('#chart')
+            var countryNames = dataSet.map(function(d) {return d.key;});        
+            var num = countryNames.length;
+            
+            var columnSel = d3.select('#chart')
                 .attr("width", Width+100)
                 .attr("height", Height)
                 .selectAll('g.column').data(dataSet);
@@ -121,28 +124,25 @@
                 .append('g')
                 .attr('class', function (d) {
                     return 'column ' + d.key;
-                })
-               ;
-                    
+                });
+       
             columnSel.exit().remove();
             columnSel.attr('transform', function (d,i) {
-                return 'translate(0,' + (Math.floor(i%133)*(Height/133))+') ';
+            return 'translate(0,' + (Math.floor(i%num)*(Height/num))+') ';
             });//그룹으로 묶어 주고 싶은 것을 정해서 x축으로 묶어줄지 y축으로 묶어줄지 정하고
-//            지정한다. 여기서는 y축 방향으로 한 나라의 그룹을 만들기 위해 너비를 x축 숫자로 나눠줌
-//                    'translate(' + (Math.floor(i%133)*(Width/133))+',0) '
-//------------------------------------------One Graph-------------------------------------                         console.log(yearExtent);
-                    var countryNames = dataSet.map(function(d) {return d.key;});
-                    
-                 
-                   var xScale = d3.scale.linear()
-                        .domain([1970,2008])
-                        .rangeRound([0, Width]);
-                
-                     var yScale = d3.scale.ordinal()
-                        .domain(countryNames)
-                        .rangeBands([0,Height],0.1);
-            
-                                     
+            //            지정한다. 여기서는 y축 방향으로 한 나라의 그룹을 만들기 위해 너비를 x축 숫자로 나눠줌
+            //                    'translate(' + (Math.floor(i%num)*(Width/num))+',0) '
+//------------------------------------------One Graph-------------------------------------              
+
+                var xScale = d3.scale.linear()
+                    .domain([1970,2008])
+                    .rangeRound([0, Width]);
+
+                var yScale = d3.scale.ordinal()
+                    .domain(countryNames)
+                    .rangeBands([0,Height],0.1);
+
+
                     var colorScale = d3.scale.quantize()
                     .domain([
                         d3.max(valueData, function (d) {
@@ -193,7 +193,7 @@
                       .style('text-anchor','end')// 이게 x축에 적용이 된다.
                       .call(yAxis);
                   
-                    var cellHeight = Height/133;//132로 나눠야 맞다.
+                    var cellHeight = Height/num;//132로 나눠야 맞다.
                      var cellWidth = Width/38;  //38로 나눠야 맞는 이유가 머야?     
                  
                                       
