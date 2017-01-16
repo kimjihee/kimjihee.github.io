@@ -19,11 +19,21 @@ layout: default
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="intial-scale: 1, width=device-width">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="index.css">
     <style>
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:500|Rubik" rel="stylesheet">
     </style>
+    <script>
+        $(function () {
+            $('.ulIn>li').on('mouseenter', function () {
+                $(this).children('.github').slideDown('slow');
+            }).on('mouseleave', function () {
+                $(this).children('.github').slideUp('slow');
+            });
+        });
+    </script>
     <title>KimJihee portfolio</title>
 </head>
 
@@ -42,42 +52,100 @@ layout: default
             <li>
                 <ul class="ulIn">
                     <li>
-                        <div class='nameIn'>Seoul Mean Temperature</div><img class="iSize" src="images/seoul_temperature.png"><div class="github">Source Code</div></li>
-                     
+                        <div class='nameIn'>Seoul Mean Temperature
+                            <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                        </div>
+                        <a href="http://kimjihee.github.io/seoul_weather_year.html"><img class="iSize" src="images/seoul_temperature.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
+
                     <li>
-                        <div class='nameIn'>Suicide Rate Small Multiples</div><img class="iSize" src="images/suicide_rate.png"><div class="github">Source Code</div> </li>
-                     
+                        <div class='nameIn'>Suicide Rate Small Multiple <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div><a href="http://kimjihee.github.io/suicide_smallMultiples.html"><img class="iSize" src="images/suicide_rate.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
+
                     <li>
-                        <div class='nameIn'>Working Times</div><img src="images/working_time_rect.png"><div class="github">Source Code</div> </li>
-                    
+                        <div class='nameIn'>Working Times <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div><a href="http://kimjihee.github.io/working_time.html"><img src="images/working_time_rect.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
+
                 </ul>
             </li>
             <li>
                 <ul class="ulIn">
                     <li>
-                        <div class='nameIn'>World CO2 Emission</div><img src="images/Co2_emission_gradient.png"><div class="github">Source Code</div> </li>
-                     
+                        <div class='nameIn'>World CO2 Emission <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div><a href="http://kimjihee.github.io/gradient_line_graph.html"><img src="images/Co2_emission_gradient.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
+
                     <li>
-                        <div class='nameIn'>Seoul degree</div><img src="images/seoul_degree.png"> <div class="github">Source Code</div></li>
-                     
+                        <div class='nameIn'>Seoul degree <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div><a href="http://kimjihee.github.io/Seoulweather.html"><img src="images/seoul_degree.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
+
                     <li>
-                        <div class='nameIn'>Seoul Mean Temperature</div><img class="iSize" src="images/multiple_stack.png"><div class="github">Source Code</div> </li>
-                     
-                    
+                        <div class='nameIn'>multiple stack <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div><a href="http://kimjihee.github.io/multiple_stack.html"><img class="iSize" src="images/multiple_stack.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
+
+
                 </ul>
             </li>
             <li>
                 <ul class="ulIn">
                     <li>
-                        <div class='nameIn'>Working Times</div><img class="iSize" src="images/working_time_line.png"><div class="github">Source Code</div> </li>
-                     
+                        <div class='nameIn'>Working Times <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div>
+                        <a href="http://kimjihee.github.io/working_time_line.html"><img class="iSize" src="images/working_time_line.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
+
                     <li>
-                        <div class='nameIn'>Air Accident Kill</div><img class="iSize" src="images/air_Accident_kill.png"> <div class="github">Source Code</div></li>
+                        <div class='nameIn'>Air Accident Kill <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div><a href="http://kimjihee.github.io/airAccident_Killed.html"><img class="iSize" src="images/air_Accident_kill.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
                     <li>
-                        <div class='nameIn'>Seoul Mean Temperature</div><img src="images/houly_compensation.png"><div class="github">Source Code</div> </li>
-                     
-                    
-                     
+                        <div class='nameIn'>Houly Compensation <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span></div><a href="http://kimjihee.github.io/Hour_compensation.html"><img src="images/houly_compensation.png"></a>
+                        <ul class="github">
+                            <li></li>
+                            <li>D3.js, html</li>
+                            <li>Source Code</li>
+                        </ul>
+                    </li>
+
+
+
                 </ul>
             </li>
         </ul>
