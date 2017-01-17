@@ -1,7 +1,7 @@
 * {
     font-family: 'Roboto', sans-serif;
     list-style-type: none;
-    outaline: 1px solid rgb(220, 220, 220);
+    outlsine: 1px solid rgb(220, 220, 220);
     margin: 0;
     padding: 0;
     word-break: normal;
@@ -74,7 +74,7 @@
     .ulIn li {
         float: none !important;
         width: 100%;
-        padding: 2rem;
+        padding: 2.3rem;
         padding-top: 0;
         margin-bottom: 2rem;
         height: 21rem !important;
@@ -82,6 +82,7 @@
     .column img {
         width: 100%;
         margin-top: 4rem;
+        
     }
     .nameIn {
         position: absolute;
@@ -94,22 +95,24 @@
     .icon {
         font-size: 0.8rem;
         color: #4da7c5;
-        opacity:0.6;
+        opacity: 0.6;
         position: absolute;
         top: 1.2rem;
         right: 1.8rem;
     }
     .github {
         position: relative;
-        bottom: -2rem;
+        bottom: -1.2rem;
         color: #4da7c5;
         font-size: 1rem;
         text-align: right;
         width: 100%;
-        display: none;
+        display:none;
     }
+   
     .github li {
         padding: 0.5rem !important;
+        padding-right:0 !important;
         float: left !important;
         width: 33.333333333333333333333333%;
         margin: 0 !important;
