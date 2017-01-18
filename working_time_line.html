@@ -62,6 +62,13 @@
           fill: none;
           stroke: url(#temperature-gradient);
         }
+        .Rect {
+            width:8rem !important;
+            height:2rem !important;
+            border:0.5px solid rgb(220,220,220) !important;
+            fill:white;
+        }
+        .Text{color:black;}
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script src="d3.min.js" type="text/javascript"></script>
@@ -191,7 +198,6 @@
                         .tickSize(0)
                         .tickPadding(-5);
                                    
-
                     var svg = d3.select("svg")
                         .attr("width",Width+100)
                         .attr("height", Height+80)
@@ -219,8 +225,8 @@
                   var time = d3.svg.line()
                         .x(function(d) { return xScale(d.Year); })
                         .y(function(d) { return yScale(d.Value); })
-                        .interpolate("monotone");
-              
+                        .interpolate("monotone");                
+
                  svg.append("linearGradient")
                   .attr("id", "temperature-gradient")
                   .attr("gradientUnits", "userSpaceOnUse")
@@ -244,7 +250,13 @@
                          .attr('class', 'data')
                          .each(function(d, i) {
                             var group = d3.select(this);
-                                 
+                             
+                         group.append('text')
+                                .attr("class", "Text")
+                                .style("opacity", 0.0)
+                                .style("z-index",1001)
+                                
+                                ;
                             group.append("path")
                                 .attr("class", "workTime")
                                 .style('fill',"none")
@@ -254,46 +266,63 @@
                                     return time(d.values);}
                                 )
                                 .on("mouseover", function (d) {
-                                    console.log(d);
                                     var coords = d3.mouse(this);
                                 var newData= {
                                 x: Math.round( xScale.invert(coords[0])), 
                                 y: Math.round( yScale.invert(coords[1]))
-                              };
-                                    console.log(coords);
+                                    };
+                                  
                                     d3.select(this)
                                         .style('opacity', 1); 
                                     d3.select(this.nextSibling)
                                         .style('opacity', 1)
                                         .attr('x',coords[0])
-                                        .attr('y',coords[1])
+                                        .attr('y',coords[1]);
+                                    d3.select(this.previousSibling)
+                                        .style('opacity', 1)
+                                        .attr('x',coords[0]+10)
+                                        .attr('y',coords[1]+10)
                                         .attr('font-size','0.8rem')
                                         .text(d.key + ' ' + newData.y)
-                                    .style(fill);
+                                        .style('fill','black');
                                     })
                                         .on("mouseout",  function () {
                                         d3.select(this)
                                         .style('opacity', 0.3);
                                         d3.select(this.nextSibling)
                                         .style('opacity', 0);
-                                });
-                     
-                                group.append('text')
-                                .attr("class", "Text")
-                                .text(function(d) {return d.key;
-                                                  })
-                                .style("opacity", 0.0)
-                                ;
-                     
-                                group.append('rect')
+                                        d3.select(this.previousSibling)
+                                        .style('opacity', 0);
+                                    });
+           
+                                group
+                                .append('rect')
                                 .attr("class", "Rect")
-                                .style("opacity", 0.0)
+                                .style("opacity",0)
+                                .style("z-index",1000)
                                 ;
                                 
                         });
-                          
-                 
-                  
+//           
+//                var voronoi = d3.voronoi()
+//                    .x(function(d) { return xScale(d.Year); })
+//                    .y(function(d) { return yScale(d.Value); })
+//                    .extent([[-MARGIN.LEFT, -MARGIN.TOP], [Width + MARGIN.RIGHT, Height + MARGIN.BOTTOM]]);
+//
+//                var voronoiGroup = Together.append("g")
+//                    .attr("class", "voronoi");
+//
+//                voronoiGroup.selectAll("path")
+//                    .data(voronoi.polygons(d3.merge(data.map(function(d) { return d.values; }))))
+//                    .enter().append("path")
+//                    .attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; })
+//                    .on("mouseover", mouseover)
+//                    .on("mouseout", mouseout);
+//
+//                d3.select("#show-voronoi")
+//                    .property("disabled", false)
+//                    .on("change", function() { voronoiGroup.classed("voronoi--show", this.checked); });  
+
 
              };
                  
