@@ -68,7 +68,7 @@
             border:0.5px solid rgb(220,220,220) !important;
             fill:white;
         }
-        .Text{color:black;}
+       
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <script src="d3.min.js" type="text/javascript"></script>
@@ -274,7 +274,7 @@
                                         .attr('x',coords[0])
                                         .attr('y',coords[1]);
                                 
-                                    d3.select(".Text")
+                                    d3.selectAll(".Text")
                                         .style('opacity', 1)
                                         .attr('x',coords[0]+20)
                                         .attr('y',coords[1]+20)
@@ -288,7 +288,7 @@
                                         .style('opacity', 0.3);
                                         d3.select(this.nextSibling)
                                         .style('opacity', 0);
-                                        d3.select(".Text")
+                                        d3.selectAll(".Text")
                                         .style('opacity', 0);
                                        
                                     });
