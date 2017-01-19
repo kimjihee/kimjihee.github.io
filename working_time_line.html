@@ -63,7 +63,7 @@
           stroke: url(#temperature-gradient);
         }
         .Rect {
-            width:8rem !important;
+            width:10rem !important;
             height:2rem !important;
             border:0.5px solid rgb(220,220,220) !important;
             fill:white;
@@ -268,17 +268,27 @@
                                   
                                     d3.select(this)
                                         .style('opacity', 1); 
+                                                                 
                                     d3.select(this.nextSibling)
                                         .style('opacity', 1)
                                         .attr('x',coords[0])
-                                        .attr('y',coords[1])
+                                        .attr('y',coords[1]);
+                                
+                                    d3.select(".Text")
+                                        .style('opacity', 1)
+                                        .attr('x',coords[0]+20)
+                                        .attr('y',coords[1]+20)
+                                        .style("font-size",'1rem')
                                         .text(d.key + ' ' + newData.y);
-                                        
+                                    
+                                       
                                     })
-                                        .on("mouseout",  function () {
+                                .on("mouseout",  function () {
                                         d3.select(this)
                                         .style('opacity', 0.3);
                                         d3.select(this.nextSibling)
+                                        .style('opacity', 0);
+                                        d3.select(".Text")
                                         .style('opacity', 0);
                                        
                                     });
@@ -286,17 +296,17 @@
                                 group
                                 .append('rect')
                                 .attr("class", "Rect")
-                                .style("opacity",0)
-                                .style('fill','white')
+                                .style("opacity",0);
+                               
+                     
+                                group
                                 .append('text')
                                 .text(function(d){d.key;})
                                 .attr("class", "Text")
-                                .style("opacity", 0.0)
-                                .style('paddingLeft','10px')
                                 .style('fill','black')
                                 ;
-                     
-                    
+                                
+                                
                                 
                         });
 //           
