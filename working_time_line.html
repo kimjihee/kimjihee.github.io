@@ -250,13 +250,7 @@
                          .attr('class', 'data')
                          .each(function(d, i) {
                             var group = d3.select(this);
-                             
-                         group.append('text')
-                                .attr("class", "Text")
-                                .style("opacity", 0.0)
-                                .style("z-index",1001)
-                                
-                                ;
+                                                         
                             group.append("path")
                                 .attr("class", "workTime")
                                 .style('fill',"none")
@@ -277,30 +271,32 @@
                                     d3.select(this.nextSibling)
                                         .style('opacity', 1)
                                         .attr('x',coords[0])
-                                        .attr('y',coords[1]);
-                                    d3.select(this.previousSibling)
-                                        .style('opacity', 1)
-                                        .attr('x',coords[0]+10)
-                                        .attr('y',coords[1]+10)
-                                        .attr('font-size','0.8rem')
-                                        .text(d.key + ' ' + newData.y)
-                                        .style('fill','black');
+                                        .attr('y',coords[1])
+                                        .text(d.key + ' ' + newData.y);
+                                        
                                     })
                                         .on("mouseout",  function () {
                                         d3.select(this)
                                         .style('opacity', 0.3);
                                         d3.select(this.nextSibling)
                                         .style('opacity', 0);
-                                        d3.select(this.previousSibling)
-                                        .style('opacity', 0);
+                                       
                                     });
            
                                 group
                                 .append('rect')
                                 .attr("class", "Rect")
                                 .style("opacity",0)
-                                .style("z-index",1000)
+                                .style('fill','white')
+                                .append('text')
+                                .text(function(d){d.key;})
+                                .attr("class", "Text")
+                                .style("opacity", 0.0)
+                                .style('paddingLeft','10px')
+                                .style('fill','black')
                                 ;
+                     
+                    
                                 
                         });
 //           
