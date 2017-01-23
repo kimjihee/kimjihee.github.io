@@ -37,7 +37,7 @@
         .yAxis line {
             fill: none;
             stroke: #000;
-            shape-rendering: crispEdges;
+/*            shape-rendering: crispEdges;*/
         }
       
         .domain{
@@ -62,13 +62,22 @@
           fill: none;
           stroke: url(#temperature-gradient);
         }
-        .Rect {
-            width:9rem !important;
-            height:2rem !important;
-            border:0.5px solid rgb(119,119,119) !important;
-            fill:white;
-         
+        #tooltip {
+            position: absolute;
+            height: auto;
+            padding: 5px;
+            background-color: rgba(250,250,250,0.8);
+            font-size:0.7rem;
+            z-index:1000;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            border: 1px solid rgb(220,220,220);
         }
+
+        #tooltip.hidden {
+            display: none;
+        }
+
        
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
@@ -76,10 +85,17 @@
     </head>
 
     <body>
-    <P>WORKING TIME<span class="unit">&nbsp;&nbsp;per week</span></P>
+    <div id='tooltip' class="hidden">
+        <p><span id="value"></span></p>
+    </div>
+    <p>WORKING TIME<span class="unit">&nbsp;&nbsp;per week</span></p>
     <svg id="chart">
-    
-        </svg>
+        <foreignobject class="node" width="100" height="100">
+            <div id='tooltip' class="hidden">
+               
+            </div>       
+        </foreignobject>
+    </svg>
     <script>
          
 //--------------------------------------Data---------------------------------------------
@@ -155,7 +171,7 @@
                     , }
          
                     var Width = 800;
-                    var Height =250;
+                    var Height =300;
 
                  /*
                  <g>
@@ -177,139 +193,126 @@
                  */
 //------------------------------------------One Graph-------------------------------------                         console.log(yearExtent);
 
-                    var xScale = d3.scale.linear()
-                        .domain([1980,2007])//여기는 데이터 전체가 아니라 시작부터 끝.
-                        .rangeRound([0, Width]);//라운드랑 밴드랑 먼지모름.
+        var xScale = d3.scale.linear()
+            .domain([1980,2007])//여기는 데이터 전체가 아니라 시작부터 끝.
+            .rangeRound([0, Width]);//라운드랑 밴드랑 먼지모름.
+
+        var yScale = d3.scale.linear()
+            .domain(valueExtent)
+            .rangeRound([Height,0]);
+
+        var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient('bottom')
+            .tickFormat(function (d) {
+                return d;
+            })
+            .tickSize(-250)
+            .tickPadding(13);
+
+        var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient('left')
+            .tickSize(0)
+            .tickPadding(-5);
+
+        var svg = d3.select("svg")
+            .attr("width",Width+150)
+            .attr("height", Height+80)
+            .attr('class','workChart');
+
+        var realChart = svg
+            .append('g')
+            .attr("transform", "translate( "+40+" ,"+ 60 +")");
+
+        realChart.append('g')
+            .attr('class', 'xAxis')
+            .attr("transform", "translate( 0 ," + Height + ")")
+            .call(xAxis)
+            .append('path')
+            .attr('d','M 0 0 H 800' )//path 그리기 // 하지만 질문하기
+            .style('stroke','rgba(200,200,200,0.3)')
+            .style('stroke-width','2');        
+
+        realChart.append('g')
+            .attr('class', 'yAxis')
+            .attr('stroke-width','0')
+            .attr("transform", "translate( "+-20+" ," + 0 + ")")
+            .call(yAxis);           
+
+        var time = d3.svg.line()
+            .x(function(d) { return xScale(d.Year); })
+            .y(function(d) { return yScale(d.Value); })
+            .interpolate("monotone");                
+
+        svg.append("linearGradient")
+            .attr("id", "temperature-gradient")
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("x1", 0)
+            .attr("y1", yScale(35))
+            .attr("x2", 0)
+            .attr("y2",  yScale(55))
+            .selectAll("stop")
+            .data([
+                {offset: "0%", color: "rgb(255,180,0)"},
+                {offset: "50%", color: "#ff7600"},
+                {offset: "100%", color: "red"}
+            ])
+            .enter()
+            .append("stop")
+            .attr("offset", function(d) { 
+                return d.offset; 
+            })
+            .attr("stop-color", function(d) { 
+                return d.color; 
+            });  
+
+
+        var Together = realChart.selectAll('g.data').data(dataSet);
+
+        Together.enter()
+            .append('g')
+            .attr('class', 'data')
+            .each(function(d, i) {
+                var group = d3.select(this);
+
+            group.append("path")
+                .attr("class", "workTime")
+                .style('fill',"none")
+                .style('opacity', 0.4)
+                .style('stroke-width',"1.5px")
+                .attr("d",   function(d){
+                    return time(d.values);
+                })
+                .on("mouseover", function (d) {
+                    var xPosition = parseFloat(d3.select(this).attr("x"));
+                    var yPosition = parseFloat(d3.select(this).attr("y"));
+                    var coords = d3.mouse(this);
+                    var newData= {
+                    x: Math.round( xScale.invert(coords[0])),y: Math.round( yScale.invert(coords[1]))
+                    };
+
+                    d3.select(this)
+                        .style('opacity', 2)
+                        .style('stroke-width',"2.8px"); 
+
+                    d3.select('#tooltip')
+                        .style('opacity', 1)
+                        .style('left',coords[0]+130+'px')
+                        .style('top',coords[1]+80+'px')
+                        .text(d.key+" "+newData.y+"times");
+                    d3.select("#tooltip").classed("hidden", false);
+                })
+                .on("mouseout",  function () {
+                    d3.select(this)
+                        .style('opacity', 0.4)
+                        .style('stroke-width',"1.5px");
+                   d3.select("#tooltip").classed("hidden", true);
+                });
+
+    
+            });
                 
-                    var yScale = d3.scale.linear()
-                        .domain(valueExtent)
-                        .rangeRound([Height,0]);
-                 
-                    var xAxis = d3.svg.axis()
-                        .scale(xScale)
-                        .orient('bottom')
-                        .tickFormat(function (d) {
-                         return d;})
-                        .tickSize(-250)
-                        .tickPadding(13);
-
-                    var yAxis = d3.svg.axis()
-                        .scale(yScale)
-                        .orient('left')
-                        .tickSize(0)
-                        .tickPadding(-5);
-                                   
-                    var svg = d3.select("svg")
-                        .attr("width",Width+100)
-                        .attr("height", Height+80)
-                        .attr('class','workChart');
-
-                    var realChart = svg
-                        .append('g')
-                        .attr("transform", "translate( "+40+" ,"+ 60 +")");
-                       
-                    realChart.append('g')
-                        .attr('class', 'xAxis')
-                        .attr("transform", "translate( 0 ," + Height + ")")
-                        .call(xAxis)
-                        .append('path')
-                        .attr('d','M 0 0 H 800' )//path 그리기 // 하지만 질문하기
-                        .style('stroke','rgba(200,200,200,0.3)')
-                        .style('stroke-width','2');        
-
-                    realChart.append('g')
-                      .attr('class', 'yAxis')
-                      .attr('stroke-width','0')
-                      .attr("transform", "translate( "+-20+" ," + 0 + ")")
-                      .call(yAxis);           
-                 
-                  var time = d3.svg.line()
-                        .x(function(d) { return xScale(d.Year); })
-                        .y(function(d) { return yScale(d.Value); })
-                        .interpolate("monotone");                
-
-                 svg.append("linearGradient")
-                  .attr("id", "temperature-gradient")
-                  .attr("gradientUnits", "userSpaceOnUse")
-                  .attr("x1", 0).attr("y1", yScale(35))
-                  .attr("x2", 0).attr("y2",  yScale(55))
-                  .selectAll("stop")
-                  .data([
-                    {offset: "0%", color: "rgb(255,180,0)"},
-                    {offset: "50%", color: "#ff7600"},
-                    {offset: "100%", color: "red"}
-                    ])
-                    .enter().append("stop")
-                    .attr("offset", function(d) { return d.offset; })
-                    .attr("stop-color", function(d) { return d.color; });  
-
-                 
-                var Together = realChart.selectAll('g.data').data(dataSet);
-                            
-                 Together.enter()
-                         .append('g')
-                         .attr('class', 'data')
-                         .each(function(d, i) {
-                            var group = d3.select(this);
-                                                         
-                            group.append("path")
-                                .attr("class", "workTime")
-                                .style('fill',"none")
-                                .style('opacity', 0.3)
-                                .style('stroke-width',"2.5px")
-                                .attr("d",   function(d){
-                                    return time(d.values);}
-                                )
-                                .on("mouseover", function (d) {
-                                    var coords = d3.mouse(this);
-                                var newData= {
-                                x: Math.round( xScale.invert(coords[0])), 
-                                y: Math.round( yScale.invert(coords[1]))
-                                    };
-                                  
-                                    d3.select(this)
-                                        .style('opacity', 1); 
-                                                                 
-                                    d3.select(this.nextSibling)
-                                        .style('opacity', 1)
-                                        .attr('x',coords[0])
-                                        .attr('y',coords[1]);
-                                
-                                    d3.select(".Text")
-                                        .style('opacity', 1)
-                                        .attr('x',coords[0]+20)
-                                        .attr('y',coords[1]+20)
-                                        .style("font-size",'0.8rem')
-                                        .text(d.key + ' ' + newData.y);
-                                    
-                                       
-                                    })
-                                .on("mouseout",  function () {
-                                        d3.select(this)
-                                        .style('opacity', 0.3);
-                                        d3.select(this.nextSibling)
-                                        .style('opacity', 0);
-                                        d3.selectAll(".Text")
-                                        .style('opacity', 0);
-                                       
-                                    });
-           
-                                group
-                                .append('rect')
-                                .attr("class", "Rect")
-                                .style("opacity",0);
-                               
-                     
-                                group
-                                .append('text')
-                                .text(function(d){d.key;})
-                                .attr("class", "Text")
-                                .style('fill','black')
-                                ;
-                                
-                                
-                                
-                        });
 //           
 //                var voronoi = d3.voronoi()
 //                    .x(function(d) { return xScale(d.Year); })
@@ -336,3 +339,4 @@
     </script>
     </body>
 </html>
+
