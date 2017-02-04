@@ -58,7 +58,7 @@
                 row['TimePeriod'] = new Date(+row['TimePeriod'], 0, 1);
             });
                 
-            var myCountries = ['United States','United Kingdom','China','Denmark','Germany','India','Korea','Italy','France','Japan','Canada','Greece','Sweden','Brazil','Mexico'];
+            var myCountries = ['United States','United Kingdom','China','Denmark','Germany','India','Korea','Italy','France','Japan','Canada','Greece','Sweden','Brazil','Mexico','Russian Federation'];
             var pickCountries = suicide.filter(function (row) {
                 for(var i = 0; i < myCountries.length; i++) {
                     if(row['ReferenceArea'] === myCountries[i]) return true;
