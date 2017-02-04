@@ -1,7 +1,7 @@
 * {
     font-family: 'Roboto', sans-serif;
     list-style-type: none;
-    outlsine: 1px solid rgb(220, 220, 220);
+    outldine: 1px solid rgb(220, 220, 220);
     margin: 0;
     padding: 0;
     word-break: normal;
@@ -9,7 +9,7 @@
 }
 
 .point {
-    color: #4da7c5;
+    color: #009688;
 }
 
 @media screen and (max-width: 450px) {
@@ -77,23 +77,20 @@
     }
     .column li {
         height: 20rem;
-       
         /*        padding: 0.5rem;*/
     }
-    
     .column img {
         width: 100%;
         padding-top: 2rem;
     }
     .nameIn {
-        padding-top:1rem;
+        padding-top: 1rem;
         text-align: left;
-        
         font-size: 1.1rem;
     }
     .icon {
         font-size: 0.8rem;
-        color: #4da7c5;
+        color: #009688;
         opacity: 0.6;
         position: absolute;
         right: 0.4rem;
@@ -103,20 +100,19 @@
         position: relative;
         bottom: -1.2rem;
         right: 0.3rem;
-        color: #4da7c5;
+        color: #009688;
         font-size: 1rem;
         text-align: right;
         width: 100%;
         display: none;
     }
     .github li {
-       
         padding-right: 0 !important;
         float: left !important;
         width: 33.333333333333333333333333%;
         margin: 0 !important;
         height: 2rem !important;
-/*        border:1px solid red;*/
+        /*        border:1px solid red;*/
     }
 }
 
@@ -175,54 +171,60 @@
         position: absolute;
         left: 0;
         right: 0;
-        top: 6rem;
+        top: 4rem;
         bottom: 0;
     }
     .column li {
         float: left;
-        width: 33.3333333333333333%;
+        width: 50%;
         height: 21rem;
-        padding: 2.3rem;
         padding-top: 0;
         margin-bottom: 2rem;
-        height: 21rem !important;
+        margin-top: 2rem;
+        height: 23rem !important;
+        text-align: center;
     }
     .column img {
-        width: 100%;
-        margin-top: 4rem;
+        width: 80%;
+        margin-top: 6rem;
     }
     .nameIn {
         position: absolute;
         padding-top: 1rem;
         padding-bottom: 1.5rem;
+        padding-left: 4rem;
         text-align: left;
         font-size: 1.3rem;
-        width: 30%;
+        width: 50%;
     }
     .icon {
         font-size: 0.8rem;
-        color: #4da7c5;
+        color: #009688;
         opacity: 0.6;
         position: absolute;
         top: 1.2rem;
-        right: 2rem;
+        right: 4rem;
     }
     .github {
         position: relative;
         bottom: -1.2rem;
-        color: #4da7c5;
+        left: 4rem;
+        color: #009688;
         font-size: 1rem;
-        text-align: right;
-        width: 100%;
+        width: 80%;
         display: none;
     }
     .github li {
-        padding: 0.5rem !important;
+        text-align: right;
+        padding: 0.7rem !important;
         padding-right: 0 !important;
         float: left !important;
         width: 33.333333333333333333333333%;
         margin: 0 !important;
         height: 2rem !important;
+    }
+    .fa-plus {
+        font-size: 1rem;
     }
     /*
     .iSize {width:70% !important;
