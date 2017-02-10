@@ -20,7 +20,7 @@
         }
       .axis path, .axis line {
         fill: none;
-        stroke: rgba(100,100,100,0.6);
+        stroke: rgba(100,100,100,0.4);
         shape-rendering: crispEdges;
         }
       .axis text {
@@ -31,7 +31,7 @@
         position: absolute;
         top:2rem;
         left:8rem;}
-        
+        .tick{display:none;}
         .number{font-size:1rem;}
         .inRect{border:1px solid red !important;}
       </style>
@@ -62,8 +62,8 @@
             
             var myCountries = [
                 'United States','United Kingdom','China','Denmark',
-                'Germany','India','Korea','Italy','France','Japan','Canada',
-                'Greece','Sweden','Russian Federation','Mexico'
+                'Germany','India','Korea','Italy','France','Japan',
+                'Greece','Sweden','Russian Federation','Mexico','Brazil',"Canada"
             ];
             var pickCountries = suicide.filter(function (row) {
                 for(var i = 0; i < myCountries.length; i++) {
@@ -98,16 +98,16 @@
             var redraw = function(){
                   
             var MARGIN = {
-                  TOP: 70
+                  TOP: 10
                 , LEFT: 60
                 , RIGHT: 100
                 , BOTTOM: 0
             , }
             
           
-            var padding = 40;
+            var padding = 20;
             var Width = 1000;
-            var Height = 500;
+            var Height = 550;
 ////----------------------------------------column----------------------------------------
             d3.select('#chart')
                 .attr('height',Height + 100);
@@ -125,16 +125,16 @@
                     
             columnSel.exit().remove();
             columnSel.attr('transform', function (d,i) {
-                return 'translate(' + ( Math.floor(i%5)* (Width/5) + MARGIN.LEFT )+ ', '+ ((Height/3)* Math.floor(i/5) +  MARGIN.TOP  )+ ')';
+                return 'translate(' + ( Math.floor(i%8)* (Width/8) + MARGIN.LEFT )+ ', '+ ((Height/2)* Math.floor(i/8) +  MARGIN.TOP  )+ ')';
             });
          
                           
             var xScale = d3.scale.linear()
                 .domain(yearExtent)
-                .rangeRound([padding*1.5, (Width/5) - padding*1.5]);
+                .rangeRound([padding*1.5, (Width/8) - padding*1.5]);
             var yScale = d3.scale.linear()
                 .domain(valueExtent)
-                .rangeRound([(Height/3) - padding*0.8 , padding*0.8]);
+                .rangeRound([(Height/2) - padding*2 , padding*2]);
 
             var xAxis = d3.svg.axis()
                 .scale(xScale)
@@ -144,37 +144,38 @@
                 .tickFormat(d3.time.format('%Y'))
                 .tickSize(0)
                 .tickPadding(8);
-            
-            var yAxis = d3.svg.axis()
-                .scale(yScale)
-                .orient('left')
-                .tickValues([10,30,50])
-                .tickPadding(10)
-                .tickSize(0); 
+//            
+//            var yAxis = d3.svg.axis()
+//                .scale(yScale)
+//                .orient('right')
+//                .tickValues([10,30,50,70])
+//                .tickPadding(10)
+//                .tickSize(0); 
             
           columnSel
                 .append('g')
                 .attr('class', 'axis x')
                 .attr("transform", "translate(  "+ - (padding) +" ," + yScale.range()[0] + ")")
                 .style('stroke-width','1')
-                .style('color','rgb(240,240,240)') 
-//                .call(xAxis)
+                .style('fill','rgba(240,240,240,0.5)') 
+                .call(xAxis)
                 .append("text")
-                .attr("y", 10)
-                .attr("x", padding+20)
+                .attr("y", 15)
+                .attr("x", padding+10)
                 .style("text-anchor", "start")
                 .style("font-weight", "bold")
-                .style('fill','black')
+                .style('fill','rgba(0,0,0,0.8)')
                 .style('font-size','0.8rem')
                 .text(function (d){return d.key; });
-         
-//         columnSel
+//         
+//            d3.select('g.Germany')
 //                .append('g')
 //                .attr('class', 'axis y')
+//                .attr("transform", "translate(  "+ 100 +" ,0)")
 //                .style('stroke-width','0')
 //                .style('color','rgb(200,200,200)')
-//                .call(yAxis);     
-                
+//                .call(yAxis);  
+
             var dataLine = d3.svg.line()
                     .x(function(d) { return xScale(d.TimePeriod); })
                     .y(function(d) { return yScale(d.Value); })
@@ -185,7 +186,7 @@
             });
             var color = d3.scale.ordinal()
                 .domain(['Female', 'Male'])
-                .range(['#44496b','#57b057']);
+                .range(['#d86957','#818fa5']);
 
             dataSel.enter()
                 .append('path')
@@ -198,7 +199,21 @@
                 .style('stroke-width',"2.5px")
                 .attr('d', function(d) {
                     return dataLine(d.values);
-                });
+                })
+				.on('mouseover',function(d){ 
+					 
+					d3.select(this)
+                        .style('stroke-width','3.5px');
+				 	d3.select(this.nextSibling.firstChild)
+                        .style('font-weight','800')
+                        					})
+				.on('mouseout',function(d){ 
+					 
+					d3.select(this)
+                        .style('stroke-width','2.5px');
+				 	d3.select(this.nextSibling.firstChild)
+                        .style('font-weight','normal')
+                        					});
             dataSel.exit().remove();
             
             var textSel = columnSel.selectAll('g.inRect').data(function(d){
@@ -213,6 +228,17 @@
                 .attr('x',-20)
                 .attr('y',20);
                 
+//            columnSel
+//                .append('rect')
+//                .attr('width',100)
+//                .attr('height',80)
+//                .style('fill','grey')
+//                .style('opacity',0.1)
+//                .style('z-index','-30')
+//                .attr('class','Rect')
+//                .attr('x',10)
+//                .attr('y',+90);
+                
             var Text = textSel
                 .selectAll('text.number')
                 .data(function(d){return d.values});   
@@ -220,15 +246,24 @@
             Text.enter()
                 .append("text")
                 .attr("class", "number")
-                .attr("transform","translate(  "+ - (padding+4) +" ,-5)")
+                .attr("transform","translate(  "+ - (padding+4.5) +" ,-5)")
                 .attr("x",function(d) { return xScale(d.TimePeriod); })
                 .attr("y",function(d) { return yScale(d.Value);})            
-                .attr('fill',function(d) {return color(d.key);})
+                .attr('fill','black')
+                .attr('opacity',0.8)
                 .style('font-size','0.4rem')
-                .text(function(d){return d.Value.toFixed();});         
-//         function(d) {return yScale(d.Value);}
+                .text(function(d){return d.Value.toFixed();});  
                 
-            };
+//            Text.enter()
+//                .append("circle")
+//                .attr("class", "number circle")
+//                .attr("transform","translate(  "+ - (padding) +" ,0)")
+//                .attr("cx",function(d) { return xScale(d.TimePeriod); })
+//                .attr("cy",function(d) { return yScale(d.Value);})            
+//                .attr('fill',function(d){return color(d.key);})
+//                .attr('r',2);
+            
+        };
             
                        
         </script>
