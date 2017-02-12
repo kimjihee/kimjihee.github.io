@@ -42,8 +42,8 @@
             stroke-dasharray:1,1;
           
             }
-        .y .domain {display:none;}
-        .x .domain {display:none;}      
+        .path .domain {display:none;}
+/*        .x .domain {display:none;}      */
 
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
@@ -60,14 +60,25 @@
 </div>
     <svg id="chart"> </svg>
     <script>
-         
 //--------------------------------------Data---------------------------------------------
         var dataSet = [];
-        
-        var Workingtime = d3.csv('data/서울지하철역별 공기질.csv', function (err, trainAir) {
+        var lineNames = [];
+        var metrics = ['PM10', 'CO2', 'HCHO', 'CO', 'NO2', 'Rn', 'TVOC', '석면','O3'];
+        var stopNames = [];
+        var extents = [];
+
+        // Bad
+        // line, stop, co2, no2, o3
+        // 1     X     0    0    0
+
+        // Good (tidy data)
+        // line, stop, metric, value
+        // 1     X     co2     0
+        // 1     X     no2     0
+        // 1     X     o3      0
+
+        d3.csv('data/서울지하철역별 공기질.csv', function (err, trainAir) {
             var tidyData = [];
-            var metrics = ['PM10', 'CO2', 'HCHO', 'CO', 'NO2', 'Rn', 'TVOC', '석면', 'O3'];
-            
             trainAir.forEach(function (row) {
                 for(var i = 0; i < metrics.length; i++) {
                     var newRow = {
@@ -80,382 +91,186 @@
                     tidyData.push(newRow);
                 }
             });
-            console.log(tidyData);
-            
-            valuePM10 = [0,d3.max(trainAir, function(d) {return d.PM10;})]//nest하기전 dataSet=trainAir
-            valueCO2 = d3.extent(trainAir, function(d) {return d.CO2;});
-            valueHCHO = d3.extent(trainAir, function(d) {return d.HCHO;});
-            valueCO = d3.extent(trainAir, function(d) {return d.CO;});
-            valueNO2 = d3.extent(trainAir, function(d) {return d.NO2;});
-            valueRn = d3.extent(trainAir, function(d) {return d.Rn;});
-            valueTVOC = d3.extent(trainAir, function(d) {return d.TVOC;});
-            value석면 = d3.extent(trainAir, function(d) {return d.석면;});
-            valueO3 = d3.extent(trainAir, function(d) {return d.O3;});
-            
-            // line, stop, co2, no2, o3
-            // 1     X     0    0    0
 
-            // line, stop, metric, value
-            // 1     X     co2     0
-            // 1     X     no2     0
-            // 1     X     o3      0
-
+            lineNames = d3.set(tidyData.map(function(d) {return d.line;})).values();
+            stopNames = d3.set(tidyData.map(function(d) {return d.Stop;})).values();
+           
+            for(var i = 0; i < metrics.length; i++) {
+                var extent = d3.extent(trainAir, function(d) {return +d[metrics[i]];});
+                extents.push(extent);
+            }
             
             dataSet = d3.nest()
                 .key(function(d){
-                return d.line;
-                })
-                .key(function(d){
-                return d.Stop;
+                    return d.metric;
                 })
                 .entries(tidyData); 
-             
-       
+            redraw();
             
-//                redraw();
-             });
-       
+        });
+        
+        var redraw = function(){
+            console.log(dataSet);
+            MARGIN = {
+                TOP: 0,
+                LEFT: 0,
+                RIGHT: 10,
+                BOTTOM: 0
+            };
+
+            var Width = 1100;
+            var Height = 700;
+
+            var colorScale = d3.scale.ordinal()
+                .domain(lineNames)
+                .range(['#44496b','#57b057','#f78d41','#92d4ee']);         
+
+            var xScale= d3.scale.ordinal()
+                .domain(stopNames)
+                .rangeRoundBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT], 0.06, 0);
+            
+            var yScales = [];
+            for(var i = 0; i < metrics.length; i++) {
+                var Scale = d3.scale.linear()
+                    .domain(extents[i])
+                    .range([0, Height / metrics.length]);
+                yScales.push(Scale);
+            }
+            var colorBar = d3.scale.ordinal()
+                        .domain(colorScale.range())
+                        .rangeRoundBands([0, 200]);
+    
+            var makeBar = d3.select('#chart').selectAll('rect.bar').data(colorBar.domain());  
+
+            makeBar.enter()
+                .append('rect')
+                .attr('class', 'bar')
+                .style('fill', function (d) {
+                        return d;
+                })
+                .attr('x', function (d) {
+                        return colorBar(d); 
+                })//이게 x값이 나옴.
+                .attr('y', 0)
+                .attr('width', colorBar.rangeBand())//너비 상수
+                .attr('height', 10);
+
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .tickFormat(function(d){return d;})
+                .tickSize(0)
+                .tickPadding(15);
+            
+            var yAxises = [];
+            for(var i = 0; i < metrics.length; i++) {
+                var axis = d3.svg.axis()
+                    .scale(yScales[i])       
+                    .orient('right')
+                    .tickSize(-1050)
+                    .tickPadding(5);
+                yAxises.push(axis);
+            }
+
+            var rowYBand = d3.scale.ordinal()
+                .domain(metrics)
+                .rangeBands([0, Height+200], 0.2); 
+
+            var rowSel = d3.select('#chart').selectAll('g.row').data(dataSet);
+
+            rowSel
+                .enter()
+                .append('g')
+                .attr('width',Width)
+                .attr('class', function(d){
+                    return 'row ' + d.key;
+                })
+                .each(function(d, i) {
+                    d3.select(this)
+                        .append('g')
+                        .attr('class', function(d){return d.key+"yAxis";})
+						.style('stroke-width',1)
+                        .call(yAxises[i]);
+                })
+				.append('g')
+                .attr('class','x axis')
+                .call(xAxis);
+                        
+            rowSel
+                .exit()
+                .remove();
+
+            rowSel
+                .attr('transform', function (d) {
+                    return 'translate('+70+',' + rowYBand(d.key) +' )';//()안에는 도메인이 들어가야 합니다.
+                 })
+                .append('text')
+                .text(function(d) { return d.key;})
+                .style('alignment-baseline','central')
+                .style('font-weight','500')
+                .style('font-size','0.8rem')
+                .attr('dx','-15');
+            
+			var stopSel = rowSel.selectAll('g.stop').data(function(d) {return d.values;});
+			stopSel
+				.enter()
+				.append('g')
+				.attr('class', "stop")
+                .append('rect')
+                .attr('class',function(d){return d.key;})
+                .attr('x',function(d,i){return xScale.rangeBand()*i;})
+                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('height',function(d,i,j){return yScales[j](d.value);})//d는 데이터셋,
+//			i는 네스트(matric) 안에있는 것들의 갯수(이 경우는 스탑), j는 네스트의 갯수 i를 시작으로 위로 올라갈수록 위 단계의 묶음의 갯수가 된다.
+                .attr('width', xScale.rangeBand())//이것이 band로 나눠진 너비
+                .style("fill", function(d){
+                    return colorScale(d.line);
+                })
+                .append("title")
+				.text(function(d){
+                        return d.Stop});
+			
+//            var MetricG = [];
+//            var perMetric = [];
 //        
-//            var redraw = function(){        
-//            MARGIN = {
-//                TOP: 0,
-//                LEFT: 0,
-//                RIGHT: 10,
-//                BOTTOM: 0
-//            };
-//            
-//            var Width = 1100;
-//            var Height = 700;
-//            
-//            var columnyBand = d3.scale.ordinal()
-//                .domain(['PM10','CO2','HCHO','CO','NO2','Rn','TVOC','석면','O3'])
-//                .rangeBands([0, Height+200], 0.2);  //간격 만들어주려고 이렇게함 그런데 잘못된듯. 
-//            
-//            var columnSel = d3.select('#chart').selectAll('g.column').data(columnyBand.domain());
-//            
-//            columnSel.enter()
-//                .append('g')
-//                .attr('width',Width)
-//                .attr('class', function (d) {
-//                    return 'column ' + d;
+//            for(var i = 0; i <metrics.length; i++) {
+//                var G = d3.select('g.' + metrics[i]).selectAll('g')
+//                        .data(dataSet[i]);
+//                MetricG.push(G);
+//              
+//                var Rect = MetricG[i].select('rect')
+//                        .data(function(d){
+//                            console.log(d);
+//                             return d.values;
+//                         });
+//            };  
+//          
+//            var Rectbinding =  Rect.select('rect')
+//                                .data(function(d){
+//                                    return d.values;
+//                                })
+//                              ;
+//            Rectbinding      
+//                .enter()
+//                .append('rect')
+//                .attr('class',function(d){return d.key;})
+//                .attr('x',function(d,i){return Width/102*i;})
+//                .attr('y',0)//반대로 채워준다고 생각하면 됨
+//                .attr('height',function(d){
+//                    console.log(d);
+//                    return d.value;
 //                })
-//                .each(function(d) {
-//                    d3.select(this).append('g')
-//                        .attr('class', 'y axis')
-//                        .call()
-//                });
-//
-//            columnSel.exit().remove();
-//            
-//            columnSel.attr('transform', function (d) {
-//                return 'translate('+70+',' + columnyBand(d) +' )';
-//                                                     })
-//                    .append('text')
-//                    .text(function(d){return d;})
-//                    .style('alignment-baseline','central')
-//                    .style('font-weight','500')
-//                    .style('font-size','0.8rem')
-//                    .attr('dx','-15');
-//             
-//            var countryNames = dataSet.map(function(d) {return d.key;});
-//            var xScale= d3.scale.ordinal()
-//                .domain(countryNames)//어떨때 ([])이고 어떨때 ("")인지 질문
-//                .rangeRoundBands([0,Width-MARGIN.LEFT-MARGIN.RIGHT],0.06,0);
-//            
-//            var PM10Scale= d3.scale.linear()
-//                .domain(valuePM10)
-//                .range([0,Height/9]);
-//           
-//            var CO2Scale= d3.scale.linear()
-//                .domain(valueCO2)
-//                .range([0,Height/9]);
-//            
-//            var COScale= d3.scale.linear()
-//                .domain(valueCO)
-//                .range([0,Height/9]);
-//
-//            var HCHOScale= d3.scale.linear()
-//                .domain(valueHCHO)
-//                .range([0,Height/9]);
-//
-//            var NO2Scale= d3.scale.linear()
-//                .domain(valueNO2)
-//                .range([0,Height/9]);
-//
-//            var RnScale= d3.scale.linear()
-//                .domain(valueRn)
-//                .range([0,Height/9]);
-//
-//            var TVOCScale= d3.scale.linear()
-//                .domain(valueTVOC)
-//                .range([0,Height/9]);
-//
-//            var 석면Scale= d3.scale.linear()
-//                .domain(value석면)
-//                .range([0,Height/9]);
-//
-//            var O3Scale= d3.scale.linear()
-//                .domain(valueO3)
-//                .range([0,Height/9]);
-//            
-//            var colorScale = d3.scale.ordinal()
-//                .domain(['1호선','2호선','3호선','4호선'])
-//                .range(['#44496b','#57b057','#f78d41','#92d4ee']);            
-//                
-//            var xAxis = d3.svg.axis()
-//            .scale(xScale)
-//            .orient('bottom')
-//            .tickFormat(function(d){return d;})
-//            .tickSize(0)
-//            .tickPadding(15);
-//            
-//            var PM10yAxis = d3.svg.axis()
-//            .scale(PM10Scale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//                
-//            var CO2yAxis = d3.svg.axis()
-//            .scale(CO2Scale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//                
-//            var HCHOyAxis = d3.svg.axis()
-//            .scale(HCHOScale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//                
-//            var COyAxis = d3.svg.axis()
-//            .scale(COScale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//                
-//            var NO2yAxis = d3.svg.axis()
-//            .scale(NO2Scale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//                
-//            var RnyAxis = d3.svg.axis()
-//            .scale(RnScale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//                
-//            var TVOCyAxis = d3.svg.axis()
-//            .scale(TVOCScale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//                
-//            var 석면yAxis = d3.svg.axis()
-//            .scale(석면Scale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//                
-//            var O3yAxis = d3.svg.axis()
-//            .scale(O3Scale)       
-//            .orient('right')
-//            .tickSize(-1050)
-//            .tickPadding(5);
-//            
-//            var realChart = columnSel
-//            .append('g')
-//            .attr('class','Airs')
-//            .attr("transform","translate("+50+",0)")
-//            ;
-//            
-//            realChart.append('g')
-//            .attr('class','x axis')
-//            .call(xAxis)
-//            ;          
-//            
-//             realChart.append('g')
-//            .attr('class','y axis PM10')
-//            .attr('transform',"translate("+(Width-50)+",0)")
-////            .attr('stroke-width','0')
-//            .style('fill','rgb(200,200,200)')
-//            .call(PM10yAxis)
-//            ;           
-//       
-//            var colorBar = d3.scale.ordinal()
-//                        .domain(colorScale.range())
-//                        .rangeRoundBands([0, 200]);
-//    
-//            var makeBar = d3.select('#chart').selectAll('rect.bar').data(colorBar.domain());  
-//                    
-//                makeBar.enter()
-//                        .append('rect')
-//                        .attr('class', 'bar')
-//                        .style('fill', function (d) {
-//                                return d;})
-//                        .attr('x', function (d) {
-//                                return colorBar(d);})//이게 x값이 나옴.
-//                        .attr('y', 0)
-//                        .attr('width', colorBar.rangeBand())//너비 상수
-//                        .attr('height', 10);
-//                                           
-//            var PM10Data = d3.select('g.column.PM10').selectAll("g").data(dataSet);
-//            
-//            var PM10Rect = PM10Data.selectAll("rect.PM10").data(function(d){return d.values});
-//            PM10Rect
-//                .enter()
-//                .append('rect')
-//                .attr('class','PM10')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return PM10Scale(d.PM10);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                return colorScale(d.line);})
+//                .attr('d',function(d){return d.values;})
+//                .attr('width', xScale.rangeBand())//이것이 band로 나눠진 너비
+//                .style("fill", function(d){
+//                        console.log(d);
+//                    return colorScale(d.line);
+//                })
 //                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    });
-//           
-//            
-//            var CO2Data = d3.select('g.column.CO2').selectAll("g").data(dataSet);
-//            var CO2Rect = CO2Data.selectAll("rect.CO2").data(function(d){return d.values});
-//            CO2Rect
-//                .enter()
-//                .append('rect')
-//                .attr('class','CO2')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return CO2Scale(d.CO2);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                return colorScale(d.line);})
-//                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    });
-//            
-//            var COData = d3.select('g.column.CO').selectAll("g").data(dataSet);
-//            var CORect = COData.selectAll("rect.CO").data(function(d){return d.values});
-//            CORect
-//                .enter()
-//                .append('rect')
-//                .attr('class','CO')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return COScale(d.CO);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                return colorScale(d.line);})
-//                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    });
-//            
-//            var NO2Data = d3.select('g.column.NO2').selectAll("g").data(dataSet);
-//            var NO2Rect = NO2Data.selectAll("rect.NO2").data(function(d){return d.values});
-//            NO2Rect
-//                .enter()
-//                .append('rect')
-//                .attr('class','NO2')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return NO2Scale(d.NO2);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                return colorScale(d.line);})
-//                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    });
-//                       
-//            var RnData = d3.select('g.column.Rn').selectAll("g").data(dataSet);
-//            var RnRect = RnData.selectAll("rect.Rn").data(function(d){return d.values});
-//            RnRect
-//                .enter()
-//                .append('rect')
-//                .attr('class','Rn')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return RnScale(d.Rn);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                return colorScale(d.line);})
-//                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    });
-//            
-//            var TVOCData = d3.select('g.column.TVOC').selectAll("g").data(dataSet);
-//            var TVOCRect = TVOCData.selectAll("rect.TVOC").data(function(d){return d.values});
-//            TVOCRect
-//                .enter()
-//                .append('rect')
-//                .attr('class','TVOC')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return TVOCScale(d.TVOC);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                return colorScale(d.line);})
-//                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    });
-//            
-//            var 석면Data = d3.select('g.column.석면').selectAll("g").data(dataSet);
-//            var 석면Rect = 석면Data.selectAll("rect.석면").data(function(d){return d.values});
-//            석면Rect
-//                .enter()
-//                .append('rect')
-//                .attr('class','석면')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return 석면Scale(d.석면);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                            return colorScale(d.line);})
-//                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    }); 
-//             
-//            var O3Data = d3.select('g.column.O3').selectAll("g").data(dataSet);
-//            var O3Rect = O3Data.selectAll("rect.O3").data(function(d){return d.values});
-//            O3Rect
-//                .enter()
-//                .append('rect')
-//                .attr('class','석면')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return O3Scale(d.O3);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                            return colorScale(d.line);})
-//                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    }); 
-//            
-//            var HCHOData = d3.select('g.column.HCHO').selectAll("g").data(dataSet);
-//            var HCHORect = HCHOData.selectAll("rect.HCHO","rect.HCHOTop").data(function(d){return d.values});
-//            HCHORect
-//                .enter()
-//                .append('rect')
-//                .attr('class','HCHO')
-//                .attr('x',function(d,i){return Width/102*i;})
-//                .attr('y',0)//반대로 채워준다고 생각하면 됨
-//                .attr('height',function(d){return HCHOScale(d.HCHO);})
-//                .attr('width',xScale.rangeBand())//이것이 band로 나눠진 너비
-//                .style("fill", function (d) {
-//                                return colorScale(d.line);})
-//                .append("title")
-//                    .text(function (d,i) {
-//                    return d.Stop ;
-//                    });
-//                
-//            
-//        };
+//                    .text(function(d){
+//                        return d.Stop});
+         };
+//        http://bl.ocks.org/mbostock/79a82f4b9bffb69d89ae
     </script>
     </body>
 </html>

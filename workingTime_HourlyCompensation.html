@@ -265,9 +265,10 @@
                     return compenLine(d.values);
                 });
          
-            var rectSel = columnSel.selectAll('rect.rect').data(function(d){return d.values;})
+            var rectSel = columnSel.selectAll('rect').data(function(d){return d.values;})
          
-            columnSel
+            rectSel
+				.enter()
                 .append('rect')
                 .attr('class', function (d) {
                     return 'rect' + d.key;
