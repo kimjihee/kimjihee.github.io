@@ -50,6 +50,16 @@
         #tooltip.hidden {
             display: none;
         }
+		.key{
+			font-size:0.8rem;
+			padding-bottom:0.7rem;
+			white-space:nowrap;
+		}
+		.value{
+			color:#6e8da6;
+			font-weight:bold;
+			padding-right:0.1rem;
+		}
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     
@@ -58,7 +68,7 @@
         <p> CO2 Emission <span class="unit">Tons Per Capita</span></p>
         <svg id="chart" >  <foreignobject class="node" width="100" height="100">
             <div id='tooltip' class="hidden">
-               
+               <span class="key"></span> <span class="value"></span>tons
             </div>       
         </foreignobject>
         </svg>
@@ -190,8 +200,9 @@
                             .style('opacity', 1)
                             .style('left',coords[0]+30+'px')
                             .style('top',coords[1]+(-20)+'px')
-                            .text(d.key+" "+newData.y+"tons");
-                        d3.select("#tooltip").classed("hidden", false);
+							.classed("hidden", false);
+						d3.select('#tooltip .key').text(d.key);
+						d3.select('#tooltip .value').text(newData.y);
                     })
                     .on("mouseout",  function () {
                         d3.select(this)
