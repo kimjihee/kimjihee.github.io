@@ -1,7 +1,7 @@
 * {
     font-family: 'Roboto', sans-serif;
     list-style-type: none;
-    outldine: 1px solid rgb(220, 220, 220);
+    outlsine: 1px solid rgb(220, 220, 220);
     margin: 0;
     padding: 0;
     word-break: normal;
@@ -181,7 +181,7 @@
         padding-top: 0;
         margin-bottom: 2rem;
         margin-top: 2rem;
-        height: 23rem !important;
+        height: 24.5rem !important;
         text-align: center;
     }
     .column img {
