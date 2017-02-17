@@ -5,44 +5,62 @@
     <meta charset="utf-8">
     <title>Seoul Subway Air Pollution</title>
     <style>
-/*        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);*/
+        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
         body {
             font-family: 'Roboto', sans-serif;
+			font-family: 'Nanum Gothic', sans-serif;
             font-size: 0.4rem;
+			margin:0;
+			padding:0;
         }
         #chart {
             width:1200px;
-            height:900px;
-            position: absolute;
-            top:7rem;
-           }
-        svg {
-            shape-rendering: crispEdges;
-          
-        }
-        #value {display:none;}
-        h1 {
+            height:1400px;
             position: absolute;
             top:2rem;
-            left:3.7rem;
-            font-size:1.5rem;
-            font-weight:400;
+			margin:0;
+			padding:0;
+			
+           }
+        svg {
+            shape-rendering: crispEdges; 
         }
+		#value {display:none;}
+		#tooltip{
+			position:absolute;
+			height: auto;
+            padding: 5px;
+			z-index:1000;
+			background-color:rgba(255,255,255,1);
+			border: 1px solid rgba(190,190,190,0.9);
+			font-weight:200;
+			font-size:0.7rem;	
+		}
+	 	#tooltip.hidden {
+            display: none;
+        }
+		.h1 {
+			position:absolute;
+			top:0;
+			left:3.2rem;
+			font-size:2.5rem;
+/*			font-weight:bold;*/
+		}
         .x text { display:none;
         }
         .y text {
          font-size:0.7rem !important;
          alignment-baseline:central;
           }
-        .axis path,
+	    .axis path,
         .axis line {
             fill: none;
             stroke: rgb(220,220,220);
             shape-rendering: crispEdges;
             stroke-dasharray:1,1;
-          
             }
-        .path .domain {display:none;}
+       	.domain {display:none;}
+		
 /*        .x .domain {display:none;}      */
 
     </style>
@@ -51,14 +69,18 @@
 </head>
 
 <body>
-    <h1>Seoul Subway Air Pollution</h1>
-    <div id="tooltip" class="hidden">
-        <p><span id="value">
-        단위,,,'㎍/㎥','ppm','㎍/㎥','ppm','ppm','Bq/㎥','㎍/㎥','개/cc','ppm'
-        기준,권고값,,140,1000,100,9,0.05,14.8,500,0.01,0.06
-        기준,전체평균,,90.7 ,556 ,11.9 ,0.9 ,0.026 ,17.3 ,168.8 ,0.01,0.013  </span></p>
+    
+    
+       
 </div>
-    <svg id="chart"> </svg>
+	<svg id="chart">
+		<foreignobject class="html" width="800" height="100">
+			<div class='h1'>Seoul Subway Air Pollution</div>
+			<div id='tooltip' class="hidden">
+			
+			</div> 
+		</foreignobject> 
+	</svg>
     <script>
 //--------------------------------------Data---------------------------------------------
         var dataSet = [];
@@ -76,7 +98,12 @@
         // 1     X     co2     0
         // 1     X     no2     0
         // 1     X     o3      0
-
+		
+//		 <p><span id="value">
+//        단위,,,'㎍/㎥','ppm','㎍/㎥','ppm','ppm','Bq/㎥','㎍/㎥','개/cc','ppm'
+//        기준,권고값,,140,1000,100,9,0.05,14.8,500,0.01,0.06
+//        기준,전체평균,,90.7 ,556 ,11.9 ,0.9 ,0.026 ,17.3 ,168.8 ,0.01,0.013  </span></p>
+			
         d3.csv('data/서울지하철역별 공기질.csv', function (err, trainAir) {
             var tidyData = [];
             trainAir.forEach(function (row) {
@@ -127,7 +154,7 @@
 
             var xScale= d3.scale.ordinal()
                 .domain(stopNames)
-                .rangeRoundBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT], 0.06, 0);
+                .rangeRoundBands([0, Width - MARGIN.LEFT - MARGIN.RIGHT],0.1);
             
             var yScales = [];
             for(var i = 0; i < metrics.length; i++) {
@@ -136,26 +163,8 @@
                     .range([0, Height / metrics.length]);
                 yScales.push(Scale);
             }
-            var colorBar = d3.scale.ordinal()
-                        .domain(colorScale.range())
-                        .rangeRoundBands([0, 200]);
-    
-            var makeBar = d3.select('#chart').selectAll('rect.bar').data(colorBar.domain());  
-
-            makeBar.enter()
-                .append('rect')
-                .attr('class', 'bar')
-                .style('fill', function (d) {
-                        return d;
-                })
-                .attr('x', function (d) {
-                        return colorBar(d); 
-                })//이게 x값이 나옴.
-                .attr('y', 0)
-                .attr('width', colorBar.rangeBand())//너비 상수
-                .attr('height', 10);
-
-            var xAxis = d3.svg.axis()
+                        
+			var xAxis = d3.svg.axis()
                 .scale(xScale)
                 .orient('bottom')
                 .tickFormat(function(d){return d;})
@@ -167,16 +176,22 @@
                 var axis = d3.svg.axis()
                     .scale(yScales[i])       
                     .orient('right')
-                    .tickSize(-1050)
-                    .tickPadding(5);
+					.ticks(6)
+                    .tickSize(0)
+                    .tickPadding(1050);
                 yAxises.push(axis);
             }
 
             var rowYBand = d3.scale.ordinal()
                 .domain(metrics)
-                .rangeBands([0, Height+200], 0.2); 
+                .rangeBands([0, Height+200],0.5);
 
-            var rowSel = d3.select('#chart').selectAll('g.row').data(dataSet);
+			var row = d3.select('#chart')
+						.append('g')
+						.attr('class','rowG')
+						.attr('transform','translate(0,70)');
+			
+			var rowSel = row.selectAll('g.row').data(dataSet);
 
             rowSel
                 .enter()
@@ -201,8 +216,8 @@
                 .remove();
 
             rowSel
-                .attr('transform', function (d) {
-                    return 'translate('+70+',' + rowYBand(d.key) +' )';//()안에는 도메인이 들어가야 합니다.
+                .attr('transform', function (d,i,j) {
+                    return 'translate('+70+',' + rowYBand(d.key)*1.5 +' )';//()안에는 도메인이 들어가야 합니다.
                  })
                 .append('text')
                 .text(function(d) { return d.key;})
@@ -211,14 +226,19 @@
                 .style('font-size','0.8rem')
                 .attr('dx','-15');
             
-			var stopSel = rowSel.selectAll('g.stop').data(function(d) {return d.values;});
+			var stopG = rowSel.append('g')
+							.attr('class','stop')
+							.attr('transform','translate(30,-5)');
+			
+			var stopSel = stopG.selectAll('rect').data(function(d) {return d.values;});
+			
 			stopSel
 				.enter()
-				.append('g')
-				.attr('class', "stop")
+//				.append('g')
+//				.attr('class', "stop")
                 .append('rect')
                 .attr('class',function(d){return d.key;})
-                .attr('x',function(d,i){return xScale.rangeBand()*i;})
+                .attr('x',function(d,i){return xScale.rangeBand()*i+i;})
                 .attr('y',0)//반대로 채워준다고 생각하면 됨
                 .attr('height',function(d,i,j){return yScales[j](d.value);})//d는 데이터셋,
 //			i는 네스트(matric) 안에있는 것들의 갯수(이 경우는 스탑), j는 네스트의 갯수 i를 시작으로 위로 올라갈수록 위 단계의 묶음의 갯수가 된다.
@@ -226,10 +246,53 @@
                 .style("fill", function(d){
                     return colorScale(d.line);
                 })
-                .append("title")
-				.text(function(d){
-                        return d.Stop});
+//				.attr('opacity',0.85)
+                .on("mouseover",function(d){
+				
+				coords = d3.mouse(this);
+					
+				d3.select("#tooltip")
+					.classed("hidden", false)
+					.style('left', coords[0]+92+'px')
+					.style('top', coords[1]+200+'px')
+					.text(d.Stop);
+				})
+			  	.on("mouseout",function(d){
+				 	d3.select("#tooltip").classed("hidden", true);
+				});
+		
+			var colorBar = d3.scale.ordinal()
+                        .domain(colorScale.range())
+                        .rangeRoundBands([0, 200]);
+    
+            var barG = d3.select('#chart')
+						.append('g')
+						.attr('class','barG')
+						.attr('transform','translate(900,50)');
 			
+			var bar= barG.selectAll('rect.bar').data(colorBar.domain());  
+
+	   		bar.enter()
+                .append('rect')
+                .attr('class', 'bar')
+                .style('fill', function (d) {
+                        return d;
+                })
+                .attr('x', function (d) {
+                        return colorBar(d); 
+                })//이게 x값이 나옴.
+                .attr('y', 0)
+                .attr('width', colorBar.rangeBand())//너비 상수
+                .attr('height', 10);		
+			
+			bar.enter()
+			.append('text')
+			.attr('x', function (d) {
+                        return colorBar(d); 
+                })
+			.attr('y',-10)
+			.data(['1호선','2호선','3호선','4호선'])
+			.text(function(d,i,j){return d[j]+"호선";});
 //            var MetricG = [];
 //            var perMetric = [];
 //        
