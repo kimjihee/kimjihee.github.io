@@ -5,34 +5,35 @@
     <title>suicide rate</title>
     <style>
         @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-        body {
-            font-family: 'Roboto', sans-serif;
-            font-size:0.4rem;
-           
-        }   
-      #chart {
-        position: absolute;
-          top:2rem;
-          left:3.2rem;
-          right:10vw;
-          height:550px;
-        }
-      .axis path, .axis line {
-        fill: none;
-        stroke: rgba(100,100,100,0.4);
-        shape-rendering: crispEdges;
-        }
-      .axis text {
-           fill:rgba(150,150,150,0.7); 
-        } 
-        p{
-        font-size:1.8rem;
-        position: absolute;
-        top:2rem;
-        left:8rem;}
-        .tick{display:none;}
-        .number{font-size:1rem;}
-        .inRect{border:1px solid red !important;}
+		body {
+			font-family: 'Roboto', sans-serif;
+			font-size:0.4rem;
+
+		}   
+		#chart {
+			position: absolute;
+		  top:2rem;
+		  left:3.2rem;
+		  right:10vw;
+		  height:550px;
+		}
+		.axis path, .axis line {
+		fill: none;
+		stroke: rgba(100,100,100,0.4);
+		shape-rendering: crispEdges;
+		}
+		.axis text {
+		   fill:rgba(150,150,150,0.7); 
+		} 
+		p{
+		font-size:2.5rem !important;
+		position: absolute;
+		top:2rem;
+		left:6.7rem;
+		}
+		.tick{display:none;}
+		.number{font-size:1rem;}
+		.inRect{border:1px solid red !important;}
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     
@@ -97,7 +98,7 @@
             var redraw = function(){
                   
             var MARGIN = {
-                  TOP: 10
+                  TOP: 40
                 , LEFT: 60
                 , RIGHT: 100
                 , BOTTOM: 0
@@ -106,7 +107,7 @@
           
             var padding = 20;
             var Width = 1000;
-            var Height = 550;
+            var Height = 500;
 ////----------------------------------------column----------------------------------------
             d3.select('#chart')
                 .attr('height',Height + 100);
@@ -226,18 +227,7 @@
                 .attr('class','inRect')
                 .attr('x',-20)
                 .attr('y',20);
-                
-//            columnSel
-//                .append('rect')
-//                .attr('width',100)
-//                .attr('height',80)
-//                .style('fill','grey')
-//                .style('opacity',0.1)
-//                .style('z-index','-30')
-//                .attr('class','Rect')
-//                .attr('x',10)
-//                .attr('y',+90);
-                
+                               
             var Text = textSel
                 .selectAll('text.number')
                 .data(function(d){return d.values});   
@@ -245,7 +235,11 @@
             Text.enter()
                 .append("text")
                 .attr("class", "number")
-                .attr("transform","translate(  "+ - (padding+4.5) +" ,-5)")
+                .attr("transform","translate(" + (-padding) + " ,-5)")
+				.attr('text-anchor', function(d, i) {
+					return i === 0 ? 'start' : 'end';
+				})
+				.attr('alignment-baseline', 'baseline')
                 .attr("x",function(d) { return xScale(d.TimePeriod); })
                 .attr("y",function(d) { return yScale(d.Value);})            
                 .attr('fill','black')
