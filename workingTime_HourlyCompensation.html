@@ -26,13 +26,13 @@
     P{
     position: absolute;
     top:3vw;
-    left:10rem;
+    left:11.7rem;
     font-size:1rem;
     }
     .yellow {
     position: absolute;
     top:3vw;
-    left:48.5rem;}
+    left:50.5rem;}
     .xAxis path,
     .xAxis line {
     fill: none;
@@ -192,8 +192,34 @@
                 .append('g')
                 .attr('class', function (d) {
                     return 'column ' + " " + d.key;
+                })
+                .append('rect')
+                .attr('class', function (d) {
+                    return 'rect' + d.key;
+                })
+                .attr('width','126')
+                .attr('height','50')
+                .attr('y',60)
+                .style('fill',"grey")
+				.style('opacity',0)
+                .style('z-index',"-2")
+				.attr("transform", "translate(  "+ (padding/2) +" ,0)")
+                .on("mousemove", function (d, i) {
+                    var coords = d3.mouse(this);
+					var year = Math.floor( xScale.invert(coords[0] + (padding/2)));
+					var value = dataSet[i].values.filter(function(d) {return d.Year == year})[0];
+					d3.select(this.parentNode.querySelector('circle'))
+						.style('opacity', 1)
+						.attr('cx', xScale(year))
+						.attr('cy', yScale(value.compenValue))
+						//여기 들어가는 데이터가 rect에 들어가는 데이터와 다르다.
+						.style('fill','#00897B');}
+                )
+                .on("mouseout",  function () {
+                    d3.select(this.parentNode.querySelector('circle'))
+                    .style('opacity', 0);
                 });
-                         
+            
             columnSel.exit().remove();
             columnSel
                 .attr('transform', function (d,i) {
@@ -225,7 +251,7 @@
             columnSel
                 .append('g')
                 .attr('class', 'axis x')
-                .attr("transform", "translate(  "+ - (padding/2) +" ," + yScale.range()[0]+ ")")
+                .attr("transform", "translate(  0," + yScale.range()[0]+ ")")
                 .style('stroke-width','2px')
                 .call(xAxis)
                 .append("text")
@@ -243,6 +269,7 @@
                 .append('g')
                 .attr('class', 'axis y')
                 .style("text-anchor", "middle")
+				.attr("transform", "translate(  "+ (padding/2) +" ,0)")
                 .call(yAxis);
                 
             var compenLine = d3.svg.line()
@@ -260,42 +287,13 @@
                 .style('stroke', "#00897B")
                 .style('opacity',0.8)
                 .style('stroke-width',2.5)
-                .attr("transform", "translate(  "+ - (padding/2) +" ,0 )")
+//                .attr("transform", "translate(  "+ - (padding/2) +" ,0 )")
                 .attr('d', function(d) {
                     return compenLine(d.values);
                 });
          
             var rectSel = columnSel.selectAll('rect').data(function(d){return d.values;})
          
-            rectSel
-				.enter()
-                .append('rect')
-                .attr('class', function (d) {
-                    return 'rect' + d.key;
-                })
-                .attr('width','130')
-                .attr('height','50')
-                .attr('y',60)
-                .style('fill',"black")
-                .style('z-index',"2")
-                .style('opacity',0.1)
-                .on("mouseover", function (d) {
-                    var coords = d3.mouse(this);
-                    var newData= {
-                        x: Math.round( xScale.invert(coords[0])),
-                        y: Math.round( yScale.invert(coords[1]))
-                    };
-
-                 d3.select(this.nextSibling.nextSibling)
-                    .style('opacity', 1)
-                    .attr('cx',coords[0])
-                    .attr('cy', function(d) {return yScale(d.compenValue);})
-                    .style('fill','#00897B');}
-                )
-                .on("mouseout",  function () {
-                    d3.select(this.nextSibling.nextSibling)
-                    .style('opacity', 0);
-                });
                 
             columnSel
                 .append('text')
@@ -308,6 +306,7 @@
                 .attr('class', function (d) {
                     return 'compenData' + d.key;
                 })
+//				.attr("transform", "translate(  "+ - (padding/2) +" ,0 )")
                 .attr('r',4);
          }; 
       

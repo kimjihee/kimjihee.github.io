@@ -15,9 +15,9 @@
         }
         #chart {
             width:1200px;
-            height:1400px;
+            height:1200px;
             position: absolute;
-            top:2rem;
+            top:4rem;
 			margin:0;
 			padding:0;
 			
@@ -59,7 +59,7 @@
             shape-rendering: crispEdges;
             stroke-dasharray:1,1;
             }
-       	.domain {display:none;}
+/*       	.domain {display:none;}*/
 		
 /*        .x .domain {display:none;}      */
 
@@ -146,7 +146,7 @@
             };
 
             var Width = 1100;
-            var Height = 700;
+            var Height = 400;
 
             var colorScale = d3.scale.ordinal()
                 .domain(lineNames)
@@ -160,7 +160,7 @@
             for(var i = 0; i < metrics.length; i++) {
                 var Scale = d3.scale.linear()
                     .domain(extents[i])
-                    .range([0, Height / metrics.length]);
+                    .range([0,Height / metrics.length]);
                 yScales.push(Scale);
             }
                         
@@ -176,7 +176,7 @@
                 var axis = d3.svg.axis()
                     .scale(yScales[i])       
                     .orient('right')
-					.ticks(6)
+					.ticks(4)
                     .tickSize(0)
                     .tickPadding(1050);
                 yAxises.push(axis);
@@ -189,7 +189,7 @@
 			var row = d3.select('#chart')
 						.append('g')
 						.attr('class','rowG')
-						.attr('transform','translate(0,70)');
+						.attr('transform','translate(0,110)');
 			
 			var rowSel = row.selectAll('g.row').data(dataSet);
 
@@ -205,6 +205,7 @@
                         .append('g')
                         .attr('class', function(d){return d.key+"yAxis";})
 						.style('stroke-width',1)
+//						.attr('transform','translate(0,-48)')
                         .call(yAxises[i]);
                 })
 				.append('g')
@@ -217,18 +218,19 @@
 
             rowSel
                 .attr('transform', function (d,i,j) {
-                    return 'translate('+70+',' + rowYBand(d.key)*1.5 +' )';//()안에는 도메인이 들어가야 합니다.
+                    return 'translate('+70+',' + rowYBand(d.key)*1.9 +' )';//()안에는 도메인이 들어가야 합니다.
                  })
                 .append('text')
                 .text(function(d) { return d.key;})
                 .style('alignment-baseline','central')
                 .style('font-weight','500')
-                .style('font-size','0.8rem')
-                .attr('dx','-15');
+                .style('font-size','0.85rem')
+                .attr('dx','-15')
+				.attr('y','-5');
             
 			var stopG = rowSel.append('g')
 							.attr('class','stop')
-							.attr('transform','translate(30,-5)');
+							.attr('transform','translate(40,-5)');
 			
 			var stopSel = stopG.selectAll('rect').data(function(d) {return d.values;});
 			
@@ -239,7 +241,7 @@
                 .append('rect')
                 .attr('class',function(d){return d.key;})
                 .attr('x',function(d,i){return xScale.rangeBand()*i+i;})
-                .attr('y',0)//반대로 채워준다고 생각하면 됨
+                .attr('y',0)//반대로 채워준다고 생각하면 됨 / function(d,i,j){return - yScales[j](d.value);}
                 .attr('height',function(d,i,j){return yScales[j](d.value);})//d는 데이터셋,
 //			i는 네스트(matric) 안에있는 것들의 갯수(이 경우는 스탑), j는 네스트의 갯수 i를 시작으로 위로 올라갈수록 위 단계의 묶음의 갯수가 된다.
                 .attr('width', xScale.rangeBand())//이것이 band로 나눠진 너비
@@ -268,7 +270,7 @@
             var barG = d3.select('#chart')
 						.append('g')
 						.attr('class','barG')
-						.attr('transform','translate(900,50)');
+						.attr('transform','translate(910,50)');
 			
 			var bar= barG.selectAll('rect.bar').data(colorBar.domain());  
 
@@ -290,9 +292,10 @@
 			.attr('x', function (d) {
                         return colorBar(d); 
                 })
-			.attr('y',-10)
+			.attr('y',-7)
 			.data(['1호선','2호선','3호선','4호선'])
 			.text(function(d,i,j){return d[j]+"호선";});
+		
 //            var MetricG = [];
 //            var perMetric = [];
 //        
