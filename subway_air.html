@@ -87,7 +87,7 @@
         var lineNames = [];
         var metrics = ['PM10', 'CO2', 'HCHO', 'CO', 'NO2', 'Rn', 'TVOC', '석면','O3'];
         var stopNames = [];
-        var extents = [];
+        var maxs = [];
 
         // Bad
         // line, stop, co2, no2, o3
@@ -123,8 +123,8 @@
             stopNames = d3.set(tidyData.map(function(d) {return d.Stop;})).values();
            
             for(var i = 0; i < metrics.length; i++) {
-                var extent = d3.extent(trainAir, function(d) {return +d[metrics[i]];});
-                extents.push(extent);
+                var max = [0, d3.max(trainAir, function(d) {return +d[metrics[i]];})];
+                maxs.push(max);
             }
             
             dataSet = d3.nest()
@@ -159,8 +159,8 @@
             var yScales = [];
             for(var i = 0; i < metrics.length; i++) {
                 var Scale = d3.scale.linear()
-                    .domain(extents[i])
-                    .range([0,Height / metrics.length]);
+                    .domain(maxs[i])
+                    .range([Height / metrics.length,0]);
                 yScales.push(Scale);
             }
                         
@@ -205,7 +205,8 @@
                         .append('g')
                         .attr('class', function(d){return d.key+"yAxis";})
 						.style('stroke-width',1)
-//						.attr('transform','translate(0,-48)')
+						.attr('transform','translate(0,-45)')
+						.style('z-index','1000')
                         .call(yAxises[i]);
                 })
 				.append('g')
@@ -230,7 +231,7 @@
             
 			var stopG = rowSel.append('g')
 							.attr('class','stop')
-							.attr('transform','translate(40,-5)');
+							.attr('transform','translate(40,0)');
 			
 			var stopSel = stopG.selectAll('rect').data(function(d) {return d.values;});
 			
@@ -241,7 +242,7 @@
                 .append('rect')
                 .attr('class',function(d){return d.key;})
                 .attr('x',function(d,i){return xScale.rangeBand()*i+i;})
-                .attr('y',0)//반대로 채워준다고 생각하면 됨 / function(d,i,j){return - yScales[j](d.value);}
+                .attr('y',function(d,i,j){return -yScales[j](d.value);})//반대로 채워준다고 생각하면 됨 / function(d,i,j){return - yScales[j](d.value);}
                 .attr('height',function(d,i,j){return yScales[j](d.value);})//d는 데이터셋,
 //			i는 네스트(matric) 안에있는 것들의 갯수(이 경우는 스탑), j는 네스트의 갯수 i를 시작으로 위로 올라갈수록 위 단계의 묶음의 갯수가 된다.
                 .attr('width', xScale.rangeBand())//이것이 band로 나눠진 너비
@@ -294,7 +295,8 @@
                 })
 			.attr('y',-7)
 			.data(['1호선','2호선','3호선','4호선'])
-			.text(function(d,i,j){return d[j]+"호선";});
+			.text(function(d,i,j){return d[j]+"호선";})
+			.style('font-size','0.7rem');
 		
 //            var MetricG = [];
 //            var perMetric = [];
