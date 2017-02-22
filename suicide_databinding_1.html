@@ -199,21 +199,8 @@
                 .style('stroke-width',"2.5px")
                 .attr('d', function(d) {
                     return dataLine(d.values);
-                })
-				.on('mouseover',function(d){ 
-					 
-					d3.select(this)
-                        .style('stroke-width','3.5px');
-				 	d3.select(this.nextSibling.firstChild)
-                        .style('font-weight','800')
-                        					})
-				.on('mouseout',function(d){ 
-					 
-					d3.select(this)
-                        .style('stroke-width','2.5px');
-				 	d3.select(this.nextSibling.firstChild)
-                        .style('font-weight','normal')
-                        					});
+                });
+				
             dataSel.exit().remove();
             
             var textSel = columnSel.selectAll('g.inRect').data(function(d){
