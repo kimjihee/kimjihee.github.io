@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<title>레 미제라블</title>
+<style>
+	@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+	.links line {
+		stroke: #999;
+		stroke-opacity: 0.3;
+	}
+	
+	.nodes circle {
+		stroke: #fff;
+		stroke-width: 1px;
+	}
+	.name {
+		font-size:2.5rem;
+		font-family: 'Slabo 27px', serif;
+/*		font-weight:bold;*/
+		color:rgba(0,0,0,0.7);
+	}
+	.inside{
+		font-size:0.9rem;
+	}
+	.title{
+		position: absolute;
+		top:1rem;
+		left:5rem;
+	}
+	.chart{
+		padding-top:4.5rem;
+		font-family: 'Nanum Gothic', sans-serif;
+	}
+	
+</style>
+</head>
+<div class="title"><div class ="name">Les Miserables </div>
+<div class="inside">소설 ' 레 미제라블 (Les Miserables)'에 나오는 등장 인물들의 모습을 보여주는 네트워크</div></div> 
+<svg class="chart" width="1200" height="650"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+			var svg = d3.select("svg")
+			var width = +svg.attr("width")
+			var height = +svg.attr("height");
+	
+			var color = d3.scaleOrdinal(d3.schemeCategory20b);
+//			var color = d3.scale.ordinal()
+//			.domain([1,2,3,4,5,6,7,8,9,10])	.range(['#443c3a','#e07f60','#5e2105','#af8854','#e5b955','#2c3f45','#e8c1a2','#fccf7d','#b79f9b','#c33f35']);
+	
+			var simulation = d3.forceSimulation()
+			.force("link", d3.forceLink()
+				   .id(function (d) {
+						return d.id;
+					})
+		  	)	
+			.force("charge", d3.forceManyBody().strength(-45)
+                    )
+			.force("center", d3.forceCenter(width / 2, height / 2));
+			
+			d3.json("miserables.json", function (error, graph) {
+				if (error) throw error;
+				var link = svg.append("g")
+								.attr("class", "links")
+								.selectAll("line")
+								.data(graph.links)
+								.enter()
+								.append("line")
+								.attr("stroke-width", 
+								  	function (d) {
+									return Math.sqrt(d.value);
+								});
+				
+				var node = svg.append("g")
+							.attr("class", "nodes")
+							.selectAll("circle")
+							.data(graph.nodes);
+				
+				var circle = node
+							.enter()
+							.append("circle")
+							.attr("r", 5)
+							.attr("fill", function (d) {
+								return color(d.group);//여기 컬러 순서를 바꾸고 싶을땐 어떻게 하나?
+							})
+							.call(d3.drag()
+								  .on("start", dragstarted)
+								  .on("drag", dragged)
+								  .on("end", dragended))
+							.on('mouseover',function(d){
+								d3.select(this.parentNode.querySelector('.name'))
+									.attr('opacity',1);							
+							})
+							.on('mouseout',function(d){
+								d3.select(this.parentNode.querySelector('text'))
+									.attr('opacity',0);							
+							});
+				
+
+				var name = node.enter().append("text")
+					.attr('class',function(d){return d.id + ' name';})
+					.style("font-size", ".4em")
+					.attr('fill','black')
+					.text(function (d) {
+								return d.id;
+							}
+						 )
+					.attr('opacity',0);
+				
+				simulation.nodes(graph.nodes).on("tick", ticked);
+				simulation.force("link").links(graph.links);
+
+				function ticked() {
+					link.attr("x1", function (d) {
+						return d.source.x;
+					}).attr("y1", function (d) {
+						return d.source.y;
+					}).attr("x2", function (d) {
+						return d.target.x;
+					}).attr("y2", function (d) {
+						return d.target.y;
+					});
+					circle.attr("cx", function (d) {
+						return d.x;
+					}).attr("cy", function (d) {
+						return d.y;
+					});
+					name.attr("x", function (d) {
+						return d.x + 8;
+						})
+						.attr("y", function (d) {
+						return d.y;
+						});
+				}
+			});
+
+			function dragstarted(d) {
+				if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+				d.fx = d.x;
+				d.fy = d.y;
+			}
+
+			function dragged(d) {
+				d.fx = d3.event.x;
+				d.fy = d3.event.y;
+		}
+
+		function dragended(d) {
+			if (!d3.event.active) simulation.alphaTarget(0);
+			d.fx = null;
+			d.fy = null;
+		}
+</script>
