@@ -5,6 +5,7 @@
 <style>
 	@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 	@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+	@import url('https://fonts.googleapis.com/css?family=Roboto');
 	.links line {
 		stroke: #999;
 		stroke-opacity: 0.3;
@@ -22,22 +23,29 @@
 	}
 	.inside{
 		font-size:0.9rem;
+		
+		line-height:1.4rem;
+		word-break:keep-all;
 	}
 	.title{
 		position: absolute;
-		top:1rem;
+		top:2rem;
 		left:5rem;
+		width:30rem;
 	}
 	.chart{
-		padding-top:4.5rem;
+		margin-top:6.5rem;
+		margin-left:5rem;
 		font-family: 'Nanum Gothic', sans-serif;
+		font-family: 'Roboto', sans-serif;	
 	}
 	
 </style>
+	
 </head>
 <div class="title"><div class ="name">Les Miserables </div>
-<div class="inside">소설 ' 레 미제라블 (Les Miserables)'에 나오는 등장 인물들의 모습을 보여주는 네트워크</div></div> 
-<svg class="chart" width="1200" height="650"></svg>
+<div class="inside">소설 '레 미제라블'에 나오는 등장 인물들의 모습을 보여주는 네트워크로 소설의 각 챕터에서 함께 등장하는 인물들이 그룹화 되어있다.</div></div> 
+<svg class="chart" width="1100" height="600"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 			var svg = d3.select("svg")
@@ -143,11 +151,16 @@
 			function dragged(d) {
 				d.fx = d3.event.x;
 				d.fy = d3.event.y;
-		}
+			}
 
-		function dragended(d) {
-			if (!d3.event.active) simulation.alphaTarget(0);
-			d.fx = null;
-			d.fy = null;
-		}
+			function dragended(d) {
+				if (!d3.event.active) simulation.alphaTarget(0);
+				d.fx = null;
+				d.fy = null;
+			}
+//			function mouseover() {
+//		  		  d3.select(this).select("circle").transition()
+//			  .duration(750)
+//			  .attr("r", 16);
+//			}
 </script>
