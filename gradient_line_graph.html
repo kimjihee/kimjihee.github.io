@@ -35,16 +35,19 @@
          #tooltip {
             position: absolute;
             height: auto;
-            padding: 5px;
+            padding: 4px;
+			 padding-left: 5px;
+			 padding-right: 5px;
+			 line-height:1.2rem;
             background-color: rgb(250,250,250);
             font-size:0.7rem;
             border-radius:2px; 
             font-weight:500;
             color:rgb(55,55,55);
             z-index:1000;
-            box-shadow: 5px 6px 12px rgba(100,100,100, 0.6);
+            box-shadow: 1px 2px 9px rgba(100,100,100, 0.7);
             pointer-events: none;
-            border: 1.5px solid rgba(107,140,166,0.8);
+            border: 1.5px solid rgba(107,140,166,0.7);
         }
 
         #tooltip.hidden {
@@ -52,13 +55,17 @@
         }
 		.key{
 			font-size:0.8rem;
-			padding-bottom:0.7rem;
+			padding-bottom:1rem;
 			white-space:nowrap;
+			
+			
 		}
 		.value{
 			color:#6e8da6;
-			font-weight:bold;
-			padding-right:0.1rem;
+			
+			font-size:1rem;
+			padding-right:1px;
+			opacity:0.8;
 		}
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
@@ -68,7 +75,7 @@
         <p> CO2 Emission <span class="unit">Tons Per Capita</span></p>
         <svg id="chart" >  <foreignobject class="node" width="100" height="100">
             <div id='tooltip' class="hidden">
-               <span class="key"></span> <span class="value"></span>tons
+              <span class="key"></span> <span class="value"></span>tons
             </div>       
         </foreignobject>
         </svg>
@@ -131,9 +138,7 @@
                 .scale(yScale)
                 .orient('left')
                 .tickSize(-800)
-                .tickPadding(8)
-                ; 
-            
+                .tickPadding(8);          
             
             var svg = d3.select("svg")
                 .attr("width",Width+100)
@@ -142,7 +147,6 @@
             var realChart = svg
                 .append('g')
                 .attr("transform", "translate( "+30+" ," + 20 + ")");
-                
 
             realChart.append('g')
                 .attr('class', 'x axis')
@@ -199,7 +203,7 @@
                         d3.select('#tooltip')
                             .style('opacity', 1)
                             .style('left',coords[0]+30+'px')
-                            .style('top',coords[1]+(-20)+'px')
+                            .style('top',coords[1]+(-35)+'px')
 							.classed("hidden", false);
 						d3.select('#tooltip .key').text(d.key);
 						d3.select('#tooltip .value').text(newData.y);
