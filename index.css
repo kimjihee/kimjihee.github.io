@@ -15,19 +15,17 @@ a:link {
     color: #009688;
     text-decoration: none;
 }
-
 a:visited {
     color: #009688;
     text-decoration: none;
 }
-
 a:hover {
     color: #009688;
     text-decoration: none;
 }
  a img {
-            border: 0;
-        }
+	border: 0;
+}
 
 @media screen and (max-width: 450px) {
     body {
