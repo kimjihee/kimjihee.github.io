@@ -9,7 +9,7 @@
 }
 
 .point {
-    color: #009688;
+    color: #4DB6AC;
 }
 a:link {
     color: #009688;
@@ -51,7 +51,7 @@ a:hover {
     .name {
         font-size: 1.2rem;
         padding-left: 0.5rem;
-    }
+	}
     .menu {
         display: none;
         position: absolute;
@@ -163,6 +163,7 @@ a:hover {
         position: absolute;
         top: 0;
         left: 3.5vw;
+		color:rgb(139,139,139);
     }
     .menu {
         position: absolute;
@@ -196,7 +197,7 @@ a:hover {
         padding-top: 0;
         margin-bottom: 2rem;
         margin-top: 2rem;
-        height: 24.5rem !important;
+        height: 24.8rem !important;
         text-align: center;
     }
     .column img {
