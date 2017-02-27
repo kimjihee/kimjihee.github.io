@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+</style>
+
+<body>
+	<svg width=960 height=600></svg>
+</body>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+	
+	var branches = [];
+	var seed = {
+		i: 0,
+		x1: 480,
+		y1: 700,
+		x2: 480,
+		y2: 425,
+		a: 0,
+		l: 75,
+		d: 0,
+		children: []
+	}; // a = angle, l = length, d = depth
+	var child_angle = 0.6; //Angle delta, all child branches will angle between 0 - 0.6 radians away from the parent angle
+	var child_length = 0.86; //Length delta (factor), all child branches will be 0.85 the length of the parent
+	var maxDepth = 11;
+
+	// Recursively create the tree
+	function create_branch(b) {
+		branches.push(b);
+
+		if (b.d === maxDepth)
+			return;
+
+		// two branches, flip the i from -1 to 1 to handle "left and right" branches
+		for (var i = -1; i < 2; i = i + 2) {
+			var ang = b.a + (Math.random() * child_angle * i);
+			var newB = {
+				i: branches.length,
+				x1: b.x2,
+				y1: b.y2,
+				x2: b.x2 + (b.l * child_length) * Math.sin(ang),
+				y2: b.y2 - (b.l * child_length) * Math.cos(ang),
+				a: ang,
+				orig_a: ang, // for book-keeping in animation
+				animating: false,
+				animate_counter: 0,
+				l: b.l * child_length,//l = length; 
+				d: b.d + 1,//d = depth;
+				children: []
+			};
+			b.children.push(newB.i)
+			create_branch(newB);
+		}
+	}
+
+	function draw() {
+		var color = d3.scale.linear()
+			.domain([0, maxDepth])
+			.range(["rgb(89,89,89)", "rgb(159,169,129)"]);
+
+		d3.select('svg').selectAll('line')
+			.data(branches)
+			.enter()
+			.append('line')
+			.attr('id', function (d) {
+				return "branch" + d.i;
+			})
+			.attr('x1', function (d) {
+				return d.x1;
+			})
+			.attr('y1', function (d) {
+				return d.y1;
+			})
+			.attr('x2', function (d) {
+				return d.x2;
+			})
+			.attr('y2', function (d) {
+				return d.y2;
+			})
+			.style('stroke-width', function (d) {
+				return parseInt((maxDepth - d.d + 2) * .5) + 'px';
+			})
+			.style('stroke', 
+			   function (d) {
+				return color(d.d);
+				}
+				  );
+	}
+
+	function animate() {
+		// this runs every second,
+		// every 10 seconds, stop triggering new animations for 10 seconds to allow things to settle
+		// this ends up giving the perception of "breezes"
+		animationCounter += 1;
+		if (animationCounter == 20) {
+			animationCounter = 0;
+		} else if (animationCounter % 20 > 10) {
+			return
+		};
+
+		branches.forEach(function (branch) {
+			if (branch.animating == false && Math.random() < (branch.d / 500.0)) {
+				branch.animating = true;
+				moveBranch(branch);
+			}
+		});
+	}
+
+	function moveBranch(branch) {
+		modifier = branch.d / 12;
+		branch.a = branch.orig_a + (Math.random() * modifier - (modifier / 2.0));
+		branch.x2 = branch.x1 + branch.l * Math.sin(branch.a);
+		branch.y2 = branch.y1 - branch.l * Math.cos(branch.a);
+
+		// This is probably "bad" d3 with regards to the data selection,
+		// it might even be easier to do this in jQuery or vanilla JS,
+		// the one benefit is to take advantage of d3 duration/ease animation functionality.
+		d3.select("#branch" + branch.i)
+			.data([branch])
+			.transition()
+			.duration(3000)
+			.ease('linear')
+			.attr('x1', function (d) {
+				return d.x1;
+			})
+			.attr('y1', function (d) {
+				return d.y1;
+			})
+			.attr('x2', function (d) {
+				return d.x2;
+			})
+			.attr('y2', function (d) {
+				return d.y2;
+			})
+			.each('end', function (d) {
+				if (d.animating == true) {
+					if (d.animate_counter < 3) { // keep "swaying" for 3 more frames
+						d.animate_counter += 1;
+						moveBranch(d);
+					} else {
+						d.animating = false;
+						d.animate_counter = 0;
+					}
+				}
+			});
+
+		// make the children move
+		branch.children.forEach(function (childIdx) {
+			var currChild = branches[childIdx];
+			currChild.x1 = branch.x2;
+			currChild.y1 = branch.y2;
+			moveBranch(currChild);
+		});
+	}
+
+	create_branch(seed);
+	draw();
+
+	var animationCounter = 0;
+	setInterval(animate, 1000);
+</script>
