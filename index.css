@@ -1,248 +1,258 @@
 * {
-    font-family: 'Roboto', sans-serif;
-    list-style-type: none;
-    outlsine: 1px solid rgb(220, 220, 220);
-    margin: 0;
-    padding: 0;
-    word-break: normal;
-    box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+	list-style-type: none;
+	outlsine: 1px solid rgb(220, 220, 220);
+	margin: 0;
+	padding: 0;
+	word-break: normal;
+	box-sizing: border-box;
 }
 
 .point {
-    color: #4DB6AC;
+	color: #4DB6AC;
 }
+
 a:link {
-    color: #009688;
-    text-decoration: none;
+	color: #009688;
+	text-decoration: none;
 }
+
 a:visited {
-    color: #009688;
-    text-decoration: none;
+	color: #009688;
+	text-decoration: none;
 }
+
 a:hover {
-    color: #009688;
-    text-decoration: none;
+	color: #009688;
+	text-decoration: none;
 }
- a img {
+
+a img {
 	border: 0;
 }
 
 @media screen and (max-width: 450px) {
-    body {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-    .top {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3rem;
-        line-height: 3rem;
-        border-bottom: 0.5px solid rgb(220, 220, 220);
-        color: rgb(119, 119, 119);
-        box-shadow: 1px 1px transparent;
-        z-index: 3;
-        background-color: white;
-    }
-    .name {
-        font-size: 1.2rem;
-        padding-left: 0.5rem;
+	body {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
-    .menu {
-        display: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-    }
-    .menu li {
-        height: 25%;
-        padding-left: 0.6rem;
-        background-color: white;
-    }
-    .bar {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 6rem;
-    }
-    .slideMenu {
-        position: absolute;
-        top: -2rem;
-        right: 0.5rem;
-        width: 2rem;
-        height: 2rem;
-    }
-    .fa-bars {
-        position: absolute;
-        right: 0.5rem;
-    }
-    /*---------------------------------middle-----------------------------------------------*/
-    .middle {
-        position: absolute;
-        top: 5rem;
-        left: 3vw;
-        right: 3vw;
-    }
-    .column {
-        width: 100%;
-    }
-    .column li {
-        height: 20rem;
-        /*        padding: 0.5rem;*/
-    }
-    .column img {
-        width: 100%;
-        padding-top: 2rem;
-    }
-    .nameIn {
-        padding-top: 1rem;
-        text-align: left;
-        font-size: 1.1rem;
-    }
-    .icon {
-        font-size: 0.8rem;
-        color: #009688;
-        opacity: 0.6;
-        position: absolute;
-        right: 0.4rem;
-        padding-top: 0.5rem;
-    }
-    .github {
-        position: relative;
-        bottom: -1.2rem;
-        right: 0.3rem;
-        color: #009688;
-        font-size: 1rem;
-        text-align: right;
-        width: 100%;
-        display: none;
-    }
-    .github li {
-        padding-right: 0 !important;
-        float: left !important;
-        width: 33.333333333333333333333333%;
-        margin: 0 !important;
-        height: 2rem !important;
-        /*        border:1px solid red;*/
-    }
+	.top {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 3rem;
+		line-height: 3rem;
+		border-bottom: 0.5px solid rgb(220, 220, 220);
+		color: rgb(119, 119, 119);
+		box-shadow: 1px 1px transparent;
+		z-index: 3;
+		background-color: white;
+	}
+	.name {
+		font-size: 1.2rem;
+		padding-left: 0.5rem;
+	}
+	.menu {
+		display: none;
+		position: absolute;
+		left: 0;
+		right: 0;
+	}
+	.menu li {
+		height: 25%;
+		padding-left: 0.6rem;
+		background-color: white;
+	}
+	.bar {
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 6rem;
+	}
+	.slideMenu {
+		position: absolute;
+		top: -2rem;
+		right: 0.5rem;
+		width: 2rem;
+		height: 2rem;
+	}
+	.fa-bars {
+		position: absolute;
+		right: 0.5rem;
+	}
+	/*-------------------------------------middle-------------------------------------------*/
+	.middle {
+		position: absolute;
+		top: 5rem;
+		left: 3vw;
+		right: 3vw;
+	}
+	.column {
+		width: 100%;
+	}
+	.column li {
+		height: 20rem;
+		/*        padding: 0.5rem;*/
+	}
+	.column img {
+		width: 100%;
+		padding-top: 2rem;
+	}
+	.nameIn {
+		padding-top: 1rem;
+		text-align: left;
+		font-size: 1.1rem;
+	}
+	.icon {
+		font-size: 0.8rem;
+		color: #009688;
+		opacity: 0.6;
+		position: absolute;
+		right: 0.4rem;
+		padding-top: 0.5rem;
+	}
+	.github {
+		position: relative;
+		bottom: -1.2rem;
+		left: 0;
+		right: 0;
+		color: #009688;
+		font-size: 0.98rem;
+		text-align: right;
+		width: 96%;
+
+		height: 1.2rem;
+	}
+	.github li {
+		text-align:center;
+		padding-right: 0 !important;
+		float: left !important;
+		width: 33.333333333333333333333333%;
+		margin: 0 !important;
+		height: 2rem !important;
+		/*		border: 1px solid red;*/
+	}
+	.minsize {
+		display: none;
+	}
 }
 
 @media screen and (min-width: 769px) {
-    body {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-    .top {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4rem;
-        line-height: 4.2rem;
-        border-bottom: 0.5px solid rgb(220, 220, 220);
-        color: rgb(119, 119, 119);
-        -webkit-transition: box-shadow 200ms;
-        transition: box-shadow 200ms;
-        box-shadow: 1px 1px transparent;
-        z-index: 3;
-        background-color: white;
-    }
-    .fa-bars {
-        display: none;
-    }
-    .name {
-        font-size: 2rem;
-        font-weight: 400;
-        position: absolute;
-        top: 0;
-        left: 3.5vw;
-		color:rgb(139,139,139);
-    }
-    .menu {
-        position: absolute;
-        top: 0;
-        right: 3.5vw;
-    }
-    .menu li {
-        float: left;
-        padding-left: 0.7rem;
-        padding-right: 0.7rem;
-    }
-    /* -------------------------------------middle-----------------------------------------------*/
-    .middle {
-        position: absolute;
-        top: 4rem;
-        left: 3.5vw;
-        right: 3.5vw;
-        bottom: 0;
-    }
-    .column {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 4rem;
-        bottom: 0;
-    }
-    .column li {
-        float: left;
-        width: 50%;
-        height: 21rem;
-        padding-top: 0;
-        margin-bottom: 2rem;
-        margin-top: 2rem;
-        height: 24.8rem !important;
-        text-align: center;
-    }
-    .column img {
-        width: 80%;
-        margin-top: 6rem;
-    }
-    .nameIn {
-        position: absolute;
-        padding-top: 1rem;
-        padding-bottom: 1.5rem;
-        padding-left: 4rem;
-        text-align: left;
-        font-size: 1.3rem;
-        width: 50%;
-    }
-    .icon {
-        font-size: 0.8rem;
-        color: #009688;
-        opacity: 0.6;
-        position: absolute;
-        top: 1.2rem;
-        right: 4rem;
-    }
-    .github {
-        position: relative;
-        bottom: -1.2rem;
-        left: 4rem;
-        color: #009688;
-        font-size: 1rem;
-        width: 80%;
-        display: none;
-    }
-    .github li {
-        text-align: right;
-        padding: 0.7rem !important;
-        padding-right: 0 !important;
-        float: left !important;
-        width: 33.333333333333333333333333%;
-        margin: 0 !important;
-        height: 2rem !important;
-    }
-    .fa-plus {
-        font-size: 1rem;
-    }
-    /*
+	body {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.top {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4rem;
+		line-height: 4.2rem;
+		border-bottom: 0.5px solid rgb(220, 220, 220);
+		color: rgb(119, 119, 119);
+		-webkit-transition: box-shadow 200ms;
+		transition: box-shadow 200ms;
+		box-shadow: 1px 1px transparent;
+		z-index: 3;
+		background-color: white;
+	}
+	.fa-bars {
+		display: none;
+	}
+	.name {
+		font-size: 2rem;
+		font-weight: 400;
+		position: absolute;
+		top: 0;
+		left: 3.5vw;
+		color: rgb(139, 139, 139);
+	}
+	.menu {
+		position: absolute;
+		top: 0;
+		right: 3.5vw;
+	}
+	.menu li {
+		float: left;
+		padding-left: 0.7rem;
+		padding-right: 0.7rem;
+	}
+	/* -------------------------------------middle-----------------------------------------------*/
+	.middle {
+		position: absolute;
+		top: 4rem;
+		left: 3.5vw;
+		right: 3.5vw;
+		bottom: 0;
+	}
+	.column {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 4rem;
+		bottom: 0;
+	}
+	.column li {
+		float: left;
+		width: 50%;
+		height: 21rem;
+		padding-top: 0;
+		margin-bottom: 2rem;
+		margin-top: 2rem;
+		height: 24.8rem !important;
+		text-align: center;
+	}
+	.column img {
+		width: 80%;
+		margin-top: 6rem;
+	}
+	.nameIn {
+		position: absolute;
+		padding-top: 1rem;
+		padding-bottom: 1.5rem;
+		padding-left: 4rem;
+		text-align: left;
+		font-size: 1.3rem;
+		width: 50%;
+	}
+	.icon {
+		font-size: 0.8rem;
+		color: #009688;
+		opacity: 0.6;
+		position: absolute;
+		top: 1.2rem;
+		right: 4rem;
+	}
+	.github {
+		position: relative;
+		bottom: -1.2rem;
+		left: 4rem;
+		color: #009688;
+		font-size: 1rem;
+		width: 80%;
+		display: none;
+	}
+	.github li {
+		text-align: right;
+		padding: 0.7rem !important;
+		padding-right: 0 !important;
+		float: left !important;
+		width: 33.333333333333333333333333%;
+		margin: 0 !important;
+		height: 2rem !important;
+	}
+	.fa-plus {
+		font-size: 1rem;
+	}
+	/*
     .iSize {width:70% !important;
     }
 */
