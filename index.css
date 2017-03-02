@@ -117,27 +117,31 @@ a img {
 	}
 	.github {
 		position: relative;
-		bottom: -1.2rem;
-		left: 0;
-		right: 0;
+		bottom: -1.5rem;
+		/*		right:-10%;*/
 		color: #009688;
-		font-size: 0.98rem;
-		text-align: right;
-		width: 96%;
-
+		font-size: 0.9rem;
+		width: 100%;
+		margin: 0, auto;
 		height: 1.2rem;
+		display: run-in;
 	}
 	.github li {
-		text-align:center;
-		padding-right: 0 !important;
+		text-align: center;
 		float: left !important;
-		width: 33.333333333333333333333333%;
-		margin: 0 !important;
-		height: 2rem !important;
-		/*		border: 1px solid red;*/
+		width: 32%;
+		/*		margin: 0 !important;*/
+		height: 1.7rem !important;
+		line-height: 1.7rem;
+		border-radius: 2px;
+		border: 1px solid rgba(160,160,160,0.6);
 	}
 	.minsize {
 		display: none;
+	}
+	.liArrange {
+		margin-right: 2%;
+		margin-left: 2%;
 	}
 }
 
