@@ -1,7 +1,7 @@
 * {
 	font-family: 'Roboto', sans-serif;
 	list-style-type: none;
-	outlsine: 1px solid rgb(220, 220, 220);
+	outlㅁine: 1px solid rgb(220, 220, 220);
 	margin: 0;
 	padding: 0;
 	word-break: normal;
@@ -95,7 +95,7 @@ a img {
 		width: 100%;
 	}
 	.column li {
-		height: 20rem;
+		height: 110vw;
 		/*        padding: 0.5rem;*/
 	}
 	.column img {
@@ -117,7 +117,7 @@ a img {
 	}
 	.github {
 		position: relative;
-		bottom: -1.5rem;
+		bottom: -2.3rem;
 		/*		right:-10%;*/
 		color: #009688;
 		font-size: 0.9rem;
@@ -158,8 +158,8 @@ a img {
 		top: 0;
 		left: 0;
 		right: 0;
-		height: 4rem;
-		line-height: 4.2rem;
+		height: 4.8vw;
+		line-height: 4.8vw;
 		border-bottom: 0.5px solid rgb(220, 220, 220);
 		color: rgb(119, 119, 119);
 		-webkit-transition: box-shadow 200ms;
@@ -192,7 +192,7 @@ a img {
 	/* -------------------------------------middle-----------------------------------------------*/
 	.middle {
 		position: absolute;
-		top: 4rem;
+		top: 4.8vw;
 		left: 3.5vw;
 		right: 3.5vw;
 		bottom: 0;
@@ -201,28 +201,28 @@ a img {
 		position: absolute;
 		left: 0;
 		right: 0;
-		top: 4rem;
+		top: 4.8vw;
 		bottom: 0;
 	}
 	.column li {
 		float: left;
 		width: 50%;
-		height: 21rem;
 		padding-top: 0;
-		margin-bottom: 2rem;
-		margin-top: 2rem;
-		height: 24.8rem !important;
+		margin-bottom:2.2vw;
+		margin-top: 2vw;
+		height: 30vw !important;
+/*		background-color:pink;*/
 		text-align: center;
 	}
 	.column img {
 		width: 80%;
-		margin-top: 6rem;
+		margin-top: 7.2vw;
 	}
 	.nameIn {
 		position: absolute;
-		padding-top: 1rem;
-		padding-bottom: 1.5rem;
-		padding-left: 4rem;
+		padding-top: 1vw;
+		padding-bottom: 1.5vw;
+		padding-left: 4.4vw;
 		text-align: left;
 		font-size: 1.3rem;
 		width: 50%;
@@ -237,8 +237,8 @@ a img {
 	}
 	.github {
 		position: relative;
-		bottom: -1.2rem;
-		left: 4rem;
+		bottom: -1.2vw;
+		left: 4.6vw;
 		color: #009688;
 		font-size: 1rem;
 		width: 80%;
@@ -246,7 +246,7 @@ a img {
 	}
 	.github li {
 		text-align: right;
-		padding: 0.7rem !important;
+		padding: 0.9vw !important;
 		padding-right: 0 !important;
 		float: left !important;
 		width: 33.333333333333333333333333%;
