@@ -51,10 +51,12 @@
 			var svg = d3.select("svg")
 			var width = +svg.attr("width")
 			var height = +svg.attr("height");
-	
-			var color = d3.scaleOrdinal(d3.schemeCategory20b);
-//			var color = d3.scale.ordinal()
-//			.domain([1,2,3,4,5,6,7,8,9,10])	.range(['#443c3a','#e07f60','#5e2105','#af8854','#e5b955','#2c3f45','#e8c1a2','#fccf7d','#b79f9b','#c33f35']);
+//	
+//			var color = d3.scaleOrdinal(d3.schemeCategory20b);
+			var color = d3.scaleOrdinal()
+			.domain([0,1,2,3,4,5,6,7,8,9,10])	
+			.range(['#443c3a','#e07f60','#5e2105',														'#af8854','#e5b955','#2c3f45','#e8c1a2',
+				'#fccf7d','#b79f9b','#c33f35','#26608e']);
 	
 			var simulation = d3.forceSimulation()
 			.force("link", d3.forceLink()
@@ -81,12 +83,18 @@
 				
 				var node = svg.append("g")
 							.attr("class", "nodes")
-							.selectAll("circle")
+							.selectAll(".liGroup")
 							.data(graph.nodes);
 				
-				var circle = node
+				var liGroup = node
 							.enter()
+							.append('g')
+							.attr('class', 'liGroup');
+				
+				var circle = liGroup
 							.append("circle")
+							.attr('cx', 0)
+							.attr('cy', 0)
 							.attr("r", 5)
 							.attr("fill", function (d) {
 								return color(d.group);//여기 컬러 순서를 바꾸고 싶을땐 어떻게 하나?
@@ -96,16 +104,16 @@
 								  .on("drag", dragged)
 								  .on("end", dragended))
 							.on('mouseover',function(d){
-								d3.select(this.parentNode.querySelector('.name'))
+								d3.select(this.nextSibling)
 									.attr('opacity',1);							
 							})
 							.on('mouseout',function(d){
-								d3.select(this.parentNode.querySelector('text'))
+								d3.select(this.nextSibling)
 									.attr('opacity',0);							
 							});
 				
 
-				var name = node.enter().append("text")
+				var name = liGroup.append("text")
 					.attr('class',function(d){return d.id + ' name';})
 					.style("font-size", ".4em")
 					.attr('fill','black')
@@ -128,17 +136,9 @@
 					}).attr("y2", function (d) {
 						return d.target.y;
 					});
-					circle.attr("cx", function (d) {
-						return d.x;
-					}).attr("cy", function (d) {
-						return d.y;
+					liGroup.attr("transform", function (d) {
+						return 'translate(' + d.x + ', ' + d.y + ')';
 					});
-					name.attr("x", function (d) {
-						return d.x + 8;
-						})
-						.attr("y", function (d) {
-						return d.y;
-						});
 				}
 			});
 
