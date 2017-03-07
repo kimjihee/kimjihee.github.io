@@ -12,28 +12,33 @@
 		}   
 		#chart {
 			position: absolute;
-		  top:2rem;
-		  left:3.2rem;
-		  right:10vw;
-		  height:550px;
+			top:2rem;
+			left:3.2rem;
+			right:10vw;
+			height:550px;
 		}
 		.axis path, .axis line {
-		fill: none;
-		stroke: rgba(100,100,100,0.4);
-		shape-rendering: crispEdges;
+			fill: none;
+			stroke: rgba(100,100,100,0.4);
+			shape-rendering: crispEdges;
 		}
 		.axis text {
 		   fill:rgba(150,150,150,0.7); 
 		} 
 		p{
-		font-size:2.5rem !important;
-		position: absolute;
-		top:2rem;
-		left:6.7rem;
+			font-size:2.5rem !important;
+			position: absolute;
+			top:2rem;
+			left:6.7rem;
 		}
-		.tick{display:none;}
-		.number{font-size:1rem;}
-		.inRect{border:1px solid red !important;}
+		.tick {display:none;}
+		.number {font-size:1rem;}
+		.inRect {border:1px solid red !important;}
+		.timePath {
+			fill:none;
+			stroke:black;
+			stroke-width:0.5px;
+		}
       </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     
@@ -41,9 +46,7 @@
     <body>
         <p>Suicide Rates<span class="number">&nbsp;&nbsp; Per 100,000 persons</span></p>
         <svg id="chart"> </svg>
-        
-        
-        
+       
         <script>
 
 //----------------------------------------Data---------------------------------------------
@@ -55,7 +58,7 @@
         d3.csv('data/suicide_rate.csv', function (err, suicide) {
             suicide.forEach(function (row) {
                 row['ReferenceArea'] = row['ReferenceArea'];
-                row['TimePeriod'] = new Date(+row['TimePeriod'], 0, 1);
+                row['TimePeriod'] = +row['TimePeriod'];
                 row['Sex'] = row['Sex'];
                 row['Value'] = +row['Value'];
             });
@@ -78,23 +81,18 @@
             var nest = d3.nest()
             .key(function(d){
             return d.ReferenceArea;
-
             })
-             .key(function(d){
+		 	.key(function(d){
                 return d.Sex;
-               
             })
             .entries(pickCountries);
-         
-            
+ 
             dataSet = nest;
-           console.log(dataSet);
+           	console.log(dataSet);
             
             redraw();    
         }); 
-    
-            
-            
+             
             var redraw = function(){
                   
             var MARGIN = {
@@ -103,16 +101,15 @@
                 , RIGHT: 100
                 , BOTTOM: 0
             , }
-            
-          
+ 
             var padding = 20;
             var Width = 1000;
             var Height = 500;
 ////----------------------------------------column----------------------------------------
             d3.select('#chart')
                 .attr('height',Height + 100);
-                
-            var columnSel = d3.select('#chart')
+				
+			var columnSel = d3.select('#chart')
                 .attr("width", Width+100)
                 .attr("height", Height+200)
                 .selectAll('g.column').data(dataSet);
@@ -127,8 +124,7 @@
             columnSel.attr('transform', function (d,i) {
                 return 'translate(' + ( Math.floor(i%8)* (Width/8) + MARGIN.LEFT )+ ', '+ ((Height/2)* Math.floor(i/8) +  MARGIN.TOP  )+ ')';
             });
-         
-                          
+                        
             var xScale = d3.scale.linear()
                 .domain(yearExtent)
                 .rangeRound([padding*1.5, (Width/8) - padding*1.5]);
@@ -139,9 +135,9 @@
             var xAxis = d3.svg.axis()
                 .scale(xScale)
                 .orient('bottom')
-                .ticks(d3.time.year)
+//                .ticks(d3.time.year)
                 .tickValues(yearExtent)
-                .tickFormat(d3.time.format('%Y'))
+//                .tickFormat(d3.time.format('%Y'))
                 .tickSize(0)
                 .tickPadding(8);
 //            
@@ -177,14 +173,15 @@
 //                .call(yAxis);  
 
             var dataLine = d3.svg.line()
-                    .x(function(d) { return xScale(d.TimePeriod); })
-                    .y(function(d) { return yScale(d.Value); })
+                    .x(function(d) { return xScale(d.TimePeriod);})
+                    .y(function(d) { return yScale(d.Value);})
                     .interpolate("monotone");  
 
             var dataSel = columnSel.selectAll('path.data').data(function(d){
                 return [d.values[0], d.values[1]];
             });
-            var color = d3.scale.ordinal()
+            
+			var color = d3.scale.ordinal()
                 .domain(['Female', 'Male'])
                 .range(['#de7766','#8a929e']);
 
@@ -233,7 +230,35 @@
                 .attr('opacity',0.8)
                 .style('font-size','0.4rem')
                 .text(function(d){return d.Value.toFixed();});  
-                
+				
+			var timePath = d3.select('#chart')
+				.append('g')
+				.attr('width',100)
+				.attr('height',40)
+				.attr('x',916)
+				.attr('y',78)
+				.attr('transform','translate(38,295)');
+				
+//			timePath
+//				.append('path')
+//				.attr('class','timePath')
+//				.attr('d','M 30 0 V 0 H 95 V 0')
+//				.attr('stroke','black');
+				
+			timePath
+				.append('text')
+				.attr('x',20)
+				.attr('y',-10)
+				.attr('fill','rgb(139,139,139)')
+				.text(yearExtent[0]);
+				
+			timePath
+				.append('text')
+				.attr('x',85)
+				.attr('y',-10)
+				.attr('fill','rgb(139,139,139)')
+				.text(yearExtent[1]);
+
 //            Text.enter()
 //                .append("circle")
 //                .attr("class", "number circle")
