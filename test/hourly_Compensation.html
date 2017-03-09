@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hourly Compensation</title>
+  <style>
+/*        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);*/
+    body {
+    font-family: 'Roboto', sans-serif;
+    font-size:0.7rem;
+    box-sizing: border-box;
+    margin:0;
+    }
+    p {
+    position: absolute;
+    top:2rem;
+    left:11.7rem;
+  	font-size:1.9rem;}
+    .xAxis path,
+    .xAxis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+    }
+    .yAxis path,
+    .yAxis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+    }
+    .domain{
+    stroke-width:0.5px !important;
+    stroke:rgb(170,170,170);
+    }
+    .tick text{
+    fill:rgb(150,150,150) !important;
+    }
+    .tick line{
+        stroke:rgb(200,200,200);}
+    .xAxis text {
+        text-anchor:start !important;
+    }
+    span {
+       font-size:1.2rem;
+    }
+    #chart {
+        position: absolute;
+        left:10rem;
+        right:10vw;
+    }
+    
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <script src="d3.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <p>Hourly Compensation <span class="degree">(US$)</span> </p>
+    <svg id="chart">
+        
+    </svg>
+   
+    <script>
+ 
+        var dataSet = [];
+        var valueData = [];
+        
+        d3.csv('data/hour_compensation.csv', function (err, compensation) {
+          
+                for(var i = 0; i < compensation.length; i++) {
+                    var time = compensation[i];
+                    var country = time['Country'];
+                    delete time['Country'];
+
+                    for(var year in time) {
+                        valueData.push({
+                            Country: country,
+                            Year: +year,
+                            compenValue: +time[year],
+                        });
+                    }
+                }
+
+                yearExtent = d3.extent(valueData, function(d) {return d.Year;});
+                valueExtent = d3.extent(valueData, function(d) {return d.compenValue;});
+
+                var myCountries = [
+                    'Korea, Rep.','Hong Kong, China','Germany',
+                    'Netherlands','Bangladesh','United Kingdom',
+                    'United States','Italy','France','Japan',
+                    'Sri Lanka','Greece','Norway'
+                ];
+
+                var pickCountries = valueData.filter(function (row) {
+                    for(var i = 0; i < myCountries.length; i++) {
+                        if(row['Country'] === myCountries[i]) return true;
+                    }
+                    return false;
+                });            
+
+                dataSet = d3.nest()
+                    .key(function(d){
+                        return d.Country;
+                    })
+                    .entries(pickCountries);
+
+                for(i=0; i<dataSet.length; i++){     
+                    for(j=0; j<27; j++){
+                        var Sum = d3.min(dataSet[i].values.filter(function(d) {
+                            return d.compenValue !== 0;}), function(d) {return d.compenValue;}
+                        );
+                        if(dataSet[i].values[j].Value===0) {
+                        dataSet[i].values[j].Value = undefined;                      
+                        }   
+                    }
+                }                  
+                redraw(); 
+             
+        });
+
+     var redraw = function () {   
+
+            var MARGIN = {
+                START:0
+                , TOP: 120
+                , LEFT: 20
+                , RIGHT: 100
+                , BOTTOM: 0
+            , }
+
+            var Width = 950
+            ,Height = 500
+            ,padding = 60;
+
+            var columnSel = d3.select('#chart')
+                .attr("width", Width+100)
+                .attr("height", Height+100)
+                .selectAll('g.column').data(dataSet);
+
+            columnSel
+                .enter()
+                .append('g')
+                .attr('class', function (d) {
+                    return 'column ' + " " + d.key;
+                })
+                .append('rect')
+                .attr('class', function (d) {
+                    return 'rect' + d.key;
+                })
+                .attr('width','126')
+                .attr('height','90')
+                .attr('y',50)
+                .style('fill',"grey")
+				.style('opacity',0)
+                .style('z-index',"-2")
+				.attr("transform", "translate(  "+ (padding/2) +" ,0)")
+                .on("mousemove", function (d, i) {
+                    var coords = d3.mouse(this);
+					var year = Math.floor( xScale.invert(coords[0] + (padding/2)));
+					var value = dataSet[i].values.filter(function(d) {return d.Year == year})[0];
+					d3.select(this.parentNode.querySelector('circle'))
+						.style('opacity', 1)
+						.attr('cx', xScale(year))
+						.attr('cy', yScale(value.compenValue))
+						.style('fill','#00897B');
+					d3.select(this.parentNode.querySelector('.dataText'))
+						.style('opacity', 1)
+						.attr('x', xScale(year)-3)
+						.attr('y', yScale(value.compenValue)-9)
+						.text(Math.ceil(value.compenValue)+"$");
+				})
+                .on("mouseout",  function () {
+                    d3.select(this.parentNode.querySelector('circle'))
+                    .style('opacity', 0);
+				 d3.select(this.parentNode.querySelector('.dataText'))
+                    .style('opacity', 0);
+				
+                });
+            
+            columnSel.exit().remove();
+            columnSel
+                .attr('transform', function (d,i) {
+                return 'translate(' + ( Math.floor(i%4)* (Width/4) + MARGIN.LEFT )+ ', '+ ((Height/3)* Math.floor(i/4) +  MARGIN.TOP  )+ ')';
+                });
+ 
+            var xScale = d3.scale.linear()
+                .domain(yearExtent)
+                .rangeRound([padding/2, (Width/4) - padding*1.5]);
+            
+            var yScale = d3.scale.linear()
+                .domain(valueExtent)
+                .rangeRound([(Height/3) - padding , padding]);
+
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient('bottom')
+                .tickValues([1980,2006])
+                .tickSize(0)
+                .tickPadding(10);
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient('left')
+                .tickValues([0,10,20,40])
+                .tickSize(0)
+                .tickPadding(5);
+          
+            columnSel
+                .append('g')
+                .attr('class', 'axis x')
+                .attr("transform", "translate(  0," + yScale.range()[0]+ ")")
+                .style('stroke-width','2px')
+                .call(xAxis)
+                .append("text")
+                .attr("y", -100)
+                .attr("x", 11)
+                .attr("dy", "3em") 
+                .style("line-height", "-0.8rem")
+                .style("font-size", "0.8rem")
+                .style('font-weight','bold')
+                .style('fill','balck')
+                .style('opacity','0.87')
+                .text(function (d){return d.key; });
+         
+            columnSel
+                .append('g')
+                .attr('class', 'axis y')
+                .style("text-anchor", "middle")
+				.attr("transform", "translate(  "+ (padding/2) +" ,0)")
+                .call(yAxis);
+                
+            var compenLine = d3.svg.line()
+                .x(function(d) { return xScale(d.Year); })
+                .y(function(d) { return yScale(d.compenValue); })
+                .interpolate("monotone");    
+            
+            columnSel
+                .append('path')
+                .attr('class', function (d) {
+                    return 'compenData' + d.key;
+                })
+                .style('fill',"none")
+                .style('z-index',"2")
+                .style('stroke', "#00897B")
+                .style('opacity',0.8)
+                .style('stroke-width',2.5)
+                .attr('d', function(d) {
+                    return compenLine(d.values);
+                });
+                         
+            columnSel
+                .append('text')
+                .attr('class', function (d) {
+                    return 'dataText ' + d.key;
+                })
+				.attr('fill','rgb(170,170,170)');
+            columnSel
+                .append('circle')
+                .attr('opacity','0')
+                .attr('class', function (d) {
+                    return 'compenData' + d.key;
+                })
+                .attr('r',4);
+         }; 
+      
+    </script>
+    </body>
+</html>
