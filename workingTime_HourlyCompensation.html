@@ -77,9 +77,13 @@
         opacity: 0.5;
     } 
     #chart {
+		display:block;
+		margin:0 auto;
+/*
         position: absolute;
         left:10rem;
         right:10vw;
+*/
     }
     
     </style>
@@ -100,58 +104,63 @@
         var valueData = [];
         
         d3.csv('data/hour_compensation.csv', function (err, compensation) {
-//            d3.csv('data/working_hours_per_week.csv', function (err, work) {
-                
-                for(var i = 0; i < compensation.length; i++) {
-                    var time = compensation[i];
-                    var country = time['Country'];
-                    delete time['Country'];
-//                    var timeValue = [];
-////                    for(var i = 0; i < work.length; i++) {
-//                    var times = work[i];
-////                    var workcountry = times['Country'];
-////                    delete time['Country'];
-//                    for(var year in times) {    
-//                        timeValue.push({
-////                            Country:workcountry,
-////                            Year: +year,
-//                            workValue :+times[year]
-//                        });
-//                        }
-//                    }
-//                 console.log(timeValue);
-                    for(var year in time) {
-                        valueData.push({
-                            Country: country,
-                            Year: +year,
-                            compenValue: +time[year],
-//                            TimeValue: timeValue
-                        });
-                    }
-                }
-
-                yearExtent = d3.extent(valueData, function(d) {return d.Year;});
-                valueExtent = d3.extent(valueData, function(d) {return d.compenValue;});
-
-                var myCountries = [
+            d3.csv('data/working_hours_per_week.csv', function (err, work) {
+				var myCountries = [
                     'Korea, Rep.','Hong Kong, China','Germany',
                     'Netherlands','Bangladesh','United Kingdom',
                     'United States','Italy','France','Japan',
                     'Sri Lanka','Greece','Norway'
                 ];
-
-                var pickCountries = valueData.filter(function (row) {
-                    for(var i = 0; i < myCountries.length; i++) {
-                        if(row['Country'] === myCountries[i]) return true;
-                    }
-                    return false;
-                });            
-
+				compensation = compensation.filter(function(d) {
+					return myCountries.indexOf(d.Country) !== -1;
+				});
+				work = work.filter(function(d) {
+					return myCountries.indexOf(d.Country) !== -1;
+				});
+				console.log(work);
+//                var pickCountries = valueData.filter(function (row) {
+//                    for(var i = 0; i < myCountries.length; i++) {
+//                        if(row['Country'] === myCountries[i]) return true;
+//                    }
+//                    return false;
+//                });    
+				
+				//이게 왜 0인지 모르겠다.
+               	for(var i = 0; i<compensation.length; i++) {
+                    var time = compensation[i];
+					var wTime = work[i];
+                    var country = time['Country'];
+                    delete time['Country'];
+				 	
+					
+					for(var year in time, wTime) {
+//						for(var year in wTime) {
+							valueData.push({
+								Country: country,
+								Year: +year,
+								compenValue: +time[year],
+								workTimeValue: +wTime[year]
+							});
+//						}
+					}
+//					workTimeValue: for(var i = 0; i<work.length; i++) {
+//							var times = work[i];
+//
+//							for(var year in times) {
+//								workTimeValue: 	+times[year]
+//							}
+//					}
+				
+                }
+				console.log(valueData);				
+                yearExtent = d3.extent(valueData, function(d) {return d.Year;});
+                valueExtent = d3.extent(valueData, function(d) {return d.compenValue;});
+        
                 dataSet = d3.nest()
                     .key(function(d){
                         return d.Country;
                     })
-                    .entries(pickCountries);
+                    .entries(valueData);
 
                 for(i=0; i<dataSet.length; i++){     
                     for(j=0; j<27; j++){
@@ -165,7 +174,7 @@
                 }                  
                 redraw(); 
                 console.log(dataSet);
-//            });
+            });
         });
 
      var redraw = function () {   
@@ -212,12 +221,19 @@
 						.style('opacity', 1)
 						.attr('cx', xScale(year))
 						.attr('cy', yScale(value.compenValue))
-						//여기 들어가는 데이터가 rect에 들어가는 데이터와 다르다.
-						.style('fill','#00897B');}
-                )
+						.style('fill','#00897B');
+					d3.select(this.parentNode.querySelector('.dataText'))
+						.style('opacity', 1)
+						.attr('x', xScale(year)-3)
+						.attr('y', yScale(value.compenValue)-9)
+						.text(Math.ceil(value.compenValue)+"$");
+				})
                 .on("mouseout",  function () {
                     d3.select(this.parentNode.querySelector('circle'))
                     .style('opacity', 0);
+				 d3.select(this.parentNode.querySelector('.dataText'))
+                    .style('opacity', 0);
+				
                 });
             
             columnSel.exit().remove();
@@ -275,6 +291,11 @@
             var compenLine = d3.svg.line()
                 .x(function(d) { return xScale(d.Year); })
                 .y(function(d) { return yScale(d.compenValue); })
+                .interpolate("monotone");   
+		 	
+		 	var workLine = d3.svg.line()
+                .x(function(d) { return xScale(d.Year); })
+                .y(function(d) { return yScale(d.workTimeValue);})
                 .interpolate("monotone");    
             
             columnSel
@@ -287,26 +308,36 @@
                 .style('stroke', "#00897B")
                 .style('opacity',0.8)
                 .style('stroke-width',2.5)
-//                .attr("transform", "translate(  "+ - (padding/2) +" ,0 )")
                 .attr('d', function(d) {
                     return compenLine(d.values);
                 });
-         
-            var rectSel = columnSel.selectAll('rect').data(function(d){return d.values;})
-         
-                
+		 	
+		 	columnSel
+                .append('path')
+                .attr('class', function (d) {
+                    return 'compenData' + d.key;
+                })
+                .style('fill',"none")
+                .style('z-index',"2")
+                .style('stroke', "#00897B")
+                .style('opacity',0.8)
+                .style('stroke-width',2.5)
+                .attr('d', function(d) {
+                    return workLine(d.values);
+                });
+                         
             columnSel
                 .append('text')
                 .attr('class', function (d) {
-                    return 'compenData' + d.key;
-                });
+                    return 'dataText ' + d.key;
+                })
+				.attr('fill','rgb(170,170,170)');
             columnSel
                 .append('circle')
                 .attr('opacity','0')
                 .attr('class', function (d) {
                     return 'compenData' + d.key;
                 })
-//				.attr("transform", "translate(  "+ - (padding/2) +" ,0 )")
                 .attr('r',4);
          }; 
       
