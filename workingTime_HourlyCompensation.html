@@ -23,16 +23,6 @@
     left:10rem;
     font-size: 0.4rem;
     }
-    P{
-    position: absolute;
-    top:3vw;
-    left:11.7rem;
-    font-size:1rem;
-    }
-    .yellow {
-    position: absolute;
-    top:3vw;
-    left:50.5rem;}
     .xAxis path,
     .xAxis line {
     fill: none;
@@ -62,14 +52,24 @@
         width:0.3rem;
         height:1rem;
     }
-    .w {
-        background-color:#f59144;
+	P{
+    position: absolute;
+    top:3vw;
+    left:13.2rem;
+    font-size:1rem;
+    }
+    .comP {
+    position: absolute;
+    top:3vw;
+    left:51.5rem;}
+    .wRect {
+        background-color:#FF8A65;
         position: absolute;
         top:0;
-        left:12.3rem;
+        left:12.5rem;
         opacity: 0.7;
     }
-    .h {
+    .hRect {
         background-color:#00897B;
         position: absolute;
         top:0;
@@ -92,8 +92,8 @@
 </head>
 
 <body>
-    <P class="yellow"><span class="h"></span>Hourly Compensation (US$) </P>
-    <P>WORKING TIME PER WEEK <span class="w"></span></P>
+    <P class="comP"><span class="hRect"></span>Hourly Compensation (US$) </P>
+    <P>WORKING TIME PER WEEK <span class="wRect"></span></P>
     <svg id="chart">
         
     </svg>
@@ -126,9 +126,10 @@
 //                });    
 				
 				//이게 왜 0인지 모르겠다.
-               	for(var i = 0; i<compensation.length; i++) {
+               	for(var i = 0; i<12; i++) {
+//					console.log(compensation.length);
                     var time = compensation[i];
-					var wTime = work[i];
+					var wTime = work[i+1];// 임의로 맞춤
                     var country = time['Country'];
                     delete time['Country'];
 				 	
@@ -154,26 +155,34 @@
                 }
 				console.log(valueData);				
                 yearExtent = d3.extent(valueData, function(d) {return d.Year;});
-                valueExtent = d3.extent(valueData, function(d) {return d.compenValue;});
+                valueExtent = d3.extent(valueData, function(d) {return d.workTimeValue;});
         
                 dataSet = d3.nest()
                     .key(function(d){
                         return d.Country;
                     })
                     .entries(valueData);
-
-                for(i=0; i<dataSet.length; i++){     
-                    for(j=0; j<27; j++){
-                        var Sum = d3.min(dataSet[i].values.filter(function(d) {
-                            return d.compenValue !== 0;}), function(d) {return d.compenValue;}
-                        );
-                        if(dataSet[i].values[j].Value===0) {
-                        dataSet[i].values[j].Value = undefined;                      
-                        }   
-                    }
-                }                  
+  
+				for(var i = 0; i < dataSet.length; i++) {
+					var Mean = d3.mean(
+						dataSet[i].values.filter(function(d) {return d.compenValue !== 0;}),
+						function(d) {return d.compenValue;}
+					);
+					for(var j = 0; j < dataSet[i].values.length; j++) {
+						dataSet[i].values[j].compenValue = dataSet[i].values[j].compenValue || Mean;
+					}
+            	}
+				for(var i = 0; i < dataSet.length; i++) {
+					var workMean = d3.mean(
+						dataSet[i].values.filter(function(d) {return d.workTimeValue !== 0;}),
+						function(d) {return d.workTimeValue;}
+					);
+					for(var j = 0; j < dataSet[i].values.length; j++) {
+						dataSet[i].values[j].workTimeValue = dataSet[i].values[j].workTimeValue || workMean;
+					}
+            	}
                 redraw(); 
-                console.log(dataSet);
+              
             });
         });
 
@@ -207,7 +216,7 @@
                     return 'rect' + d.key;
                 })
                 .attr('width','126')
-                .attr('height','50')
+                .attr('height','80')
                 .attr('y',60)
                 .style('fill',"grey")
 				.style('opacity',0)
@@ -260,7 +269,7 @@
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
-                .tickValues([0,10,20,40])
+                .tickValues([0,10,30,50])
                 .tickSize(0)
                 .tickPadding(5);
           
@@ -319,7 +328,7 @@
                 })
                 .style('fill',"none")
                 .style('z-index',"2")
-                .style('stroke', "#00897B")
+                .style('stroke', '#FF8A65')
                 .style('opacity',0.8)
                 .style('stroke-width',2.5)
                 .attr('d', function(d) {
@@ -338,7 +347,7 @@
                 .attr('class', function (d) {
                     return 'compenData' + d.key;
                 })
-                .attr('r',4);
+                .attr('r',3);
          }; 
       
     </script>
