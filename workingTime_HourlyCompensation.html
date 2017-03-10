@@ -41,9 +41,9 @@
 	P{
     position: absolute;
     top:1vw;
-    left:13.2rem;
-    font-size:2rem;
-		line-height:2.5rem;
+    left:8.7rem;
+    font-size:1.5rem;
+/*	line-height:2.5rem;*/
     }
     .comP {
     position: absolute;
@@ -53,18 +53,18 @@
         background-color:#FF8A65;
         position: absolute;
         left:0;
-		top:1rem;
-        opacity: 0.5;
+		top:0.5rem;
+        opacity: 0.4;
 		display: block;
-        width:12.5rem;
+        width:8.5rem;
         height:1rem;
 		z-index:-2;
     }
     .hRect {
         background-color:#00897B;
         position: absolute; 
-		top:3.4rem;
-        left:6.5rem;
+		top:0.5rem;
+        left:19rem;
         opacity: 0.25;
 		display: block;
         width:14rem;
@@ -88,8 +88,8 @@
 </head>
 
 <body>
-    <P >Working Time Per Week <span class="wRect"></span><br>
-    Hourly Compensation <span class="degree">(US$)</span><span class="hRect"></span></P>
+    <P >Working Time Per Week <span class="wRect"></span>
+   &nbsp;&&nbsp; Hourly Compensation <span class="degree">(US$)</span><span class="hRect"></span></P>
     <svg id="chart">
         
     </svg>
@@ -186,13 +186,13 @@
 
             var MARGIN = {
                 START:0
-                , TOP: 140
+                , TOP: 125
                 , LEFT: 20
                 , RIGHT: 100
                 , BOTTOM: 0
             , }
 
-            var Width = 900
+            var Width = 1100
             ,Height = 500
             ,padding = 60;
 
@@ -258,12 +258,12 @@
             columnSel.exit().remove();
             columnSel
                 .attr('transform', function (d,i) {
-                return 'translate(' + ( Math.floor(i%4)* (Width/4) + MARGIN.LEFT )+ ', '+ ((Height/3)* Math.floor(i/4) +  MARGIN.TOP  )+ ')';
+                return 'translate(' + ( Math.floor(i%5)* (Width/5) + MARGIN.LEFT )+ ', '+ ((Height/3)* Math.floor(i/5) +  MARGIN.TOP  )+ ')';
                 });
  
             var xScale = d3.scale.linear()
                 .domain(yearExtent)
-                .rangeRound([padding/2, (Width/4) - padding*1.2]);
+                .rangeRound([padding, (Width/5) - padding*1.2]);
             
             var yScale = d3.scale.linear()
                 .domain(valueExtent)
@@ -291,20 +291,20 @@
                 .call(xAxis)
                 .append("text")
                 .attr("y", -105)
-                .attr("x", 10)
+                .attr("x", 40)
                 .attr("dy", "3em") 
                 .style("line-height", "-0.8rem")
                 .style("font-size", "0.8rem")
                 .style('font-weight','bold')
                 .style('fill','balck')
-                .style('opacity','0.87')
+                .style('opacity','0.67')
                 .text(function (d){return d.key; });
          
             columnSel
                 .append('g')
                 .attr('class', 'axis y')
                 .style("text-anchor", "middle")
-				.attr("transform", "translate(  "+ (padding/2) +" ,0)")
+				.attr("transform", "translate(  "+ padding +" ,0)")
                 .call(yAxis);
                 
             var compenLine = d3.svg.line()
