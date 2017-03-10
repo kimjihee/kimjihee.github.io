@@ -24,17 +24,19 @@
     shape-rendering: crispEdges;
     }
     .domain{
-    stroke-width:0.5px !important;
+    stroke-width:0 !important;
     stroke:rgb(140,140,140);
+		
     }
     .tick text{
-    fill:rgb(150,150,150) !important;
+    fill:rgba(160,160,160,0.9) !important;
     }
     .tick line{
         stroke:rgb(200,200,200);}
     .xAxis text {
         text-anchor:start !important;
 		z-index:-100;
+		opacity:0;
     }
 	P{
     position: absolute;
@@ -277,7 +279,7 @@
             var yAxis = d3.svg.axis()
                 .scale(yScale)
                 .orient('left')
-                .tickValues([0,10,30,50])
+                .tickValues([0,50])
                 .tickSize(0)
                 .tickPadding(5);
           
