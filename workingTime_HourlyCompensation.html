@@ -11,18 +11,6 @@
     box-sizing: border-box;
     margin:0;
     }
-    .compenChart {
-    position: absolute;
-    top:3vw;
-    left:10rem;
-    font-size: 0.4rem;
-    }
-    .workChart{
-    position: absolute;
-    top:3vw;
-    left:10rem;
-    font-size: 0.4rem;
-    }
     .xAxis path,
     .xAxis line {
     fill: none;
@@ -37,7 +25,7 @@
     }
     .domain{
     stroke-width:0.5px !important;
-    stroke:rgb(170,170,170);
+    stroke:rgb(140,140,140);
     }
     .tick text{
     fill:rgb(150,150,150) !important;
@@ -46,17 +34,14 @@
         stroke:rgb(200,200,200);}
     .xAxis text {
         text-anchor:start !important;
-    }
-    span {
-        display: block;
-        width:0.3rem;
-        height:1rem;
+		z-index:-100;
     }
 	P{
     position: absolute;
-    top:3vw;
+    top:1vw;
     left:13.2rem;
-    font-size:1rem;
+    font-size:2rem;
+		line-height:2.5rem;
     }
     .comP {
     position: absolute;
@@ -65,16 +50,24 @@
     .wRect {
         background-color:#FF8A65;
         position: absolute;
-        top:0;
-        left:12.5rem;
-        opacity: 0.7;
+        left:0;
+		top:1rem;
+        opacity: 0.5;
+		display: block;
+        width:12.5rem;
+        height:1rem;
+		z-index:-2;
     }
     .hRect {
         background-color:#00897B;
-        position: absolute;
-        top:0;
-        left:12.8rem;
-        opacity: 0.5;
+        position: absolute; 
+		top:3.4rem;
+        left:6.5rem;
+        opacity: 0.25;
+		display: block;
+        width:14rem;
+        height:1rem;
+		z-index:-2;
     } 
     #chart {
 		display:block;
@@ -85,6 +78,7 @@
         right:10vw;
 */
     }
+	.degree{font-size:1rem;}
     
     </style>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
@@ -92,8 +86,8 @@
 </head>
 
 <body>
-    <P class="comP"><span class="hRect"></span>Hourly Compensation (US$) </P>
-    <P>WORKING TIME PER WEEK <span class="wRect"></span></P>
+    <P >Working Time Per Week <span class="wRect"></span><br>
+    Hourly Compensation <span class="degree">(US$)</span><span class="hRect"></span></P>
     <svg id="chart">
         
     </svg>
@@ -190,7 +184,7 @@
 
             var MARGIN = {
                 START:0
-                , TOP: 100
+                , TOP: 140
                 , LEFT: 20
                 , RIGHT: 100
                 , BOTTOM: 0
@@ -220,28 +214,42 @@
                 .attr('y',60)
                 .style('fill',"grey")
 				.style('opacity',0)
-                .style('z-index',"-2")
+                .style('z-index',"20")
 				.attr("transform", "translate(  "+ (padding/2) +" ,0)")
                 .on("mousemove", function (d, i) {
                     var coords = d3.mouse(this);
 					var year = Math.floor( xScale.invert(coords[0] + (padding/2)));
 					var value = dataSet[i].values.filter(function(d) {return d.Year == year})[0];
-					d3.select(this.parentNode.querySelector('circle'))
+					d3.select(this.parentNode.querySelector('.compenCircle'))
 						.style('opacity', 1)
 						.attr('cx', xScale(year))
 						.attr('cy', yScale(value.compenValue))
 						.style('fill','#00897B');
-					d3.select(this.parentNode.querySelector('.dataText'))
+					d3.select(this.parentNode.querySelector('.compenText'))
 						.style('opacity', 1)
 						.attr('x', xScale(year)-3)
-						.attr('y', yScale(value.compenValue)-9)
+						.attr('y', yScale(value.compenValue)-7)
 						.text(Math.ceil(value.compenValue)+"$");
+					d3.select(this.parentNode.querySelector('.workCircle'))
+						.style('opacity', 1)
+						.attr('cx', xScale(year))
+						.attr('cy', yScale(value.workTimeValue))
+						.style('fill','#FF8A65');
+					d3.select(this.parentNode.querySelector('.workText'))
+						.style('opacity', 1)
+						.attr('x', xScale(year)-3)
+						.attr('y', yScale(value.workTimeValue)-7)
+						.text(Math.ceil(value.workTimeValue)+"h");
 				})
                 .on("mouseout",  function () {
-                    d3.select(this.parentNode.querySelector('circle'))
-                    .style('opacity', 0);
-				 d3.select(this.parentNode.querySelector('.dataText'))
-                    .style('opacity', 0);
+                    d3.select(this.parentNode.querySelector('.compenCircle'))
+                    	.style('opacity', 0);
+				 	d3.select(this.parentNode.querySelector('.compenText'))
+						.style('opacity', 0);
+				 	d3.select(this.parentNode.querySelector('.workCircle'))
+                    	.style('opacity', 0);
+				 	d3.select(this.parentNode.querySelector('.workText'))
+						.style('opacity', 0);
 				
                 });
             
@@ -324,7 +332,7 @@
 		 	columnSel
                 .append('path')
                 .attr('class', function (d) {
-                    return 'compenData' + d.key;
+                    return 'workData' + d.key;
                 })
                 .style('fill',"none")
                 .style('z-index',"2")
@@ -338,15 +346,24 @@
             columnSel
                 .append('text')
                 .attr('class', function (d) {
-                    return 'dataText ' + d.key;
+                    return 'compenText ' + d.key;
                 })
 				.attr('fill','rgb(170,170,170)');
             columnSel
                 .append('circle')
+				.attr('class', 'compenCircle')
                 .attr('opacity','0')
+                .attr('r',3);
+		  	columnSel
+                .append('text')
                 .attr('class', function (d) {
-                    return 'compenData' + d.key;
+                    return 'workText ' + d.key;
                 })
+				.attr('fill','rgb(170,170,170)');
+            columnSel
+                .append('circle')
+				.attr('class', 'workCircle')
+                .attr('opacity','0')
                 .attr('r',3);
          }; 
       
