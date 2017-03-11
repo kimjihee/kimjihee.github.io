@@ -251,13 +251,13 @@
                 })
 //				.attr('opacity',0.85)
                 .on("mouseover",function(d){
-				
-				coords = d3.mouse(this);
 					
+				coords = d3.event;
+				console.log(coords);
 				d3.select("#tooltip")
 					.classed("hidden", false)
-					.style('left', coords[0]+92+'px')
-					.style('top', coords[1]+200+'px')
+					.style('left', coords.screenX+'px')
+					.style('top', coords.screenY-100+'px')
 					.text(d.Stop);
 				})
 			  	.on("mouseout",function(d){
