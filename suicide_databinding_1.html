@@ -103,7 +103,7 @@
             , }
  
             var padding = 20;
-            var Width = 1000;
+            var Width = 1150;
             var Height = 500;
 ////----------------------------------------column----------------------------------------
             d3.select('#chart')
@@ -122,12 +122,12 @@
                     
             columnSel.exit().remove();
             columnSel.attr('transform', function (d,i) {
-                return 'translate(' + ( Math.floor(i%8)* (Width/8) + MARGIN.LEFT )+ ', '+ ((Height/2)* Math.floor(i/8) +  MARGIN.TOP  )+ ')';
+                return 'translate(' + ( Math.floor(i%9)* (Width/9) + MARGIN.LEFT )+ ', '+ ((Height/2)* Math.floor(i/9) +  MARGIN.TOP  )+ ')';
             });
                         
             var xScale = d3.scale.linear()
                 .domain(yearExtent)
-                .rangeRound([padding*1.5, (Width/8) - padding*1.5]);
+                .rangeRound([padding*1.5, (Width/9) - padding*1.5]);
             var yScale = d3.scale.linear()
                 .domain(valueExtent)
                 .rangeRound([(Height/2) - padding*2 , padding*2]);
