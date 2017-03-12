@@ -120,7 +120,7 @@ a img {
 		position: relative;
 		bottom: -2.3rem;
 		/*		right:-10%;*/
-		color: #009688;
+		color: rgb(119, 119, 119);
 		font-size: 0.9rem;
 		width: 100%;
 		margin: 0, auto;
