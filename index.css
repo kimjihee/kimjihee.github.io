@@ -96,7 +96,9 @@ a img {
 		width: 100%;
 	}
 	.column li {
-		height: 110vw;
+		height: 115vw;
+/*		border:1px solid red;*/
+		
 		/*        padding: 0.5rem;*/
 	}
 	.column img {
@@ -118,7 +120,7 @@ a img {
 	}
 	.github {
 		position: relative;
-		bottom: -2.3rem;
+		bottom: -3rem;
 		/*		right:-10%;*/
 		color: rgb(119, 119, 119);
 		font-size: 0.9rem;
@@ -135,7 +137,7 @@ a img {
 		height: 1.7rem !important;
 		line-height: 1.7rem;
 		border-radius: 2px;
-		border: 1px solid rgba(160, 160, 160, 0.6);
+		border: 1px solid rgba(160, 160, 160, 0.4);
 	}
 	.minsize {
 		display: none;
