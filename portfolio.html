@@ -1,0 +1,155 @@
+<!--
+---
+layout: default
+---
+<p>첫 화면</p>
+
+<ol>
+    {% for post in site.posts %}
+    <li>
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <time datetime="{{ post.date | date: "%Y-%m-%dT%H:%M:%sZ" }}">
+        {{ post.date | date: "%Y-%m-%d" }}
+        </time>
+    </li>
+    {% endfor %}
+</ol>-->
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="intial-scale: 1, width=device-width">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="index.css">
+	<style>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:500|Rubik" rel="stylesheet">
+	</style>
+	<script>
+		$(function () {
+//			$('.column>li').on('mouseenter', function () {
+//				$(this).children('.github').slideDown('slow');
+//				//                $(this).children('.nameIn').css('opacity','1');
+//			}).on('mouseleave', function () {
+//				$(this).children('.github').slideUp('slow');
+//				//                $(this).children('.nameIn').css('opacity','0');
+//			});
+			$('.slideMenu').click(function () {
+				$(".menu").toggle('fast');
+			});
+		});
+	</script>
+	<title>KimJihee portfolio</title>
+</head>
+
+<body>
+	<div class="top">
+		<div class="name">
+			<a href="kimjihee.github.io"></a>KimJihee</div>
+		<div class="bar"><span class="slideMenu"><i class="fa fa-bars" aria-hidden="true"></i></span>
+			<ul class="menu">
+				<li>About</li>
+				<li class="point">Data Visualization</li>
+				<li>Work</li>
+				<li>Contact</li>
+			</ul>
+		</div>
+	</div>
+	<div class="middle">
+		<ul class="column">
+			<li>
+				<div class='nameIn'>Seoul Mean Temperature </div>
+				<a href="http://kimjihee.github.io/seoul_weather_year.html"><img class="iSize" src="images/seoul_temperature.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange"><a href='view-source:http://kimjihee.github.io/seoul_weather_year.html'>Source Code</a></li>
+					<li><a href='https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36'>Dataset</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>World CO2 Emission</div>
+				<a href="http://kimjihee.github.io/gradient_line_graph.html"><img src="images/Co2_emission_gradient.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li><a href="https://docs.google.com/spreadsheets/d/1RjqGm7RG82GGVf7E4RXPPwFF7O1So6T0SFx2fVfcUJA/pub?gid=0">Dataset</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>Houly Compensation Small Multiples</div>
+				<a href="http://kimjihee.github.io/compensation.html"><img src="images/houly_compensation.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li><a href="https://docs.google.com/spreadsheets/d/1EjRPqwPTkOY4whM0V9ZS06KEcqjgUy0C4MFcyMHmngE/pub?gid=0">Dataset</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>Les Miserables</div>
+				<a href="http://kimjihee.github.io/miserables_color.html"><img class="iSize" src="images/miserables.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li>Dataset</li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>Suicide Rate Small Multiples </div>
+				<a href="http://kimjihee.github.io/suicide_databinding_1.html"><img class="iSize" src="images/suicide_rate2.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li><a href="https://docs.google.com/spreadsheets/d/1AcXBk9Ww1m9ozN6NFAP0rMTHGxlBy9RcbivCiHNyN8E/pub?gid=0">Dataset</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>Seoul Subway Air Pollution</div>
+				<a href="http://kimjihee.github.io/subway_air.html"><img class="iSize" src="images/subway_air.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li><a href="http://data.seoul.go.kr/openinf/fileview.jsp?infId=OA-2732&tMenu=11">Dataset</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>Working Time & Houly Compensation</div>
+				<a href="http://kimjihee.github.io/workingTime_HourlyCompensation"><img src="images/working_time_hour_compensation.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li><a href="https://docs.google.com/spreadsheets/d/1EjRPqwPTkOY4whM0V9ZS06KEcqjgUy0C4MFcyMHmngE/pub?gid=0">Dataset</a></li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>Seoul degree</div>
+				<a href="http://kimjihee.github.io/Seoulweather.html"><img src="images/seoul_degree.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li>Dataset</li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>Working Times</div>
+				<a href="http://kimjihee.github.io/working_time.html"><img src="images/working_time_rect.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li>Dataset</li>
+				</ul>
+			</li>
+			<li>
+				<div class='nameIn'>Air Accident Killed</div>
+				<a href="http://kimjihee.github.io/airAccident_Killed"><img class="iSize" src="images/air_Accident_kill.png"></a>
+				<ul class="github">
+					<li>D3.js, html<span class="minsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+					<li class="liArrange">Source Code</li>
+					<li>Dataset</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div class="bottom"></div>
+</body>
+
+</html>
